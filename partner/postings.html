@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Job Postings - PCU-DASMA Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E40AF',
+                        secondary: '#3B82F6',
+                        accent: '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="dashboard.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
+                        <a href="new-posting.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Post Opportunity</a>
+                        <a href="postings.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">My Postings</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
+                        </button>
+                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                            <div class="py-1">
+                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900">My Job Postings</h1>
+                <p class="text-gray-600">Manage all your job postings and track applications</p>
+            </div>
+            <a href="new-posting.html" class="bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                New Posting
+            </a>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Active Postings</p>
+                        <p class="text-2xl font-semibold text-gray-900">5</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Total Applications</p>
+                        <p class="text-2xl font-semibold text-gray-900">42</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Pending Review</p>
+                        <p class="text-2xl font-semibold text-gray-900">2</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Total Views</p>
+                        <p class="text-2xl font-semibold text-gray-900">1,234</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="mb-8">
+            <div class="border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8">
+                    <button onclick="filterPostings('all')" class="posting-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium">
+                        All Postings (7)
+                    </button>
+                    <button onclick="filterPostings('active')" class="posting-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                        Active (5)
+                    </button>
+                    <button onclick="filterPostings('pending')" class="posting-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                        Pending Review (2)
+                    </button>
+                    <button onclick="filterPostings('draft')" class="posting-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                        Drafts (1)
+                    </button>
+                    <button onclick="filterPostings('expired')" class="posting-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                        Expired (3)
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Job Postings List -->
+        <div class="space-y-6">
+            <!-- Active Job Posting 1 -->
+            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex-1">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3">Active</span>
+                            <span class="text-sm text-gray-500">Posted 2 days ago • Expires in 28 days</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Senior Software Developer</h3>
+                        <p class="text-gray-600 mb-3">Full-time • Makati City • ₱80,000 - ₱120,000</p>
+                        <div class="flex items-center space-x-6 text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                                234 views
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                                </svg>
+                                15 applications
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ml-4 flex flex-col space-y-2">
+                        <button onclick="viewApplications(1)" class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700">
+                            View Applications
+                        </button>
+                        <div class="flex space-x-2">
+                            <button onclick="editPosting(1)" class="px-3 py-1 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50">
+                                Edit
+                            </button>
+                            <button onclick="pausePosting(1)" class="px-3 py-1 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50">
+                                Pause
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Job Posting -->
+            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex-1">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3">Under Review</span>
+                            <span class="text-sm text-gray-500">Submitted 3 hours ago</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">IT Project Manager</h3>
+                        <p class="text-gray-600 mb-3">Full-time • BGC, Taguig • ₱90,000 - ₱130,000</p>
+                        <p class="text-sm text-yellow-700 bg-yellow-50 p-2 rounded">
+                            This posting is currently being reviewed by our administrators. You'll receive an email notification once it's approved.
+                        </p>
+                    </div>
+                    <div class="ml-4 flex flex-col space-y-2">
+                        <button onclick="editPosting(2)" class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50">
+                            Edit Draft
+                        </button>
+                        <button onclick="withdrawPosting(2)" class="px-4 py-2 text-red-600 hover:bg-red-50 text-sm rounded-md">
+                            Withdraw
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Job Posting 2 -->
+            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex-1">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3">Active</span>
+                            <span class="text-sm text-gray-500">Posted 1 week ago • Expires in 21 days</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Business Analyst</h3>
+                        <p class="text-gray-600 mb-3">Full-time • Ortigas Center • ₱60,000 - ₱85,000</p>
+                        <div class="flex items-center space-x-6 text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                                189 views
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                                </svg>
+                                8 applications
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ml-4 flex flex-col space-y-2">
+                        <button onclick="viewApplications(3)" class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700">
+                            View Applications
+                        </button>
+                        <div class="flex space-x-2">
+                            <button onclick="editPosting(3)" class="px-3 py-1 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50">
+                                Edit
+                            </button>
+                            <button onclick="pausePosting(3)" class="px-3 py-1 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50">
+                                Pause
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Draft Posting -->
+            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-gray-300">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex-1">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3">Draft</span>
+                            <span class="text-sm text-gray-500">Last edited 5 days ago</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">UI/UX Designer</h3>
+                        <p class="text-gray-600 mb-3">Full-time • Remote • ₱50,000 - ₱70,000</p>
+                        <p class="text-sm text-gray-700 bg-gray-50 p-2 rounded">
+                            This posting is saved as a draft. Complete the required fields and submit for review.
+                        </p>
+                    </div>
+                    <div class="ml-4 flex flex-col space-y-2">
+                        <button onclick="editPosting(4)" class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700">
+                            Continue Editing
+                        </button>
+                        <button onclick="deletePosting(4)" class="px-4 py-2 text-red-600 hover:bg-red-50 text-sm rounded-md">
+                            Delete Draft
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expired Posting -->
+            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-red-300 opacity-75">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex-1">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs mr-3">Expired</span>
+                            <span class="text-sm text-gray-500">Expired 3 days ago</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Marketing Specialist</h3>
+                        <p class="text-gray-600 mb-3">Full-time • Alabang • ₱45,000 - ₱65,000</p>
+                        <div class="flex items-center space-x-6 text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                                412 views
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                                </svg>
+                                19 applications
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ml-4 flex flex-col space-y-2">
+                        <button onclick="repostJob(5)" class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700">
+                            Repost Job
+                        </button>
+                        <button onclick="viewApplications(5)" class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50">
+                            View Applications
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-8 flex justify-center">
+            <nav class="flex items-center space-x-2">
+                <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-500 rounded-md">Previous</button>
+                <button class="px-3 py-1 text-sm bg-primary text-white rounded-md">1</button>
+                <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">2</button>
+                <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">Next</button>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        function toggleUserMenu() {
+            const menu = document.getElementById('userMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '../login.html';
+            }
+        }
+
+        function filterPostings(status) {
+            document.querySelectorAll('.posting-filter').forEach(filter => {
+                filter.classList.remove('active', 'border-primary', 'text-primary');
+                filter.classList.add('border-transparent', 'text-gray-500');
+            });
+
+            event.target.classList.add('active', 'border-primary', 'text-primary');
+            event.target.classList.remove('border-transparent', 'text-gray-500');
+
+            console.log('Filtering postings by:', status);
+        }
+
+        function viewApplications(postingId) {
+            alert(`Viewing applications for job posting #${postingId}...`);
+        }
+
+        function editPosting(postingId) {
+            window.location.href = `new-posting.html?edit=${postingId}`;
+        }
+
+        function pausePosting(postingId) {
+            if (confirm('Are you sure you want to pause this job posting?')) {
+                alert(`Job posting #${postingId} has been paused.`);
+                location.reload();
+            }
+        }
+
+        function withdrawPosting(postingId) {
+            if (confirm('Are you sure you want to withdraw this posting from review?')) {
+                alert(`Job posting #${postingId} has been withdrawn.`);
+                location.reload();
+            }
+        }
+
+        function deletePosting(postingId) {
+            if (confirm('Are you sure you want to delete this draft? This action cannot be undone.')) {
+                alert(`Draft #${postingId} has been deleted.`);
+                location.reload();
+            }
+        }
+
+        function repostJob(postingId) {
+            if (confirm('Would you like to repost this job with the same details?')) {
+                alert(`Job posting #${postingId} has been reposted and is now active!`);
+                location.reload();
+            }
+        }
+
+        // Close user menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('userMenu');
+            const button = event.target.closest('button');
+            
+            if (!button || button.onclick !== toggleUserMenu) {
+                menu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

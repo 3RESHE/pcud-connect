@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Approvals - PCU-DASMA Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E40AF',
+                        secondary: '#3B82F6',
+                        accent: '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="dashboard.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
+                        <a href="users.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Users</a>
+                        <a href="approve-jobs.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">Job Approvals</a>
+                        <a href="approve-partnerships.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Partnerships</a>
+                        <a href="analytics.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Analytics</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
+                        </button>
+                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                            <div class="py-1">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Profile</a>
+                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">Job Posting Approvals</h1>
+            <p class="text-gray-600">Review and approve job postings from external partners</p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Pending Review</p>
+                        <p class="text-2xl font-semibold text-gray-900">8</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Approved Today</p>
+                        <p class="text-2xl font-semibold text-gray-900">5</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Rejected</p>
+                        <p class="text-2xl font-semibold text-gray-900">2</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Active Postings</p>
+                        <p class="text-2xl font-semibold text-gray-900">45</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="mb-8">
+            <div class="border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8">
+                    <button onclick="filterJobs('all')" class="job-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium">
+                        All Submissions (8)
+                    </button>
+                    <button onclick="filterJobs('pending')" class="job-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                        Pending Review (8)
+                    </button>
+                    <button onclick="filterJobs('priority')" class="job-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                        Priority Review (3)
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Job Postings for Review -->
+        <div class="space-y-6">
+            <!-- High Priority Job Posting -->
+            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-red-500">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex-1">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">High Priority</span>
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3">Pending Review</span>
+                            <span class="text-sm text-gray-500">Submitted 2 hours ago</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Senior Software Developer</h3>
+                        <div class="flex items-center text-sm text-gray-600 mb-3">
+                            <div class="flex items-center mr-6">
+                                <div class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">
+                                    TS
+                                </div>
+                                Tech Solutions Inc.
+                            </div>
+                            <span class="mr-6">Full-time</span>
+                            <span class="mr-6">Makati City</span>
+                            <span>₱80,000 - ₱120,000</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            We are looking for an experienced Senior Software Developer to join our dynamic team. The ideal candidate will have expertise in modern web technologies...
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">JavaScript</span>
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">React</span>
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Node.js</span>
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">MySQL</span>
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            <strong>Application Deadline:</strong> November 15, 2025 • 
+                            <strong>Contact:</strong> hr@techsolutions.com
+                        </div>
+                    </div>
+                    <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+                        <button onclick="viewFullJob(1)" class="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200">
+                            View Details
+                        </button>
+                        <button onclick="approveJob(1)" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">
+                            Approve
+                        </button>
+                        <button onclick="requestChanges(1)" class="px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700">
+                            Request Changes
+                        </button>
+                        <button onclick="rejectJob(1)" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
+                            Reject
+                        </button>
+                    </div>
+                </div>
+                <div class="border-t pt-4">
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="flex items-center text-red-600">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                            </svg>
+                            Priority Review - Large company with urgent hiring needs
+                        </div>
+                        <div class="text-gray-500">
+                            Review by: Oct 4, 2025
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regular Job Posting 1 -->
+            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-400">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex-1">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3">Pending Review</span>
+                            <span class="text-sm text-gray-500">Submitted 5 hours ago</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">IT Project Manager</h3>
+                        <div class="flex items-center text-sm text-gray-600 mb-3">
+                            <div class="flex items-center mr-6">
+                                <div class="w-6 h-6 bg-green-600 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">
+                                    DI
+                                </div>
+                                Digital Innovations Corp.
+                            </div>
+                            <span class="mr-6">Full-time</span>
+                            <span class="mr-6">BGC, Taguig</span>
+                            <span>₱90,000 - ₱130,000</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Lead and manage IT projects from conception to completion. Work with cross-functional teams to deliver innovative technology solutions...
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Project Management</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Agile</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Scrum</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Leadership</span>
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            <strong>Application Deadline:</strong> November 20, 2025 • 
+                            <strong>Contact:</strong> careers@digitalinnovations.com
+                        </div>
+                    </div>
+                    <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+                        <button onclick="viewFullJob(2)" class="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200">
+                            View Details
+                        </button>
+                        <button onclick="approveJob(2)" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">
+                            Approve
+                        </button>
+                        <button onclick="requestChanges(2)" class="px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700">
+                            Request Changes
+                        </button>
+                        <button onclick="rejectJob(2)" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
+                            Reject
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regular Job Posting 2 -->
+            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-400">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex-1">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3">Pending Review</span>
+                            <span class="text-sm text-gray-500">Submitted 1 day ago</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Business Analyst</h3>
+                        <div class="flex items-center text-sm text-gray-600 mb-3">
+                            <div class="flex items-center mr-6">
+                                <div class="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">
+                                    GC
+                                </div>
+                                Global Consulting Group
+                            </div>
+                            <span class="mr-6">Full-time</span>
+                            <span class="mr-6">Ortigas Center</span>
+                            <span>₱60,000 - ₱85,000</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Analyze business processes and requirements to provide data-driven recommendations for process improvement and optimization...
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Data Analysis</span>
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Excel</span>
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">SQL</span>
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">PowerBI</span>
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            <strong>Application Deadline:</strong> November 10, 2025 • 
+                            <strong>Contact:</strong> hr@globalconsulting.com
+                        </div>
+                    </div>
+                    <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+                        <button onclick="viewFullJob(3)" class="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200">
+                            View Details
+                        </button>
+                        <button onclick="approveJob(3)" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">
+                            Approve
+                        </button>
+                        <button onclick="requestChanges(3)" class="px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700">
+                            Request Changes
+                        </button>
+                        <button onclick="rejectJob(3)" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
+                            Reject
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bulk Actions -->
+        <div class="mt-8 bg-gray-100 rounded-lg p-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
+                    <span class="text-sm text-gray-700">Select all visible items</span>
+                </div>
+                <div class="flex space-x-2">
+                    <button onclick="bulkApprove()" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">
+                        Bulk Approve
+                    </button>
+                    <button onclick="bulkReject()" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
+                        Bulk Reject
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-8 flex justify-center">
+            <nav class="flex items-center space-x-2">
+                <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-500 rounded-md">Previous</button>
+                <button class="px-3 py-1 text-sm bg-primary text-white rounded-md">1</button>
+                <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">2</button>
+                <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">Next</button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Job Detail Modal -->
+    <div id="jobModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+            
+            <div class="relative bg-white rounded-lg max-w-4xl w-full shadow-xl">
+                <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                    <h3 id="modalTitle" class="text-xl font-semibold text-gray-900">Job Posting Details</h3>
+                    <button onclick="closeJobModal()" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div id="modalContent" class="p-6 max-h-96 overflow-y-auto">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+                
+                <div class="px-6 py-4 border-t border-gray-200 flex justify-between">
+                    <button onclick="closeJobModal()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">
+                        Close
+                    </button>
+                    <div class="space-x-2">
+                        <button onclick="approveFromModal()" class="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+                            Approve
+                        </button>
+                        <button onclick="rejectFromModal()" class="px-6 py-2 bg-red-600 text-white rounded-md hover:bg-red-700">
+                            Reject
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentJobId = null;
+
+        function toggleUserMenu() {
+            const menu = document.getElementById('userMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '../login.html';
+            }
+        }
+
+        function filterJobs(category) {
+            document.querySelectorAll('.job-filter').forEach(filter => {
+                filter.classList.remove('active', 'border-primary', 'text-primary');
+                filter.classList.add('border-transparent', 'text-gray-500');
+            });
+
+            event.target.classList.add('active', 'border-primary', 'text-primary');
+            event.target.classList.remove('border-transparent', 'text-gray-500');
+
+            console.log('Filtering jobs by:', category);
+        }
+
+        function approveJob(jobId) {
+            if (confirm('Are you sure you want to approve this job posting?')) {
+                alert(`Job posting #${jobId} has been approved and is now live!`);
+                location.reload();
+            }
+        }
+
+        function rejectJob(jobId) {
+            const reason = prompt('Please provide a reason for rejection:');
+            if (reason) {
+                alert(`Job posting #${jobId} has been rejected. Reason: ${reason}`);
+                location.reload();
+            }
+        }
+
+        function requestChanges(jobId) {
+            const changes = prompt('Please specify what changes are needed:');
+            if (changes) {
+                alert(`Change request sent for job posting #${jobId}. Changes requested: ${changes}`);
+                location.reload();
+            }
+        }
+
+        function viewFullJob(jobId) {
+            currentJobId = jobId;
+            const jobDetails = {
+                1: {
+                    title: 'Senior Software Developer',
+                    company: 'Tech Solutions Inc.',
+                    description: 'Full job description with all details...',
+                    requirements: 'Complete requirements and qualifications...',
+                    benefits: 'Comprehensive benefits package...'
+                }
+            };
+
+            const job = jobDetails[jobId] || {
+                title: 'Job Title',
+                company: 'Company Name',
+                description: 'Detailed job description would appear here...',
+                requirements: 'Requirements and qualifications...',
+                benefits: 'Benefits and compensation...'
+            };
+
+            document.getElementById('modalTitle').textContent = `${job.title} - ${job.company}`;
+            document.getElementById('modalContent').innerHTML = `
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Job Description</h4>
+                        <p class="text-gray-600">${job.description}</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Requirements</h4>
+                        <p class="text-gray-600">${job.requirements}</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Benefits</h4>
+                        <p class="text-gray-600">${job.benefits}</p>
+                    </div>
+                </div>
+            `;
+            document.getElementById('jobModal').classList.remove('hidden');
+        }
+
+        function closeJobModal() {
+            document.getElementById('jobModal').classList.add('hidden');
+            currentJobId = null;
+        }
+
+        function approveFromModal() {
+            if (currentJobId) {
+                approveJob(currentJobId);
+                closeJobModal();
+            }
+        }
+
+        function rejectFromModal() {
+            if (currentJobId) {
+                rejectJob(currentJobId);
+                closeJobModal();
+            }
+        }
+
+        function bulkApprove() {
+            if (confirm('Are you sure you want to approve all selected job postings?')) {
+                alert('Selected job postings have been approved!');
+                location.reload();
+            }
+        }
+
+        function bulkReject() {
+            if (confirm('Are you sure you want to reject all selected job postings?')) {
+                alert('Selected job postings have been rejected!');
+                location.reload();
+            }
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('jobModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeJobModal();
+            }
+        });
+
+        // Close user menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('userMenu');
+            const button = event.target.closest('button');
+            
+            if (!button || button.onclick !== toggleUserMenu) {
+                menu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

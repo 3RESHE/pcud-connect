@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partnership Approvals - PCU-DASMA Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E40AF',
+                        secondary: '#3B82F6',
+                        accent: '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="dashboard.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
+                        <a href="users.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Users</a>
+                        <a href="approve-jobs.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Job Approvals</a>
+                        <a href="approve-partnerships.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">Partnerships</a>
+                        <a href="analytics.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Analytics</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
+                        </button>
+                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                            <div class="py-1">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Profile</a>
+                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">Partnership Approvals</h1>
+            <p class="text-gray-600">Review and approve partnership proposals from external organizations</p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Pending Review</p>
+                        <p class="text-2xl font-semibold text-gray-900">4</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Active Partnerships</p>
+                        <p class="text-2xl font-semibold text-gray-900">32</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">New This Month</p>
+                        <p class="text-2xl font-semibold text-gray-900">7</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Under Negotiation</p>
+                        <p class="text-2xl font-semibold text-gray-900">3</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="mb-8">
+            <div class="border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8">
+                    <button onclick="filterPartnerships('all')" class="partnership-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium">
+                        All Proposals (4)
+                    </button>
+                    <button onclick="filterPartnerships('internship')" class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                        Internship Programs (2)
+                    </button>
+                    <button onclick="filterPartnerships('research')" class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                        Research Collaborations (1)
+                    </button>
+                    <button onclick="filterPartnerships('training')" class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                        Training Programs (1)
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Partnership Proposals -->
+        <div class="space-y-6">
+            <!-- Internship Partnership Proposal -->
+            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex-1">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Internship Program</span>
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3">Pending Review</span>
+                            <span class="text-sm text-gray-500">Submitted 1 day ago</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">6-Month IT Internship Program</h3>
+                        <div class="flex items-center text-sm text-gray-600 mb-4">
+                            <div class="flex items-center mr-6">
+                                <div class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">
+                                    GC
+                                </div>
+                                Global Consulting Group
+                            </div>
+                            <span class="mr-6">Technology Industry</span>
+                            <span class="mr-6">20 Internship Slots</span>
+                            <span>₱15,000/month stipend</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            We propose a comprehensive 6-month internship program for PCU-DASMA IT students. The program includes mentorship, real-world project experience, and potential full-time employment opportunities upon graduation.
+                        </p>
+                        <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                            <h4 class="font-medium text-gray-900 mb-2">Program Highlights:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Hands-on experience with enterprise-level projects</li>
+                                <li>• One-on-one mentorship with senior developers</li>
+                                <li>• Technical skills training and certification support</li>
+                                <li>• Monthly performance evaluations and feedback</li>
+                                <li>• Final project presentation to executive team</li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Software Development</span>
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Database Management</span>
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Project Management</span>
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Professional Skills</span>
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            <strong>Duration:</strong> February - July 2026 • 
+                            <strong>Contact:</strong> partnerships@globalconsulting.com
+                        </div>
+                    </div>
+                    <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+                        <button onclick="viewFullPartnership(1)" class="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200">
+                            View Details
+                        </button>
+                        <button onclick="approvePartnership(1)" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">
+                            Approve
+                        </button>
+                        <button onclick="negotiatePartnership(1)" class="px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700">
+                            Negotiate
+                        </button>
+                        <button onclick="rejectPartnership(1)" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
+                            Reject
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Research Partnership Proposal -->
+            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-purple-500">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex-1">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Research Collaboration</span>
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3">Pending Review</span>
+                            <span class="text-sm text-gray-500">Submitted 3 days ago</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">AI in Healthcare Research Project</h3>
+                        <div class="flex items-center text-sm text-gray-600 mb-4">
+                            <div class="flex items-center mr-6">
+                                <div class="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">
+                                    MI
+                                </div>
+                                MedTech Innovations Ltd.
+                            </div>
+                            <span class="mr-6">Healthcare Technology</span>
+                            <span class="mr-6">12-month project</span>
+                            <span>₱2.5M research grant</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Collaborative research project focusing on AI applications in healthcare diagnostics. We seek to partner with PCU-DASMA's IT and Nursing programs for interdisciplinary research.
+                        </p>
+                        <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                            <h4 class="font-medium text-gray-900 mb-2">Research Scope:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Development of AI diagnostic tools for early disease detection</li>
+                                <li>• Machine learning algorithms for medical imaging analysis</li>
+                                <li>• Clinical validation studies with healthcare professionals</li>
+                                <li>• Publication opportunities in peer-reviewed journals</li>
+                                <li>• Patent filing for innovative solutions</li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Artificial Intelligence</span>
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Machine Learning</span>
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Healthcare</span>
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Research</span>
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            <strong>Timeline:</strong> January 2026 - December 2026 • 
+                            <strong>Contact:</strong> research@medtechinnovations.com
+                        </div>
+                    </div>
+                    <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+                        <button onclick="viewFullPartnership(2)" class="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200">
+                            View Details
+                        </button>
+                        <button onclick="approvePartnership(2)" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">
+                            Approve
+                        </button>
+                        <button onclick="negotiatePartnership(2)" class="px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700">
+                            Negotiate
+                        </button>
+                        <button onclick="rejectPartnership(2)" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
+                            Reject
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Training Partnership Proposal -->
+            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex-1">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Training Program</span>
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3">Pending Review</span>
+                            <span class="text-sm text-gray-500">Submitted 5 days ago</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Digital Marketing Certification Program</h3>
+                        <div class="flex items-center text-sm text-gray-600 mb-4">
+                            <div class="flex items-center mr-6">
+                                <div class="w-6 h-6 bg-green-600 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">
+                                    DM
+                                </div>
+                                Digital Marketing Academy
+                            </div>
+                            <span class="mr-6">Marketing & Business</span>
+                            <span class="mr-6">50 student slots</span>
+                            <span>Free certification</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Comprehensive 3-month digital marketing certification program designed specifically for PCU-DASMA business students. Includes hands-on projects and industry certifications.
+                        </p>
+                        <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                            <h4 class="font-medium text-gray-900 mb-2">Program Benefits:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Google Ads and Analytics certification preparation</li>
+                                <li>• Facebook Blueprint certification training</li>
+                                <li>• Real client project experience</li>
+                                <li>• Portfolio development guidance</li>
+                                <li>• Job placement assistance upon completion</li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Digital Marketing</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">SEO/SEM</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Social Media</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Analytics</span>
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            <strong>Schedule:</strong> March - May 2026 • 
+                            <strong>Contact:</strong> partnerships@digitalmarketingacademy.com
+                        </div>
+                    </div>
+                    <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+                        <button onclick="viewFullPartnership(3)" class="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200">
+                            View Details
+                        </button>
+                        <button onclick="approvePartnership(3)" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">
+                            Approve
+                        </button>
+                        <button onclick="negotiatePartnership(3)" class="px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700">
+                            Negotiate
+                        </button>
+                        <button onclick="rejectPartnership(3)" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
+                            Reject
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scholarship Partnership Proposal -->
+            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-orange-500">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex-1">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Scholarship Program</span>
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3">Pending Review</span>
+                            <span class="text-sm text-gray-500">Submitted 1 week ago</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Excellence in Technology Scholarship</h3>
+                        <div class="flex items-center text-sm text-gray-600 mb-4">
+                            <div class="flex items-center mr-6">
+                                <div class="w-6 h-6 bg-orange-600 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">
+                                    FF
+                                </div>
+                                Future Foundation Inc.
+                            </div>
+                            <span class="mr-6">Scholarship Program</span>
+                            <span class="mr-6">10 recipients annually</span>
+                            <span>₱100,000 per student</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Annual scholarship program supporting outstanding IT students with financial need. Recipients will receive full tuition support plus mentorship and internship opportunities.
+                        </p>
+                        <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                            <h4 class="font-medium text-gray-900 mb-2">Scholarship Benefits:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Full tuition coverage for one academic year</li>
+                                <li>• Monthly allowance for educational materials</li>
+                                <li>• Mentorship from industry professionals</li>
+                                <li>• Guaranteed summer internship placement</li>
+                                <li>• Leadership development workshops</li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded">Financial Aid</span>
+                            <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded">Mentorship</span>
+                            <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded">Career Development</span>
+                            <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded">Leadership</span>
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            <strong>Application Period:</strong> November 2025 - January 2026 • 
+                            <strong>Contact:</strong> scholarships@futurefoundation.org
+                        </div>
+                    </div>
+                    <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+                        <button onclick="viewFullPartnership(4)" class="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200">
+                            View Details
+                        </button>
+                        <button onclick="approvePartnership(4)" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">
+                            Approve
+                        </button>
+                        <button onclick="negotiatePartnership(4)" class="px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700">
+                            Negotiate
+                        </button>
+                        <button onclick="rejectPartnership(4)" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
+                            Reject
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-8 flex justify-center">
+            <nav class="flex items-center space-x-2">
+                <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-500 rounded-md">Previous</button>
+                <button class="px-3 py-1 text-sm bg-primary text-white rounded-md">1</button>
+                <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">2</button>
+                <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">Next</button>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        function toggleUserMenu() {
+            const menu = document.getElementById('userMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '../login.html';
+            }
+        }
+
+        function filterPartnerships(category) {
+            document.querySelectorAll('.partnership-filter').forEach(filter => {
+                filter.classList.remove('active', 'border-primary', 'text-primary');
+                filter.classList.add('border-transparent', 'text-gray-500');
+            });
+
+            event.target.classList.add('active', 'border-primary', 'text-primary');
+            event.target.classList.remove('border-transparent', 'text-gray-500');
+
+            console.log('Filtering partnerships by:', category);
+        }
+
+        function approvePartnership(partnershipId) {
+            if (confirm('Are you sure you want to approve this partnership proposal?')) {
+                alert(`Partnership proposal #${partnershipId} has been approved!`);
+                location.reload();
+            }
+        }
+
+        function rejectPartnership(partnershipId) {
+            const reason = prompt('Please provide a reason for rejection:');
+            if (reason) {
+                alert(`Partnership proposal #${partnershipId} has been rejected. Reason: ${reason}`);
+                location.reload();
+            }
+        }
+
+        function negotiatePartnership(partnershipId) {
+            const message = prompt('Please provide your negotiation terms or feedback:');
+            if (message) {
+                alert(`Negotiation initiated for partnership #${partnershipId}. Message: ${message}`);
+                location.reload();
+            }
+        }
+
+        function viewFullPartnership(partnershipId) {
+            alert(`Opening full details for partnership proposal #${partnershipId}...`);
+        }
+
+        // Close user menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('userMenu');
+            const button = event.target.closest('button');
+            
+            if (!button || button.onclick !== toggleUserMenu) {
+                menu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

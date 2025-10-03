@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partner Profile - PCU-DASMA Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E40AF',
+                        secondary: '#3B82F6',
+                        accent: '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="dashboard.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
+                        <a href="new-posting.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Post Opportunity</a>
+                        <a href="postings.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">My Postings</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
+                        </button>
+                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                            <div class="py-1">
+                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">Organization Profile</h1>
+            <p class="text-gray-600">Manage your organization's information and partnership settings</p>
+        </div>
+
+        <!-- Profile Form -->
+        <div class="bg-white shadow-sm rounded-lg">
+            <!-- Company Logo Section -->
+            <div class="px-6 py-8 border-b border-gray-200">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="h-20 w-20 bg-primary text-white rounded-lg flex items-center justify-center text-2xl font-bold">
+                            TS
+                        </div>
+                    </div>
+                    <div class="ml-6">
+                        <h3 class="text-lg font-medium text-gray-900">Company Logo</h3>
+                        <p class="text-sm text-gray-600">Upload your company logo to help alumni recognize your organization</p>
+                        <div class="mt-4 flex space-x-3">
+                            <button class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700">
+                                Upload Logo
+                            </button>
+                            <button class="px-4 py-2 bg-gray-200 text-gray-700 text-sm rounded-md hover:bg-gray-300">
+                                Remove
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Organization Information -->
+            <form onsubmit="handleProfileUpdate(event)" class="px-6 py-8">
+                <div class="space-y-8">
+                    <!-- Basic Information -->
+                    <div>
+                        <h3 class="text-lg font-medium text-gray-900 mb-6">Organization Information</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <label for="companyName" class="block text-sm font-medium text-gray-700 mb-1">Company/Organization Name *</label>
+                                <input type="text" id="companyName" name="companyName" value="Tech Solutions Inc." required
+                                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="industry" class="block text-sm font-medium text-gray-700 mb-1">Industry *</label>
+                                    <select id="industry" name="industry" required
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                                        <option value="technology" selected>Technology</option>
+                                        <option value="finance">Finance & Banking</option>
+                                        <option value="healthcare">Healthcare</option>
+                                        <option value="education">Education</option>
+                                        <option value="manufacturing">Manufacturing</option>
+                                        <option value="retail">Retail</option>
+                                        <option value="consulting">Consulting</option>
+                                        <option value="government">Government</option>
+                                        <option value="nonprofit">Non-profit</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="companySize" class="block text-sm font-medium text-gray-700 mb-1">Company Size</label>
+                                    <select id="companySize" name="companySize"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                                        <option value="">Select Size</option>
+                                        <option value="startup">Startup (1-10 employees)</option>
+                                        <option value="small" selected>Small (11-50 employees)</option>
+                                        <option value="medium">Medium (51-200 employees)</option>
+                                        <option value="large">Large (201-1000 employees)</option>
+                                        <option value="enterprise">Enterprise (1000+ employees)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="website" class="block text-sm font-medium text-gray-700 mb-1">Website</label>
+                                <input type="url" id="website" name="website" value="https://techsolutions.com"
+                                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                            </div>
+
+                            <div>
+                                <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Company Description *</label>
+                                <textarea id="description" name="description" rows="4" required
+                                          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+                                          placeholder="Provide a brief description of your organization, mission, and values...">Tech Solutions Inc. is a leading technology company specializing in web development, mobile applications, and digital transformation services. We help businesses leverage technology to achieve their goals and stay competitive in the digital age.</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div>
+                        <h3 class="text-lg font-medium text-gray-900 mb-6">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="contactPerson" class="block text-sm font-medium text-gray-700 mb-1">Primary Contact Person *</label>
+                                    <input type="text" id="contactPerson" name="contactPerson" value="Maria Rodriguez" required
+                                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                                </div>
+                                <div>
+                                    <label for="jobTitle" class="block text-sm font-medium text-gray-700 mb-1">Job Title *</label>
+                                    <input type="text" id="jobTitle" name="jobTitle" value="HR Manager" required
+                                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                                    <input type="email" id="email" name="email" value="hr@techsolutions.com" required
+                                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                                </div>
+                                <div>
+                                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
+                                    <input type="tel" id="phone" name="phone" value="+63 2 8123 4567" required
+                                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Office Address</label>
+                                <textarea id="address" name="address" rows="3"
+                                          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+                                          placeholder="Complete office address...">123 Business District, Makati City, Metro Manila 1200, Philippines</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Partnership Preferences -->
+                    <div>
+                        <h3 class="text-lg font-medium text-gray-900 mb-6">Partnership Preferences</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-3">Types of Partnerships Interested In</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="partnershipTypes" value="hiring" checked class="text-primary focus:ring-primary border-gray-300 rounded">
+                                        <span class="ml-2 text-sm text-gray-700">Student Hiring</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="partnershipTypes" value="internships" checked class="text-primary focus:ring-primary border-gray-300 rounded">
+                                        <span class="ml-2 text-sm text-gray-700">Internship Programs</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="partnershipTypes" value="research" class="text-primary focus:ring-primary border-gray-300 rounded">
+                                        <span class="ml-2 text-sm text-gray-700">Research Collaboration</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="partnershipTypes" value="training" class="text-primary focus:ring-primary border-gray-300 rounded">
+                                        <span class="ml-2 text-sm text-gray-700">Training Programs</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="partnershipTypes" value="consulting" class="text-primary focus:ring-primary border-gray-300 rounded">
+                                        <span class="ml-2 text-sm text-gray-700">Consulting Projects</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="partnershipTypes" value="events" class="text-primary focus:ring-primary border-gray-300 rounded">
+                                        <span class="ml-2 text-sm text-gray-700">Event Sponsorship</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-3">Preferred Academic Programs</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="programs" value="BSIT" checked class="text-primary focus:ring-primary border-gray-300 rounded">
+                                        <span class="ml-2 text-sm text-gray-700">BS Information Technology</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="programs" value="BSCS" checked class="text-primary focus:ring-primary border-gray-300 rounded">
+                                        <span class="ml-2 text-sm text-gray-700">BS Computer Science</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="programs" value="BSBA" class="text-primary focus:ring-primary border-gray-300 rounded">
+                                        <span class="ml-2 text-sm text-gray-700">BS Business Administration</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="programs" value="BSED" class="text-primary focus:ring-primary border-gray-300 rounded">
+                                        <span class="ml-2 text-sm text-gray-700">BS Education</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="programs" value="BSN" class="text-primary focus:ring-primary border-gray-300 rounded">
+                                        <span class="ml-2 text-sm text-gray-700">BS Nursing</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="programs" value="all" class="text-primary focus:ring-primary border-gray-300 rounded">
+                                        <span class="ml-2 text-sm text-gray-700">All Programs</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="partnershipGoals" class="block text-sm font-medium text-gray-700 mb-1">Partnership Goals</label>
+                                <textarea id="partnershipGoals" name="partnershipGoals" rows="4"
+                                          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+                                          placeholder="Describe your organization's goals for partnering with PCU-DASMA...">We aim to build long-term relationships with PCU-DASMA to recruit talented graduates, provide internship opportunities, and contribute to the development of future IT professionals through mentorship and training programs.</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Media & Links -->
+                    <div>
+                        <h3 class="text-lg font-medium text-gray-900 mb-6">Social Media & Professional Links</h3>
+                        <div class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="linkedin" class="block text-sm font-medium text-gray-700 mb-1">LinkedIn Company Page</label>
+                                    <input type="url" id="linkedin" name="linkedin" value="https://linkedin.com/company/techsolutions"
+                                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                                </div>
+                                <div>
+                                    <label for="facebook" class="block text-sm font-medium text-gray-700 mb-1">Facebook Page</label>
+                                    <input type="url" id="facebook" name="facebook" value="https://facebook.com/techsolutions"
+                                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="twitter" class="block text-sm font-medium text-gray-700 mb-1">Twitter/X Handle</label>
+                                    <input type="url" id="twitter" name="twitter"
+                                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                                </div>
+                                <div>
+                                    <label for="careers" class="block text-sm font-medium text-gray-700 mb-1">Careers Page</label>
+                                    <input type="url" id="careers" name="careers" value="https://techsolutions.com/careers"
+                                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification Settings -->
+                    <div>
+                        <h3 class="text-lg font-medium text-gray-900 mb-6">Notification Preferences</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-900">Job posting notifications</h4>
+                                    <p class="text-sm text-gray-600">Receive updates about your job posting status</p>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer" checked>
+                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                </label>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-900">Application alerts</h4>
+                                    <p class="text-sm text-gray-600">Get notified when alumni apply to your positions</p>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer" checked>
+                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                </label>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-900">Partnership opportunities</h4>
+                                    <p class="text-sm text-gray-600">Receive information about new partnership programs</p>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer" checked>
+                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                </label>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-900">Event invitations</h4>
+                                    <p class="text-sm text-gray-600">Get invites to university events and career fairs</p>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer">
+                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex justify-between items-center pt-6 border-t border-gray-200">
+                        <button type="button" onclick="window.history.back()" 
+                                class="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">
+                            Cancel
+                        </button>
+                        <button type="submit" 
+                                class="px-6 py-2 bg-primary text-white rounded-md hover:bg-blue-700">
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleUserMenu() {
+            const menu = document.getElementById('userMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '../login.html';
+            }
+        }
+
+        function handleProfileUpdate(event) {
+            event.preventDefault();
+            
+            // Show success message
+            alert('Organization profile updated successfully!');
+            
+            // In a real application, this would send the data to the server
+            console.log('Organization profile update submitted');
+        }
+
+        // Close user menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('userMenu');
+            const button = event.target.closest('button');
+            
+            if (!button || button.onclick !== toggleUserMenu) {
+                menu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

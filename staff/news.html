@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News Management - PCU-DASMA Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <a href="../index.html" class="text-xl font-bold text-primary"
+              >PCU-DASMA Connect</a
+            >
+            <div class="hidden md:ml-10 md:flex md:space-x-8">
+              <a
+                href="index.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Dashboard</a
+              >
+              <a
+                href="events.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Events</a
+              >
+              <a
+                href="news.html"
+                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >News</a
+              >
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="relative">
+              <button
+                onclick="toggleUserMenu()"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                <img
+                  class="h-8 w-8 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </button>
+              <div
+                id="userMenu"
+                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+              >
+                <div class="py-1">
+                  <a
+                    href="#"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Staff Profile</a
+                  >
+                  <a
+                    href="#"
+                    onclick="logout()"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Logout</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="flex justify-between items-center mb-8">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">News & Announcements</h1>
+          <p class="text-gray-600">
+            Create, manage, and publish news articles and announcements
+          </p>
+        </div>
+        <button
+          onclick="openCreateNewsModal()"
+          class="bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 flex items-center"
+        >
+          <svg
+            class="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+            ></path>
+          </svg>
+          Create News Article
+        </button>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-green-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600">Published</p>
+              <p class="text-2xl font-semibold text-gray-900">12</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-yellow-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600">Drafts</p>
+              <p class="text-2xl font-semibold text-gray-900">3</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-blue-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600">Total Views</p>
+              <p class="text-2xl font-semibold text-gray-900">8.2K</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-purple-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2M7 4h10M7 4v16a2 2 0 002 2h6a2 2 0 002-2V4M11 6v2M11 10v2"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600">This Month</p>
+              <p class="text-2xl font-semibold text-gray-900">5</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Tabs -->
+      <!-- Add this to the existing news.html after line 83 (after the stats cards) -->
+
+      <!-- Status Management Section -->
+      <div class="bg-white rounded-lg shadow-sm p-4 mb-8">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <h3 class="text-md font-semibold text-gray-900">Quick Actions</h3>
+            <select
+              id="bulkStatusAction"
+              class="px-3 py-1 border border-gray-300 rounded-md text-sm"
+            >
+              <option value="">Bulk Actions</option>
+              <option value="approve">Approve Selected</option>
+              <option value="reject">Reject Selected</option>
+              <option value="publish">Publish Selected</option>
+              <option value="unpublish">Unpublish Selected</option>
+            </select>
+            <button
+              onclick="applyBulkAction()"
+              class="px-4 py-1 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+            >
+              Apply
+            </button>
+          </div>
+          <div class="text-sm text-gray-600">
+            <span class="mr-4"
+              ><span
+                class="w-2 h-2 bg-yellow-500 rounded-full inline-block mr-1"
+              ></span
+              >Pending: 2</span
+            >
+            <span class="mr-4"
+              ><span
+                class="w-2 h-2 bg-green-500 rounded-full inline-block mr-1"
+              ></span
+              >Approved: 8</span
+            >
+            <span
+              ><span
+                class="w-2 h-2 bg-red-500 rounded-full inline-block mr-1"
+              ></span
+              >Rejected: 1</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Update the filter tabs to include status filters -->
+      <div class="mb-8">
+        <div class="border-b border-gray-200">
+          <nav class="-mb-px flex space-x-8">
+            <button
+              onclick="filterNews('all')"
+              class="news-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium"
+            >
+              All Articles (15)
+            </button>
+            <button
+              onclick="filterNews('published')"
+              class="news-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+            >
+              Published (8)
+            </button>
+            <button
+              onclick="filterNews('pending')"
+              class="news-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+            >
+              Pending Approval (2)
+            </button>
+            <button
+              onclick="filterNews('draft')"
+              class="news-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+            >
+              Drafts (4)
+            </button>
+            <button
+              onclick="filterNews('rejected')"
+              class="news-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+            >
+              Rejected (1)
+            </button>
+          </nav>
+        </div>
+      </div>
+
+      <!-- News Articles List -->
+      <div class="space-y-6">
+        <!-- Featured Published Article -->
+        <div
+          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-3">
+                <span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
+                  >Featured</span
+                >
+                <span
+                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Published</span
+                >
+                <span class="text-sm text-gray-500"
+                  >Published on October 3, 2025</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                PCU-DASMA Connect Reaches 1,000+ Alumni Members
+              </h3>
+              <p class="text-gray-600 mb-4">
+                We're excited to announce that PCU-DASMA Connect has
+                successfully onboarded over 1,000 alumni members, creating the
+                largest digital alumni network in the university's history...
+              </p>
+              <div
+                class="flex items-center space-x-6 text-sm text-gray-500 mb-4"
+              >
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    ></path>
+                  </svg>
+                  1,234 views
+                </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                    ></path>
+                  </svg>
+                  45 comments
+                </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    ></path>
+                  </svg>
+                  89 likes
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >University Update</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >Alumni</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >Platform News</span
+                >
+              </div>
+            </div>
+            <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+              <button
+                onclick="editNews(1)"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+              >
+                Edit Article
+              </button>
+              <button
+                onclick="viewPublished(1)"
+                class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
+              >
+                View Live
+              </button>
+              <div class="relative">
+                <button
+                  onclick="toggleNewsActions(1)"
+                  class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 w-full"
+                >
+                  More Actions
+                </button>
+                <div
+                  id="newsActions1"
+                  class="hidden origin-top-right absolute right-0 mt-1 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                >
+                  <div class="py-1">
+                    <button
+                      onclick="duplicateNews(1)"
+                      class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      Duplicate
+                    </button>
+                    <button
+                      onclick="unpublishNews(1)"
+                      class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      Unpublish
+                    </button>
+                    <button
+                      onclick="deleteNews(1)"
+                      class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Regular Published Article -->
+        <div
+          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-400"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-3">
+                <span
+                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Published</span
+                >
+                <span class="text-sm text-gray-500"
+                  >Published on October 1, 2025</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                New IT Laboratory Complex Opens at PCU-DASMA
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Philippine Christian University-Dasmariñas proudly inaugurates
+                its state-of-the-art IT Laboratory Complex, featuring
+                cutting-edge equipment and technology...
+              </p>
+              <div
+                class="flex items-center space-x-6 text-sm text-gray-500 mb-4"
+              >
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    ></path>
+                  </svg>
+                  867 views
+                </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                    ></path>
+                  </svg>
+                  23 comments
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                  >University Update</span
+                >
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                  >IT Department</span
+                >
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                  >Facilities</span
+                >
+              </div>
+            </div>
+            <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+              <button
+                onclick="editNews(2)"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+              >
+                Edit Article
+              </button>
+              <button
+                onclick="viewPublished(2)"
+                class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
+              >
+                View Live
+              </button>
+              <div class="relative">
+                <button
+                  onclick="toggleNewsActions(2)"
+                  class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 w-full"
+                >
+                  More Actions
+                </button>
+                <div
+                  id="newsActions2"
+                  class="hidden origin-top-right absolute right-0 mt-1 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                >
+                  <div class="py-1">
+                    <button
+                      onclick="featureNews(2)"
+                      class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      Make Featured
+                    </button>
+                    <button
+                      onclick="duplicateNews(2)"
+                      class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      Duplicate
+                    </button>
+                    <button
+                      onclick="unpublishNews(2)"
+                      class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      Unpublish
+                    </button>
+                    <button
+                      onclick="deleteNews(2)"
+                      class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Draft Article -->
+        <div
+          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-gray-300 opacity-75"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-3">
+                <span
+                  class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Draft</span
+                >
+                <span class="text-sm text-gray-500"
+                  >Last edited on October 2, 2025</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Alumni Success Story: BSIT Graduate Wins Innovation Award
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Maria Santos (BSIT Class of 2023) receives the prestigious
+                National Young Innovator Award for her groundbreaking mobile
+                application...
+              </p>
+              <div class="text-sm text-gray-500 mb-4">
+                <p class="bg-gray-50 p-3 rounded-lg">
+                  <strong>Note:</strong> This article is still in draft mode.
+                  Complete the content and publish to make it visible to users.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded"
+                  >Alumni Success</span
+                >
+                <span
+                  class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded"
+                  >Innovation</span
+                >
+                <span
+                  class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded"
+                  >Awards</span
+                >
+              </div>
+            </div>
+            <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+              <button
+                onclick="editNews(3)"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+              >
+                Continue Editing
+              </button>
+              <button
+                onclick="publishNews(3)"
+                class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
+              >
+                Publish Now
+              </button>
+              <button
+                onclick="deleteNews(3)"
+                class="px-4 py-2 border border-red-300 text-red-700 text-sm rounded-md hover:bg-red-50"
+              >
+                Delete Draft
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="mt-8 flex justify-center">
+        <nav class="flex items-center space-x-2">
+          <button
+            class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-500 rounded-md"
+          >
+            Previous
+          </button>
+          <button class="px-3 py-1 text-sm bg-primary text-white rounded-md">
+            1
+          </button>
+          <button
+            class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+          >
+            2
+          </button>
+          <button
+            class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+          >
+            Next
+          </button>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Create News Modal -->
+    <div id="createNewsModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
+      <div
+        class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center"
+      >
+        <div
+          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+        ></div>
+
+        <div class="relative bg-white rounded-lg max-w-4xl w-full shadow-xl">
+          <div
+            class="px-6 py-4 border-b border-gray-200 flex justify-between items-center"
+          >
+            <h3 class="text-xl font-semibold text-gray-900">
+              Create News Article
+            </h3>
+            <button
+              onclick="closeCreateNewsModal()"
+              class="text-gray-400 hover:text-gray-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <form onsubmit="handleCreateNews(event)" class="p-6">
+            <div class="space-y-6">
+              <div>
+                <label
+                  for="newsTitle"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Article Title *</label
+                >
+                <input
+                  type="text"
+                  id="newsTitle"
+                  required
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="Enter your article title..."
+                />
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label
+                    for="newsCategory"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Category *</label
+                  >
+                  <select
+                    id="newsCategory"
+                    required
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+                  >
+                    <option value="">Select Category</option>
+                    <option value="university">University Update</option>
+                    <option value="alumni">Alumni Success</option>
+                    <option value="partnership">Partnership</option>
+                    <option value="research">Research</option>
+                    <option value="event">Event Announcement</option>
+                    <option value="academic">Academic News</option>
+                  </select>
+                </div>
+                <div>
+                  <label
+                    for="newsAuthor"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Author</label
+                  >
+                  <input
+                    type="text"
+                    id="newsAuthor"
+                    value="Staff Member"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label
+                  for="newsSummary"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Summary *</label
+                >
+                <textarea
+                  id="newsSummary"
+                  rows="3"
+                  required
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="Brief summary that will appear in the article preview..."
+                ></textarea>
+              </div>
+
+              <div>
+                <label
+                  for="newsContent"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Content *</label
+                >
+                <textarea
+                  id="newsContent"
+                  rows="8"
+                  required
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="Write your full article content here..."
+                ></textarea>
+              </div>
+
+              <div>
+                <label
+                  for="newsTags"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Tags</label
+                >
+                <input
+                  type="text"
+                  id="newsTags"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="e.g., university, students, technology (separate with commas)"
+                />
+                <p class="text-sm text-gray-500 mt-1">
+                  Separate tags with commas
+                </p>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label
+                    for="publishDate"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Publish Date</label
+                  >
+                  <input
+                    type="date"
+                    id="publishDate"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+                  />
+                  <p class="text-sm text-gray-500 mt-1">
+                    Leave empty to publish immediately
+                  </p>
+                </div>
+                <div class="flex items-end">
+                  <label class="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="featuredNews"
+                      class="text-primary focus:ring-primary border-gray-300 rounded"
+                    />
+                    <span class="ml-2 text-sm text-gray-700"
+                      >Make this a featured article</span
+                    >
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 flex justify-between">
+              <button
+                type="button"
+                onclick="closeCreateNewsModal()"
+                class="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+              >
+                Cancel
+              </button>
+              <div class="space-x-3">
+                <button
+                  type="submit"
+                  name="action"
+                  value="draft"
+                  class="px-6 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700"
+                >
+                  Save as Draft
+                </button>
+                <button
+                  type="submit"
+                  name="action"
+                  value="publish"
+                  class="px-6 py-2 bg-primary text-white rounded-md hover:bg-blue-700"
+                >
+                  Publish Article
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+      }
+
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
+        }
+      }
+
+      function filterNews(status) {
+        document.querySelectorAll(".news-filter").forEach((filter) => {
+          filter.classList.remove("active", "border-primary", "text-primary");
+          filter.classList.add("border-transparent", "text-gray-500");
+        });
+
+        event.target.classList.add("active", "border-primary", "text-primary");
+        event.target.classList.remove("border-transparent", "text-gray-500");
+
+        console.log("Filtering news by:", status);
+      }
+
+      function openCreateNewsModal() {
+        document.getElementById("createNewsModal").classList.remove("hidden");
+      }
+
+      function closeCreateNewsModal() {
+        document.getElementById("createNewsModal").classList.add("hidden");
+      }
+
+      function handleCreateNews(e) {
+        e.preventDefault();
+        const action = e.submitter.value;
+
+        alert(
+          `Article ${
+            action === "draft" ? "saved as draft" : "published"
+          } successfully!`
+        );
+        closeCreateNewsModal();
+        location.reload();
+      }
+
+      function toggleNewsActions(newsId) {
+        // Close all other action menus
+        document.querySelectorAll('[id^="newsActions"]').forEach((menu) => {
+          if (menu.id !== `newsActions${newsId}`) {
+            menu.classList.add("hidden");
+          }
+        });
+
+        const menu = document.getElementById(`newsActions${newsId}`);
+        menu.classList.toggle("hidden");
+      }
+
+      function editNews(newsId) {
+        alert(`Opening editor for news article #${newsId}...`);
+      }
+
+      function viewPublished(newsId) {
+        alert(`Opening published article #${newsId} in new tab...`);
+      }
+
+      function duplicateNews(newsId) {
+        if (confirm("Create a copy of this article?")) {
+          alert(`Article #${newsId} duplicated successfully!`);
+          location.reload();
+        }
+      }
+
+      function publishNews(newsId) {
+        if (confirm("Publish this article now?")) {
+          alert(`Article #${newsId} published successfully!`);
+          location.reload();
+        }
+      }
+
+      function unpublishNews(newsId) {
+        if (
+          confirm(
+            "Unpublish this article? It will no longer be visible to users."
+          )
+        ) {
+          alert(`Article #${newsId} unpublished.`);
+          location.reload();
+        }
+      }
+
+      function featureNews(newsId) {
+        if (confirm("Make this article featured?")) {
+          alert(`Article #${newsId} is now featured!`);
+          location.reload();
+        }
+      }
+
+      function deleteNews(newsId) {
+        if (
+          confirm(
+            "Are you sure you want to delete this article? This action cannot be undone."
+          )
+        ) {
+          alert(`Article #${newsId} deleted successfully.`);
+          location.reload();
+        }
+      }
+
+      // Close modal when clicking outside
+      document
+        .getElementById("createNewsModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeCreateNewsModal();
+          }
+        });
+
+      // Close action menus when clicking outside
+      document.addEventListener("click", function (event) {
+        const userMenu = document.getElementById("userMenu");
+        const button = event.target.closest("button");
+
+        if (
+          !button ||
+          (button.onclick !== toggleUserMenu &&
+            !button.onclick?.toString().includes("toggleNewsActions"))
+        ) {
+          userMenu.classList.add("hidden");
+          document.querySelectorAll('[id^="newsActions"]').forEach((menu) => {
+            menu.classList.add("hidden");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
