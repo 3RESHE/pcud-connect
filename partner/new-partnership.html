@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Partnership Proposal - PCU-DASMA Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <a href="../index.html" class="text-xl font-bold text-primary"
+              >PCU-DASMA Connect</a
+            >
+            <div class="hidden md:ml-10 md:flex md:space-x-8">
+              <a
+                href="dashboard.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Dashboard</a
+              >
+              <a
+                href="job-postings.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Job Postings</a
+              >
+              <a
+                href="partnerships.html"
+                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Partnerships</a
+              >
+              <a
+                href="analytics.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Analytics</a
+              >
+              <a
+                href="profile.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Profile</a
+              >
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="relative">
+              <button
+                onclick="toggleUserMenu()"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                <img
+                  class="h-8 w-8 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </button>
+              <div
+                id="userMenu"
+                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+              >
+                <div class="py-1">
+                  <a
+                    href="profile.html"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Profile</a
+                  >
+                  <a
+                    href="#"
+                    onclick="logout()"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Logout</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="mb-8">
+        <div class="flex items-center mb-4">
+          <a
+            href="partnerships.html"
+            class="text-gray-400 hover:text-gray-600 mr-4"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"
+              ></path>
+            </svg>
+          </a>
+          <h1 class="text-3xl font-bold text-gray-900">
+            Create Partnership Proposal
+          </h1>
+        </div>
+        <p class="text-gray-600">
+          Submit a proposal for events, programs, workshops, or collaborations
+          with PCU-DASMA
+        </p>
+      </div>
+
+      <!-- Form Container -->
+      <div class="bg-white shadow-sm rounded-lg">
+        <form id="partnershipForm" class="divide-y divide-gray-200">
+          <!-- Partnership Type Selection -->
+          <div class="px-6 py-6">
+            <h2 class="text-lg font-medium text-gray-900 mb-4">
+              Partnership Type
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label
+                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                >
+                  <input
+                    type="radio"
+                    name="partnership_type"
+                    value="training_program"
+                    class="sr-only"
+                    onchange="togglePartnershipFields()"
+                  />
+                  <div class="flex-1">
+                    <div class="flex items-center">
+                      <div
+                        class="partnership-type-icon w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3"
+                      >
+                        <svg
+                          class="w-5 h-5 text-blue-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 class="text-sm font-medium text-gray-900">
+                          Training Program
+                        </h3>
+                        <p class="text-sm text-gray-500">
+                          Certification or skills training
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="partnership-type-radio hidden">
+                    <div
+                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
+                    >
+                      <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              <div>
+                <label
+                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                >
+                  <input
+                    type="radio"
+                    name="partnership_type"
+                    value="workshop_series"
+                    class="sr-only"
+                    onchange="togglePartnershipFields()"
+                  />
+                  <div class="flex-1">
+                    <div class="flex items-center">
+                      <div
+                        class="partnership-type-icon w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3"
+                      >
+                        <svg
+                          class="w-5 h-5 text-purple-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 class="text-sm font-medium text-gray-900">
+                          Workshop Series
+                        </h3>
+                        <p class="text-sm text-gray-500">
+                          Multi-session educational workshops
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="partnership-type-radio hidden">
+                    <div
+                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
+                    >
+                      <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              <div>
+                <label
+                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                >
+                  <input
+                    type="radio"
+                    name="partnership_type"
+                    value="community_event"
+                    class="sr-only"
+                    onchange="togglePartnershipFields()"
+                  />
+                  <div class="flex-1">
+                    <div class="flex items-center">
+                      <div
+                        class="partnership-type-icon w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center mr-3"
+                      >
+                        <svg
+                          class="w-5 h-5 text-pink-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 class="text-sm font-medium text-gray-900">
+                          Community Event
+                        </h3>
+                        <p class="text-sm text-gray-500">
+                          Public events, competitions, hackathons
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="partnership-type-radio hidden">
+                    <div
+                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
+                    >
+                      <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              <div>
+                <label
+                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                >
+                  <input
+                    type="radio"
+                    name="partnership_type"
+                    value="research_collaboration"
+                    class="sr-only"
+                    onchange="togglePartnershipFields()"
+                  />
+                  <div class="flex-1">
+                    <div class="flex items-center">
+                      <div
+                        class="partnership-type-icon w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3"
+                      >
+                        <svg
+                          class="w-5 h-5 text-orange-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 class="text-sm font-medium text-gray-900">
+                          Research Project
+                        </h3>
+                        <p class="text-sm text-gray-500">
+                          Joint research and development
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="partnership-type-radio hidden">
+                    <div
+                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
+                    >
+                      <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              <div>
+                <label
+                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                >
+                  <input
+                    type="radio"
+                    name="partnership_type"
+                    value="scholarship_program"
+                    class="sr-only"
+                    onchange="togglePartnershipFields()"
+                  />
+                  <div class="flex-1">
+                    <div class="flex items-center">
+                      <div
+                        class="partnership-type-icon w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3"
+                      >
+                        <svg
+                          class="w-5 h-5 text-green-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 class="text-sm font-medium text-gray-900">
+                          Scholarship Program
+                        </h3>
+                        <p class="text-sm text-gray-500">
+                          Student financial assistance
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="partnership-type-radio hidden">
+                    <div
+                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
+                    >
+                      <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              <div>
+                <label
+                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                >
+                  <input
+                    type="radio"
+                    name="partnership_type"
+                    value="other"
+                    class="sr-only"
+                    onchange="togglePartnershipFields()"
+                  />
+                  <div class="flex-1">
+                    <div class="flex items-center">
+                      <div
+                        class="partnership-type-icon w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mr-3"
+                      >
+                        <svg
+                          class="w-5 h-5 text-gray-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 class="text-sm font-medium text-gray-900">Other</h3>
+                        <p class="text-sm text-gray-500">
+                          Custom partnership proposal
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="partnership-type-radio hidden">
+                    <div
+                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
+                    >
+                      <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Basic Information -->
+          <div class="px-6 py-6">
+            <h2 class="text-lg font-medium text-gray-900 mb-4">
+              Basic Information
+            </h2>
+            <div class="grid grid-cols-1 gap-6">
+              <div>
+                <label
+                  for="title"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  <span id="title_label">Partnership Title</span>
+                  <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="e.g., Digital Marketing Certification Program"
+                />
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    for="target_audience"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Target Audience <span class="text-red-500">*</span>
+                  </label>
+                  <div class="grid grid-cols-1 gap-2 mt-2">
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="target_audience[]"
+                        value="bsit_students"
+                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span class="ml-2 text-sm text-gray-700"
+                        >BSIT Students</span
+                      >
+                    </label>
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="target_audience[]"
+                        value="bscs_students"
+                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span class="ml-2 text-sm text-gray-700"
+                        >BSCS Students</span
+                      >
+                    </label>
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="target_audience[]"
+                        value="business_students"
+                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span class="ml-2 text-sm text-gray-700"
+                        >Business Students</span
+                      >
+                    </label>
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="target_audience[]"
+                        value="all_students"
+                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span class="ml-2 text-sm text-gray-700"
+                        >All Students</span
+                      >
+                    </label>
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="target_audience[]"
+                        value="alumni"
+                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span class="ml-2 text-sm text-gray-700">Alumni</span>
+                    </label>
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="target_audience[]"
+                        value="faculty"
+                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span class="ml-2 text-sm text-gray-700">Faculty</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    for="expected_participants"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Expected Participants <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    id="expected_participants"
+                    name="expected_participants"
+                    min="1"
+                    required
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                    placeholder="50"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label
+                  for="description"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  <span id="description_label">Partnership Description</span>
+                  <span class="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="description"
+                  name="description"
+                  rows="5"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="Provide a detailed description of your partnership proposal, including objectives, expected outcomes, and benefits for students..."
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline & Schedule -->
+          <div class="px-6 py-6">
+            <h2 class="text-lg font-medium text-gray-900 mb-4">
+              Timeline & Schedule
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  for="start_date"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  <span id="start_date_label">Start Date</span>
+                  <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="date"
+                  id="start_date"
+                  name="start_date"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="end_date"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  <span id="end_date_label">End Date</span>
+                </label>
+                <input
+                  type="date"
+                  id="end_date"
+                  name="end_date"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                />
+              </div>
+            </div>
+
+            <!-- Dynamic Schedule Fields -->
+            <div id="training_schedule" class="mt-6 hidden">
+              <label
+                for="schedule_details"
+                class="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Training Schedule
+              </label>
+              <textarea
+                id="schedule_details"
+                name="schedule_details"
+                rows="3"
+                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                placeholder="e.g., Every Saturday, 2:00 PM - 5:00 PM for 12 weeks"
+              ></textarea>
+            </div>
+
+            <div id="event_schedule" class="mt-6 hidden">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    for="event_time"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Event Time
+                  </label>
+                  <input
+                    type="time"
+                    id="event_time"
+                    name="event_time"
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="duration_hours"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Duration (hours)
+                  </label>
+                  <input
+                    type="number"
+                    id="duration_hours"
+                    name="duration_hours"
+                    min="1"
+                    max="48"
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                    placeholder="8"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Location & Venue -->
+          <div class="px-6 py-6">
+            <h2 class="text-lg font-medium text-gray-900 mb-4">
+              Location & Venue
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  for="venue_type"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Venue Type <span class="text-red-500">*</span>
+                </label>
+                <select
+                  id="venue_type"
+                  name="venue_type"
+                  required
+                  onchange="toggleVenueFields()"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                >
+                  <option value="">Select Venue Type</option>
+                  <option value="pcu_campus">PCU-DASMA Campus</option>
+                  <option value="partner_location">
+                    Partner Organization Location
+                  </option>
+                  <option value="external_venue">External Venue</option>
+                  <option value="online">Online/Virtual</option>
+                  <option value="hybrid">Hybrid (Online + Physical)</option>
+                </select>
+              </div>
+
+              <div id="venue_details" class="hidden">
+                <label
+                  for="venue_address"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Venue Address/Details
+                </label>
+                <input
+                  type="text"
+                  id="venue_address"
+                  name="venue_address"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="Specific location or online platform details"
+                />
+              </div>
+            </div>
+
+            <div id="facility_requirements" class="mt-6">
+              <label
+                for="facilities_needed"
+                class="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Facility Requirements
+              </label>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-2">
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="facilities[]"
+                    value="projector_screen"
+                    class="rounded border-gray-300 text-primary focus:ring-primary"
+                  />
+                  <span class="ml-2 text-sm text-gray-700"
+                    >Projector & Screen</span
+                  >
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="facilities[]"
+                    value="sound_system"
+                    class="rounded border-gray-300 text-primary focus:ring-primary"
+                  />
+                  <span class="ml-2 text-sm text-gray-700">Sound System</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="facilities[]"
+                    value="computers"
+                    class="rounded border-gray-300 text-primary focus:ring-primary"
+                  />
+                  <span class="ml-2 text-sm text-gray-700">Computers/Lab</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="facilities[]"
+                    value="wifi"
+                    class="rounded border-gray-300 text-primary focus:ring-primary"
+                  />
+                  <span class="ml-2 text-sm text-gray-700">Wi-Fi Access</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="facilities[]"
+                    value="catering"
+                    class="rounded border-gray-300 text-primary focus:ring-primary"
+                  />
+                  <span class="ml-2 text-sm text-gray-700">Catering</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="facilities[]"
+                    value="parking"
+                    class="rounded border-gray-300 text-primary focus:ring-primary"
+                  />
+                  <span class="ml-2 text-sm text-gray-700">Parking</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Budget & Resources -->
+          <div class="px-6 py-6">
+            <h2 class="text-lg font-medium text-gray-900 mb-4">
+              Budget & Resources
+            </h2>
+            <div class="grid grid-cols-1 gap-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    for="total_budget"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Total Budget
+                  </label>
+                  <div class="relative">
+                    <span class="absolute left-3 top-2 text-gray-500">₱</span>
+                    <input
+                      type="number"
+                      id="total_budget"
+                      name="total_budget"
+                      class="block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                      placeholder="100000"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    for="funding_source"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Funding Source <span class="text-red-500">*</span>
+                  </label>
+                  <select
+                    id="funding_source"
+                    name="funding_source"
+                    required
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  >
+                    <option value="">Select Funding Source</option>
+                    <option value="partner_funded">
+                      Partner Organization Funded
+                    </option>
+                    <option value="shared_cost">
+                      Shared Cost (Partner + PCU-DASMA)
+                    </option>
+                    <option value="pcu_funded">PCU-DASMA Funded</option>
+                    <option value="participant_fee">Participant Fee</option>
+                    <option value="sponsorship">External Sponsorship</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Scholarship specific fields -->
+              <div id="scholarship_fields" class="hidden space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      for="scholarship_amount"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Scholarship Amount (per recipient)
+                    </label>
+                    <div class="relative">
+                      <span class="absolute left-3 top-2 text-gray-500">₱</span>
+                      <input
+                        type="number"
+                        id="scholarship_amount"
+                        name="scholarship_amount"
+                        class="block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                        placeholder="50000"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      for="scholarship_recipients"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Number of Recipients
+                    </label>
+                    <input
+                      type="number"
+                      id="scholarship_recipients"
+                      name="scholarship_recipients"
+                      min="1"
+                      class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                      placeholder="10"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    for="eligibility_criteria"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Eligibility Criteria
+                  </label>
+                  <textarea
+                    id="eligibility_criteria"
+                    name="eligibility_criteria"
+                    rows="3"
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                    placeholder="e.g., Minimum GPA of 3.5, STEM field students, financial need assessment..."
+                  ></textarea>
+                </div>
+              </div>
+
+              <div>
+                <label
+                  for="resources_provided"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Resources/Materials Provided
+                </label>
+                <textarea
+                  id="resources_provided"
+                  name="resources_provided"
+                  rows="3"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="Describe materials, certificates, equipment, or other resources that will be provided..."
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Objectives & Outcomes -->
+          <div class="px-6 py-6">
+            <h2 class="text-lg font-medium text-gray-900 mb-4">
+              Objectives & Expected Outcomes
+            </h2>
+            <div class="grid grid-cols-1 gap-6">
+              <div>
+                <label
+                  for="objectives"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Partnership Objectives <span class="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="objectives"
+                  name="objectives"
+                  rows="4"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="List the main objectives and goals of this partnership..."
+                ></textarea>
+              </div>
+
+              <div>
+                <label
+                  for="expected_outcomes"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Expected Outcomes <span class="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="expected_outcomes"
+                  name="expected_outcomes"
+                  rows="4"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="Describe the expected results, benefits for students, and measurable outcomes..."
+                ></textarea>
+              </div>
+
+              <div>
+                <label
+                  for="success_metrics"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Success Metrics
+                </label>
+                <textarea
+                  id="success_metrics"
+                  name="success_metrics"
+                  rows="3"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="How will the success of this partnership be measured? (e.g., completion rates, satisfaction scores, employment rates...)"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Information -->
+          <div class="px-6 py-6">
+            <h2 class="text-lg font-medium text-gray-900 mb-4">
+              Additional Information
+            </h2>
+            <div class="grid grid-cols-1 gap-6">
+              <div>
+                <label
+                  for="organization_background"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Organization Background
+                </label>
+                <textarea
+                  id="organization_background"
+                  name="organization_background"
+                  rows="3"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="Brief background about your organization and relevant experience..."
+                ></textarea>
+              </div>
+
+              <div>
+                <label
+                  for="additional_notes"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Additional Notes or Requirements
+                </label>
+                <textarea
+                  id="additional_notes"
+                  name="additional_notes"
+                  rows="3"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="Any other information, special requirements, or considerations..."
+                ></textarea>
+              </div>
+
+              <div>
+                <label
+                  for="contact_person"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Main Contact Person <span class="text-red-500">*</span>
+                </label>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    name="contact_name"
+                    required
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                    placeholder="Full Name"
+                  />
+                  <input
+                    type="email"
+                    name="contact_email"
+                    required
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                    placeholder="Email Address"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="px-6 py-6 bg-gray-50">
+            <div class="flex justify-between">
+              <button
+                type="button"
+                onclick="saveDraft()"
+                class="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 font-medium"
+              >
+                Save as Draft
+              </button>
+              <div class="flex space-x-3">
+                <button
+                  type="button"
+                  onclick="previewPartnership()"
+                  class="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 font-medium"
+                >
+                  Preview
+                </button>
+                <button
+                  type="submit"
+                  class="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 font-medium"
+                >
+                  Submit Proposal
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div id="previewModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
+      <div
+        class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center"
+      >
+        <div
+          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+        ></div>
+
+        <div class="relative bg-white rounded-lg max-w-4xl w-full shadow-xl">
+          <div
+            class="px-6 py-4 border-b border-gray-200 flex justify-between items-center"
+          >
+            <h3 class="text-xl font-semibold text-gray-900">
+              Partnership Proposal Preview
+            </h3>
+            <button
+              onclick="closePreviewModal()"
+              class="text-gray-400 hover:text-gray-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="p-6 max-h-96 overflow-y-auto">
+            <div id="previewContent">
+              <!-- Preview content will be loaded here -->
+            </div>
+          </div>
+
+          <div
+            class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3"
+          >
+            <button
+              onclick="closePreviewModal()"
+              class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+            >
+              Edit
+            </button>
+            <button
+              onclick="submitForm()"
+              class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
+            >
+              Submit Proposal
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+      }
+
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
+        }
+      }
+
+      function togglePartnershipFields() {
+        const selectedType = document.querySelector(
+          'input[name="partnership_type"]:checked'
+        )?.value;
+        const trainingSchedule = document.getElementById("training_schedule");
+        const eventSchedule = document.getElementById("event_schedule");
+        const scholarshipFields = document.getElementById("scholarship_fields");
+
+        // Hide all dynamic fields first
+        trainingSchedule.classList.add("hidden");
+        eventSchedule.classList.add("hidden");
+        scholarshipFields.classList.add("hidden");
+
+        // Update labels and show relevant fields based on type
+        if (
+          selectedType === "training_program" ||
+          selectedType === "workshop_series"
+        ) {
+          document.getElementById("title_label").textContent =
+            selectedType === "training_program"
+              ? "Training Program Title"
+              : "Workshop Series Title";
+          document.getElementById("description_label").textContent =
+            selectedType === "training_program"
+              ? "Training Program Description"
+              : "Workshop Series Description";
+          trainingSchedule.classList.remove("hidden");
+        } else if (selectedType === "community_event") {
+          document.getElementById("title_label").textContent = "Event Title";
+          document.getElementById("description_label").textContent =
+            "Event Description";
+          document.getElementById("start_date_label").textContent =
+            "Event Date";
+          document.getElementById("end_date_label").textContent =
+            "End Date (if multi-day)";
+          eventSchedule.classList.remove("hidden");
+        } else if (selectedType === "scholarship_program") {
+          document.getElementById("title_label").textContent =
+            "Scholarship Program Title";
+          document.getElementById("description_label").textContent =
+            "Scholarship Program Description";
+          scholarshipFields.classList.remove("hidden");
+        } else if (selectedType === "research_collaboration") {
+          document.getElementById("title_label").textContent =
+            "Research Project Title";
+          document.getElementById("description_label").textContent =
+            "Research Project Description";
+        }
+
+        // Update radio button visual state
+        document
+          .querySelectorAll('input[name="partnership_type"]')
+          .forEach((radio) => {
+            const label = radio.closest("label");
+            const radioIcon = label.querySelector(".partnership-type-radio");
+
+            if (radio.checked) {
+              label.classList.add("border-primary", "bg-blue-50");
+              radioIcon.classList.remove("hidden");
+            } else {
+              label.classList.remove("border-primary", "bg-blue-50");
+              radioIcon.classList.add("hidden");
+            }
+          });
+      }
+
+      function toggleVenueFields() {
+        const venueType = document.getElementById("venue_type").value;
+        const venueDetails = document.getElementById("venue_details");
+
+        if (venueType && venueType !== "pcu_campus") {
+          venueDetails.classList.remove("hidden");
+        } else {
+          venueDetails.classList.add("hidden");
+        }
+      }
+
+      function saveDraft() {
+        if (confirm("Save current progress as draft?")) {
+          alert(
+            "Partnership proposal saved as draft! You can continue editing later."
+          );
+          window.location.href = "partnerships.html";
+        }
+      }
+
+      function previewPartnership() {
+        const formData = new FormData(
+          document.getElementById("partnershipForm")
+        );
+        const partnershipType = formData.get("partnership_type");
+        const title = formData.get("title");
+        const expectedParticipants = formData.get("expected_participants");
+        const startDate = formData.get("start_date");
+        const description = formData.get("description");
+        const objectives = formData.get("objectives");
+
+        if (!partnershipType || !title) {
+          alert("Please fill in the required fields before previewing.");
+          return;
+        }
+
+        const typeLabels = {
+          training_program: "Training Program",
+          workshop_series: "Workshop Series",
+          community_event: "Community Event",
+          research_collaboration: "Research Project",
+          scholarship_program: "Scholarship Program",
+          other: "Partnership",
+        };
+
+        const typeLabel = typeLabels[partnershipType] || "Partnership";
+
+        const previewContent = `
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex items-center mb-2">
+                            <span class="px-2 py-1 rounded-full text-xs mr-2 bg-green-100 text-green-800">${typeLabel}</span>
+                            <span class="text-sm text-gray-500">Expected Participants: ${
+                              expectedParticipants || "Not specified"
+                            }</span>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">${
+                          title || "Partnership Title"
+                        }</h2>
+                        ${
+                          startDate
+                            ? `<p class="text-gray-600">Start Date: ${new Date(
+                                startDate
+                              ).toLocaleDateString()}</p>`
+                            : ""
+                        }
+                    </div>
+                    
+                    ${
+                      description
+                        ? `
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">Description</h3>
+                        <p class="text-gray-700 whitespace-pre-wrap">${description}</p>
+                    </div>
+                    `
+                        : ""
+                    }
+                    
+                    ${
+                      objectives
+                        ? `
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">Objectives</h3>
+                        <p class="text-gray-700 whitespace-pre-wrap">${objectives}</p>
+                    </div>
+                    `
+                        : ""
+                    }
+                    
+                    <div class="text-sm text-gray-500">
+                        <p><strong>Note:</strong> This is a preview of your partnership proposal. Complete all required fields before submitting for review.</p>
+                    </div>
+                </div>
+            `;
+
+        document.getElementById("previewContent").innerHTML = previewContent;
+        document.getElementById("previewModal").classList.remove("hidden");
+      }
+
+      function closePreviewModal() {
+        document.getElementById("previewModal").classList.add("hidden");
+      }
+
+      function submitForm() {
+        document
+          .getElementById("partnershipForm")
+          .dispatchEvent(new Event("submit"));
+      }
+
+      // Form submission handler
+      document
+        .getElementById("partnershipForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const formData = new FormData(this);
+          const partnershipType = formData.get("partnership_type");
+          const title = formData.get("title");
+
+          if (!partnershipType) {
+            alert("Please select a partnership type.");
+            return;
+          }
+
+          if (
+            confirm(`Submit partnership proposal "${title}" for admin review?`)
+          ) {
+            alert(
+              "Partnership proposal submitted successfully! It will be reviewed by PCU-DASMA administrators."
+            );
+            window.location.href = "partnerships.html";
+          }
+        });
+
+      // Close modal when clicking outside
+      document
+        .getElementById("previewModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closePreviewModal();
+          }
+        });
+
+      // Close user menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const menu = document.getElementById("userMenu");
+        const button = event.target.closest("button");
+
+        if (!button || button.onclick !== toggleUserMenu) {
+          menu.classList.add("hidden");
+        }
+      });
+
+      // Set minimum date to today
+      document.addEventListener("DOMContentLoaded", function () {
+        const today = new Date().toISOString().split("T")[0];
+        document.getElementById("start_date").setAttribute("min", today);
+        document.getElementById("end_date").setAttribute("min", today);
+      });
+    </script>
+  </body>
+</html>

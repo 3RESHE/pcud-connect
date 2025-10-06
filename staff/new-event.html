@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Event - PCU-DASMA Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E40AF',
+                        secondary: '#3B82F6',
+                        accent: '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="index.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
+                        <a href="events.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">Events</a>
+                        <a href="news.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">News</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
+                        </button>
+                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                            <div class="py-1">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Staff Profile</a>
+                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <div class="flex items-center mb-4">
+                <a href="events.html" class="text-gray-400 hover:text-gray-600 mr-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </a>
+                <h1 class="text-3xl font-bold text-gray-900">Create New Event</h1>
+            </div>
+            <p class="text-gray-600">Create and manage university events for students, alumni, and partners</p>
+        </div>
+
+        <!-- Form Container -->
+        <div class="bg-white shadow-sm rounded-lg">
+            <form id="eventForm" class="divide-y divide-gray-200">
+                <!-- Basic Information -->
+                <div class="px-6 py-6">
+                    <h2 class="text-lg font-medium text-gray-900 mb-4">Basic Information</h2>
+                    <div class="grid grid-cols-1 gap-6">
+                        <!-- Event Title -->
+                        <div>
+                            <label for="event_title" class="block text-sm font-medium text-gray-700 mb-1">
+                                Event Title <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" id="event_title" name="event_title" required
+                                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                placeholder="Enter event title...">
+                        </div>
+
+                        <!-- Event Description -->
+                        <div>
+                            <label for="event_description" class="block text-sm font-medium text-gray-700 mb-1">
+                                Event Description <span class="text-red-500">*</span>
+                            </label>
+                            <textarea id="event_description" name="event_description" rows="4" required
+                                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                placeholder="Provide a detailed description of the event..."></textarea>
+                        </div>
+
+                        <!-- Event Category and Type -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="event_category" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Event Category <span class="text-red-500">*</span>
+                                </label>
+                                <select id="event_category" name="event_category" required
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                                    <option value="">Select Category</option>
+                                    <option value="academic">Academic</option>
+                                    <option value="career">Career Development</option>
+                                    <option value="networking">Networking</option>
+                                    <option value="workshop">Workshop/Seminar</option>
+                                    <option value="social">Social Event</option>
+                                    <option value="alumni">Alumni Event</option>
+                                    <option value="competition">Competition</option>
+                                    <option value="cultural">Cultural Event</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="event_type" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Event Format <span class="text-red-500">*</span>
+                                </label>
+                                <select id="event_type" name="event_type" required onchange="toggleLocationFields()"
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                                    <option value="">Select Format</option>
+                                    <option value="in_person">In-Person</option>
+                                    <option value="virtual">Virtual/Online</option>
+                                    <option value="hybrid">Hybrid</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Partnership Information -->
+                <div class="px-6 py-6">
+                    <h2 class="text-lg font-medium text-gray-900 mb-4">Partnership & Sponsorship</h2>
+                    <div class="grid grid-cols-1 gap-6">
+                        <!-- Partner Company -->
+                        <div>
+                            <label for="partner_company" class="block text-sm font-medium text-gray-700 mb-1">
+                                Partnered/Sponsored By
+                            </label>
+                            <div class="relative">
+                                <select id="partner_company" name="partner_company" onchange="toggleCustomPartner()"
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                                    <option value="">No Partner/Sponsor</option>
+                                    <option value="TechSolutions Inc.">TechSolutions Inc.</option>
+                                    <option value="InnovateHub Philippines">InnovateHub Philippines</option>
+                                    <option value="MarketPro Solutions">MarketPro Solutions</option>
+                                    <option value="CyberGuard Solutions Inc.">CyberGuard Solutions Inc.</option>
+                                    <option value="TechFoundation Philippines">TechFoundation Philippines</option>
+                                    <option value="DataDriven Analytics Corp">DataDriven Analytics Corp</option>
+                                    <option value="CloudTech Systems">CloudTech Systems</option>
+                                    <option value="custom">Other (specify below)</option>
+                                </select>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Select from registered partners or choose "Other" to enter a custom partner name</p>
+                        </div>
+
+                        <!-- Custom Partner Name (Hidden by default) -->
+                        <div id="custom_partner_field" class="hidden">
+                            <label for="custom_partner_name" class="block text-sm font-medium text-gray-700 mb-1">
+                                Partner/Sponsor Name
+                            </label>
+                            <input type="text" id="custom_partner_name" name="custom_partner_name"
+                                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                placeholder="Enter partner or sponsor organization name...">
+                        </div>
+
+                        <!-- Partnership Type -->
+                        <div id="partnership_details" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="partnership_type" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Partnership Type
+                                </label>
+                                <select id="partnership_type" name="partnership_type"
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                                    <option value="">Select Type</option>
+                                    <option value="title_sponsor">Title Sponsor</option>
+                                    <option value="presenting_partner">Presenting Partner</option>
+                                    <option value="co_organizer">Co-Organizer</option>
+                                    <option value="supporting_partner">Supporting Partner</option>
+                                    <option value="venue_partner">Venue Partner</option>
+                                    <option value="technology_partner">Technology Partner</option>
+                                    <option value="media_partner">Media Partner</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="partner_contribution" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Partner Contribution
+                                </label>
+                                <input type="text" id="partner_contribution" name="partner_contribution"
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    placeholder="e.g., Venue, Funding, Speaker, Equipment...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Date and Time -->
+                <div class="px-6 py-6">
+                    <h2 class="text-lg font-medium text-gray-900 mb-4">Date & Time</h2>
+                    <div class="grid grid-cols-1 gap-6">
+                        <!-- Event Date -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="event_date" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Event Date <span class="text-red-500">*</span>
+                                </label>
+                                <input type="date" id="event_date" name="event_date" required
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                            </div>
+
+                            <div>
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="multi_day" name="multi_day" onchange="toggleEndDate()" class="rounded border-gray-300 text-primary focus:ring-primary">
+                                    <span class="ml-2 text-sm text-gray-700">Multi-day event</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- End Date (Hidden by default) -->
+                        <div id="end_date_field" class="hidden">
+                            <label for="end_date" class="block text-sm font-medium text-gray-700 mb-1">
+                                End Date
+                            </label>
+                            <input type="date" id="end_date" name="end_date"
+                                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary md:w-1/2">
+                        </div>
+
+                        <!-- Time -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="start_time" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Start Time <span class="text-red-500">*</span>
+                                </label>
+                                <input type="time" id="start_time" name="start_time" required
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                            </div>
+
+                            <div>
+                                <label for="end_time" class="block text-sm font-medium text-gray-700 mb-1">
+                                    End Time <span class="text-red-500">*</span>
+                                </label>
+                                <input type="time" id="end_time" name="end_time" required
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="px-6 py-6">
+                    <h2 class="text-lg font-medium text-gray-900 mb-4">Location & Venue</h2>
+                    <div class="grid grid-cols-1 gap-6">
+                        <!-- In-Person Location -->
+                        <div id="in_person_location">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="venue_name" class="block text-sm font-medium text-gray-700 mb-1">
+                                        Venue Name
+                                    </label>
+                                    <input type="text" id="venue_name" name="venue_name"
+                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                        placeholder="e.g., PCU-DASMA Auditorium">
+                                </div>
+
+                                <div>
+                                    <label for="room_capacity" class="block text-sm font-medium text-gray-700 mb-1">
+                                        Room Capacity
+                                    </label>
+                                    <input type="number" id="room_capacity" name="room_capacity" min="1"
+                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                        placeholder="Maximum number of attendees">
+                                </div>
+                            </div>
+
+                            <div class="mt-6">
+                                <label for="venue_address" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Venue Address
+                                </label>
+                                <textarea id="venue_address" name="venue_address" rows="3"
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    placeholder="Complete address of the venue..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Virtual Location -->
+                        <div id="virtual_location" class="hidden">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="platform" class="block text-sm font-medium text-gray-700 mb-1">
+                                        Platform
+                                    </label>
+                                    <select id="platform" name="platform"
+                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                                        <option value="">Select Platform</option>
+                                        <option value="zoom">Zoom</option>
+                                        <option value="teams">Microsoft Teams</option>
+                                        <option value="meet">Google Meet</option>
+                                        <option value="webex">Webex</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label for="virtual_capacity" class="block text-sm font-medium text-gray-700 mb-1">
+                                        Virtual Capacity
+                                    </label>
+                                    <input type="number" id="virtual_capacity" name="virtual_capacity" min="1"
+                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                        placeholder="Maximum number of virtual attendees">
+                                </div>
+                            </div>
+
+                            <div class="mt-6">
+                                <label for="meeting_link" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Meeting Link/URL
+                                </label>
+                                <input type="url" id="meeting_link" name="meeting_link"
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    placeholder="https://zoom.us/j/...">
+                                <p class="text-xs text-gray-500 mt-1">This will be shared with registered participants</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Registration Settings -->
+                <div class="px-6 py-6">
+                    <h2 class="text-lg font-medium text-gray-900 mb-4">Registration Settings</h2>
+                    <div class="grid grid-cols-1 gap-6">
+                        <!-- Registration Requirements -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="registration_required" name="registration_required" checked class="rounded border-gray-300 text-primary focus:ring-primary">
+                                    <span class="ml-2 text-sm text-gray-700">Registration Required</span>
+                                </label>
+                            </div>
+
+                            <div>
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="approval_required" name="approval_required" class="rounded border-gray-300 text-primary focus:ring-primary">
+                                    <span class="ml-2 text-sm text-gray-700">Manual Approval Required</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Registration Deadline -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="registration_deadline" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Registration Deadline
+                                </label>
+                                <input type="date" id="registration_deadline" name="registration_deadline"
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                            </div>
+
+                            <div>
+                                <label for="max_attendees" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Maximum Attendees
+                                </label>
+                                <input type="number" id="max_attendees" name="max_attendees" min="1"
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    placeholder="Leave blank for unlimited">
+                            </div>
+                        </div>
+
+                        <!-- Target Audience -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Target Audience</label>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="target_audience[]" value="students" checked class="rounded border-gray-300 text-primary focus:ring-primary">
+                                    <span class="ml-2 text-sm text-gray-700">Current Students</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="target_audience[]" value="alumni" checked class="rounded border-gray-300 text-primary focus:ring-primary">
+                                    <span class="ml-2 text-sm text-gray-700">Alumni</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="target_audience[]" value="faculty" class="rounded border-gray-300 text-primary focus:ring-primary">
+                                    <span class="ml-2 text-sm text-gray-700">Faculty & Staff</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="target_audience[]" value="public" class="rounded border-gray-300 text-primary focus:ring-primary">
+                                    <span class="ml-2 text-sm text-gray-700">General Public</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="px-6 py-6">
+                    <h2 class="text-lg font-medium text-gray-900 mb-4">Additional Information</h2>
+                    <div class="grid grid-cols-1 gap-6">
+                        <!-- Event Tags -->
+                        <div>
+                            <label for="event_tags" class="block text-sm font-medium text-gray-700 mb-1">
+                                Event Tags
+                            </label>
+                            <input type="text" id="event_tags" name="event_tags"
+                                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                placeholder="e.g., networking, career, professional development (separate with commas)">
+                            <p class="text-xs text-gray-500 mt-1">Tags help users find your event more easily</p>
+                        </div>
+
+                        <!-- Contact Information -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="contact_person" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Contact Person
+                                </label>
+                                <input type="text" id="contact_person" name="contact_person"
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    placeholder="Name of contact person">
+                            </div>
+
+                            <div>
+                                <label for="contact_email" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Contact Email
+                                </label>
+                                <input type="email" id="contact_email" name="contact_email"
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    placeholder="email@pcu-dasma.edu.ph">
+                            </div>
+                        </div>
+
+                        <!-- Special Instructions -->
+                        <div>
+                            <label for="special_instructions" class="block text-sm font-medium text-gray-700 mb-1">
+                                Special Instructions
+                            </label>
+                            <textarea id="special_instructions" name="special_instructions" rows="3"
+                                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                placeholder="Any special instructions or requirements for attendees..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="px-6 py-6 flex justify-between">
+                    <button type="button" onclick="saveDraft()" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 font-medium">
+                        Save as Draft
+                    </button>
+                    <div class="flex space-x-3">
+                        <button type="button" onclick="previewEvent()" class="px-6 py-2 border border-primary text-primary rounded-md hover:bg-blue-50 font-medium">
+                            Preview Event
+                        </button>
+                        <button type="submit" onclick="publishEvent()" class="px-6 py-2 bg-primary text-white rounded-md hover:bg-blue-700 font-medium">
+                            Publish Event
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleUserMenu() {
+            const menu = document.getElementById('userMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '../login.html';
+            }
+        }
+
+        function toggleLocationFields() {
+            const eventType = document.getElementById('event_type').value;
+            const inPersonLocation = document.getElementById('in_person_location');
+            const virtualLocation = document.getElementById('virtual_location');
+
+            if (eventType === 'virtual') {
+                inPersonLocation.classList.add('hidden');
+                virtualLocation.classList.remove('hidden');
+            } else if (eventType === 'in_person') {
+                inPersonLocation.classList.remove('hidden');
+                virtualLocation.classList.add('hidden');
+            } else if (eventType === 'hybrid') {
+                inPersonLocation.classList.remove('hidden');
+                virtualLocation.classList.remove('hidden');
+            } else {
+                inPersonLocation.classList.remove('hidden');
+                virtualLocation.classList.add('hidden');
+            }
+        }
+
+        function toggleCustomPartner() {
+            const partnerSelect = document.getElementById('partner_company');
+            const customField = document.getElementById('custom_partner_field');
+            const partnershipDetails = document.getElementById('partnership_details');
+
+            if (partnerSelect.value === 'custom') {
+                customField.classList.remove('hidden');
+                partnershipDetails.classList.remove('hidden');
+            } else if (partnerSelect.value === '') {
+                customField.classList.add('hidden');
+                partnershipDetails.classList.add('hidden');
+            } else {
+                customField.classList.add('hidden');
+                partnershipDetails.classList.remove('hidden');
+            }
+        }
+
+        function toggleEndDate() {
+            const multiDay = document.getElementById('multi_day');
+            const endDateField = document.getElementById('end_date_field');
+
+            if (multiDay.checked) {
+                endDateField.classList.remove('hidden');
+            } else {
+                endDateField.classList.add('hidden');
+            }
+        }
+
+        function saveDraft() {
+            if (confirm('Save this event as draft?')) {
+                alert('Event saved as draft successfully! You can continue editing later.');
+                window.location.href = 'events.html';
+            }
+        }
+
+        function previewEvent() {
+            alert('Opening event preview...');
+        }
+
+        function publishEvent() {
+            // Basic validation
+            const title = document.getElementById('event_title').value;
+            const description = document.getElementById('event_description').value;
+            const category = document.getElementById('event_category').value;
+            const date = document.getElementById('event_date').value;
+
+            if (!title || !description || !category || !date) {
+                alert('Please fill in all required fields before publishing.');
+                return;
+            }
+
+            if (confirm('Publish this event? It will be visible to all users and registration will be open.')) {
+                alert('Event published successfully! Users can now register for your event.');
+                window.location.href = 'events.html';
+            }
+        }
+
+        // Close user menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('userMenu');
+            const button = event.target.closest('button');
+            
+            if (!button || button.onclick !== toggleUserMenu) {
+                menu.classList.add('hidden');
+            }
+        });
+
+        // Initialize form
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('event_date').min = today;
+            document.getElementById('end_date').min = today;
+            document.getElementById('registration_deadline').min = today;
+        });
+    </script>
+</body>
+</html>

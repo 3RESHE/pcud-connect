@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Job Posting - PCU-DASMA Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <a href="../index.html" class="text-xl font-bold text-primary"
+              >PCU-DASMA Connect</a
+            >
+            <div class="hidden md:ml-10 md:flex md:space-x-8">
+              <a
+                href="dashboard.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Dashboard</a
+              >
+              <a
+                href="job-postings.html"
+                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Job Postings</a
+              >
+              <a
+                href="partnerships.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Partnerships</a
+              >
+              <a
+                href="analytics.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Analytics</a
+              >
+              <a
+                href="profile.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Profile</a
+              >
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="relative">
+              <button
+                onclick="toggleUserMenu()"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                <img
+                  class="h-8 w-8 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </button>
+              <div
+                id="userMenu"
+                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+              >
+                <div class="py-1">
+                  <a
+                    href="profile.html"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Profile</a
+                  >
+                  <a
+                    href="#"
+                    onclick="logout()"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Logout</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="mb-8">
+        <div class="flex items-center mb-4">
+          <a
+            href="job-postings.html"
+            class="text-gray-400 hover:text-gray-600 mr-4"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"
+              ></path>
+            </svg>
+          </a>
+          <h1 class="text-3xl font-bold text-gray-900">
+            Create New Job Posting
+          </h1>
+        </div>
+        <p class="text-gray-600">
+          Post job opportunities and internship programs for PCU-DASMA students
+          and alumni
+        </p>
+      </div>
+
+      <!-- Form Container -->
+      <div class="bg-white shadow-sm rounded-lg">
+        <form id="jobPostingForm" class="divide-y divide-gray-200">
+          <!-- Job Type Selection -->
+          <div class="px-6 py-6">
+            <h2 class="text-lg font-medium text-gray-900 mb-4">Job Type</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label
+                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                >
+                  <input
+                    type="radio"
+                    name="job_type"
+                    value="fulltime"
+                    class="sr-only"
+                    onchange="toggleJobTypeFields()"
+                  />
+                  <div class="flex-1">
+                    <div class="flex items-center">
+                      <div
+                        class="job-type-icon w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3"
+                      >
+                        <svg
+                          class="w-5 h-5 text-blue-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 class="text-sm font-medium text-gray-900">
+                          Full-time Position
+                        </h3>
+                        <p class="text-sm text-gray-500">
+                          Permanent employment opportunity
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="job-type-radio hidden">
+                    <div
+                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
+                    >
+                      <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              <div>
+                <label
+                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                >
+                  <input
+                    type="radio"
+                    name="job_type"
+                    value="internship"
+                    class="sr-only"
+                    onchange="toggleJobTypeFields()"
+                  />
+                  <div class="flex-1">
+                    <div class="flex items-center">
+                      <div
+                        class="job-type-icon w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3"
+                      >
+                        <svg
+                          class="w-5 h-5 text-purple-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 class="text-sm font-medium text-gray-900">
+                          Internship Program
+                        </h3>
+                        <p class="text-sm text-gray-500">
+                          Temporary learning opportunity
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="job-type-radio hidden">
+                    <div
+                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
+                    >
+                      <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Basic Information -->
+          <div class="px-6 py-6">
+            <h2 class="text-lg font-medium text-gray-900 mb-4">
+              Basic Information
+            </h2>
+            <div class="grid grid-cols-1 gap-6">
+              <div>
+                <label
+                  for="job_title"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  <span id="job_title_label">Job Title</span>
+                  <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="job_title"
+                  name="job_title"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="e.g., Senior Software Developer"
+                />
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    for="department"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Department/Team <span class="text-red-500">*</span>
+                  </label>
+                  <select
+                    id="department"
+                    name="department"
+                    required
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  >
+                    <option value="">Select Department</option>
+                    <option value="it">Information Technology</option>
+                    <option value="engineering">Engineering</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="sales">Sales</option>
+                    <option value="hr">Human Resources</option>
+                    <option value="finance">Finance</option>
+                    <option value="operations">Operations</option>
+                    <option value="customer_service">Customer Service</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label
+                    for="experience_level"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Experience Level <span class="text-red-500">*</span>
+                  </label>
+                  <select
+                    id="experience_level"
+                    name="experience_level"
+                    required
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  >
+                    <option value="">Select Level</option>
+                    <option value="entry">Entry Level (0-2 years)</option>
+                    <option value="mid">Mid Level (3-5 years)</option>
+                    <option value="senior">Senior Level (6+ years)</option>
+                    <option value="lead">Lead/Manager Level</option>
+                    <option value="student">Student/Fresh Graduate</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label
+                  for="job_description"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  <span id="job_description_label">Job Description</span>
+                  <span class="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="job_description"
+                  name="job_description"
+                  rows="5"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="Provide a detailed description of the role, responsibilities, and what the candidate will be doing..."
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Location and Work Setup -->
+          <div class="px-6 py-6">
+            <h2 class="text-lg font-medium text-gray-900 mb-4">
+              Location & Work Setup
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  for="work_setup"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Work Setup <span class="text-red-500">*</span>
+                </label>
+                <select
+                  id="work_setup"
+                  name="work_setup"
+                  required
+                  onchange="toggleLocationField()"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                >
+                  <option value="">Select Work Setup</option>
+                  <option value="onsite">On-site</option>
+                  <option value="remote">Remote</option>
+                  <option value="hybrid">Hybrid</option>
+                </select>
+              </div>
+
+              <div id="location_field">
+                <label
+                  for="location"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Location <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="e.g., Makati City, Metro Manila"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Compensation -->
+          <div class="px-6 py-6">
+            <h2 class="text-lg font-medium text-gray-900 mb-4">
+              <span id="compensation_title">Compensation</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <label
+                  for="salary_min"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  <span id="salary_min_label">Minimum Salary</span>
+                  <span class="text-red-500">*</span>
+                </label>
+                <div class="relative">
+                  <span class="absolute left-3 top-2 text-gray-500">₱</span>
+                  <input
+                    type="number"
+                    id="salary_min"
+                    name="salary_min"
+                    required
+                    class="block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                    placeholder="50000"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label
+                  for="salary_max"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  <span id="salary_max_label">Maximum Salary</span>
+                  <span class="text-red-500">*</span>
+                </label>
+                <div class="relative">
+                  <span class="absolute left-3 top-2 text-gray-500">₱</span>
+                  <input
+                    type="number"
+                    id="salary_max"
+                    name="salary_max"
+                    required
+                    class="block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                    placeholder="80000"
+                  />
+                </div>
+              </div>
+
+              <div id="salary_period_field">
+                <label
+                  for="salary_period"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Pay Period <span class="text-red-500">*</span>
+                </label>
+                <select
+                  id="salary_period"
+                  name="salary_period"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                >
+                  <option value="monthly">Monthly</option>
+                  <option value="hourly">Hourly</option>
+                  <option value="daily">Daily</option>
+                  <option value="project">Per Project</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Internship Duration Field -->
+            <div id="internship_duration" class="mt-6 hidden">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    for="duration_months"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Internship Duration <span class="text-red-500">*</span>
+                  </label>
+                  <select
+                    id="duration_months"
+                    name="duration_months"
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  >
+                    <option value="">Select Duration</option>
+                    <option value="1">1 month</option>
+                    <option value="2">2 months</option>
+                    <option value="3">3 months</option>
+                    <option value="4">4 months</option>
+                    <option value="5">5 months</option>
+                    <option value="6">6 months</option>
+                    <option value="12">12 months</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label
+                    for="start_date"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Preferred Start Date
+                  </label>
+                  <input
+                    type="date"
+                    id="start_date"
+                    name="start_date"
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Requirements -->
+          <div class="px-6 py-6">
+            <h2 class="text-lg font-medium text-gray-900 mb-4">Requirements</h2>
+            <div class="grid grid-cols-1 gap-6">
+              <div>
+                <label
+                  for="education"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Educational Requirements <span class="text-red-500">*</span>
+                </label>
+                <select
+                  id="education"
+                  name="education"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                >
+                  <option value="">Select Education Level</option>
+                  <option value="high_school">High School Graduate</option>
+                  <option value="college_level">College Level</option>
+                  <option value="college_graduate">College Graduate</option>
+                  <option value="masters">Master's Degree</option>
+                  <option value="phd">PhD/Doctorate</option>
+                </select>
+              </div>
+
+              <div>
+                <label
+                  for="preferred_programs"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Preferred Programs/Courses
+                </label>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-2">
+                  <label class="flex items-center">
+                    <input
+                      type="checkbox"
+                      name="programs[]"
+                      value="bsit"
+                      class="rounded border-gray-300 text-primary focus:ring-primary"
+                    />
+                    <span class="ml-2 text-sm text-gray-700">BSIT</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input
+                      type="checkbox"
+                      name="programs[]"
+                      value="bscs"
+                      class="rounded border-gray-300 text-primary focus:ring-primary"
+                    />
+                    <span class="ml-2 text-sm text-gray-700">BSCS</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input
+                      type="checkbox"
+                      name="programs[]"
+                      value="bsba"
+                      class="rounded border-gray-300 text-primary focus:ring-primary"
+                    />
+                    <span class="ml-2 text-sm text-gray-700">BSBA</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input
+                      type="checkbox"
+                      name="programs[]"
+                      value="bsed"
+                      class="rounded border-gray-300 text-primary focus:ring-primary"
+                    />
+                    <span class="ml-2 text-sm text-gray-700">BSED</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input
+                      type="checkbox"
+                      name="programs[]"
+                      value="bsn"
+                      class="rounded border-gray-300 text-primary focus:ring-primary"
+                    />
+                    <span class="ml-2 text-sm text-gray-700">BSN</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input
+                      type="checkbox"
+                      name="programs[]"
+                      value="any"
+                      class="rounded border-gray-300 text-primary focus:ring-primary"
+                    />
+                    <span class="ml-2 text-sm text-gray-700">Any Program</span>
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <label
+                  for="skills"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Required Skills <span class="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="skills"
+                  name="skills"
+                  rows="3"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="List the key skills and qualifications required for this position..."
+                ></textarea>
+              </div>
+
+              <div id="experience_requirements">
+                <label
+                  for="experience"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Experience Requirements
+                </label>
+                <textarea
+                  id="experience"
+                  name="experience"
+                  rows="3"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="Describe any specific experience requirements or preferred background..."
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Application Process -->
+          <div class="px-6 py-6">
+            <h2 class="text-lg font-medium text-gray-900 mb-4">
+              Application Process
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  for="application_deadline"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Application Deadline <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="date"
+                  id="application_deadline"
+                  name="application_deadline"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="positions_available"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Number of Positions <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="number"
+                  id="positions_available"
+                  name="positions_available"
+                  min="1"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="1"
+                />
+              </div>
+            </div>
+
+            <div class="mt-6">
+              <label
+                for="application_process"
+                class="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Application Instructions
+              </label>
+              <textarea
+                id="application_process"
+                name="application_process"
+                rows="3"
+                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                placeholder="Provide specific instructions for applicants (e.g., required documents, interview process, etc.)..."
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Benefits and Perks -->
+          <div class="px-6 py-6">
+            <h2 class="text-lg font-medium text-gray-900 mb-4">
+              Benefits & Perks
+            </h2>
+            <div class="grid grid-cols-1 gap-6">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-3"
+                  >Benefits Offered</label
+                >
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <label class="flex items-center">
+                    <input
+                      type="checkbox"
+                      name="benefits[]"
+                      value="health_insurance"
+                      class="rounded border-gray-300 text-primary focus:ring-primary"
+                    />
+                    <span class="ml-2 text-sm text-gray-700"
+                      >Health Insurance</span
+                    >
+                  </label>
+                  <label class="flex items-center">
+                    <input
+                      type="checkbox"
+                      name="benefits[]"
+                      value="dental_insurance"
+                      class="rounded border-gray-300 text-primary focus:ring-primary"
+                    />
+                    <span class="ml-2 text-sm text-gray-700"
+                      >Dental Insurance</span
+                    >
+                  </label>
+                  <label class="flex items-center">
+                    <input
+                      type="checkbox"
+                      name="benefits[]"
+                      value="retirement_plan"
+                      class="rounded border-gray-300 text-primary focus:ring-primary"
+                    />
+                    <span class="ml-2 text-sm text-gray-700"
+                      >Retirement Plan</span
+                    >
+                  </label>
+                  <label class="flex items-center">
+                    <input
+                      type="checkbox"
+                      name="benefits[]"
+                      value="paid_leave"
+                      class="rounded border-gray-300 text-primary focus:ring-primary"
+                    />
+                    <span class="ml-2 text-sm text-gray-700"
+                      >Paid Time Off</span
+                    >
+                  </label>
+                  <label class="flex items-center">
+                    <input
+                      type="checkbox"
+                      name="benefits[]"
+                      value="flexible_hours"
+                      class="rounded border-gray-300 text-primary focus:ring-primary"
+                    />
+                    <span class="ml-2 text-sm text-gray-700"
+                      >Flexible Hours</span
+                    >
+                  </label>
+                  <label class="flex items-center">
+                    <input
+                      type="checkbox"
+                      name="benefits[]"
+                      value="professional_development"
+                      class="rounded border-gray-300 text-primary focus:ring-primary"
+                    />
+                    <span class="ml-2 text-sm text-gray-700"
+                      >Professional Development</span
+                    >
+                  </label>
+                  <label class="flex items-center">
+                    <input
+                      type="checkbox"
+                      name="benefits[]"
+                      value="transportation"
+                      class="rounded border-gray-300 text-primary focus:ring-primary"
+                    />
+                    <span class="ml-2 text-sm text-gray-700"
+                      >Transportation Allowance</span
+                    >
+                  </label>
+                  <label class="flex items-center">
+                    <input
+                      type="checkbox"
+                      name="benefits[]"
+                      value="meal_allowance"
+                      class="rounded border-gray-300 text-primary focus:ring-primary"
+                    />
+                    <span class="ml-2 text-sm text-gray-700"
+                      >Meal Allowance</span
+                    >
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <label
+                  for="additional_benefits"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Additional Benefits or Perks
+                </label>
+                <textarea
+                  id="additional_benefits"
+                  name="additional_benefits"
+                  rows="3"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="Describe any other benefits, perks, or unique aspects of working with your organization..."
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="px-6 py-6 bg-gray-50">
+            <div class="flex justify-between">
+              <button
+                type="button"
+                onclick="saveDraft()"
+                class="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 font-medium"
+              >
+                Save as Draft
+              </button>
+              <div class="flex space-x-3">
+                <button
+                  type="button"
+                  onclick="previewJob()"
+                  class="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 font-medium"
+                >
+                  Preview
+                </button>
+                <button
+                  type="submit"
+                  class="px-6 py-2 bg-primary text-white rounded-md hover:bg-blue-700 font-medium"
+                >
+                  Submit for Review
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div id="previewModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
+      <div
+        class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center"
+      >
+        <div
+          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+        ></div>
+
+        <div class="relative bg-white rounded-lg max-w-4xl w-full shadow-xl">
+          <div
+            class="px-6 py-4 border-b border-gray-200 flex justify-between items-center"
+          >
+            <h3 class="text-xl font-semibold text-gray-900">
+              Job Posting Preview
+            </h3>
+            <button
+              onclick="closePreviewModal()"
+              class="text-gray-400 hover:text-gray-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="p-6 max-h-96 overflow-y-auto">
+            <div id="previewContent">
+              <!-- Preview content will be loaded here -->
+            </div>
+          </div>
+
+          <div
+            class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3"
+          >
+            <button
+              onclick="closePreviewModal()"
+              class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+            >
+              Edit
+            </button>
+            <button
+              onclick="submitForm()"
+              class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700"
+            >
+              Submit for Review
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+      }
+
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
+        }
+      }
+
+      function toggleJobTypeFields() {
+        const selectedType = document.querySelector(
+          'input[name="job_type"]:checked'
+        )?.value;
+        const internshipDuration = document.getElementById(
+          "internship_duration"
+        );
+        const experienceField = document.getElementById(
+          "experience_requirements"
+        );
+
+        // Update labels based on job type
+        if (selectedType === "internship") {
+          document.getElementById("job_title_label").textContent =
+            "Internship Title";
+          document.getElementById("job_description_label").textContent =
+            "Internship Description";
+          document.getElementById("compensation_title").textContent =
+            "Allowance/Stipend";
+          document.getElementById("salary_min_label").textContent =
+            "Minimum Allowance";
+          document.getElementById("salary_max_label").textContent =
+            "Maximum Allowance";
+
+          internshipDuration.classList.remove("hidden");
+          experienceField.classList.add("hidden");
+
+          // Set default pay period for internships
+          document.getElementById("salary_period").value = "monthly";
+        } else if (selectedType === "fulltime") {
+          document.getElementById("job_title_label").textContent = "Job Title";
+          document.getElementById("job_description_label").textContent =
+            "Job Description";
+          document.getElementById("compensation_title").textContent =
+            "Compensation";
+          document.getElementById("salary_min_label").textContent =
+            "Minimum Salary";
+          document.getElementById("salary_max_label").textContent =
+            "Maximum Salary";
+
+          internshipDuration.classList.add("hidden");
+          experienceField.classList.remove("hidden");
+
+          // Set default pay period for full-time
+          document.getElementById("salary_period").value = "monthly";
+        }
+
+        // Update radio button visual state
+        document.querySelectorAll('input[name="job_type"]').forEach((radio) => {
+          const label = radio.closest("label");
+          const radioIcon = label.querySelector(".job-type-radio");
+
+          if (radio.checked) {
+            label.classList.add("border-primary", "bg-blue-50");
+            radioIcon.classList.remove("hidden");
+          } else {
+            label.classList.remove("border-primary", "bg-blue-50");
+            radioIcon.classList.add("hidden");
+          }
+        });
+      }
+
+      function toggleLocationField() {
+        const workSetup = document.getElementById("work_setup").value;
+        const locationField = document.getElementById("location_field");
+        const locationInput = document.getElementById("location");
+
+        if (workSetup === "remote") {
+          locationField.classList.add("hidden");
+          locationInput.removeAttribute("required");
+        } else {
+          locationField.classList.remove("hidden");
+          locationInput.setAttribute("required", "required");
+        }
+      }
+
+      function saveDraft() {
+        if (confirm("Save current progress as draft?")) {
+          alert("Job posting saved as draft! You can continue editing later.");
+          window.location.href = "job-postings.html";
+        }
+      }
+
+      function previewJob() {
+        const formData = new FormData(
+          document.getElementById("jobPostingForm")
+        );
+        const jobType = formData.get("job_type");
+        const jobTitle = formData.get("job_title");
+        const department = formData.get("department");
+        const location = formData.get("location");
+        const workSetup = formData.get("work_setup");
+        const salaryMin = formData.get("salary_min");
+        const salaryMax = formData.get("salary_max");
+        const salaryPeriod = formData.get("salary_period");
+        const jobDescription = formData.get("job_description");
+
+        if (!jobType || !jobTitle) {
+          alert("Please fill in the required fields before previewing.");
+          return;
+        }
+
+        const typeLabel =
+          jobType === "internship" ? "Internship" : "Full-time Position";
+        const compensationLabel =
+          jobType === "internship" ? "Allowance" : "Salary";
+
+        const previewContent = `
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex items-center mb-2">
+                            <span class="px-2 py-1 rounded-full text-xs mr-2 ${
+                              jobType === "internship"
+                                ? "bg-purple-100 text-purple-800"
+                                : "bg-blue-100 text-blue-800"
+                            }">${typeLabel}</span>
+                            <span class="text-sm text-gray-500">${
+                              department || "Department not specified"
+                            }</span>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">${
+                          jobTitle || "Job Title"
+                        }</h2>
+                        <p class="text-gray-600">${
+                          workSetup && location
+                            ? `${
+                                workSetup.charAt(0).toUpperCase() +
+                                workSetup.slice(1)
+                              } • ${location}`
+                            : workSetup === "remote"
+                            ? "Remote"
+                            : "Location not specified"
+                        }</p>
+                        ${
+                          salaryMin && salaryMax
+                            ? `<p class="text-lg font-semibold text-green-600">₱${parseInt(
+                                salaryMin
+                              ).toLocaleString()} - ₱${parseInt(
+                                salaryMax
+                              ).toLocaleString()} ${salaryPeriod}</p>`
+                            : ""
+                        }
+                    </div>
+                    
+                    ${
+                      jobDescription
+                        ? `
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">${
+                          jobType === "internship" ? "Internship" : "Job"
+                        } Description</h3>
+                        <p class="text-gray-700 whitespace-pre-wrap">${jobDescription}</p>
+                    </div>
+                    `
+                        : ""
+                    }
+                    
+                    <div class="text-sm text-gray-500">
+                        <p><strong>Note:</strong> This is a preview of your job posting. Complete all required fields before submitting for review.</p>
+                    </div>
+                </div>
+            `;
+
+        document.getElementById("previewContent").innerHTML = previewContent;
+        document.getElementById("previewModal").classList.remove("hidden");
+      }
+
+      function closePreviewModal() {
+        document.getElementById("previewModal").classList.add("hidden");
+      }
+
+      function submitForm() {
+        document
+          .getElementById("jobPostingForm")
+          .dispatchEvent(new Event("submit"));
+      }
+
+      // Form submission handler
+      document
+        .getElementById("jobPostingForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const formData = new FormData(this);
+          const jobType = formData.get("job_type");
+          const jobTitle = formData.get("job_title");
+
+          if (!jobType) {
+            alert("Please select a job type (Full-time or Internship).");
+            return;
+          }
+
+          if (
+            confirm(
+              `Submit ${
+                jobType === "internship" ? "internship" : "job"
+              } posting "${jobTitle}" for admin review?`
+            )
+          ) {
+            alert(
+              "Job posting submitted successfully! It will be reviewed by administrators before being published."
+            );
+            window.location.href = "job-postings.html";
+          }
+        });
+
+      // Close modal when clicking outside
+      document
+        .getElementById("previewModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closePreviewModal();
+          }
+        });
+
+      // Close user menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const menu = document.getElementById("userMenu");
+        const button = event.target.closest("button");
+
+        if (!button || button.onclick !== toggleUserMenu) {
+          menu.classList.add("hidden");
+        }
+      });
+
+      // Set minimum date to today
+      document.addEventListener("DOMContentLoaded", function () {
+        const today = new Date().toISOString().split("T")[0];
+        document
+          .getElementById("application_deadline")
+          .setAttribute("min", today);
+        document.getElementById("start_date").setAttribute("min", today);
+      });
+    </script>
+  </body>
+</html>

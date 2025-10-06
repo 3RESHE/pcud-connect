@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partnership Approvals - PCU-DASMA Connect</title>
+    <title>Partnership Management - PCU-DASMA Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -20,395 +20,644 @@
     </script>
 </head>
 <body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-sm border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="bg-white w-64 min-h-screen shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 fixed z-50">
+            <div class="flex flex-col h-full">
+                <!-- Logo -->
+                <div class="flex items-center justify-between p-4 border-b border-gray-200">
                     <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
-                    <div class="hidden md:ml-10 md:flex md:space-x-8">
-                        <a href="dashboard.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
-                        <a href="users.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Users</a>
-                        <a href="approve-jobs.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Job Approvals</a>
-                        <a href="approve-partnerships.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">Partnerships</a>
-                        <a href="analytics.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Analytics</a>
-                    </div>
+                    <button id="closeSidebar" class="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <div class="relative">
-                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
-                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
-                        </button>
-                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                            <div class="py-1">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Profile</a>
-                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+
+                <!-- Navigation -->
+                <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+                    <!-- Dashboard -->
+                    <a href="dashboard.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 5 4-4 4 4"></path>
+                        </svg>
+                        Dashboard
+                    </a>
+
+                    <!-- Users -->
+                    <a href="users.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                        </svg>
+                        Users
+                    </a>
+
+                    <!-- Approvals Dropdown -->
+                    <div class="space-y-1">
+                        <button onclick="toggleDropdown('approvals')" class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none">
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                Approvals
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <!-- Header -->
-        <div class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-900">Partnership Approvals</h1>
-            <p class="text-gray-600">Review and approve partnership proposals from external organizations</p>
-        </div>
-
-        <!-- Stats Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            <svg id="approvals-arrow" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
+                        </button>
+                        <div id="approvals-menu" class="hidden ml-4 space-y-1">
+                            <a href="approve-jobs.html" class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100">
+                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
+                                </svg>
+                                Job Post Approvals
+                                <span class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full">3</span>
+                            </a>
+                            <a href="approve-news.html" class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100">
+                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+                                </svg>
+                                News Approvals
+                                <span class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full">2</span>
+                            </a>
+                            <a href="approve-events.html" class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100">
+                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                Event Approvals
+                                <span class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full">1</span>
+                            </a>
                         </div>
                     </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Pending Review</p>
-                        <p class="text-2xl font-semibold text-gray-900">4</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Active Partnerships</p>
-                        <p class="text-2xl font-semibold text-gray-900">32</p>
-                    </div>
-                </div>
-            </div>
+                    <!-- Partnerships -->
+                    <a href="approve-partnerships.html" class="flex items-center px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 0 1 9.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        Partnership Management
+                        <span class="ml-auto bg-yellow-100 text-yellow-800 text-xs px-2 py-0.5 rounded-full">4</span>
+                    </a>
 
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">New This Month</p>
-                        <p class="text-2xl font-semibold text-gray-900">7</p>
-                    </div>
-                </div>
-            </div>
+                    <!-- Analytics -->
+                    <a href="analytics.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        Analytics
+                    </a>
 
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Under Negotiation</p>
-                        <p class="text-2xl font-semibold text-gray-900">3</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    <!-- Divider -->
+                    <div class="border-t border-gray-200 my-4"></div>
 
-        <!-- Filter Tabs -->
-        <div class="mb-8">
-            <div class="border-b border-gray-200">
-                <nav class="-mb-px flex space-x-8">
-                    <button onclick="filterPartnerships('all')" class="partnership-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium">
-                        All Proposals (4)
-                    </button>
-                    <button onclick="filterPartnerships('internship')" class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
-                        Internship Programs (2)
-                    </button>
-                    <button onclick="filterPartnerships('research')" class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
-                        Research Collaborations (1)
-                    </button>
-                    <button onclick="filterPartnerships('training')" class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
-                        Training Programs (1)
-                    </button>
+                    <!-- Settings -->
+                    <a href="settings.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        Settings
+                    </a>
                 </nav>
+
+                <!-- User Profile -->
+                <div class="border-t border-gray-200 p-4">
+                    <div class="flex items-center">
+                        <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
+                        <div class="ml-3 flex-1">
+                            <p class="text-sm font-medium text-gray-700">Admin User</p>
+                            <p class="text-xs text-gray-500">admin@pcu-dasma.edu.ph</p>
+                        </div>
+                        <div class="relative">
+                            <button onclick="toggleUserMenu()" class="p-2 rounded-md text-gray-400 hover:text-gray-600">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
+                                </svg>
+                            </button>
+                            <div id="userMenu" class="hidden origin-bottom-right absolute bottom-0 right-0 mb-12 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                                <div class="py-1">
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Profile</a>
+                                    <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Top Header -->
+            <header class="bg-white shadow-sm border-b lg:hidden">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <button id="openSidebar" class="p-2 rounded-md text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    <h1 class="text-xl font-bold text-primary">Partnership Management</h1>
+                    <div class="w-10"></div> <!-- Spacer -->
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <main class="flex-1 overflow-y-auto">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                    <!-- Header -->
+                    <div class="mb-8">
+                        <h1 class="text-3xl font-bold text-gray-900">Partnership Management</h1>
+                        <p class="text-gray-600">Review, discuss, and manage partnership proposals for events, programs, workshops, and collaborations</p>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">New Proposals</p>
+                                    <p class="text-2xl font-semibold text-gray-900">2</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Under Discussion</p>
+                                    <p class="text-2xl font-semibold text-gray-900">1</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Active Partnerships</p>
+                                    <p class="text-2xl font-semibold text-gray-900">8</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 0 1 9.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Total Participants</p>
+                                    <p class="text-2xl font-semibold text-gray-900">1,247</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Total Investment</p>
+                                    <p class="text-2xl font-semibold text-gray-900">₱2.4M</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filter Tabs -->
+                    <div class="mb-8">
+                        <div class="border-b border-gray-200">
+                            <nav class="-mb-px flex space-x-8">
+                                <button onclick="filterPartnerships('new')" class="partnership-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium">
+                                    New Proposals (2)
+                                </button>
+                                <button onclick="filterPartnerships('discussion')" class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                                    Under Discussion (1)
+                                </button>
+                                <button onclick="filterPartnerships('approved')" class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                                    Approved (5)
+                                </button>
+                                <button onclick="filterPartnerships('active')" class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                                    Active (8)
+                                </button>
+                                <button onclick="filterPartnerships('completed')" class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                                    Completed (12)
+                                </button>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Partnership Proposals List -->
+                    <div id="partnership-listings" class="space-y-6">
+                        <!-- New Proposals Tab Content -->
+                        <div id="new-partnerships" class="tab-content">
+                            <!-- New Partnership Proposal 1 -->
+                            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500 mb-6">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="flex-1">
+                                        <div class="flex items-center mb-3">
+                                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">New Proposal</span>
+                                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3">Workshop Series</span>
+                                            <span class="text-sm text-gray-500">Submitted 2 days ago</span>
+                                        </div>
+                                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Cybersecurity Awareness Workshop Series</h3>
+                                        <div class="flex items-center text-sm text-gray-600 mb-4">
+                                            <div class="flex items-center mr-6">
+                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                                </svg>
+                                                Submitted by: CyberGuard Solutions Inc.
+                                            </div>
+                                            <div class="flex items-center mr-6">
+                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                                </svg>
+                                                Duration: 4 weeks • Jan-Feb 2026
+                                            </div>
+                                            <div class="flex items-center">
+                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 0 1 9.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                                </svg>
+                                                Expected: 100 IT students
+                                            </div>
+                                        </div>
+                                        <p class="text-gray-600 mb-4">
+                                            Comprehensive 4-week workshop series focusing on cybersecurity awareness, network security, data protection, and ethical hacking principles for IT students.
+                                        </p>
+
+                                        <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                            <h4 class="font-medium text-gray-900 mb-2">Proposal Details:</h4>
+                                            <div class="grid grid-cols-2 gap-4 text-sm text-gray-600">
+                                                <div><strong>Target Audience:</strong> BSIT & BSCS Students</div>
+                                                <div><strong>Budget:</strong> ₱150,000 (Partner Funded)</div>
+                                                <div><strong>Venue:</strong> PCU-DASMA IT Lab</div>
+                                                <div><strong>Certificates:</strong> Industry-recognized certificates</div>
+                                                <div><strong>Sessions:</strong> Weekly 3-hour workshops</div>
+                                                <div><strong>Materials:</strong> All materials provided</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Workshop Series</span>
+                                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Cybersecurity</span>
+                                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">IT Students</span>
+                                        </div>
+                                    </div>
+                                    <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+                                        <button onclick="previewPartnership(1)" class="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200">
+                                            View Full Proposal
+                                        </button>
+                                        <button onclick="discussPartnership(1)" class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700">
+                                            Discuss Partnership
+                                        </button>
+                                        <button onclick="quickReject(1)" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
+                                            Reject Proposal
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- New Partnership Proposal 2 -->
+                            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500 mb-6">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="flex-1">
+                                        <div class="flex items-center mb-3">
+                                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">New Proposal</span>
+                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3">Scholarship Program</span>
+                                            <span class="text-sm text-gray-500">Submitted 5 days ago</span>
+                                        </div>
+                                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Excellence in STEM Scholarship Program</h3>
+                                        <div class="flex items-center text-sm text-gray-600 mb-4">
+                                            <div class="flex items-center mr-6">
+                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                                </svg>
+                                                Submitted by: TechFoundation Philippines
+                                            </div>
+                                            <div class="flex items-center mr-6">
+                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                                                </svg>
+                                                ₱50,000 per recipient
+                                            </div>
+                                            <div class="flex items-center">
+                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 0 1 9.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                                </svg>
+                                                15 scholarship recipients
+                                            </div>
+                                        </div>
+                                        <p class="text-gray-600 mb-4">
+                                            Annual scholarship program providing financial assistance to outstanding students in STEM fields, with additional mentorship and career development opportunities.
+                                        </p>
+
+                                        <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                            <h4 class="font-medium text-gray-900 mb-2">Scholarship Details:</h4>
+                                            <div class="grid grid-cols-2 gap-4 text-sm text-gray-600">
+                                                <div><strong>Eligibility:</strong> STEM students, GPA ≥ 3.5</div>
+                                                <div><strong>Total Budget:</strong> ₱750,000 annually</div>
+                                                <div><strong>Duration:</strong> Full academic year</div>
+                                                <div><strong>Selection Process:</strong> Merit-based evaluation</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Scholarship Program</span>
+                                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">STEM Fields</span>
+                                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Financial Aid</span>
+                                        </div>
+                                    </div>
+                                    <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+                                        <button onclick="previewPartnership(2)" class="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200">
+                                            View Full Proposal
+                                        </button>
+                                        <button onclick="discussPartnership(2)" class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700">
+                                            Discuss Partnership
+                                        </button>
+                                        <button onclick="quickReject(2)" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
+                                            Reject Proposal
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Under Discussion Tab Content -->
+                        <div id="discussion-partnerships" class="tab-content hidden">
+                            <!-- Partnership Under Discussion -->
+                            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500 mb-6">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="flex-1">
+                                        <div class="flex items-center mb-3">
+                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Under Discussion</span>
+                                            <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs mr-3">Community Event</span>
+                                            <span class="text-sm text-gray-500">Discussion started 1 week ago</span>
+                                        </div>
+                                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Tech for Good Community Hackathon</h3>
+                                        <div class="flex items-center text-sm text-gray-600 mb-4">
+                                            <div class="flex items-center mr-6">
+                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                                </svg>
+                                                InnovateHub Philippines
+                                            </div>
+                                            <div class="flex items-center mr-6">
+                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                                </svg>
+                                                Event: Dec 15-17, 2025
+                                            </div>
+                                            <div class="flex items-center">
+                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                                                </svg>
+                                                ₱100,000 prize pool
+                                            </div>
+                                        </div>
+                                        <p class="text-gray-600 mb-4">
+                                            48-hour hackathon focused on developing technology solutions for community problems.
+                                        </p>
+
+                                        <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                                            <h4 class="font-medium text-blue-900 mb-2">Discussion Points:</h4>
+                                            <ul class="text-sm text-blue-700 space-y-1">
+                                                <li>• Venue requirements and setup logistics</li>
+                                                <li>• Student safety and security protocols</li>
+                                                <li>• Judging criteria and prize distribution</li>
+                                                <li>• Partnership recognition and branding</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="px-2 py-1 bg-pink-100 text-pink-800 text-xs rounded">Community Event</span>
+                                            <span class="px-2 py-1 bg-pink-100 text-pink-800 text-xs rounded">Hackathon</span>
+                                            <span class="px-2 py-1 bg-pink-100 text-pink-800 text-xs rounded">Technology</span>
+                                        </div>
+                                    </div>
+                                    <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+                                        <button onclick="viewDiscussion(3)" class="px-4 py-2 bg-blue-100 text-blue-700 text-sm rounded-md hover:bg-blue-200">
+                                            View Discussion
+                                        </button>
+                                        <button onclick="continueDiscussion(3)" class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700">
+                                            Continue Discussion
+                                        </button>
+                                        <div class="border-t border-gray-200 my-2"></div>
+                                        <button onclick="approvePartnership(3)" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">
+                                            Approve Partnership
+                                        </button>
+                                        <button onclick="rejectPartnership(3)" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
+                                            Reject Partnership
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Other tab contents... -->
+                        <div id="approved-partnerships" class="tab-content hidden">
+                            <div class="text-center text-gray-500 py-8">
+                                <p>Approved partnerships waiting to become active...</p>
+                            </div>
+                        </div>
+
+                        <div id="active-partnerships" class="tab-content hidden">
+                            <div class="text-center text-gray-500 py-8">
+                                <p>Currently running partnership programs...</p>
+                            </div>
+                        </div>
+
+                        <div id="completed-partnerships" class="tab-content hidden">
+                            <div class="text-center text-gray-500 py-8">
+                                <p>Successfully completed partnerships...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
+    </div>
 
-        <!-- Partnership Proposals -->
-        <div class="space-y-6">
-            <!-- Internship Partnership Proposal -->
-            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                        <div class="flex items-center mb-3">
-                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Internship Program</span>
-                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3">Pending Review</span>
-                            <span class="text-sm text-gray-500">Submitted 1 day ago</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">6-Month IT Internship Program</h3>
-                        <div class="flex items-center text-sm text-gray-600 mb-4">
-                            <div class="flex items-center mr-6">
-                                <div class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">
-                                    GC
-                                </div>
-                                Global Consulting Group
-                            </div>
-                            <span class="mr-6">Technology Industry</span>
-                            <span class="mr-6">20 Internship Slots</span>
-                            <span>₱15,000/month stipend</span>
-                        </div>
-                        <p class="text-gray-600 mb-4">
-                            We propose a comprehensive 6-month internship program for PCU-DASMA IT students. The program includes mentorship, real-world project experience, and potential full-time employment opportunities upon graduation.
-                        </p>
-                        <div class="bg-gray-50 p-4 rounded-lg mb-4">
-                            <h4 class="font-medium text-gray-900 mb-2">Program Highlights:</h4>
-                            <ul class="text-sm text-gray-600 space-y-1">
-                                <li>• Hands-on experience with enterprise-level projects</li>
-                                <li>• One-on-one mentorship with senior developers</li>
-                                <li>• Technical skills training and certification support</li>
-                                <li>• Monthly performance evaluations and feedback</li>
-                                <li>• Final project presentation to executive team</li>
-                            </ul>
-                        </div>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Software Development</span>
-                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Database Management</span>
-                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Project Management</span>
-                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Professional Skills</span>
-                        </div>
-                        <div class="text-sm text-gray-500">
-                            <strong>Duration:</strong> February - July 2026 • 
-                            <strong>Contact:</strong> partnerships@globalconsulting.com
-                        </div>
+    <!-- Overlay for mobile -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-gray-600 bg-opacity-50 z-40 lg:hidden hidden"></div>
+
+    <!-- Discuss Partnership Modal -->
+    <div id="discussModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+            
+            <div class="relative bg-white rounded-lg max-w-2xl w-full shadow-xl">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-900">Initiate Partnership Discussion</h3>
+                </div>
+                
+                <div class="p-6">
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Discussion Points & Questions</label>
+                        <textarea id="discussionPoints" rows="4" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary" 
+                                  placeholder="Enter points you'd like to discuss with the partner organization..."></textarea>
                     </div>
-                    <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
-                        <button onclick="viewFullPartnership(1)" class="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200">
-                            View Details
-                        </button>
-                        <button onclick="approvePartnership(1)" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">
-                            Approve
-                        </button>
-                        <button onclick="negotiatePartnership(1)" class="px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700">
-                            Negotiate
-                        </button>
-                        <button onclick="rejectPartnership(1)" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
-                            Reject
-                        </button>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Initial Assessment</label>
+                        <select id="initialAssessment" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                            <option value="">Select initial assessment</option>
+                            <option value="positive">Positive - Good potential for partnership</option>
+                            <option value="neutral">Neutral - Needs more information</option>
+                            <option value="concerns">Has concerns - Requires clarification</option>
+                        </select>
                     </div>
                 </div>
-            </div>
-
-            <!-- Research Partnership Proposal -->
-            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-purple-500">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                        <div class="flex items-center mb-3">
-                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Research Collaboration</span>
-                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3">Pending Review</span>
-                            <span class="text-sm text-gray-500">Submitted 3 days ago</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">AI in Healthcare Research Project</h3>
-                        <div class="flex items-center text-sm text-gray-600 mb-4">
-                            <div class="flex items-center mr-6">
-                                <div class="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">
-                                    MI
-                                </div>
-                                MedTech Innovations Ltd.
-                            </div>
-                            <span class="mr-6">Healthcare Technology</span>
-                            <span class="mr-6">12-month project</span>
-                            <span>₱2.5M research grant</span>
-                        </div>
-                        <p class="text-gray-600 mb-4">
-                            Collaborative research project focusing on AI applications in healthcare diagnostics. We seek to partner with PCU-DASMA's IT and Nursing programs for interdisciplinary research.
-                        </p>
-                        <div class="bg-gray-50 p-4 rounded-lg mb-4">
-                            <h4 class="font-medium text-gray-900 mb-2">Research Scope:</h4>
-                            <ul class="text-sm text-gray-600 space-y-1">
-                                <li>• Development of AI diagnostic tools for early disease detection</li>
-                                <li>• Machine learning algorithms for medical imaging analysis</li>
-                                <li>• Clinical validation studies with healthcare professionals</li>
-                                <li>• Publication opportunities in peer-reviewed journals</li>
-                                <li>• Patent filing for innovative solutions</li>
-                            </ul>
-                        </div>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Artificial Intelligence</span>
-                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Machine Learning</span>
-                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Healthcare</span>
-                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Research</span>
-                        </div>
-                        <div class="text-sm text-gray-500">
-                            <strong>Timeline:</strong> January 2026 - December 2026 • 
-                            <strong>Contact:</strong> research@medtechinnovations.com
-                        </div>
-                    </div>
-                    <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
-                        <button onclick="viewFullPartnership(2)" class="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200">
-                            View Details
-                        </button>
-                        <button onclick="approvePartnership(2)" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">
-                            Approve
-                        </button>
-                        <button onclick="negotiatePartnership(2)" class="px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700">
-                            Negotiate
-                        </button>
-                        <button onclick="rejectPartnership(2)" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
-                            Reject
-                        </button>
-                    </div>
+                
+                <div class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3">
+                    <button onclick="closeDiscussModal()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">
+                        Cancel
+                    </button>
+                    <button onclick="sendDiscussionEmail()" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                        Send Discussion Email
+                    </button>
                 </div>
             </div>
-
-            <!-- Training Partnership Proposal -->
-            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                        <div class="flex items-center mb-3">
-                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Training Program</span>
-                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3">Pending Review</span>
-                            <span class="text-sm text-gray-500">Submitted 5 days ago</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Digital Marketing Certification Program</h3>
-                        <div class="flex items-center text-sm text-gray-600 mb-4">
-                            <div class="flex items-center mr-6">
-                                <div class="w-6 h-6 bg-green-600 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">
-                                    DM
-                                </div>
-                                Digital Marketing Academy
-                            </div>
-                            <span class="mr-6">Marketing & Business</span>
-                            <span class="mr-6">50 student slots</span>
-                            <span>Free certification</span>
-                        </div>
-                        <p class="text-gray-600 mb-4">
-                            Comprehensive 3-month digital marketing certification program designed specifically for PCU-DASMA business students. Includes hands-on projects and industry certifications.
-                        </p>
-                        <div class="bg-gray-50 p-4 rounded-lg mb-4">
-                            <h4 class="font-medium text-gray-900 mb-2">Program Benefits:</h4>
-                            <ul class="text-sm text-gray-600 space-y-1">
-                                <li>• Google Ads and Analytics certification preparation</li>
-                                <li>• Facebook Blueprint certification training</li>
-                                <li>• Real client project experience</li>
-                                <li>• Portfolio development guidance</li>
-                                <li>• Job placement assistance upon completion</li>
-                            </ul>
-                        </div>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Digital Marketing</span>
-                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">SEO/SEM</span>
-                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Social Media</span>
-                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Analytics</span>
-                        </div>
-                        <div class="text-sm text-gray-500">
-                            <strong>Schedule:</strong> March - May 2026 • 
-                            <strong>Contact:</strong> partnerships@digitalmarketingacademy.com
-                        </div>
-                    </div>
-                    <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
-                        <button onclick="viewFullPartnership(3)" class="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200">
-                            View Details
-                        </button>
-                        <button onclick="approvePartnership(3)" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">
-                            Approve
-                        </button>
-                        <button onclick="negotiatePartnership(3)" class="px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700">
-                            Negotiate
-                        </button>
-                        <button onclick="rejectPartnership(3)" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
-                            Reject
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Scholarship Partnership Proposal -->
-            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-orange-500">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                        <div class="flex items-center mb-3">
-                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Scholarship Program</span>
-                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3">Pending Review</span>
-                            <span class="text-sm text-gray-500">Submitted 1 week ago</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Excellence in Technology Scholarship</h3>
-                        <div class="flex items-center text-sm text-gray-600 mb-4">
-                            <div class="flex items-center mr-6">
-                                <div class="w-6 h-6 bg-orange-600 text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">
-                                    FF
-                                </div>
-                                Future Foundation Inc.
-                            </div>
-                            <span class="mr-6">Scholarship Program</span>
-                            <span class="mr-6">10 recipients annually</span>
-                            <span>₱100,000 per student</span>
-                        </div>
-                        <p class="text-gray-600 mb-4">
-                            Annual scholarship program supporting outstanding IT students with financial need. Recipients will receive full tuition support plus mentorship and internship opportunities.
-                        </p>
-                        <div class="bg-gray-50 p-4 rounded-lg mb-4">
-                            <h4 class="font-medium text-gray-900 mb-2">Scholarship Benefits:</h4>
-                            <ul class="text-sm text-gray-600 space-y-1">
-                                <li>• Full tuition coverage for one academic year</li>
-                                <li>• Monthly allowance for educational materials</li>
-                                <li>• Mentorship from industry professionals</li>
-                                <li>• Guaranteed summer internship placement</li>
-                                <li>• Leadership development workshops</li>
-                            </ul>
-                        </div>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded">Financial Aid</span>
-                            <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded">Mentorship</span>
-                            <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded">Career Development</span>
-                            <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded">Leadership</span>
-                        </div>
-                        <div class="text-sm text-gray-500">
-                            <strong>Application Period:</strong> November 2025 - January 2026 • 
-                            <strong>Contact:</strong> scholarships@futurefoundation.org
-                        </div>
-                    </div>
-                    <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
-                        <button onclick="viewFullPartnership(4)" class="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200">
-                            View Details
-                        </button>
-                        <button onclick="approvePartnership(4)" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">
-                            Approve
-                        </button>
-                        <button onclick="negotiatePartnership(4)" class="px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700">
-                            Negotiate
-                        </button>
-                        <button onclick="rejectPartnership(4)" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
-                            Reject
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pagination -->
-        <div class="mt-8 flex justify-center">
-            <nav class="flex items-center space-x-2">
-                <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-500 rounded-md">Previous</button>
-                <button class="px-3 py-1 text-sm bg-primary text-white rounded-md">1</button>
-                <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">2</button>
-                <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">Next</button>
-            </nav>
         </div>
     </div>
 
     <script>
+        // All previous script functions...
+        let currentDiscussionId = null;
+
+        function discussPartnership(partnershipId) {
+            currentDiscussionId = partnershipId;
+            document.getElementById('discussModal').classList.remove('hidden');
+        }
+
+        function closeDiscussModal() {
+            document.getElementById('discussModal').classList.add('hidden');
+            currentDiscussionId = null;
+        }
+
+        function sendDiscussionEmail() {
+            const discussionPoints = document.getElementById('discussionPoints').value;
+            const assessment = document.getElementById('initialAssessment').value;
+            
+            if (!discussionPoints.trim()) {
+                alert('Please enter discussion points before sending the email.');
+                return;
+            }
+            
+            if (confirm('Send discussion email to the partner organization?')) {
+                alert(`Discussion email sent for partnership #${currentDiscussionId}. Status updated to "Under Discussion".`);
+                closeDiscussModal();
+                location.reload();
+            }
+        }
+
+        function quickReject(partnershipId) {
+            const reason = prompt('Please provide a brief reason for rejection:');
+            if (reason) {
+                if (confirm('Reject this partnership proposal?')) {
+                    alert(`Partnership proposal #${partnershipId} has been rejected. Reason: ${reason}`);
+                    location.reload();
+                }
+            }
+        }
+
+        function viewDiscussion(partnershipId) {
+            alert(`Opening discussion history for partnership #${partnershipId}...`);
+        }
+
+        function continueDiscussion(partnershipId) {
+            const response = prompt('Enter your response to continue the discussion:');
+            if (response) {
+                alert(`Discussion response sent for partnership #${partnershipId}.`);
+            }
+        }
+
+        function approvePartnership(partnershipId) {
+            if (confirm('Approve this partnership proposal?')) {
+                alert(`Partnership proposal #${partnershipId} has been approved! Partner organization will be notified.`);
+                location.reload();
+            }
+        }
+
+        function rejectPartnership(partnershipId) {
+            const reason = prompt('Please provide a detailed reason for rejection:');
+            if (reason) {
+                if (confirm('Reject this partnership proposal?')) {
+                    alert(`Partnership proposal #${partnershipId} has been rejected. Reason: ${reason}`);
+                    location.reload();
+                }
+            }
+        }
+
+        // Tab functionality
+        function filterPartnerships(status) {
+            document.querySelectorAll('.partnership-filter').forEach(filter => {
+                filter.classList.remove('active', 'border-primary', 'text-primary');
+                filter.classList.add('border-transparent', 'text-gray-500');
+            });
+
+            event.target.classList.add('active', 'border-primary', 'text-primary');
+            event.target.classList.remove('border-transparent', 'text-gray-500');
+
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            if (status === 'new') {
+                document.getElementById('new-partnerships').classList.remove('hidden');
+            } else if (status === 'discussion') {
+                document.getElementById('discussion-partnerships').classList.remove('hidden');
+            } else if (status === 'approved') {
+                document.getElementById('approved-partnerships').classList.remove('hidden');
+            } else if (status === 'active') {
+                document.getElementById('active-partnerships').classList.remove('hidden');
+            } else if (status === 'completed') {
+                document.getElementById('completed-partnerships').classList.remove('hidden');
+            }
+        }
+
+        // Other existing functions...
+        function toggleDropdown(dropdownId) {
+            const menu = document.getElementById(dropdownId + '-menu');
+            const arrow = document.getElementById(dropdownId + '-arrow');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                arrow.classList.add('rotate-180');
+            } else {
+                menu.classList.add('hidden');
+                arrow.classList.remove('rotate-180');
+            }
+        }
+
         function toggleUserMenu() {
             const menu = document.getElementById('userMenu');
             menu.classList.toggle('hidden');
@@ -420,54 +669,25 @@
             }
         }
 
-        function filterPartnerships(category) {
-            document.querySelectorAll('.partnership-filter').forEach(filter => {
-                filter.classList.remove('active', 'border-primary', 'text-primary');
-                filter.classList.add('border-transparent', 'text-gray-500');
-            });
+        // Sidebar functionality
+        const sidebar = document.getElementById('sidebar');
+        const openSidebar = document.getElementById('openSidebar');
+        const closeSidebar = document.getElementById('closeSidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
 
-            event.target.classList.add('active', 'border-primary', 'text-primary');
-            event.target.classList.remove('border-transparent', 'text-gray-500');
-
-            console.log('Filtering partnerships by:', category);
+        function showSidebar() {
+            sidebar.classList.remove('-translate-x-full');
+            sidebarOverlay.classList.remove('hidden');
         }
 
-        function approvePartnership(partnershipId) {
-            if (confirm('Are you sure you want to approve this partnership proposal?')) {
-                alert(`Partnership proposal #${partnershipId} has been approved!`);
-                location.reload();
-            }
+        function hideSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
         }
 
-        function rejectPartnership(partnershipId) {
-            const reason = prompt('Please provide a reason for rejection:');
-            if (reason) {
-                alert(`Partnership proposal #${partnershipId} has been rejected. Reason: ${reason}`);
-                location.reload();
-            }
-        }
-
-        function negotiatePartnership(partnershipId) {
-            const message = prompt('Please provide your negotiation terms or feedback:');
-            if (message) {
-                alert(`Negotiation initiated for partnership #${partnershipId}. Message: ${message}`);
-                location.reload();
-            }
-        }
-
-        function viewFullPartnership(partnershipId) {
-            alert(`Opening full details for partnership proposal #${partnershipId}...`);
-        }
-
-        // Close user menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('userMenu');
-            const button = event.target.closest('button');
-            
-            if (!button || button.onclick !== toggleUserMenu) {
-                menu.classList.add('hidden');
-            }
-        });
+        openSidebar?.addEventListener('click', showSidebar);
+        closeSidebar?.addEventListener('click', hideSidebar);
+        sidebarOverlay?.addEventListener('click', hideSidebar);
     </script>
 </body>
 </html>

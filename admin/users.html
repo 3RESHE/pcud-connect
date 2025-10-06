@@ -20,369 +20,692 @@
     </script>
 </head>
 <body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-sm border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="bg-white w-64 min-h-screen shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 fixed z-50">
+            <div class="flex flex-col h-full">
+                <!-- Logo -->
+                <div class="flex items-center justify-between p-4 border-b border-gray-200">
                     <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
-                    <div class="hidden md:ml-10 md:flex md:space-x-8">
-                        <a href="dashboard.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
-                        <a href="users.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">Users</a>
-                        <a href="approve-jobs.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Job Approvals</a>
-                        <a href="approve-partnerships.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Partnerships</a>
-                        <a href="analytics.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Analytics</a>
-                    </div>
+                    <button id="closeSidebar" class="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <div class="relative">
-                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
-                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
+
+                <!-- Navigation -->
+                <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+                    <!-- Dashboard -->
+                    <a href="dashboard.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 5 4-4 4 4"></path>
+                        </svg>
+                        Dashboard
+                    </a>
+
+                    <!-- Users -->
+                    <a href="users.html" class="flex items-center px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                        </svg>
+                        Users
+                    </a>
+
+                    <!-- Approvals Dropdown -->
+                    <div class="space-y-1">
+                        <button onclick="toggleDropdown('approvals')" class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none">
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                Approvals
+                            </div>
+                            <svg id="approvals-arrow" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
                         </button>
-                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                            <div class="py-1">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Profile</a>
-                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                        <div id="approvals-menu" class="hidden ml-4 space-y-1">
+                            <a href="approve-jobs.html" class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100">
+                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
+                                </svg>
+                                Job Post Approvals
+                                <span class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full">3</span>
+                            </a>
+                            <a href="approve-news.html" class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100">
+                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+                                </svg>
+                                News Approvals
+                                <span class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full">2</span>
+                            </a>
+                            <a href="approve-events.html" class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100">
+                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                Event Approvals
+                                <span class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full">1</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Partnerships -->
+                    <a href="approve-partnerships.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        Partnerships
+                        <span class="ml-auto bg-yellow-100 text-yellow-800 text-xs px-2 py-0.5 rounded-full">2</span>
+                    </a>
+
+                    <!-- Analytics -->
+                    <a href="analytics.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        Analytics
+                    </a>
+
+                    <!-- Divider -->
+                    <div class="border-t border-gray-200 my-4"></div>
+
+                    <!-- Settings -->
+                    <a href="settings.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        Settings
+                    </a>
+                </nav>
+
+                <!-- User Profile -->
+                <div class="border-t border-gray-200 p-4">
+                    <div class="flex items-center">
+                        <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
+                        <div class="ml-3 flex-1">
+                            <p class="text-sm font-medium text-gray-700">Admin User</p>
+                            <p class="text-xs text-gray-500">admin@pcu-dasma.edu.ph</p>
+                        </div>
+                        <div class="relative">
+                            <button onclick="toggleUserMenu()" class="p-2 rounded-md text-gray-400 hover:text-gray-600">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
+                                </svg>
+                            </button>
+                            <div id="userMenu" class="hidden origin-bottom-right absolute bottom-0 right-0 mb-12 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                                <div class="py-1">
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Profile</a>
+                                    <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </aside>
 
-    <!-- Main Content -->
-    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <!-- Header -->
-        <div class="flex justify-between items-center mb-8">
-            <div>
-                <h1 class="text-3xl font-bold text-gray-900">User Management</h1>
-                <p class="text-gray-600">Manage platform users and monitor account activity</p>
-            </div>
-            <button onclick="exportUsers()" class="bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 flex items-center">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
-                </svg>
-                Export Users
-            </button>
-        </div>
-
-        <!-- Stats Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Alumni Users</p>
-                        <p class="text-2xl font-semibold text-gray-900">1,045</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Partner Organizations</p>
-                        <p class="text-2xl font-semibold text-gray-900">89</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Pending Verification</p>
-                        <p class="text-2xl font-semibold text-gray-900">23</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Suspended Accounts</p>
-                        <p class="text-2xl font-semibold text-gray-900">5</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Search and Filters -->
-        <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div>
-                    <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Search Users</label>
-                    <input type="text" id="search" placeholder="Name, email, or organization..." 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
-                </div>
-                <div>
-                    <label for="userType" class="block text-sm font-medium text-gray-700 mb-1">User Type</label>
-                    <select id="userType" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
-                        <option value="">All Types</option>
-                        <option value="alumni">Alumni</option>
-                        <option value="partner">Partner</option>
-                        <option value="admin">Admin</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="status" class="block text-sm font-medium text-gray-700 mb-1">Account Status</label>
-                    <select id="status" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
-                        <option value="">All Status</option>
-                        <option value="active">Active</option>
-                        <option value="pending">Pending Verification</option>
-                        <option value="suspended">Suspended</option>
-                    </select>
-                </div>
-                <div class="flex items-end">
-                    <button onclick="searchUsers()" class="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-blue-700">
-                        Search
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Top Header -->
+            <header class="bg-white shadow-sm border-b lg:hidden">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <button id="openSidebar" class="p-2 rounded-md text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
                     </button>
+                    <h1 class="text-xl font-bold text-primary">User Management</h1>
+                    <div class="w-10"></div> <!-- Spacer -->
                 </div>
-            </div>
-        </div>
+            </header>
 
-        <!-- Users Table -->
-        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-200">
-                <div class="flex justify-between items-center">
-                    <h3 class="text-lg font-semibold text-gray-900">User Directory</h3>
-                    <div class="flex space-x-2">
-                        <select class="px-3 py-1 border border-gray-300 rounded-md text-sm">
-                            <option>Show 25</option>
-                            <option>Show 50</option>
-                            <option>Show 100</option>
-                        </select>
+            <!-- Content Area -->
+            <main class="flex-1 overflow-y-auto">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                    <!-- Header -->
+                    <div class="flex justify-between items-center mb-8">
+                        <div>
+                            <h1 class="text-3xl font-bold text-gray-900">User Management</h1>
+                            <p class="text-gray-600">Manage all platform users and their roles</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button onclick="openBulkUploadModal()" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 flex items-center">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                </svg>
+                                Bulk Upload
+                            </button>
+                            <button onclick="openCreateUserModal()" class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700 flex items-center">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                </svg>
+                                Create Account
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Total Users</p>
+                                    <p class="text-2xl font-semibold text-gray-900">1,234</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m12 14 6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Alumni</p>
+                                    <p class="text-2xl font-semibold text-gray-900">989</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Partners</p>
+                                    <p class="text-2xl font-semibold text-gray-900">32</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                        <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Staff & Admins</p>
+                                    <p class="text-2xl font-semibold text-gray-900">13</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filter Tabs -->
+                    <div class="mb-8">
+                        <div class="border-b border-gray-200">
+                            <nav class="-mb-px flex space-x-8">
+                                <button onclick="filterUsers('all')" class="user-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium">
+                                    All Users (1,234)
+                                </button>
+                                <button onclick="filterUsers('alumni')" class="user-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                                    Alumni (989)
+                                </button>
+                                <button onclick="filterUsers('partner')" class="user-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                                    Partners (32)
+                                </button>
+                                <button onclick="filterUsers('staff')" class="user-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                                    Staff & Admins (13)
+                                </button>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Search and Filter Bar -->
+                    <div class="mb-6 flex flex-col sm:flex-row gap-4">
+                        <div class="flex-1">
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                    </svg>
+                                </div>
+                                <input type="text" placeholder="Search users by name, email, or ID..." class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary focus:border-primary">
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <select class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                                <option>All Roles</option>
+                                <option>Alumni</option>
+                                <option>Partner</option>
+                                <option>Staff</option>
+                                <option>Admin</option>
+                            </select>
+                            <select class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                                <option>All Status</option>
+                                <option>Active</option>
+                                <option>Inactive</option>
+                                <option>Pending Verification</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Users Table -->
+                    <div class="bg-white shadow-sm rounded-lg overflow-hidden">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-semibold text-gray-900">User List</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Joined</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Active</th>
+                                        <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <!-- User Row 1 -->
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 h-10 w-10">
+                                                    <img class="h-10 w-10 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Maria Santos</div>
+                                                    <div class="text-sm text-gray-500">maria.santos@email.com</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                Alumni
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                Active
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            Oct 1, 2025
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            2 hours ago
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <div class="flex justify-end space-x-2">
+                                                <button onclick="viewUser(1)" class="text-primary hover:text-blue-900">View</button>
+                                                <button onclick="editUser(1)" class="text-yellow-600 hover:text-yellow-900">Edit</button>
+                                                <button onclick="toggleUserStatus(1)" class="text-red-600 hover:text-red-900">Deactivate</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- User Row 2 -->
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 h-10 w-10">
+                                                    <img class="h-10 w-10 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Tech Solutions Inc.</div>
+                                                    <div class="text-sm text-gray-500">hr@techsolutions.com</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
+                                                Partner
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                Active
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            Sep 28, 2025
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            1 day ago
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <div class="flex justify-end space-x-2">
+                                                <button onclick="viewUser(2)" class="text-primary hover:text-blue-900">View</button>
+                                                <button onclick="editUser(2)" class="text-yellow-600 hover:text-yellow-900">Edit</button>
+                                                <button onclick="toggleUserStatus(2)" class="text-red-600 hover:text-red-900">Deactivate</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- User Row 3 -->
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 h-10 w-10">
+                                                    <img class="h-10 w-10 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Staff Member</div>
+                                                    <div class="text-sm text-gray-500">staff@pcu-dasma.edu.ph</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                Staff
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                Active
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            Sep 15, 2025
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            5 hours ago
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <div class="flex justify-end space-x-2">
+                                                <button onclick="viewUser(3)" class="text-primary hover:text-blue-900">View</button>
+                                                <button onclick="editUser(3)" class="text-yellow-600 hover:text-yellow-900">Edit</button>
+                                                <button onclick="toggleUserStatus(3)" class="text-red-600 hover:text-red-900">Deactivate</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- User Row 4 -->
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 h-10 w-10">
+                                                    <img class="h-10 w-10 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Carlos Rodriguez</div>
+                                                    <div class="text-sm text-gray-500">carlos.rodriguez@email.com</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                Alumni
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                Pending Verification
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            Oct 3, 2025
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            Never
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <div class="flex justify-end space-x-2">
+                                                <button onclick="verifyUser(4)" class="text-green-600 hover:text-green-900">Verify</button>
+                                                <button onclick="viewUser(4)" class="text-primary hover:text-blue-900">View</button>
+                                                <button onclick="editUser(4)" class="text-yellow-600 hover:text-yellow-900">Edit</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Pagination -->
+                        <div class="px-6 py-4 border-t border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <div class="text-sm text-gray-700">
+                                    Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">1,234</span> results
+                                </div>
+                                <nav class="flex items-center space-x-2">
+                                    <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-500 rounded-md">Previous</button>
+                                    <button class="px-3 py-1 text-sm bg-primary text-white rounded-md">1</button>
+                                    <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">2</button>
+                                    <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">3</button>
+                                    <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">Next</button>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Overlay for mobile -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-gray-600 bg-opacity-50 z-40 lg:hidden hidden"></div>
+
+    <!-- Create User Modal -->
+    <div id="createUserModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
             
-            <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
-                            </th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Registration Date</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Active</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        <!-- Alumni User Row -->
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="">
-                                    <div class="ml-3">
-                                        <div class="text-sm font-medium text-gray-900">Maria Santos</div>
-                                        <div class="text-sm text-gray-500">maria.santos@email.com</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                    Alumni
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                    Active
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Oct 1, 2025</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2 hours ago</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <div class="flex space-x-2">
-                                    <button onclick="viewUser(1)" class="text-primary hover:text-blue-700">View</button>
-                                    <button onclick="editUser(1)" class="text-gray-600 hover:text-gray-900">Edit</button>
-                                    <button onclick="suspendUser(1)" class="text-red-600 hover:text-red-900">Suspend</button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <!-- Partner User Row -->
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="h-8 w-8 bg-green-600 text-white rounded-full flex items-center justify-center text-xs font-bold">
-                                        TS
-                                    </div>
-                                    <div class="ml-3">
-                                        <div class="text-sm font-medium text-gray-900">Tech Solutions Inc.</div>
-                                        <div class="text-sm text-gray-500">hr@techsolutions.com</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                    Partner
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                    Active
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Sep 28, 2025</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1 day ago</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <div class="flex space-x-2">
-                                    <button onclick="viewUser(2)" class="text-primary hover:text-blue-700">View</button>
-                                    <button onclick="editUser(2)" class="text-gray-600 hover:text-gray-900">Edit</button>
-                                    <button onclick="suspendUser(2)" class="text-red-600 hover:text-red-900">Suspend</button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <!-- Pending Verification User -->
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="">
-                                    <div class="ml-3">
-                                        <div class="text-sm font-medium text-gray-900">John Rodriguez</div>
-                                        <div class="text-sm text-gray-500">john.rodriguez@email.com</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                    Alumni
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                                    Pending
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Oct 2, 2025</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Never</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <div class="flex space-x-2">
-                                    <button onclick="verifyUser(3)" class="text-green-600 hover:text-green-900">Verify</button>
-                                    <button onclick="viewUser(3)" class="text-primary hover:text-blue-700">View</button>
-                                    <button onclick="rejectUser(3)" class="text-red-600 hover:text-red-900">Reject</button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <!-- Suspended User -->
-                        <tr class="hover:bg-gray-50 opacity-60">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="h-8 w-8 bg-red-600 text-white rounded-full flex items-center justify-center text-xs font-bold">
-                                        SC
-                                    </div>
-                                    <div class="ml-3">
-                                        <div class="text-sm font-medium text-gray-900">Spam Corp</div>
-                                        <div class="text-sm text-gray-500">contact@spamcorp.com</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                    Partner
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                    Suspended
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Sep 15, 2025</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">5 days ago</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <div class="flex space-x-2">
-                                    <button onclick="unsuspendUser(4)" class="text-green-600 hover:text-green-900">Unsuspend</button>
-                                    <button onclick="viewUser(4)" class="text-primary hover:text-blue-700">View</button>
-                                    <button onclick="deleteUser(4)" class="text-red-600 hover:text-red-900">Delete</button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <!-- More users would continue here... -->
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Pagination -->
-            <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200">
-                <div class="flex-1 flex justify-between sm:hidden">
-                    <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                        Previous
-                    </button>
-                    <button class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                        Next
+            <div class="relative bg-white rounded-lg max-w-md w-full shadow-xl">
+                <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                    <h3 class="text-xl font-semibold text-gray-900">Create New Account</h3>
+                    <button onclick="closeCreateUserModal()" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
                     </button>
                 </div>
-                <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-                    <div>
-                        <p class="text-sm text-gray-700">
-                            Showing <span class="font-medium">1</span> to <span class="font-medium">25</span> of <span class="font-medium">1,162</span> results
-                        </p>
-                    </div>
-                    <div>
-                        <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
-                            <button class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                Previous
+                
+                <div class="p-6">
+                    <form id="createUserForm">
+                        <div class="space-y-4">
+                            <!-- Role Selection -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Account Type</label>
+                                <select id="userRole" name="role" onchange="toggleRoleFields()" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary" required>
+                                    <option value="">Select Role</option>
+                                    <option value="alumni">Alumni</option>
+                                    <option value="partner">Partner Organization</option>
+                                    <option value="staff">Staff</option>
+                                    <option value="admin">Admin</option>
+                                </select>
+                            </div>
+
+                            <!-- Basic Information -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Full Name / Organization Name</label>
+                                <input type="text" name="name" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                <input type="email" name="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                                <input type="password" name="password" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                            </div>
+
+                            <!-- Alumni-specific fields -->
+                            <div id="alumniFields" class="hidden space-y-4">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Program</label>
+                                        <select name="program" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                                            <option value="">Select Program</option>
+                                            <option value="BSIT">BSIT</option>
+                                            <option value="BSCS">BSCS</option>
+                                            <option value="BSBA">BSBA</option>
+                                            <option value="BSED">BSED</option>
+                                            <option value="BSN">BSN</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Graduation Year</label>
+                                        <input type="number" name="graduation_year" min="1990" max="2030" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Student ID (Optional)</label>
+                                    <input type="text" name="student_id" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                                </div>
+                            </div>
+
+                            <!-- Partner-specific fields -->
+                            <div id="partnerFields" class="hidden space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Industry</label>
+                                    <input type="text" name="industry" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Contact Person</label>
+                                    <input type="text" name="contact_person" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                                </div>
+                            </div>
+
+                            <!-- Send credentials option -->
+                            <div class="flex items-center">
+                                <input type="checkbox" id="sendCredentials" name="send_credentials" checked class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                <label for="sendCredentials" class="ml-2 block text-sm text-gray-700">
+                                    Send login credentials to user's email
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end space-x-3 mt-6">
+                            <button type="button" onclick="closeCreateUserModal()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">
+                                Cancel
                             </button>
-                            <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-primary text-sm font-medium text-white">1</button>
-                            <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">2</button>
-                            <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">3</button>
-                            <button class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                Next
+                            <button type="submit" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700">
+                                Create Account
                             </button>
-                        </nav>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk Upload Modal -->
+    <div id="bulkUploadModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+            
+            <div class="relative bg-white rounded-lg max-w-lg w-full shadow-xl">
+                <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                    <h3 class="text-xl font-semibold text-gray-900">Bulk Upload Users</h3>
+                    <button onclick="closeBulkUploadModal()" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="p-6">
+                    <div class="mb-6">
+                        <h4 class="text-sm font-medium text-gray-900 mb-2">Upload Instructions:</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Upload an Excel file (.xlsx or .xls)</li>
+                            <li>• First row should contain column headers</li>
+                            <li>• Required columns: name, email, role</li>
+                            <li>• Optional columns: program, graduation_year (for alumni), industry, contact_person (for partners)</li>
+                        </ul>
                     </div>
+
+                    <div class="mb-4">
+                        <a href="#" onclick="downloadTemplate()" class="text-primary hover:underline text-sm">
+                            <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m-4-6V3"></path>
+                            </svg>
+                            Download Excel Template
+                        </a>
+                    </div>
+
+                    <form id="bulkUploadForm">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Select Excel File</label>
+                                <input type="file" name="excel_file" accept=".xlsx,.xls" required class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-blue-700">
+                            </div>
+
+                            <div class="flex items-center">
+                                <input type="checkbox" id="sendBulkCredentials" name="send_credentials" checked class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                <label for="sendBulkCredentials" class="ml-2 block text-sm text-gray-700">
+                                    Send login credentials to all users via email
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end space-x-3 mt-6">
+                            <button type="button" onclick="closeBulkUploadModal()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">
+                                Cancel
+                            </button>
+                            <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+                                Upload Users
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+        // Sidebar toggle functionality
+        const sidebar = document.getElementById('sidebar');
+        const openSidebar = document.getElementById('openSidebar');
+        const closeSidebar = document.getElementById('closeSidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        function showSidebar() {
+            sidebar.classList.remove('-translate-x-full');
+            sidebarOverlay.classList.remove('hidden');
+        }
+
+        function hideSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        }
+
+        openSidebar?.addEventListener('click', showSidebar);
+        closeSidebar?.addEventListener('click', hideSidebar);
+        sidebarOverlay?.addEventListener('click', hideSidebar);
+
+        // Dropdown functionality
+        function toggleDropdown(dropdownId) {
+            const menu = document.getElementById(dropdownId + '-menu');
+            const arrow = document.getElementById(dropdownId + '-arrow');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                arrow.classList.add('rotate-180');
+            } else {
+                menu.classList.add('hidden');
+                arrow.classList.remove('rotate-180');
+            }
+        }
+
         function toggleUserMenu() {
             const menu = document.getElementById('userMenu');
             menu.classList.toggle('hidden');
@@ -394,57 +717,128 @@
             }
         }
 
-        function searchUsers() {
-            console.log('Searching users...');
-            alert('Search functionality implemented!');
+        function filterUsers(type) {
+            document.querySelectorAll('.user-filter').forEach(filter => {
+                filter.classList.remove('active', 'border-primary', 'text-primary');
+                filter.classList.add('border-transparent', 'text-gray-500');
+            });
+
+            event.target.classList.add('active', 'border-primary', 'text-primary');
+            event.target.classList.remove('border-transparent', 'text-gray-500');
+
+            console.log('Filtering users by:', type);
+            // Here you would filter the table based on user type
         }
 
-        function exportUsers() {
-            alert('Exporting user data to CSV...');
+        // Create User Modal
+        function openCreateUserModal() {
+            document.getElementById('createUserModal').classList.remove('hidden');
         }
 
+        function closeCreateUserModal() {
+            document.getElementById('createUserModal').classList.add('hidden');
+            document.getElementById('createUserForm').reset();
+            // Hide role-specific fields
+            document.getElementById('alumniFields').classList.add('hidden');
+            document.getElementById('partnerFields').classList.add('hidden');
+        }
+
+        function toggleRoleFields() {
+            const role = document.getElementById('userRole').value;
+            const alumniFields = document.getElementById('alumniFields');
+            const partnerFields = document.getElementById('partnerFields');
+
+            // Hide all role-specific fields
+            alumniFields.classList.add('hidden');
+            partnerFields.classList.add('hidden');
+
+            // Show relevant fields based on role
+            if (role === 'alumni') {
+                alumniFields.classList.remove('hidden');
+            } else if (role === 'partner') {
+                partnerFields.classList.remove('hidden');
+            }
+        }
+
+        // Bulk Upload Modal
+        function openBulkUploadModal() {
+            document.getElementById('bulkUploadModal').classList.remove('hidden');
+        }
+
+        function closeBulkUploadModal() {
+            document.getElementById('bulkUploadModal').classList.add('hidden');
+            document.getElementById('bulkUploadForm').reset();
+        }
+
+        function downloadTemplate() {
+            // In a real application, this would download an actual Excel template
+            alert('Excel template download started. The template includes columns: name, email, role, program, graduation_year, industry, contact_person');
+        }
+
+        // User Management Functions
         function viewUser(userId) {
-            alert(`Opening user profile for user ID: ${userId}`);
+            alert(`Viewing user details for ID: ${userId}`);
         }
 
         function editUser(userId) {
             alert(`Opening edit form for user ID: ${userId}`);
         }
 
-        function suspendUser(userId) {
-            if (confirm('Are you sure you want to suspend this user?')) {
-                alert(`User ${userId} has been suspended.`);
-                location.reload();
-            }
-        }
-
-        function unsuspendUser(userId) {
-            if (confirm('Are you sure you want to unsuspend this user?')) {
-                alert(`User ${userId} has been unsuspended.`);
+        function toggleUserStatus(userId) {
+            if (confirm('Are you sure you want to change this user\'s status?')) {
+                alert(`User ${userId} status changed successfully.`);
                 location.reload();
             }
         }
 
         function verifyUser(userId) {
-            if (confirm('Are you sure you want to verify this user?')) {
-                alert(`User ${userId} has been verified and activated.`);
+            if (confirm('Verify this user account?')) {
+                alert(`User ${userId} has been verified successfully.`);
                 location.reload();
             }
         }
 
-        function rejectUser(userId) {
-            if (confirm('Are you sure you want to reject this user registration?')) {
-                alert(`User ${userId} registration has been rejected.`);
+        // Form submissions
+        document.getElementById('createUserForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const role = formData.get('role');
+            const name = formData.get('name');
+            
+            if (confirm(`Create ${role} account for "${name}"?`)) {
+                alert(`Account created successfully for ${name}!`);
+                closeCreateUserModal();
                 location.reload();
             }
-        }
+        });
 
-        function deleteUser(userId) {
-            if (confirm('Are you sure you want to delete this user? This action cannot be undone.')) {
-                alert(`User ${userId} has been permanently deleted.`);
-                location.reload();
+        document.getElementById('bulkUploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const fileInput = this.querySelector('input[type="file"]');
+            
+            if (fileInput.files.length === 0) {
+                alert('Please select an Excel file to upload.');
+                return;
             }
-        }
+            
+            if (confirm('Upload users from Excel file? This may take a few minutes.')) {
+                alert('Excel file uploaded successfully! Users are being processed in the background.');
+                closeBulkUploadModal();
+            }
+        });
+
+        // Close modals when clicking outside
+        document.getElementById('createUserModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCreateUserModal();
+            }
+        });
+
+        document.getElementById('bulkUploadModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeBulkUploadModal();
+            }
+        });
 
         // Close user menu when clicking outside
         document.addEventListener('click', function(event) {
@@ -453,6 +847,13 @@
             
             if (!button || button.onclick !== toggleUserMenu) {
                 menu.classList.add('hidden');
+            }
+        });
+
+        // Close sidebar on window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 1024) {
+                hideSidebar();
             }
         });
     </script>

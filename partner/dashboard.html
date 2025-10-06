@@ -1,319 +1,592 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Partner Dashboard - PCU-DASMA Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1E40AF',
-                        secondary: '#3B82F6',
-                        accent: '#F59E0B'
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-gray-50">
+  </head>
+  <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class="bg-white shadow-sm border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
-                    <div class="hidden md:ml-10 md:flex md:space-x-8">
-                        <a href="dashboard.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
-                        <a href="new-posting.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Post Opportunity</a>
-                        <a href="postings.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">My Postings</a>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <div class="relative">
-                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
-                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
-                        </button>
-                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                            <div class="py-1">
-                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <a href="../index.html" class="text-xl font-bold text-primary"
+              >PCU-DASMA Connect</a
+            >
+            <div class="hidden md:ml-10 md:flex md:space-x-8">
+              <a
+                href="dashboard.html"
+                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Dashboard</a
+              >
+              <a
+                href="job-postings.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Job Postings</a
+              >
+              <a
+                href="partnerships.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Partnerships</a
+              >
+              <a
+                href="analytics.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Analytics</a
+              >
+              <a
+                href="profile.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Profile</a
+              >
             </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="relative">
+              <button
+                onclick="toggleUserMenu()"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                <img
+                  class="h-8 w-8 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </button>
+              <div
+                id="userMenu"
+                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+              >
+                <div class="py-1">
+                  <a
+                    href="profile.html"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Profile</a
+                  >
+                  <a
+                    href="#"
+                    onclick="logout()"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Logout</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </nav>
 
     <!-- Main Content -->
-    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <!-- Welcome Section -->
-        <div class="mb-8">
-            <div class="bg-gradient-to-r from-primary to-secondary text-white rounded-lg p-6">
-                <h1 class="text-2xl font-bold mb-2">Welcome back, Tech Solutions Inc.!</h1>
-                <p class="opacity-90">Manage your job postings and connect with talented PCU-DASMA alumni.</p>
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <!-- Welcome Section -->
+      <div class="mb-8">
+        <div
+          class="bg-gradient-to-r from-primary to-secondary text-white rounded-lg p-6"
+        >
+          <h1 class="text-2xl font-bold mb-2">Partner Dashboard</h1>
+          <p class="opacity-90">
+            Welcome back! Manage your job postings and partnership proposals
+            with PCU-DASMA.
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border-2 border-dashed border-gray-200 hover:border-primary transition-colors"
+        >
+          <div class="text-center">
+            <div
+              class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-blue-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"
+                ></path>
+              </svg>
             </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Post a Job</h3>
+            <p class="text-gray-600 mb-4">
+              Create job postings or internship opportunities for PCU-DASMA
+              students and alumni.
+            </p>
+            <a
+              href="new-job-posting.html"
+              class="inline-flex items-center px-4 py-2 bg-primary text-white text-sm font-medium rounded-md hover:bg-blue-700"
+            >
+              <svg
+                class="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                ></path>
+              </svg>
+              Create Job Post
+            </a>
+          </div>
         </div>
 
-        <!-- Stats Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Active Job Postings</p>
-                        <p class="text-2xl font-semibold text-gray-900">5</p>
-                    </div>
-                </div>
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border-2 border-dashed border-gray-200 hover:border-green-500 transition-colors"
+        >
+          <div class="text-center">
+            <div
+              class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-green-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+              </svg>
             </div>
-
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Total Applications</p>
-                        <p class="text-2xl font-semibold text-gray-900">42</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Pending Approval</p>
-                        <p class="text-2xl font-semibold text-gray-900">2</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600">Profile Views</p>
-                        <p class="text-2xl font-semibold text-gray-900">156</p>
-                    </div>
-                </div>
-            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Partnership Proposal
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Submit proposals for internship programs, research collaborations,
+              or training partnerships.
+            </p>
+            <a
+              href="new-partnership.html"
+              class="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700"
+            >
+              <svg
+                class="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                ></path>
+              </svg>
+              Submit Proposal
+            </a>
+          </div>
         </div>
 
-        <!-- Main Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Recent Job Postings -->
-            <div class="lg:col-span-2">
-                <div class="bg-white rounded-lg shadow-sm">
-                    <div class="px-6 py-4 border-b border-gray-200">
-                        <div class="flex justify-between items-center">
-                            <h3 class="text-lg font-semibold text-gray-900">Recent Job Postings</h3>
-                            <a href="postings.html" class="text-sm text-primary hover:underline">View all</a>
-                        </div>
-                    </div>
-                    <div class="divide-y divide-gray-200">
-                        <div class="p-6">
-                            <div class="flex justify-between items-start">
-                                <div class="flex-1">
-                                    <h4 class="text-lg font-medium text-gray-900 mb-2">Senior Software Developer</h4>
-                                    <div class="flex items-center text-sm text-gray-500 mb-2">
-                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-2">Active</span>
-                                        <span>Posted 2 days ago</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600">15 applications received</p>
-                                </div>
-                                <button class="ml-4 px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700">
-                                    View Applications
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="p-6">
-                            <div class="flex justify-between items-start">
-                                <div class="flex-1">
-                                    <h4 class="text-lg font-medium text-gray-900 mb-2">IT Project Manager</h4>
-                                    <div class="flex items-center text-sm text-gray-500 mb-2">
-                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-2">Under Review</span>
-                                        <span>Posted 3 days ago</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600">Pending admin approval</p>
-                                </div>
-                                <button class="ml-4 px-4 py-2 bg-gray-300 text-gray-700 text-sm rounded-md" disabled>
-                                    Waiting for Approval
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="p-6">
-                            <div class="flex justify-between items-start">
-                                <div class="flex-1">
-                                    <h4 class="text-lg font-medium text-gray-900 mb-2">Business Analyst</h4>
-                                    <div class="flex items-center text-sm text-gray-500 mb-2">
-                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-2">Active</span>
-                                        <span>Posted 1 week ago</span>
-                                    </div>
-                                    <p class="text-sm text-gray-600">8 applications received</p>
-                                </div>
-                                <button class="ml-4 px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700">
-                                    View Applications
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div
+          class="bg-white p-6 rounded-lg shadow-sm border-2 border-dashed border-gray-200 hover:border-purple-500 transition-colors"
+        >
+          <div class="text-center">
+            <div
+              class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-purple-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                ></path>
+              </svg>
             </div>
-
-            <!-- Sidebar -->
-            <div class="space-y-6">
-                <!-- Quick Actions -->
-                <div class="bg-white rounded-lg shadow-sm">
-                    <div class="px-6 py-4 border-b border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-900">Quick Actions</h3>
-                    </div>
-                    <div class="p-6 space-y-3">
-                        <a href="new-posting.html" class="block w-full text-left px-4 py-3 bg-primary text-white hover:bg-blue-700 rounded-lg transition-colors">
-                            <div class="flex items-center">
-                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                </svg>
-                                Post New Job
-                            </div>
-                        </a>
-                        <a href="postings.html" class="block w-full text-left px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors">
-                            <div class="flex items-center">
-                                <svg class="w-5 h-5 text-gray-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-                                </svg>
-                                Manage Postings
-                            </div>
-                        </a>
-                        <a href="profile.html" class="block w-full text-left px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors">
-                            <div class="flex items-center">
-                                <svg class="w-5 h-5 text-gray-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                                </svg>
-                                Update Profile
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Recent Applications -->
-                <div class="bg-white rounded-lg shadow-sm">
-                    <div class="px-6 py-4 border-b border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-900">Recent Applications</h3>
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <div class="flex items-center">
-                            <img class="w-10 h-10 rounded-full" 
-                                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" 
-                                 alt="Profile">
-                            <div class="ml-3 flex-1">
-                                <p class="text-sm font-medium text-gray-900">Maria Santos</p>
-                                <p class="text-sm text-gray-600">Applied for Senior Software Developer</p>
-                                <p class="text-xs text-gray-500">2 hours ago</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center">
-                            <img class="w-10 h-10 rounded-full" 
-                                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" 
-                                 alt="Profile">
-                            <div class="ml-3 flex-1">
-                                <p class="text-sm font-medium text-gray-900">Carlos Rodriguez</p>
-                                <p class="text-sm text-gray-600">Applied for Business Analyst</p>
-                                <p class="text-xs text-gray-500">5 hours ago</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center">
-                            <img class="w-10 h-10 rounded-full" 
-                                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" 
-                                 alt="Profile">
-                            <div class="ml-3 flex-1">
-                                <p class="text-sm font-medium text-gray-900">Anna Cruz</p>
-                                <p class="text-sm text-gray-600">Applied for Senior Software Developer</p>
-                                <p class="text-xs text-gray-500">1 day ago</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Platform Tips -->
-                <div class="bg-blue-50 rounded-lg p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Tips for Success</h3>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li class="flex items-start">
-                            <svg class="w-4 h-4 text-blue-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            Write clear job descriptions to attract quality candidates
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-4 h-4 text-blue-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            Respond to applications within 48 hours
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-4 h-4 text-blue-500 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            Keep your company profile updated
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              View Analytics
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Track your job postings performance and partnership status.
+            </p>
+            <a
+              href="analytics.html"
+              class="inline-flex items-center px-4 py-2 bg-purple-600 text-white text-sm font-medium rounded-md hover:bg-purple-700"
+            >
+              <svg
+                class="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                ></path>
+              </svg>
+              View Analytics
+            </a>
+          </div>
         </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-blue-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600">
+                Active Job Postings
+              </p>
+              <p class="text-2xl font-semibold text-gray-900">5</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-green-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600">
+                Active Partnerships
+              </p>
+              <p class="text-2xl font-semibold text-gray-900">2</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-yellow-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600">
+                Total Applications
+              </p>
+              <p class="text-2xl font-semibold text-gray-900">142</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-purple-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600">Pending Reviews</p>
+              <p class="text-2xl font-semibold text-gray-900">3</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Recent Job Postings -->
+        <div class="bg-white rounded-lg shadow-sm">
+          <div
+            class="px-6 py-4 border-b border-gray-200 flex justify-between items-center"
+          >
+            <h3 class="text-lg font-semibold text-gray-900">
+              Recent Job Postings
+            </h3>
+            <a
+              href="job-postings.html"
+              class="text-sm text-primary hover:underline"
+              >View all</a
+            >
+          </div>
+          <div class="divide-y divide-gray-200">
+            <div class="p-6">
+              <div class="flex justify-between items-start">
+                <div class="flex-1">
+                  <div class="flex items-center mb-2">
+                    <span
+                      class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-2"
+                      >Active</span
+                    >
+                    <span
+                      class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-2"
+                      >Full-time</span
+                    >
+                  </div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-1">
+                    Senior Software Developer
+                  </h4>
+                  <p class="text-gray-600 mb-2">
+                    Makati City • ₱80,000 - ₱120,000
+                  </p>
+                  <p class="text-sm text-gray-500">
+                    15 applications • 234 views
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex justify-between items-start">
+                <div class="flex-1">
+                  <div class="flex items-center mb-2">
+                    <span
+                      class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-2"
+                      >Pending Review</span
+                    >
+                    <span
+                      class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-2"
+                      >Internship</span
+                    >
+                  </div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-1">
+                    IT Intern Program
+                  </h4>
+                  <p class="text-gray-600 mb-2">
+                    BGC, Taguig • ₱15,000 - ₱20,000
+                  </p>
+                  <p class="text-sm text-gray-500">Under admin review</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex justify-between items-start">
+                <div class="flex-1">
+                  <div class="flex items-center mb-2">
+                    <span
+                      class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-2"
+                      >Active</span
+                    >
+                    <span
+                      class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-2"
+                      >Full-time</span
+                    >
+                  </div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-1">
+                    Business Analyst
+                  </h4>
+                  <p class="text-gray-600 mb-2">
+                    Ortigas Center • ₱60,000 - ₱85,000
+                  </p>
+                  <p class="text-sm text-gray-500">
+                    8 applications • 189 views
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Partnership Proposals -->
+        <div class="bg-white rounded-lg shadow-sm">
+          <div
+            class="px-6 py-4 border-b border-gray-200 flex justify-between items-center"
+          >
+            <h3 class="text-lg font-semibold text-gray-900">
+              Partnership Proposals
+            </h3>
+            <a
+              href="partnerships.html"
+              class="text-sm text-primary hover:underline"
+              >View all</a
+            >
+          </div>
+          <div class="divide-y divide-gray-200">
+            <div class="p-6">
+              <div class="flex justify-between items-start">
+                <div class="flex-1">
+                  <div class="flex items-center mb-2">
+                    <span
+                      class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-2"
+                      >Approved</span
+                    >
+                    <span
+                      class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-2"
+                      >Training</span
+                    >
+                  </div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-1">
+                    Digital Marketing Certification Program
+                  </h4>
+                  <p class="text-gray-600 mb-2">
+                    3-month certification program for business students
+                  </p>
+                  <p class="text-sm text-gray-500">
+                    50 slots • Starts March 2026
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex justify-between items-start">
+                <div class="flex-1">
+                  <div class="flex items-center mb-2">
+                    <span
+                      class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-2"
+                      >Pending Review</span
+                    >
+                    <span
+                      class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-2"
+                      >Internship</span
+                    >
+                  </div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-1">
+                    Summer Internship Program 2026
+                  </h4>
+                  <p class="text-gray-600 mb-2">
+                    3-month internship program for IT students
+                  </p>
+                  <p class="text-sm text-gray-500">20 slots • Summer 2026</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <div class="flex justify-between items-start">
+                <div class="flex-1">
+                  <div class="flex items-center mb-2">
+                    <span
+                      class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-2"
+                      >Draft</span
+                    >
+                    <span
+                      class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-2"
+                      >Research</span
+                    >
+                  </div>
+                  <h4 class="text-lg font-medium text-gray-900 mb-1">
+                    AI Research Collaboration
+                  </h4>
+                  <p class="text-gray-600 mb-2">
+                    Joint research project on AI in healthcare
+                  </p>
+                  <p class="text-sm text-gray-500">Draft • Not yet submitted</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
-        function toggleUserMenu() {
-            const menu = document.getElementById('userMenu');
-            menu.classList.toggle('hidden');
-        }
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+      }
 
-        function logout() {
-            if (confirm('Are you sure you want to logout?')) {
-                window.location.href = '../login.html';
-            }
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
         }
+      }
 
-        // Close user menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('userMenu');
-            const button = event.target.closest('button');
-            
-            if (!button || button.onclick !== toggleUserMenu) {
-                menu.classList.add('hidden');
-            }
-        });
+      // Close user menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const menu = document.getElementById("userMenu");
+        const button = event.target.closest("button");
+
+        if (!button || button.onclick !== toggleUserMenu) {
+          menu.classList.add("hidden");
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
