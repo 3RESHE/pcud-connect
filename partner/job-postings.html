@@ -150,7 +150,7 @@
             </div>
             <div class="ml-4">
               <p class="text-sm font-medium text-gray-600">Active Postings</p>
-              <p class="text-2xl font-semibold text-gray-900">5</p>
+              <p class="text-2xl font-semibold text-gray-900">7</p>
             </div>
           </div>
         </div>
@@ -180,7 +180,7 @@
               <p class="text-sm font-medium text-gray-600">
                 Total Applications
               </p>
-              <p class="text-2xl font-semibold text-gray-900">42</p>
+              <p class="text-2xl font-semibold text-gray-900">58</p>
             </div>
           </div>
         </div>
@@ -242,7 +242,7 @@
             </div>
             <div class="ml-4">
               <p class="text-sm font-medium text-gray-600">Total Views</p>
-              <p class="text-2xl font-semibold text-gray-900">1,234</p>
+              <p class="text-2xl font-semibold text-gray-900">1,847</p>
             </div>
           </div>
         </div>
@@ -256,13 +256,19 @@
               onclick="filterPostings('all')"
               class="posting-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium"
             >
-              All Postings (7)
+              All Postings (11)
             </button>
             <button
-              onclick="filterPostings('fulltime')"
+              onclick="filterPostings('full-time')"
               class="posting-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
             >
-              Full-time Jobs (4)
+              Full-time (5)
+            </button>
+            <button
+              onclick="filterPostings('part-time')"
+              class="posting-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+            >
+              Part-time (2)
             </button>
             <button
               onclick="filterPostings('internship')"
@@ -275,12 +281,6 @@
               class="posting-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
             >
               Drafts (1)
-            </button>
-            <button
-              onclick="filterPostings('expired')"
-              class="posting-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
-            >
-              Expired (2)
             </button>
           </nav>
         </div>
@@ -310,7 +310,8 @@
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
                 Senior Software Developer
               </h3>
-              <p class="text-gray-600 mb-3">Makati City • ₱80,000 - ₱120,000</p>
+              <p class="text-gray-600 mb-3">Information Technology • Makati City • On-site</p>
+              <p class="text-lg font-semibold text-green-600 mb-3">₱80,000 - ₱120,000/month</p>
               <div class="flex items-center space-x-6 text-sm text-gray-500">
                 <div class="flex items-center">
                   <svg
@@ -332,7 +333,7 @@
                       d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                     ></path>
                   </svg>
-                  234 views
+                  286 views
                 </div>
                 <div class="flex items-center">
                   <svg
@@ -348,7 +349,23 @@
                       d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
                     ></path>
                   </svg>
-                  15 applications
+                  18 applications
+                </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  2 positions available
                 </div>
               </div>
             </div>
@@ -357,7 +374,7 @@
                 onclick="viewApplications(1)"
                 class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
               >
-                View Applications
+                View Applications (18)
               </button>
               <div class="flex space-x-2">
                 <button
@@ -368,6 +385,112 @@
                 </button>
                 <button
                   onclick="pausePosting(1)"
+                  class="px-3 py-1 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
+                >
+                  Pause
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Part-time Job -->
+        <div
+          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-2">
+                <span
+                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Active</span
+                >
+                <span
+                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Part-time</span
+                >
+                <span class="text-sm text-gray-500"
+                  >Posted 1 day ago • Expires in 29 days</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Digital Marketing Specialist
+              </h3>
+              <p class="text-gray-600 mb-3">Marketing • Remote/Hybrid</p>
+              <p class="text-lg font-semibold text-green-600 mb-3">₱400 - ₱600/hour • 20-25 hours/week</p>
+              <div class="flex items-center space-x-6 text-sm text-gray-500">
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    ></path>
+                  </svg>
+                  142 views
+                </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                    ></path>
+                  </svg>
+                  8 applications
+                </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  1 position available
+                </div>
+              </div>
+            </div>
+            <div class="ml-4 flex flex-col space-y-2">
+              <button
+                onclick="viewApplications(2)"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+              >
+                View Applications (8)
+              </button>
+              <div class="flex space-x-2">
+                <button
+                  onclick="editPosting(2)"
+                  class="px-3 py-1 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
+                >
+                  Edit
+                </button>
+                <button
+                  onclick="pausePosting(2)"
                   class="px-3 py-1 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
                 >
                   Pause
@@ -395,12 +518,11 @@
                 <span class="text-sm text-gray-500">Submitted 3 hours ago</span>
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                IT Intern Program
+                Cybersecurity Intern
               </h3>
-              <p class="text-gray-600 mb-3">
-                BGC, Taguig • ₱15,000 - ₱20,000 • 3-month duration
-              </p>
-              <p class="text-sm text-yellow-700 bg-yellow-50 p-2 rounded">
+              <p class="text-gray-600 mb-3">Information Technology • Quezon City • On-site</p>
+              <p class="text-lg font-semibold text-green-600 mb-3">₱15,000/month • 6-month duration</p>
+              <p class="text-sm text-yellow-700 bg-yellow-50 p-3 rounded">
                 This internship posting is currently being reviewed by our
                 administrators. You'll receive an email notification once it's
                 approved.
@@ -408,13 +530,13 @@
             </div>
             <div class="ml-4 flex flex-col space-y-2">
               <button
-                onclick="editPosting(2)"
+                onclick="editPosting(3)"
                 class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
               >
                 Edit Draft
               </button>
               <button
-                onclick="withdrawPosting(2)"
+                onclick="withdrawPosting(3)"
                 class="px-4 py-2 text-red-600 hover:bg-red-50 text-sm rounded-md"
               >
                 Withdraw
@@ -445,9 +567,8 @@
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
                 Marketing Intern
               </h3>
-              <p class="text-gray-600 mb-3">
-                Makati City • ₱12,000 - ₱18,000 • 6-month duration
-              </p>
+              <p class="text-gray-600 mb-3">Marketing • Makati City • Hybrid</p>
+              <p class="text-lg font-semibold text-green-600 mb-3">₱12,000 - ₱18,000/month • 6-month duration</p>
               <div class="flex items-center space-x-6 text-sm text-gray-500">
                 <div class="flex items-center">
                   <svg
@@ -469,7 +590,7 @@
                       d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                     ></path>
                   </svg>
-                  156 views
+                  198 views
                 </div>
                 <div class="flex items-center">
                   <svg
@@ -485,82 +606,7 @@
                       d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
                     ></path>
                   </svg>
-                  12 applications
-                </div>
-              </div>
-            </div>
-            <div class="ml-4 flex flex-col space-y-2">
-              <button
-                onclick="viewApplications(3)"
-                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
-              >
-                View Applications
-              </button>
-              <div class="flex space-x-2">
-                <button
-                  onclick="editPosting(3)"
-                  class="px-3 py-1 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
-                >
-                  Edit
-                </button>
-                <button
-                  onclick="pausePosting(3)"
-                  class="px-3 py-1 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
-                >
-                  Pause
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Active Full-time Job -->
-        <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500"
-        >
-          <div class="flex justify-between items-start mb-4">
-            <div class="flex-1">
-              <div class="flex items-center mb-2">
-                <span
-                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Active</span
-                >
-                <span
-                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Full-time</span
-                >
-                <span class="text-sm text-gray-500"
-                  >Posted 1 week ago • Expires in 21 days</span
-                >
-              </div>
-              <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                Business Analyst
-              </h3>
-              <p class="text-gray-600 mb-3">
-                Ortigas Center • ₱60,000 - ₱85,000
-              </p>
-              <div class="flex items-center space-x-6 text-sm text-gray-500">
-                <div class="flex items-center">
-                  <svg
-                    class="w-4 h-4 mr-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    ></path>
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                    ></path>
-                  </svg>
-                  189 views
+                  15 applications
                 </div>
                 <div class="flex items-center">
                   <svg
@@ -573,10 +619,10 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                     ></path>
                   </svg>
-                  8 applications
+                  3 positions available
                 </div>
               </div>
             </div>
@@ -585,7 +631,7 @@
                 onclick="viewApplications(4)"
                 class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
               >
-                View Applications
+                View Applications (15)
               </button>
               <div class="flex space-x-2">
                 <button
@@ -605,9 +651,115 @@
           </div>
         </div>
 
+        <!-- Project-based Job -->
+        <div
+          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-2">
+                <span
+                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Active</span
+                >
+                <span
+                  class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Project-based</span
+                >
+                <span class="text-sm text-gray-500"
+                  >Posted 1 week ago • Expires in 21 days</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Web Development Project
+              </h3>
+              <p class="text-gray-600 mb-3">Information Technology • Remote</p>
+              <p class="text-lg font-semibold text-green-600 mb-3">₱150,000 total • 3-month project</p>
+              <div class="flex items-center space-x-6 text-sm text-gray-500">
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    ></path>
+                  </svg>
+                  95 views
+                </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                    ></path>
+                  </svg>
+                  6 proposals
+                </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                  Flexible timeline
+                </div>
+              </div>
+            </div>
+            <div class="ml-4 flex flex-col space-y-2">
+              <button
+                onclick="viewApplications(5)"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+              >
+                View Proposals (6)
+              </button>
+              <div class="flex space-x-2">
+                <button
+                  onclick="editPosting(5)"
+                  class="px-3 py-1 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
+                >
+                  Edit
+                </button>
+                <button
+                  onclick="pausePosting(5)"
+                  class="px-3 py-1 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
+                >
+                  Pause
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Draft Posting -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-gray-300"
+          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-gray-300 opacity-75"
         >
           <div class="flex justify-between items-start mb-4">
             <div class="flex-1">
@@ -627,21 +779,21 @@
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
                 UI/UX Designer
               </h3>
-              <p class="text-gray-600 mb-3">Remote • ₱50,000 - ₱70,000</p>
-              <p class="text-sm text-gray-700 bg-gray-50 p-2 rounded">
+              <p class="text-gray-600 mb-3">Design • Remote • ₱50,000 - ₱70,000/month</p>
+              <p class="text-sm text-gray-700 bg-gray-50 p-3 rounded">
                 This posting is saved as a draft. Complete the required fields
-                and submit for review.
+                and submit for review to make it visible to applicants.
               </p>
             </div>
             <div class="ml-4 flex flex-col space-y-2">
               <button
-                onclick="editPosting(5)"
+                onclick="editPosting(6)"
                 class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
               >
                 Continue Editing
               </button>
               <button
-                onclick="deletePosting(5)"
+                onclick="deletePosting(6)"
                 class="px-4 py-2 text-red-600 hover:bg-red-50 text-sm rounded-md"
               >
                 Delete Draft
@@ -701,7 +853,7 @@
       }
 
       function viewApplications(postingId) {
-        alert(`Viewing applications for job posting #${postingId}...`);
+        window.location.href = `view-applicants.html?job=${postingId}`;
       }
 
       function editPosting(postingId) {
@@ -710,7 +862,7 @@
 
       function pausePosting(postingId) {
         if (confirm("Are you sure you want to pause this job posting?")) {
-          alert(`Job posting #${postingId} has been paused.`);
+          alert(`Job posting #${postingId} has been paused. It will no longer be visible to job seekers.`);
           location.reload();
         }
       }
@@ -719,7 +871,7 @@
         if (
           confirm("Are you sure you want to withdraw this posting from review?")
         ) {
-          alert(`Job posting #${postingId} has been withdrawn.`);
+          alert(`Job posting #${postingId} has been withdrawn from admin review.`);
           location.reload();
         }
       }
@@ -730,7 +882,7 @@
             "Are you sure you want to delete this draft? This action cannot be undone."
           )
         ) {
-          alert(`Draft #${postingId} has been deleted.`);
+          alert(`Draft #${postingId} has been deleted permanently.`);
           location.reload();
         }
       }
