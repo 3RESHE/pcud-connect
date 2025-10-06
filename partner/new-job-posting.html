@@ -131,7 +131,8 @@
           <!-- Job Type Selection -->
           <div class="px-6 py-6">
             <h2 class="text-lg font-medium text-gray-900 mb-4">Job Type</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <!-- Full-time Position -->
               <div>
                 <label
                   class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
@@ -167,7 +168,7 @@
                           Full-time Position
                         </h3>
                         <p class="text-sm text-gray-500">
-                          Permanent employment opportunity
+                          Permanent employment
                         </p>
                       </div>
                     </div>
@@ -181,6 +182,59 @@
                   </div>
                 </label>
               </div>
+
+              <!-- Part-time Position -->
+              <div>
+                <label
+                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                >
+                  <input
+                    type="radio"
+                    name="job_type"
+                    value="parttime"
+                    class="sr-only"
+                    onchange="toggleJobTypeFields()"
+                  />
+                  <div class="flex-1">
+                    <div class="flex items-center">
+                      <div
+                        class="job-type-icon w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3"
+                      >
+                        <svg
+                          class="w-5 h-5 text-green-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 class="text-sm font-medium text-gray-900">
+                          Part-time Position
+                        </h3>
+                        <p class="text-sm text-gray-500">
+                          Flexible schedule
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="job-type-radio hidden">
+                    <div
+                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
+                    >
+                      <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Internship Program -->
               <div>
                 <label
                   class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
@@ -216,7 +270,7 @@
                           Internship Program
                         </h3>
                         <p class="text-sm text-gray-500">
-                          Temporary learning opportunity
+                          Learning opportunity
                         </p>
                       </div>
                     </div>
@@ -230,6 +284,74 @@
                   </div>
                 </label>
               </div>
+
+              <!-- Other/Contract Position -->
+              <div>
+                <label
+                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                >
+                  <input
+                    type="radio"
+                    name="job_type"
+                    value="other"
+                    class="sr-only"
+                    onchange="toggleJobTypeFields()"
+                  />
+                  <div class="flex-1">
+                    <div class="flex items-center">
+                      <div
+                        class="job-type-icon w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3"
+                      >
+                        <svg
+                          class="w-5 h-5 text-orange-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 class="text-sm font-medium text-gray-900">
+                          Other/Contract
+                        </h3>
+                        <p class="text-sm text-gray-500">
+                          Freelance/Project
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="job-type-radio hidden">
+                    <div
+                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
+                    >
+                      <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Custom Job Type Field (for "Other" option) -->
+            <div id="custom_job_type" class="mt-6 hidden">
+              <label
+                for="custom_type"
+                class="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Specify Job Type <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="custom_type"
+                name="custom_type"
+                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                placeholder="e.g., Contract, Freelance, Project-based, Temporary, etc."
+              />
             </div>
           </div>
 
@@ -905,6 +1027,8 @@
         const experienceField = document.getElementById(
           "experience_requirements"
         );
+        const customJobType = document.getElementById("custom_job_type");
+        const customTypeInput = document.getElementById("custom_type");
 
         // Update labels based on job type
         if (selectedType === "internship") {
@@ -921,9 +1045,29 @@
 
           internshipDuration.classList.remove("hidden");
           experienceField.classList.add("hidden");
+          customJobType.classList.add("hidden");
+          customTypeInput.removeAttribute("required");
 
           // Set default pay period for internships
           document.getElementById("salary_period").value = "monthly";
+        } else if (selectedType === "parttime") {
+          document.getElementById("job_title_label").textContent = "Job Title";
+          document.getElementById("job_description_label").textContent =
+            "Job Description";
+          document.getElementById("compensation_title").textContent =
+            "Compensation";
+          document.getElementById("salary_min_label").textContent =
+            "Minimum Salary";
+          document.getElementById("salary_max_label").textContent =
+            "Maximum Salary";
+
+          internshipDuration.classList.add("hidden");
+          experienceField.classList.remove("hidden");
+          customJobType.classList.add("hidden");
+          customTypeInput.removeAttribute("required");
+
+          // Set default pay period for part-time
+          document.getElementById("salary_period").value = "hourly";
         } else if (selectedType === "fulltime") {
           document.getElementById("job_title_label").textContent = "Job Title";
           document.getElementById("job_description_label").textContent =
@@ -937,9 +1081,29 @@
 
           internshipDuration.classList.add("hidden");
           experienceField.classList.remove("hidden");
+          customJobType.classList.add("hidden");
+          customTypeInput.removeAttribute("required");
 
           // Set default pay period for full-time
           document.getElementById("salary_period").value = "monthly";
+        } else if (selectedType === "other") {
+          document.getElementById("job_title_label").textContent = "Position Title";
+          document.getElementById("job_description_label").textContent =
+            "Position Description";
+          document.getElementById("compensation_title").textContent =
+            "Compensation";
+          document.getElementById("salary_min_label").textContent =
+            "Minimum Pay";
+          document.getElementById("salary_max_label").textContent =
+            "Maximum Pay";
+
+          internshipDuration.classList.add("hidden");
+          experienceField.classList.remove("hidden");
+          customJobType.classList.remove("hidden");
+          customTypeInput.setAttribute("required", "required");
+
+          // Set default pay period for other
+          document.getElementById("salary_period").value = "project";
         }
 
         // Update radio button visual state
@@ -983,6 +1147,7 @@
           document.getElementById("jobPostingForm")
         );
         const jobType = formData.get("job_type");
+        const customType = formData.get("custom_type");
         const jobTitle = formData.get("job_title");
         const department = formData.get("department");
         const location = formData.get("location");
@@ -997,10 +1162,27 @@
           return;
         }
 
-        const typeLabel =
-          jobType === "internship" ? "Internship" : "Full-time Position";
-        const compensationLabel =
-          jobType === "internship" ? "Allowance" : "Salary";
+        let typeLabel = "";
+        let compensationLabel = "";
+
+        switch (jobType) {
+          case "fulltime":
+            typeLabel = "Full-time Position";
+            compensationLabel = "Salary";
+            break;
+          case "parttime":
+            typeLabel = "Part-time Position";
+            compensationLabel = "Salary";
+            break;
+          case "internship":
+            typeLabel = "Internship";
+            compensationLabel = "Allowance";
+            break;
+          case "other":
+            typeLabel = customType || "Other Position";
+            compensationLabel = "Compensation";
+            break;
+        }
 
         const previewContent = `
                 <div class="space-y-6">
@@ -1009,6 +1191,10 @@
                             <span class="px-2 py-1 rounded-full text-xs mr-2 ${
                               jobType === "internship"
                                 ? "bg-purple-100 text-purple-800"
+                                : jobType === "parttime"
+                                ? "bg-green-100 text-green-800"
+                                : jobType === "other"
+                                ? "bg-orange-100 text-orange-800"
                                 : "bg-blue-100 text-blue-800"
                             }">${typeLabel}</span>
                             <span class="text-sm text-gray-500">${
@@ -1044,7 +1230,7 @@
                         ? `
                     <div>
                         <h3 class="font-semibold text-gray-900 mb-2">${
-                          jobType === "internship" ? "Internship" : "Job"
+                          jobType === "internship" ? "Internship" : "Position"
                         } Description</h3>
                         <p class="text-gray-700 whitespace-pre-wrap">${jobDescription}</p>
                     </div>
@@ -1080,18 +1266,31 @@
 
           const formData = new FormData(this);
           const jobType = formData.get("job_type");
+          const customType = formData.get("custom_type");
           const jobTitle = formData.get("job_title");
 
           if (!jobType) {
-            alert("Please select a job type (Full-time or Internship).");
+            alert("Please select a job type.");
             return;
           }
 
+          if (jobType === "other" && !customType) {
+            alert("Please specify the job type for 'Other' category.");
+            return;
+          }
+
+          const typeText =
+            jobType === "other"
+              ? customType
+              : jobType === "fulltime"
+              ? "full-time job"
+              : jobType === "parttime"
+              ? "part-time job"
+              : "internship";
+
           if (
             confirm(
-              `Submit ${
-                jobType === "internship" ? "internship" : "job"
-              } posting "${jobTitle}" for admin review?`
+              `Submit ${typeText} posting "${jobTitle}" for admin review?`
             )
           ) {
             alert(
