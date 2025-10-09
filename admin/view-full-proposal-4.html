@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Partnership Proposal - Sustainable Energy Research Initiative - PCU-DASMA Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
+            <div class="ml-8 flex items-center space-x-2 text-sm text-gray-500">
+              <span>Admin Portal</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+              <span>Partnership Management</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+              <span class="text-primary font-medium">Partnership Proposal</span>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="relative">
+              <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+                <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile" />
+              </button>
+              <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                <div class="py-1">
+                  <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Profile</a>
+                  <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <!-- Back Button & Status -->
+      <div class="mb-6">
+        <a href="approve-partnerships.html" class="flex items-center text-primary hover:text-blue-700 mb-4">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+          Back to Partnership Management
+        </a>
+
+        <!-- Proposal Status Banner -->
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <div class="ml-3">
+              <p class="text-sm text-yellow-700">
+                <strong>New Proposal:</strong> This research collaboration proposal is awaiting initial review and discussion.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Main Proposal Content -->
+        <div class="lg:col-span-2">
+          <!-- Proposal Header -->
+          <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <div class="flex items-center mb-4">
+              <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium mr-3">New Proposal</span>
+              <span class="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm font-medium mr-3">Research Collaboration</span>
+              <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">Grant Funded</span>
+            </div>
+
+            <h1 class="text-3xl font-bold text-gray-900 mb-4">Sustainable Energy Research Initiative</h1>
+
+            <div class="flex flex-wrap items-center text-sm text-gray-600 mb-6">
+              <div class="flex items-center mr-6 mb-2">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2-2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                </svg>
+                <span class="font-semibold">GreenTech Research Institute</span>
+              </div>
+              <div class="flex items-center mr-6 mb-2">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <span>Timeline: 2 years (2026-2028)</span>
+              </div>
+              <div class="flex items-center mr-6 mb-2">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                </svg>
+                <span>Research Grant: ₱2,000,000</span>
+              </div>
+              <div class="flex items-center mr-6 mb-2">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span>Submitted 3 days ago</span>
+              </div>
+            </div>
+
+            <div class="text-2xl font-bold text-green-600 mb-4">
+              ₱2,000,000<span class="text-lg font-normal text-gray-600"> (Research Grant Funding)</span>
+            </div>
+          </div>
+
+          <!-- Proposal Overview -->
+          <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Research Initiative Overview</h2>
+            <div class="prose max-w-none text-gray-700">
+              <p class="mb-4">
+                The GreenTech Research Institute proposes a comprehensive 2-year research collaboration focusing on cutting-edge sustainable energy technologies. This initiative will establish PCU-DASMA as a leading institution in renewable energy research while contributing to the Philippines' clean energy transition goals.
+              </p>
+              <p class="mb-4">
+                The research program encompasses three main areas: advanced solar photovoltaic systems, next-generation battery energy storage technologies, and smart grid integration solutions. This multidisciplinary approach will involve faculty members from Engineering, Environmental Science, and Information Technology departments.
+              </p>
+              <p>
+                Beyond academic research, this initiative aims to develop commercially viable technologies that can be deployed in the Philippine energy sector, creating potential licensing opportunities and startup ventures for participating students and faculty.
+              </p>
+            </div>
+          </div>
+
+          <!-- Research Focus Areas -->
+          <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Research Focus Areas & Objectives</h2>
+
+            <div class="space-y-6">
+              <div class="border-l-4 border-yellow-500 pl-4">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Solar Energy Systems Research</h3>
+                <ul class="space-y-1 text-gray-700">
+                  <li>• Development of high-efficiency perovskite-silicon tandem solar cells</li>
+                  <li>• Optimization of solar panel performance in tropical climate conditions</li>
+                  <li>• Investigation of bifacial solar panel applications for Philippine settings</li>
+                  <li>• Cost-effective solar tracking system designs for small-scale installations</li>
+                </ul>
+              </div>
+
+              <div class="border-l-4 border-green-500 pl-4">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Battery & Energy Storage Technologies</h3>
+                <ul class="space-y-1 text-gray-700">
+                  <li>• Lithium-ion battery optimization for grid-scale energy storage</li>
+                  <li>• Research on alternative battery chemistries using local materials</li>
+                  <li>• Battery management system development for renewable integration</li>
+                  <li>• Life cycle analysis and recycling strategies for energy storage systems</li>
+                </ul>
+              </div>
+
+              <div class="border-l-4 border-blue-500 pl-4">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Smart Grid & Integration Solutions</h3>
+                <ul class="space-y-1 text-gray-700">
+                  <li>• Microgrids design for remote and island communities</li>
+                  <li>• Advanced energy management algorithms and control systems</li>
+                  <li>• Grid stability analysis with high renewable energy penetration</li>
+                  <li>• IoT-enabled monitoring and predictive maintenance systems</li>
+                </ul>
+              </div>
+
+              <div class="border-l-4 border-purple-500 pl-4">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Environmental Impact & Sustainability</h3>
+                <ul class="space-y-1 text-gray-700">
+                  <li>• Life cycle assessment of renewable energy technologies</li>
+                  <li>• Environmental monitoring of renewable energy installations</li>
+                  <li>• Carbon footprint reduction strategies for energy systems</li>
+                  <li>• Economic feasibility studies for sustainable energy adoption</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Research Team & Participants -->
+          <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Research Team Structure & Participants</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">PCU-DASMA Faculty Involvement</h3>
+                <ul class="space-y-2 text-gray-700">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    4 Senior Faculty Members (Principal Investigators)
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    6 Junior Faculty and Researchers (Co-Investigators)
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Engineering, Environmental Science, and IT departments
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Multi-disciplinary research expertise
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Student Research Opportunities</h3>
+                <ul class="space-y-2 text-gray-700">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    12 Graduate Student Research Assistants
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    25 Undergraduate Research Interns (rotating basis)
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Thesis and capstone project opportunities
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Monthly research stipends for participants
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Expected Outcomes & Impact -->
+          <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Expected Research Outcomes & Impact</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Academic Output</h3>
+                <ul class="space-y-2 text-gray-700">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-orange-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    15+ peer-reviewed journal publications
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-orange-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    30+ conference presentations and proceedings
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-orange-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Technical reports and white papers
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-orange-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Graduate student thesis publications
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Commercial & Social Impact</h3>
+                <ul class="space-y-2 text-gray-700">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    3-5 patent applications for novel technologies
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Technology licensing opportunities
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Potential spin-off companies and startups
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Contributions to national energy policy
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Research Infrastructure & Facilities -->
+          <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Research Infrastructure & Equipment</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">Laboratory Equipment (Grant Funded)</h3>
+                <ul class="space-y-2 text-gray-700">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-purple-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Solar cell fabrication and testing equipment
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-purple-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Battery testing and characterization systems
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-purple-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Grid simulation and modeling software
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-purple-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Environmental monitoring instruments
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-3">PCU-DASMA Resources</h3>
+                <ul class="space-y-2 text-gray-700">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-teal-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Dedicated renewable energy laboratory space
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-teal-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    High-performance computing resources
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-teal-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Research administration and support services
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-teal-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Intellectual property and legal support
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Implementation Roadmap -->
+          <div class="bg-white rounded-lg shadow-sm p-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Research Implementation Roadmap</h2>
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 w-24 text-sm font-medium text-gray-600">Year 1</div>
+                <div class="flex-1">
+                  <h4 class="font-medium text-gray-900">Foundation & Setup Phase</h4>
+                  <p class="text-sm text-gray-600">Equipment procurement, lab setup, team formation, and initial research activities</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="flex-shrink-0 w-24 text-sm font-medium text-gray-600">Q1-Q2 2026</div>
+                <div class="flex-1">
+                  <h4 class="font-medium text-gray-900">Solar Energy & Battery Research Launch</h4>
+                  <p class="text-sm text-gray-600">Begin primary research activities in photovoltaic and energy storage technologies</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="flex-shrink-0 w-24 text-sm font-medium text-gray-600">Q3-Q4 2026</div>
+                <div class="flex-1">
+                  <h4 class="font-medium text-gray-900">Smart Grid Integration Studies</h4>
+                  <p class="text-sm text-gray-600">Initiate smart grid research and first patent applications</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="flex-shrink-0 w-24 text-sm font-medium text-gray-600">Year 2</div>
+                <div class="flex-1">
+                  <h4 class="font-medium text-gray-900">Commercialization & Knowledge Transfer</h4>
+                  <p class="text-sm text-gray-600">Technology validation, industry partnerships, and publication of findings</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Actions Sidebar -->
+        <div class="lg:col-span-1">
+          <!-- Quick Actions -->
+          <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Proposal Actions</h3>
+            <div class="space-y-3">
+              <button onclick="initiateDiscussion()" class="w-full px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center justify-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                </svg>
+                Initiate Discussion
+              </button>
+              <button onclick="approveProposal()" class="w-full px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium flex items-center justify-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Approve Proposal
+              </button>
+              <button onclick="requestRevisions()" class="w-full px-4 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 font-medium flex items-center justify-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                </svg>
+                Request Revisions
+              </button>
+              <button onclick="rejectProposal()" class="w-full px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium flex items-center justify-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+                Reject Proposal
+              </button>
+            </div>
+          </div>
+
+          <!-- Proposal Details -->
+          <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Proposal Summary</h3>
+            <div class="space-y-3">
+              <div>
+                <div class="text-sm text-gray-500">Proposal Type</div>
+                <div class="font-medium">Research Collaboration</div>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Status</div>
+                <div class="font-medium flex items-center">
+                  <div class="w-2 h-2 bg-yellow-500 rounded-full mr-2"></div>
+                  New Proposal
+                </div>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Submitted Date</div>
+                <div class="font-medium">October 6, 2025</div>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Research Duration</div>
+                <div class="font-medium">2 years (2026-2028)</div>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Grant Amount</div>
+                <div class="font-medium">₱2,000,000</div>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Faculty Involved</div>
+                <div class="font-medium">8+ Professors & Researchers</div>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Student Participants</div>
+                <div class="font-medium">37 Graduate & Undergraduate</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Partner Information -->
+          <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Partner Organization</h3>
+            <div class="space-y-3 text-sm">
+              <div>
+                <div class="text-gray-500">Institute Name</div>
+                <div class="font-medium">GreenTech Research Institute</div>
+              </div>
+              <div>
+                <div class="text-gray-500">Type</div>
+                <div class="font-medium">Private Research Institute</div>
+              </div>
+              <div>
+                <div class="text-gray-500">Specialization</div>
+                <div class="font-medium">Renewable Energy & Sustainability</div>
+              </div>
+              <div>
+                <div class="text-gray-500">Research Portfolio</div>
+                <div class="font-medium">₱50M+ in active grants</div>
+              </div>
+              <div>
+                <div class="text-gray-500">Contact Person</div>
+                <div class="font-medium">Dr. Elena Rodriguez</div>
+                <div class="text-gray-600">Research Director</div>
+              </div>
+              <div>
+                <div class="text-gray-500">Email</div>
+                <div class="font-medium">e.rodriguez@greentech.ph</div>
+              </div>
+              <div>
+                <div class="text-gray-500">Phone</div>
+                <div class="font-medium">+63 2 8234 5678</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Document Attachments -->
+          <div class="bg-white rounded-lg shadow-sm p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Attachments</h3>
+            <div class="space-y-3">
+              <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                <svg class="w-8 h-8 text-red-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                </svg>
+                <div class="flex-1">
+                  <div class="text-sm font-medium text-gray-900">Sustainable Energy Research Proposal.pdf</div>
+                  <div class="text-xs text-gray-500">6.4 MB</div>
+                </div>
+                <button onclick="downloadAttachment('proposal')" class="text-primary hover:text-blue-700">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m-6 4v6"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                <svg class="w-8 h-8 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                <div class="flex-1">
+                  <div class="text-sm font-medium text-gray-900">Budget & Equipment Details.xlsx</div>
+                  <div class="text-xs text-gray-500">1.7 MB</div>
+                </div>
+                <button onclick="downloadAttachment('budget')" class="text-primary hover:text-blue-700">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m-6 4v6"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                <svg class="w-8 h-8 text-purple-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                </svg>
+                <div class="flex-1">
+                  <div class="text-sm font-medium text-gray-900">Institute Credentials & Past Projects.pdf</div>
+                  <div class="text-xs text-gray-500">4.9 MB</div>
+                </div>
+                <button onclick="downloadAttachment('credentials')" class="text-primary hover:text-blue-700">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m-6 4v6"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discussion Modal -->
+    <div id="discussionModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
+      <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+        <div class="relative bg-white rounded-lg max-w-2xl w-full shadow-xl">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h3 class="text-xl font-semibold text-gray-900">Initiate Partnership Discussion</h3>
+          </div>
+          <div class="p-6">
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Discussion Points & Questions</label>
+              <textarea id="discussionPoints" rows="4" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary" placeholder="Enter points you'd like to discuss with GreenTech Research Institute..."></textarea>
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Initial Assessment</label>
+              <select id="initialAssessment" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                <option value="">Select initial assessment</option>
+                <option value="positive">Positive - Strong research potential</option>
+                <option value="neutral">Neutral - Need IP and commercial rights clarification</option>
+                <option value="concerns">Has concerns - Faculty workload and resource allocation</option>
+              </select>
+            </div>
+          </div>
+          <div class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3">
+            <button onclick="closeDiscussionModal()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">Cancel</button>
+            <button onclick="sendDiscussion()" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Send Discussion Email</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+      }
+
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
+        }
+      }
+
+      function initiateDiscussion() {
+        document.getElementById("discussionModal").classList.remove("hidden");
+      }
+
+      function closeDiscussionModal() {
+        document.getElementById("discussionModal").classList.add("hidden");
+      }
+
+      function sendDiscussion() {
+        const discussionPoints = document.getElementById("discussionPoints").value;
+        const assessment = document.getElementById("initialAssessment").value;
+
+        if (!discussionPoints.trim()) {
+          alert("Please enter discussion points before sending the email.");
+          return;
+        }
+
+        if (confirm("Send discussion email to GreenTech Research Institute?")) {
+          alert(`Discussion email sent successfully. Status updated to "Under Discussion".`);
+          closeDiscussionModal();
+          window.location.href = "approve-partnerships.html";
+        }
+      }
+
+      function approveProposal() {
+        if (confirm("Are you sure you want to approve this research collaboration? This is a significant 2-year commitment.")) {
+          alert("Research collaboration approved! GreenTech Research Institute has been notified and the project will move to setup phase.");
+          window.location.href = "approve-partnerships.html";
+        }
+      }
+
+      function requestRevisions() {
+        const revisions = prompt("Please specify what revisions are needed:", "Please provide more details about intellectual property rights and publication agreements...");
+        if (revisions) {
+          alert(`Revision request sent to GreenTech Research Institute:\n\n${revisions}`);
+          window.location.href = "approve-partnerships.html";
+        }
+      }
+
+      function rejectProposal() {
+        const reason = prompt("Please provide a detailed reason for rejection:");
+        if (reason) {
+          if (confirm("Are you sure you want to reject this research proposal?")) {
+            alert(`Research proposal rejected. Reason: ${reason}\n\nGreenTech Research Institute has been notified.`);
+            window.location.href = "approve-partnerships.html";
+          }
+        }
+      }
+
+      function downloadAttachment(type) {
+        const fileNames = {
+          proposal: "Sustainable_Energy_Research_Proposal.pdf",
+          budget: "Budget_Equipment_Details.xlsx",
+          credentials: "Institute_Credentials_Past_Projects.pdf"
+        };
+        alert(`Downloading ${fileNames[type]}...`);
+      }
+
+      // Close modal when clicking outside
+      document.getElementById("discussionModal").addEventListener("click", function (e) {
+        if (e.target === this) {
+          closeDiscussionModal();
+        }
+      });
+
+      // Close user menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const menu = document.getElementById("userMenu");
+        const button = event.target.closest("button");
+        if (!button || button.onclick !== toggleUserMenu) {
+          menu.classList.add("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>
