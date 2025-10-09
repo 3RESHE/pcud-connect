@@ -183,6 +183,7 @@
                   </div>
                 </label>
               </div>
+
               <div>
                 <label
                   class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
@@ -232,6 +233,7 @@
                   </div>
                 </label>
               </div>
+
               <div>
                 <label
                   class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
@@ -281,6 +283,7 @@
                   </div>
                 </label>
               </div>
+
               <div>
                 <label
                   class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
@@ -289,55 +292,6 @@
                     type="radio"
                     name="partnership_type"
                     value="research_collaboration"
-                    class="sr-only"
-                    onchange="togglePartnershipFields()"
-                  />
-                  <div class="flex-1">
-                    <div class="flex items-center">
-                      <div
-                        class="partnership-type-icon w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3"
-                      >
-                        <svg
-                          class="w-5 h-5 text-orange-600"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                          ></path>
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 class="text-sm font-medium text-gray-900">
-                          Research Project
-                        </h3>
-                        <p class="text-sm text-gray-500">
-                          Joint research and development
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="partnership-type-radio hidden">
-                    <div
-                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
-                    >
-                      <div class="w-2 h-2 bg-white rounded-full"></div>
-                    </div>
-                  </div>
-                </label>
-              </div>
-              <div>
-                <label
-                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
-                >
-                  <input
-                    type="radio"
-                    name="partnership_type"
-                    value="scholarship_program"
                     class="sr-only"
                     onchange="togglePartnershipFields()"
                   />
@@ -356,16 +310,16 @@
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             stroke-width="2"
-                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
                           ></path>
                         </svg>
                       </div>
                       <div>
                         <h3 class="text-sm font-medium text-gray-900">
-                          Scholarship Program
+                          Research Collaboration
                         </h3>
                         <p class="text-sm text-gray-500">
-                          Student financial assistance
+                          Joint research projects and studies
                         </p>
                       </div>
                     </div>
@@ -379,6 +333,57 @@
                   </div>
                 </label>
               </div>
+
+              <div>
+                <label
+                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                >
+                  <input
+                    type="radio"
+                    name="partnership_type"
+                    value="scholarship_program"
+                    class="sr-only"
+                    onchange="togglePartnershipFields()"
+                  />
+                  <div class="flex-1">
+                    <div class="flex items-center">
+                      <div
+                        class="partnership-type-icon w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mr-3"
+                      >
+                        <svg
+                          class="w-5 h-5 text-yellow-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 class="text-sm font-medium text-gray-900">
+                          Scholarship Program
+                        </h3>
+                        <p class="text-sm text-gray-500">
+                          Financial aid and scholarships
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="partnership-type-radio hidden">
+                    <div
+                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
+                    >
+                      <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+
               <div>
                 <label
                   class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
@@ -427,6 +432,23 @@
                 </label>
               </div>
             </div>
+
+            <!-- Other Partnership Type Input -->
+            <div id="other_partnership_type" class="hidden mt-4">
+              <label
+                for="other_type_input"
+                class="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Please specify the type of partnership <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="other_type_input"
+                name="other_type_input"
+                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                placeholder="e.g., Mentorship Program, Industry Panel Discussion, etc."
+              />
+            </div>
           </div>
 
           <!-- Basic Information -->
@@ -449,7 +471,7 @@
                   name="title"
                   required
                   class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="e.g., Digital Marketing Certification Program"
+                  placeholder="e.g., Cybersecurity Awareness Workshop Series"
                 />
               </div>
 
@@ -464,66 +486,146 @@
                   <div class="grid grid-cols-1 gap-2 mt-2">
                     <label class="flex items-center">
                       <input
-                        type="checkbox"
-                        name="target_audience[]"
-                        value="bsit_students"
-                        class="rounded border-gray-300 text-primary focus:ring-primary"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >BSIT Students</span
-                      >
-                    </label>
-                    <label class="flex items-center">
-                      <input
-                        type="checkbox"
-                        name="target_audience[]"
-                        value="bscs_students"
-                        class="rounded border-gray-300 text-primary focus:ring-primary"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >BSCS Students</span
-                      >
-                    </label>
-                    <label class="flex items-center">
-                      <input
-                        type="checkbox"
-                        name="target_audience[]"
-                        value="business_students"
-                        class="rounded border-gray-300 text-primary focus:ring-primary"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >Business Students</span
-                      >
-                    </label>
-                    <label class="flex items-center">
-                      <input
-                        type="checkbox"
-                        name="target_audience[]"
+                        type="radio"
+                        name="target_audience"
                         value="all_students"
-                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                        class="border-gray-300 text-primary focus:ring-primary"
+                        onchange="toggleDepartmentSelection()"
                       />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >All Students</span
-                      >
+                      <span class="ml-2 text-sm text-gray-700">All Students</span>
                     </label>
                     <label class="flex items-center">
                       <input
-                        type="checkbox"
-                        name="target_audience[]"
+                        type="radio"
+                        name="target_audience"
                         value="alumni"
-                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                        class="border-gray-300 text-primary focus:ring-primary"
+                        onchange="toggleDepartmentSelection()"
                       />
                       <span class="ml-2 text-sm text-gray-700">Alumni</span>
                     </label>
                     <label class="flex items-center">
                       <input
-                        type="checkbox"
-                        name="target_audience[]"
-                        value="faculty"
-                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                        type="radio"
+                        name="target_audience"
+                        value="open_for_all"
+                        class="border-gray-300 text-primary focus:ring-primary"
+                        onchange="toggleDepartmentSelection()"
                       />
-                      <span class="ml-2 text-sm text-gray-700">Faculty</span>
+                      <span class="ml-2 text-sm text-gray-700">Open for All</span>
                     </label>
+                  </div>
+
+                  <!-- Department Selection (shown when All Students is selected) -->
+                  <div id="department_selection" class="hidden mt-4 p-4 bg-gray-50 rounded-lg">
+                    <label class="block text-sm font-medium text-gray-700 mb-3">
+                      Select Target Departments <span class="text-red-500">*</span>
+                    </label>
+                    
+                    <div class="mb-3">
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          id="select_all_departments"
+                          class="rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="toggleAllDepartments()"
+                        />
+                        <span class="ml-2 text-sm font-semibold text-gray-900">Select All Departments</span>
+                      </label>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-2 ml-4">
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="departments[]"
+                          value="college_of_arts_and_sciences"
+                          class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="updateSelectAllState()"
+                        />
+                        <span class="ml-2 text-sm text-gray-700">College of Arts and Sciences</span>
+                      </label>
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="departments[]"
+                          value="college_of_business_and_accountancy"
+                          class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="updateSelectAllState()"
+                        />
+                        <span class="ml-2 text-sm text-gray-700">College of Business and Accountancy</span>
+                      </label>
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="departments[]"
+                          value="college_of_criminal_justice"
+                          class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="updateSelectAllState()"
+                        />
+                        <span class="ml-2 text-sm text-gray-700">College of Criminal Justice</span>
+                      </label>
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="departments[]"
+                          value="college_of_engineering_and_technology"
+                          class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="updateSelectAllState()"
+                        />
+                        <span class="ml-2 text-sm text-gray-700">College of Engineering and Technology</span>
+                      </label>
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="departments[]"
+                          value="college_of_education"
+                          class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="updateSelectAllState()"
+                        />
+                        <span class="ml-2 text-sm text-gray-700">College of Education</span>
+                      </label>
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="departments[]"
+                          value="college_of_informatics"
+                          class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="updateSelectAllState()"
+                        />
+                        <span class="ml-2 text-sm text-gray-700">College of Informatics</span>
+                      </label>
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="departments[]"
+                          value="college_of_hospitality_and_tourism_management"
+                          class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="updateSelectAllState()"
+                        />
+                        <span class="ml-2 text-sm text-gray-700">College of Hospitality and Tourism Management</span>
+                      </label>
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="departments[]"
+                          value="college_of_nursing_and_health_sciences"
+                          class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="updateSelectAllState()"
+                        />
+                        <span class="ml-2 text-sm text-gray-700">College of Nursing and Health Sciences</span>
+                      </label>
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="departments[]"
+                          value="college_of_social_work"
+                          class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="updateSelectAllState()"
+                        />
+                        <span class="ml-2 text-sm text-gray-700">College of Social Work</span>
+                      </label>
+                    </div>
                   </div>
                 </div>
 
@@ -541,7 +643,7 @@
                     min="1"
                     required
                     class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    placeholder="50"
+                    placeholder="100"
                   />
                 </div>
               </div>
@@ -561,6 +663,55 @@
                   required
                   class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
                   placeholder="Provide a detailed description of your partnership proposal, including objectives, expected outcomes, and benefits for students..."
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Program Structure & Curriculum (for training/workshop) -->
+          <div id="program_structure" class="px-6 py-6 hidden">
+            <h2 class="text-lg font-medium text-gray-900 mb-4">
+              Program Structure & Curriculum
+            </h2>
+            <div class="grid grid-cols-1 gap-6">
+              <div>
+                <label
+                  for="curriculum_outline"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Curriculum Outline
+                </label>
+                <textarea
+                  id="curriculum_outline"
+                  name="curriculum_outline"
+                  rows="8"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="Provide detailed week-by-week breakdown:
+Week 1: Introduction to [Topic]
+- Key concepts and principles
+- Hands-on lab activities
+
+Week 2: [Advanced Topics]
+- Practical applications
+- Real-world case studies
+
+..."
+                ></textarea>
+              </div>
+              
+              <div>
+                <label
+                  for="learning_outcomes"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Learning Outcomes & Student Benefits
+                </label>
+                <textarea
+                  id="learning_outcomes"
+                  name="learning_outcomes"
+                  rows="4"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="List specific skills students will gain, certificates provided, career benefits, etc."
                 ></textarea>
               </div>
             </div>
@@ -618,7 +769,7 @@
                 name="schedule_details"
                 rows="3"
                 class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                placeholder="e.g., Every Saturday, 2:00 PM - 5:00 PM for 12 weeks"
+                placeholder="e.g., Every Saturday, 8:00 AM - 5:00 PM for 4 weeks"
               ></textarea>
             </div>
 
@@ -707,70 +858,98 @@
               </div>
             </div>
 
-            <div id="facility_requirements" class="mt-6">
-              <label
-                for="facilities_needed"
-                class="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Facility Requirements
-              </label>
-              <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-2">
-                <label class="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="facilities[]"
-                    value="projector_screen"
-                    class="rounded border-gray-300 text-primary focus:ring-primary"
-                  />
-                  <span class="ml-2 text-sm text-gray-700"
-                    >Projector & Screen</span
-                  >
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="facilities[]"
-                    value="sound_system"
-                    class="rounded border-gray-300 text-primary focus:ring-primary"
-                  />
-                  <span class="ml-2 text-sm text-gray-700">Sound System</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="facilities[]"
-                    value="computers"
-                    class="rounded border-gray-300 text-primary focus:ring-primary"
-                  />
-                  <span class="ml-2 text-sm text-gray-700">Computers/Lab</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="facilities[]"
-                    value="wifi"
-                    class="rounded border-gray-300 text-primary focus:ring-primary"
-                  />
-                  <span class="ml-2 text-sm text-gray-700">Wi-Fi Access</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="facilities[]"
-                    value="catering"
-                    class="rounded border-gray-300 text-primary focus:ring-primary"
-                  />
-                  <span class="ml-2 text-sm text-gray-700">Catering</span>
-                </label>
-                <label class="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="facilities[]"
-                    value="parking"
-                    class="rounded border-gray-300 text-primary focus:ring-primary"
-                  />
-                  <span class="ml-2 text-sm text-gray-700">Parking</span>
-                </label>
+            <!-- Resource Requirements -->
+            <div id="resource_requirements" class="mt-6">
+              <h3 class="text-lg font-medium text-gray-900 mb-4">Resource Requirements</h3>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-3">
+                    PCU-DASMA Will Provide
+                  </label>
+                  <div class="space-y-2">
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="pcu_provides[]"
+                        value="computer_laboratory"
+                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span class="ml-2 text-sm text-gray-700">Computer Laboratory</span>
+                    </label>
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="pcu_provides[]"
+                        value="internet_connectivity"
+                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span class="ml-2 text-sm text-gray-700">High-speed Internet</span>
+                    </label>
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="pcu_provides[]"
+                        value="av_equipment"
+                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span class="ml-2 text-sm text-gray-700">Audio-Visual Equipment</span>
+                    </label>
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="pcu_provides[]"
+                        value="administrative_support"
+                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span class="ml-2 text-sm text-gray-700">Administrative Support</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-3">
+                    Partner Will Provide
+                  </label>
+                  <div class="space-y-2">
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="partner_provides[]"
+                        value="expert_trainers"
+                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span class="ml-2 text-sm text-gray-700">Expert Trainers/Facilitators</span>
+                    </label>
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="partner_provides[]"
+                        value="training_materials"
+                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span class="ml-2 text-sm text-gray-700">Training Materials & Software</span>
+                    </label>
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="partner_provides[]"
+                        value="equipment"
+                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span class="ml-2 text-sm text-gray-700">Specialized Equipment</span>
+                    </label>
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="partner_provides[]"
+                        value="certificates"
+                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span class="ml-2 text-sm text-gray-700">Certificates & Assessment</span>
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -796,7 +975,7 @@
                       id="total_budget"
                       name="total_budget"
                       class="block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                      placeholder="100000"
+                      placeholder="150000"
                     />
                   </div>
                 </div>
@@ -880,7 +1059,7 @@
                     name="eligibility_criteria"
                     rows="3"
                     class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    placeholder="e.g., Minimum GPA of 3.5, STEM field students, financial need assessment..."
+                    placeholder="e.g., Minimum GPA of 3.5, IT field students, financial need assessment..."
                   ></textarea>
                 </div>
               </div>
@@ -1135,14 +1314,27 @@
         const selectedType = document.querySelector(
           'input[name="partnership_type"]:checked'
         )?.value;
+        
         const trainingSchedule = document.getElementById("training_schedule");
         const eventSchedule = document.getElementById("event_schedule");
         const scholarshipFields = document.getElementById("scholarship_fields");
+        const programStructure = document.getElementById("program_structure");
+        const otherPartnershipType = document.getElementById("other_partnership_type");
 
         // Hide all dynamic fields first
         trainingSchedule.classList.add("hidden");
         eventSchedule.classList.add("hidden");
         scholarshipFields.classList.add("hidden");
+        programStructure.classList.add("hidden");
+        otherPartnershipType.classList.add("hidden");
+
+        // Show/hide other type input field
+        if (selectedType === "other") {
+          otherPartnershipType.classList.remove("hidden");
+          document.getElementById("other_type_input").required = true;
+        } else {
+          document.getElementById("other_type_input").required = false;
+        }
 
         // Update labels and show relevant fields based on type
         if (
@@ -1158,6 +1350,7 @@
               ? "Training Program Description"
               : "Workshop Series Description";
           trainingSchedule.classList.remove("hidden");
+          programStructure.classList.remove("hidden");
         } else if (selectedType === "community_event") {
           document.getElementById("title_label").textContent = "Event Title";
           document.getElementById("description_label").textContent =
@@ -1178,6 +1371,11 @@
             "Research Project Title";
           document.getElementById("description_label").textContent =
             "Research Project Description";
+        } else if (selectedType === "other") {
+          document.getElementById("title_label").textContent =
+            "Partnership Title";
+          document.getElementById("description_label").textContent =
+            "Partnership Description";
         }
 
         // Update radio button visual state
@@ -1195,6 +1393,56 @@
               radioIcon.classList.add("hidden");
             }
           });
+      }
+
+      function toggleDepartmentSelection() {
+        const selectedAudience = document.querySelector(
+          'input[name="target_audience"]:checked'
+        )?.value;
+        const departmentSelection = document.getElementById("department_selection");
+
+        if (selectedAudience === "all_students") {
+          departmentSelection.classList.remove("hidden");
+          // Make at least one department required
+          updateDepartmentValidation(true);
+        } else {
+          departmentSelection.classList.add("hidden");
+          // Remove department requirement and clear selections
+          updateDepartmentValidation(false);
+          document.querySelectorAll('input[name="departments[]"]').forEach(checkbox => {
+            checkbox.checked = false;
+          });
+          document.getElementById("select_all_departments").checked = false;
+        }
+      }
+
+      function toggleAllDepartments() {
+        const selectAll = document.getElementById("select_all_departments");
+        const departmentCheckboxes = document.querySelectorAll('.department-checkbox');
+        
+        departmentCheckboxes.forEach(checkbox => {
+          checkbox.checked = selectAll.checked;
+        });
+      }
+
+      function updateSelectAllState() {
+        const departmentCheckboxes = document.querySelectorAll('.department-checkbox');
+        const selectAll = document.getElementById("select_all_departments");
+        const checkedCount = document.querySelectorAll('.department-checkbox:checked').length;
+        
+        selectAll.checked = checkedCount === departmentCheckboxes.length;
+        selectAll.indeterminate = checkedCount > 0 && checkedCount < departmentCheckboxes.length;
+      }
+
+      function updateDepartmentValidation(required) {
+        const departmentCheckboxes = document.querySelectorAll('input[name="departments[]"]');
+        departmentCheckboxes.forEach(checkbox => {
+          if (required) {
+            checkbox.setAttribute('required', 'required');
+          } else {
+            checkbox.removeAttribute('required');
+          }
+        });
       }
 
       function toggleVenueFields() {
@@ -1222,6 +1470,7 @@
           document.getElementById("partnershipForm")
         );
         const partnershipType = formData.get("partnership_type");
+        const otherTypeInput = formData.get("other_type_input");
         const title = formData.get("title");
         const expectedParticipants = formData.get("expected_participants");
         const startDate = formData.get("start_date");
@@ -1233,13 +1482,19 @@
           return;
         }
 
+        // Check if "Other" is selected but no custom type specified
+        if (partnershipType === "other" && !otherTypeInput) {
+          alert("Please specify the type of partnership.");
+          return;
+        }
+
         const typeLabels = {
           training_program: "Training Program",
           workshop_series: "Workshop Series",
           community_event: "Community Event",
           research_collaboration: "Research Project",
           scholarship_program: "Scholarship Program",
-          other: "Partnership",
+          other: otherTypeInput || "Partnership",
         };
 
         const typeLabel = typeLabels[partnershipType] || "Partnership";
@@ -1316,10 +1571,29 @@
           const formData = new FormData(this);
           const partnershipType = formData.get("partnership_type");
           const title = formData.get("title");
+          const targetAudience = formData.get("target_audience");
 
           if (!partnershipType) {
             alert("Please select a partnership type.");
             return;
+          }
+
+          if (partnershipType === "other" && !formData.get("other_type_input")) {
+            alert("Please specify the type of partnership.");
+            return;
+          }
+
+          if (!targetAudience) {
+            alert("Please select a target audience.");
+            return;
+          }
+
+          if (targetAudience === "all_students") {
+            const selectedDepartments = formData.getAll("departments[]");
+            if (selectedDepartments.length === 0) {
+              alert("Please select at least one department for the target audience.");
+              return;
+            }
           }
 
           if (
