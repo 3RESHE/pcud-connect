@@ -1,640 +1,933 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Applicants - Senior Software Developer - PCU-DASMA Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1E40AF',
-                        secondary: '#3B82F6',
-                        accent: '#F59E0B'
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-gray-50">
+  </head>
+  <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class="bg-white shadow-sm border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
-                    <div class="hidden md:ml-10 md:flex md:space-x-8">
-                        <a href="dashboard.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
-                        <a href="job-postings.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">Job Postings</a>
-                        <a href="partnerships.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Partnerships</a>
-                        <a href="analytics.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Analytics</a>
-                        <a href="profile.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Profile</a>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <div class="relative">
-                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
-                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
-                        </button>
-                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                            <div class="py-1">
-                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <a href="../index.html" class="text-xl font-bold text-primary"
+              >PCU-DASMA Connect</a
+            >
+            <div class="hidden md:ml-10 md:flex md:space-x-8">
+              <a
+                href="dashboard.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Dashboard</a
+              >
+              <a
+                href="job-postings.html"
+                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Job Postings</a
+              >
+              <a
+                href="partnerships.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Partnerships</a
+              >
+              <a
+                href="analytics.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Analytics</a
+              >
+              <a
+                href="profile.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Profile</a
+              >
             </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="relative">
+              <button
+                onclick="toggleUserMenu()"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                <img
+                  class="h-8 w-8 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </button>
+              <div
+                id="userMenu"
+                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+              >
+                <div class="py-1">
+                  <a
+                    href="profile.html"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Profile</a
+                  >
+                  <a
+                    href="#"
+                    onclick="logout()"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Logout</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </nav>
 
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <!-- Back Button & Header -->
-        <div class="mb-6">
-            <a href="job-postings.html" class="flex items-center text-primary hover:text-blue-700 mb-4">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-                Back to Job Postings
-            </a>
-            
-            <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <div class="flex items-center mb-2">
-                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3">Active</span>
-                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Full-time</span>
-                        </div>
-                        <h1 class="text-3xl font-bold text-gray-900 mb-2">Senior Software Developer</h1>
-                        <p class="text-gray-600 mb-2">Information Technology • Makati City • On-site</p>
-                        <p class="text-lg font-semibold text-green-600">₱80,000 - ₱120,000/month</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-sm text-gray-500">Posted 2 days ago</p>
-                        <p class="text-sm text-gray-500">Expires in 28 days</p>
-                        <p class="text-sm text-gray-500">286 views</p>
-                    </div>
-                </div>
+      <!-- Back Button & Header -->
+      <div class="mb-6">
+        <a
+          href="job-postings.html"
+          class="flex items-center text-primary hover:text-blue-700 mb-4"
+        >
+          <svg
+            class="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            ></path>
+          </svg>
+          Back to Job Postings
+        </a>
+
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+          <div class="flex justify-between items-start">
+            <div>
+              <div class="flex items-center mb-2">
+                <span
+                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Active</span
+                >
+                <span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs"
+                  >Full-time</span
+                >
+              </div>
+              <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                Senior Software Developer
+              </h1>
+              <p class="text-gray-600 mb-2">
+                Information Technology • Makati City • On-site
+              </p>
+              <p class="text-lg font-semibold text-green-600">
+                ₱80,000 - ₱120,000/month
+              </p>
             </div>
+            <div class="text-right">
+              <p class="text-sm text-gray-500">Posted 2 days ago</p>
+              <p class="text-sm text-gray-500">Expires in 28 days</p>
+              <p class="text-sm text-gray-500">286 views</p>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            <!-- Main Content -->
-            <div class="lg:col-span-3">
-                <!-- Application Stats -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                    <div class="bg-white p-4 rounded-lg shadow-sm">
-                        <div class="text-2xl font-bold text-blue-600">18</div>
-                        <div class="text-sm text-gray-600">Total Applications</div>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow-sm">
-                        <div class="text-2xl font-bold text-green-600">3</div>
-                        <div class="text-sm text-gray-600">Under Review</div>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow-sm">
-                        <div class="text-2xl font-bold text-yellow-600">2</div>
-                        <div class="text-sm text-gray-600">Interviewed</div>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow-sm">
-                        <div class="text-2xl font-bold text-purple-600">13</div>
-                        <div class="text-sm text-gray-600">Pending Review</div>
-                    </div>
+      <div class="grid grid-cols-1  gap-6">
+        <!-- Main Content -->
+        <div class="lg:col-span-3">
+          <!-- Application Stats -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+              <div class="text-2xl font-bold text-blue-600">18</div>
+              <div class="text-sm text-gray-600">Total Applications</div>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+              <div class="text-2xl font-bold text-green-600">3</div>
+              <div class="text-sm text-gray-600">Under Review</div>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+              <div class="text-2xl font-bold text-yellow-600">2</div>
+              <div class="text-sm text-gray-600">Interviewed</div>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-sm">
+              <div class="text-2xl font-bold text-purple-600">13</div>
+              <div class="text-sm text-gray-600">Pending Review</div>
+            </div>
+          </div>
+
+          <!-- Filters and Search -->
+          <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <div
+              class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0"
+            >
+              <div
+                class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4"
+              >
+                <!-- Search -->
+                <div class="relative">
+                  <svg
+                    class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    ></path>
+                  </svg>
+                  <input
+                    type="text"
+                    id="search-applicants"
+                    placeholder="Search applicants..."
+                    class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full md:w-64"
+                  />
                 </div>
 
-                <!-- Filters and Search -->
-                <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
-                    <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
-                        <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
-                            <!-- Search -->
-                            <div class="relative">
-                                <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                </svg>
-                                <input type="text" id="search-applicants" placeholder="Search applicants..."
-                                    class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-full md:w-64">
-                            </div>
-                            
-                            <!-- Status Filter -->
-                            <select id="status-filter" class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                                <option value="">All Statuses</option>
-                                <option value="pending">Pending Review</option>
-                                <option value="reviewing">Under Review</option>
-                                <option value="interviewed">Interviewed</option>
-                                <option value="rejected">Rejected</option>
-                                <option value="hired">Hired</option>
-                            </select>
+                <!-- Status Filter -->
+                <select
+                  id="status-filter"
+                  class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                >
+                  <option value="">All Statuses</option>
+                  <option value="pending">Pending Review</option>
+                  <option value="reviewing">Under Review</option>
+                  <option value="interviewed">Interviewed</option>
+                  <option value="rejected">Rejected</option>
+                  <option value="hired">Hired</option>
+                </select>
 
-                            <!-- Program Filter -->
-                            <select id="program-filter" class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                                <option value="">All Programs</option>
-                                <option value="bsit">BSIT</option>
-                                <option value="bscs">BSCS</option>
-                                <option value="bsba">BSBA</option>
-                                <option value="bsed">BSED</option>
-                            </select>
-                        </div>
+                <!-- Program Filter -->
+                <select
+                  id="program-filter"
+                  class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                >
+                  <option value="">All Programs</option>
+                  <option value="bsit">BSIT</option>
+                  <option value="bscs">BSCS</option>
+                  <option value="bsba">BSBA</option>
+                  <option value="bsed">BSED</option>
+                </select>
+              </div>
 
-                        <div class="flex space-x-2">
-                            <button onclick="exportApplicants()" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm">
-                                Export CSV
-                            </button>
-                            <button onclick="bulkAction()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">
-                                Bulk Actions
-                            </button>
-                        </div>
+              <div class="flex space-x-2">
+                <button
+                  onclick="exportApplicants()"
+                  class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm"
+                >
+                  Export CSV
+                </button>
+                <button
+                  onclick="bulkAction()"
+                  class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm"
+                >
+                  Bulk Actions
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Applicants List -->
+          <div class="space-y-4">
+            <!-- High Priority Applicant -->
+            <div
+              class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500"
+            >
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center">
+                  <input
+                    type="checkbox"
+                    class="rounded border-gray-300 text-primary focus:ring-primary mr-4"
+                  />
+                  <div
+                    class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4"
+                  >
+                    <span class="text-blue-600 font-semibold text-lg">MR</span>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900">
+                      Maria Rodriguez
+                    </h3>
+                    <p class="text-sm text-gray-600">
+                      BSIT Graduate • Applied 2 days ago
+                    </p>
+                    <div class="flex items-center space-x-3 mt-1">
+                      <span
+                        class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs"
+                        >High Match</span
+                      >
+                      <span
+                        class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs"
+                        >PCU-DASMA Alumni</span
+                      >
                     </div>
+                  </div>
                 </div>
-
-                <!-- Applicants List -->
-                <div class="space-y-4">
-                    <!-- High Priority Applicant -->
-                    <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500">
-                        <div class="flex items-start justify-between mb-4">
-                            <div class="flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary mr-4">
-                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                                    <span class="text-blue-600 font-semibold text-lg">MR</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-900">Maria Rodriguez</h3>
-                                    <p class="text-sm text-gray-600">BSIT Graduate • Applied 2 days ago</p>
-                                    <div class="flex items-center space-x-3 mt-1">
-                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">High Match</span>
-                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">PCU-DASMA Alumni</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col items-end">
-                                <div class="text-sm text-gray-500 mb-2">Status</div>
-                                <select onchange="updateApplicantStatus(1, this.value)" class="text-sm border border-gray-300 rounded px-2 py-1">
-                                    <option value="pending">Pending Review</option>
-                                    <option value="reviewing" selected>Under Review</option>
-                                    <option value="interviewed">Interviewed</option>
-                                    <option value="rejected">Rejected</option>
-                                    <option value="hired">Hired</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <h4 class="font-medium text-gray-900 mb-2">Key Qualifications</h4>
-                                <ul class="text-sm text-gray-600 space-y-1">
-                                    <li>• 6 years of JavaScript development experience</li>
-                                    <li>• React, Node.js, MongoDB expertise</li>
-                                    <li>• Led 3 full-stack projects at previous role</li>
-                                    <li>• AWS Certified Solutions Architect</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-gray-900 mb-2">Contact Information</h4>
-                                <p class="text-sm text-gray-600">📧 maria.rodriguez@email.com</p>
-                                <p class="text-sm text-gray-600">📱 +63 912 345 6789</p>
-                                <p class="text-sm text-gray-600">📍 Makati City, Metro Manila</p>
-                            </div>
-                        </div>
-
-                        <div class="bg-gray-50 p-3 rounded-lg mb-4">
-                            <h4 class="font-medium text-gray-900 mb-2">Cover Letter Excerpt</h4>
-                            <p class="text-sm text-gray-700">
-                                "I am excited to apply for the Senior Software Developer position. As a PCU-DASMA alumna with 6+ years of experience, I have successfully led multiple projects using React and Node.js..."
-                            </p>
-                        </div>
-
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-4 text-sm text-gray-500">
-                                <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                                    </svg>
-                                    Resume Available
-                                </div>
-                                <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                    Applied Oct 4, 2025
-                                </div>
-                            </div>
-                            <div class="flex space-x-2">
-                                <button onclick="viewFullProfile(1)" class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700">
-                                    View Full Profile
-                                </button>
-                                <button onclick="scheduleInterview(1)" class="px-4 py-2 border border-green-300 text-green-700 text-sm rounded-md hover:bg-green-50">
-                                    Schedule Interview
-                                </button>
-                                <button onclick="sendMessage(1)" class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50">
-                                    Message
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Regular Applicant -->
-                    <div class="bg-white rounded-lg shadow-sm p-6">
-                        <div class="flex items-start justify-between mb-4">
-                            <div class="flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary mr-4">
-                                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
-                                    <span class="text-purple-600 font-semibold text-lg">JS</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-900">John Santos</h3>
-                                    <p class="text-sm text-gray-600">BSCS Graduate • Applied 3 days ago</p>
-                                    <div class="flex items-center space-x-3 mt-1">
-                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Medium Match</span>
-                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">PCU-DASMA Alumni</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col items-end">
-                                <div class="text-sm text-gray-500 mb-2">Status</div>
-                                <select onchange="updateApplicantStatus(2, this.value)" class="text-sm border border-gray-300 rounded px-2 py-1">
-                                    <option value="pending" selected>Pending Review</option>
-                                    <option value="reviewing">Under Review</option>
-                                    <option value="interviewed">Interviewed</option>
-                                    <option value="rejected">Rejected</option>
-                                    <option value="hired">Hired</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <h4 class="font-medium text-gray-900 mb-2">Key Qualifications</h4>
-                                <ul class="text-sm text-gray-600 space-y-1">
-                                    <li>• 4 years of full-stack development</li>
-                                    <li>• Experience with React, Python, MySQL</li>
-                                    <li>• Strong background in data structures</li>
-                                    <li>• Previous internship at tech startup</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-gray-900 mb-2">Contact Information</h4>
-                                <p class="text-sm text-gray-600">📧 john.santos@email.com</p>
-                                <p class="text-sm text-gray-600">📱 +63 917 654 3210</p>
-                                <p class="text-sm text-gray-600">📍 Quezon City, Metro Manila</p>
-                            </div>
-                        </div>
-
-                        <div class="bg-gray-50 p-3 rounded-lg mb-4">
-                            <h4 class="font-medium text-gray-900 mb-2">Cover Letter Excerpt</h4>
-                            <p class="text-sm text-gray-700">
-                                "As a Computer Science graduate from PCU-DASMA, I am passionate about software development and eager to contribute to your team. My experience includes..."
-                            </p>
-                        </div>
-
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-4 text-sm text-gray-500">
-                                <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                                    </svg>
-                                    Resume Available
-                                </div>
-                                <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                    Applied Oct 3, 2025
-                                </div>
-                            </div>
-                            <div class="flex space-x-2">
-                                <button onclick="viewFullProfile(2)" class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700">
-                                    View Full Profile
-                                </button>
-                                <button onclick="scheduleInterview(2)" class="px-4 py-2 border border-green-300 text-green-700 text-sm rounded-md hover:bg-green-50">
-                                    Schedule Interview
-                                </button>
-                                <button onclick="sendMessage(2)" class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50">
-                                    Message
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Interview Scheduled Applicant -->
-                    <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500">
-                        <div class="flex items-start justify-between mb-4">
-                            <div class="flex items-center">
-                                <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary mr-4">
-                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                                    <span class="text-green-600 font-semibold text-lg">AC</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-gray-900">Anna Chen</h3>
-                                    <p class="text-sm text-gray-600">BSIT Graduate • Applied 1 week ago</p>
-                                    <div class="flex items-center space-x-3 mt-1">
-                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">High Match</span>
-                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">PCU-DASMA Alumni</span>
-                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Interview: Oct 8, 2PM</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col items-end">
-                                <div class="text-sm text-gray-500 mb-2">Status</div>
-                                <select onchange="updateApplicantStatus(3, this.value)" class="text-sm border border-gray-300 rounded px-2 py-1">
-                                    <option value="pending">Pending Review</option>
-                                    <option value="reviewing">Under Review</option>
-                                    <option value="interviewed" selected>Interviewed</option>
-                                    <option value="rejected">Rejected</option>
-                                    <option value="hired">Hired</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <h4 class="font-medium text-gray-900 mb-2">Key Qualifications</h4>
-                                <ul class="text-sm text-gray-600 space-y-1">
-                                    <li>• 5 years of React and Vue.js development</li>
-                                    <li>• Team lead experience at previous company</li>
-                                    <li>• DevOps and CI/CD pipeline expertise</li>
-                                    <li>• Open source contributor</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="font-medium text-gray-900 mb-2">Interview Details</h4>
-                                <p class="text-sm text-gray-600">📅 October 8, 2025 at 2:00 PM</p>
-                                <p class="text-sm text-gray-600">👥 Technical Interview</p>
-                                <p class="text-sm text-gray-600">📧 anna.chen@email.com</p>
-                                <p class="text-sm text-gray-600">📱 +63 918 765 4321</p>
-                            </div>
-                        </div>
-
-                        <div class="bg-yellow-50 p-3 rounded-lg mb-4">
-                            <h4 class="font-medium text-gray-900 mb-2">Interview Notes</h4>
-                            <p class="text-sm text-gray-700">
-                                Technical interview scheduled. Candidate shows strong promise with excellent portfolio. Need to assess leadership skills and team collaboration.
-                            </p>
-                        </div>
-
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-4 text-sm text-gray-500">
-                                <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                    </svg>
-                                    Interview Scheduled
-                                </div>
-                                <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                    Applied Sep 29, 2025
-                                </div>
-                            </div>
-                            <div class="flex space-x-2">
-                                <button onclick="viewFullProfile(3)" class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700">
-                                    View Full Profile
-                                </button>
-                                <button onclick="rescheduleInterview(3)" class="px-4 py-2 border border-yellow-300 text-yellow-700 text-sm rounded-md hover:bg-yellow-50">
-                                    Reschedule
-                                </button>
-                                <button onclick="addInterviewNotes(3)" class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50">
-                                    Add Notes
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Load More Button -->
-                    <div class="text-center py-8">
-                        <button onclick="loadMoreApplicants()" class="px-8 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium">
-                            Load More Applicants (15 remaining)
-                        </button>
-                    </div>
+                <div class="flex flex-col items-end">
+                  <div class="text-sm text-gray-500 mb-2">Status</div>
+                  <select
+                    onchange="updateApplicantStatus(1, this.value)"
+                    class="text-sm border border-gray-300 rounded px-2 py-1"
+                  >
+                    <option value="pending">Pending Review</option>
+                    <option value="reviewing" selected>Under Review</option>
+                    <option value="interviewed">Interviewed</option>
+                    <option value="rejected">Rejected</option>
+                    <option value="hired">Hired</option>
+                  </select>
                 </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <h4 class="font-medium text-gray-900 mb-2">
+                    Key Qualifications
+                  </h4>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li>• 6 years of JavaScript development experience</li>
+                    <li>• React, Node.js, MongoDB expertise</li>
+                    <li>• Led 3 full-stack projects at previous role</li>
+                    <li>• AWS Certified Solutions Architect</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-medium text-gray-900 mb-2">
+                    Contact Information
+                  </h4>
+                  <p class="text-sm text-gray-600">
+                    📧 maria.rodriguez@email.com
+                  </p>
+                  <p class="text-sm text-gray-600">📱 +63 912 345 6789</p>
+                  <p class="text-sm text-gray-600">
+                    📍 Makati City, Metro Manila
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-gray-50 p-3 rounded-lg mb-4">
+                <h4 class="font-medium text-gray-900 mb-2">
+                  Cover Letter Excerpt
+                </h4>
+                <p class="text-sm text-gray-700">
+                  "I am excited to apply for the Senior Software Developer
+                  position. As a PCU-DASMA alumna with 6+ years of experience, I
+                  have successfully led multiple projects using React and
+                  Node.js..."
+                </p>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4 text-sm text-gray-500">
+                  <div class="flex items-center">
+                    <svg
+                      class="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      ></path>
+                    </svg>
+                    Resume Available
+                  </div>
+                  <div class="flex items-center">
+                    <svg
+                      class="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+                    Applied Oct 4, 2025
+                  </div>
+                </div>
+                <div class="flex space-x-2">
+                  <button
+                    onclick="viewFullProfile(1)"
+                    class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+                  >
+                    View Full Profile
+                  </button>
+                  <button
+                    onclick="scheduleInterview(1)"
+                    class="px-4 py-2 border border-green-300 text-green-700 text-sm rounded-md hover:bg-green-50"
+                  >
+                    Schedule Interview
+                  </button>
+                </div>
+              </div>
             </div>
 
-            <!-- Sidebar -->
-            <div class="lg:col-span-1">
-                <!-- Quick Actions -->
-                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
-                    <div class="space-y-3">
-                        <button onclick="markAllAsReviewed()" class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">
-                            Mark All as Reviewed
-                        </button>
-                        <button onclick="exportApplicants()" class="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm">
-                            Export All Applicants
-                        </button>
-                        <button onclick="scheduleMultipleInterviews()" class="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">
-                            Batch Schedule Interviews
-                        </button>
+            <!-- Regular Applicant -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center">
+                  <input
+                    type="checkbox"
+                    class="rounded border-gray-300 text-primary focus:ring-primary mr-4"
+                  />
+                  <div
+                    class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4"
+                  >
+                    <span class="text-purple-600 font-semibold text-lg"
+                      >JS</span
+                    >
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900">
+                      John Santos
+                    </h3>
+                    <p class="text-sm text-gray-600">
+                      BSCS Graduate • Applied 3 days ago
+                    </p>
+                    <div class="flex items-center space-x-3 mt-1">
+                      <span
+                        class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs"
+                        >Medium Match</span
+                      >
+                      <span
+                        class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs"
+                        >PCU-DASMA Alumni</span
+                      >
                     </div>
+                  </div>
                 </div>
+                <div class="flex flex-col items-end">
+                  <div class="text-sm text-gray-500 mb-2">Status</div>
+                  <select
+                    onchange="updateApplicantStatus(2, this.value)"
+                    class="text-sm border border-gray-300 rounded px-2 py-1"
+                  >
+                    <option value="pending" selected>Pending Review</option>
+                    <option value="reviewing">Under Review</option>
+                    <option value="interviewed">Interviewed</option>
+                    <option value="rejected">Rejected</option>
+                    <option value="hired">Hired</option>
+                  </select>
+                </div>
+              </div>
 
-                <!-- Application Timeline -->
-                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Application Timeline</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-center">
-                            <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
-                            <div>
-                                <p class="text-sm font-medium text-gray-900">Today</p>
-                                <p class="text-xs text-gray-600">2 new applications</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
-                            <div>
-                                <p class="text-sm font-medium text-gray-900">Yesterday</p>
-                                <p class="text-xs text-gray-600">5 applications received</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
-                            <div>
-                                <p class="text-sm font-medium text-gray-900">This Week</p>
-                                <p class="text-xs text-gray-600">18 total applications</p>
-                            </div>
-                        </div>
-                    </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <h4 class="font-medium text-gray-900 mb-2">
+                    Key Qualifications
+                  </h4>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li>• 4 years of full-stack development</li>
+                    <li>• Experience with React, Python, MySQL</li>
+                    <li>• Strong background in data structures</li>
+                    <li>• Previous internship at tech startup</li>
+                  </ul>
                 </div>
+                <div>
+                  <h4 class="font-medium text-gray-900 mb-2">
+                    Contact Information
+                  </h4>
+                  <p class="text-sm text-gray-600">📧 john.santos@email.com</p>
+                  <p class="text-sm text-gray-600">📱 +63 917 654 3210</p>
+                  <p class="text-sm text-gray-600">
+                    📍 Quezon City, Metro Manila
+                  </p>
+                </div>
+              </div>
 
-                <!-- Top Skills -->
-                <div class="bg-white rounded-lg shadow-sm p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Common Skills</h3>
-                    <div class="space-y-2">
-                        <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-700">JavaScript</span>
-                            <span class="text-xs text-gray-500">16/18</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-blue-600 h-2 rounded-full" style="width: 89%"></div>
-                        </div>
-                        
-                        <div class="flex justify-between items-center mt-3">
-                            <span class="text-sm text-gray-700">React</span>
-                            <span class="text-xs text-gray-500">14/18</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-green-600 h-2 rounded-full" style="width: 78%"></div>
-                        </div>
-                        
-                        <div class="flex justify-between items-center mt-3">
-                            <span class="text-sm text-gray-700">Node.js</span>
-                            <span class="text-xs text-gray-500">12/18</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-purple-600 h-2 rounded-full" style="width: 67%"></div>
-                        </div>
-                    </div>
+              <div class="bg-gray-50 p-3 rounded-lg mb-4">
+                <h4 class="font-medium text-gray-900 mb-2">
+                  Cover Letter Excerpt
+                </h4>
+                <p class="text-sm text-gray-700">
+                  "As a Computer Science graduate from PCU-DASMA, I am
+                  passionate about software development and eager to contribute
+                  to your team. My experience includes..."
+                </p>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4 text-sm text-gray-500">
+                  <div class="flex items-center">
+                    <svg
+                      class="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      ></path>
+                    </svg>
+                    Resume Available
+                  </div>
+                  <div class="flex items-center">
+                    <svg
+                      class="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+                    Applied Oct 3, 2025
+                  </div>
                 </div>
+                <div class="flex space-x-2">
+                  <button
+                    onclick="viewFullProfile(2)"
+                    class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+                  >
+                    View Full Profile
+                  </button>
+                  <button
+                    onclick="scheduleInterview(2)"
+                    class="px-4 py-2 border border-green-300 text-green-700 text-sm rounded-md hover:bg-green-50"
+                  >
+                    Schedule Interview
+                  </button>
+                </div>
+              </div>
             </div>
+
+            <!-- Interview Scheduled Applicant -->
+            <div
+              class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500"
+            >
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center">
+                  <input
+                    type="checkbox"
+                    class="rounded border-gray-300 text-primary focus:ring-primary mr-4"
+                  />
+                  <div
+                    class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4"
+                  >
+                    <span class="text-green-600 font-semibold text-lg">AC</span>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900">
+                      Anna Chen
+                    </h3>
+                    <p class="text-sm text-gray-600">
+                      BSIT Graduate • Applied 1 week ago
+                    </p>
+                    <div class="flex items-center space-x-3 mt-1">
+                      <span
+                        class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs"
+                        >High Match</span
+                      >
+                      <span
+                        class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs"
+                        >PCU-DASMA Alumni</span
+                      >
+                      <span
+                        class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs"
+                        >Interview: Oct 8, 2PM</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-col items-end">
+                  <div class="text-sm text-gray-500 mb-2">Status</div>
+                  <select
+                    onchange="updateApplicantStatus(3, this.value)"
+                    class="text-sm border border-gray-300 rounded px-2 py-1"
+                  >
+                    <option value="pending">Pending Review</option>
+                    <option value="reviewing">Under Review</option>
+                    <option value="interviewed" selected>Interviewed</option>
+                    <option value="rejected">Rejected</option>
+                    <option value="hired">Hired</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <h4 class="font-medium text-gray-900 mb-2">
+                    Key Qualifications
+                  </h4>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li>• 5 years of React and Vue.js development</li>
+                    <li>• Team lead experience at previous company</li>
+                    <li>• DevOps and CI/CD pipeline expertise</li>
+                    <li>• Open source contributor</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-medium text-gray-900 mb-2">
+                    Interview Details
+                  </h4>
+                  <p class="text-sm text-gray-600">
+                    📅 October 8, 2025 at 2:00 PM
+                  </p>
+                  <p class="text-sm text-gray-600">👥 Technical Interview</p>
+                  <p class="text-sm text-gray-600">📧 anna.chen@email.com</p>
+                  <p class="text-sm text-gray-600">📱 +63 918 765 4321</p>
+                </div>
+              </div>
+
+              <div class="bg-yellow-50 p-3 rounded-lg mb-4">
+                <h4 class="font-medium text-gray-900 mb-2">Interview Notes</h4>
+                <p class="text-sm text-gray-700">
+                  Technical interview scheduled. Candidate shows strong promise
+                  with excellent portfolio. Need to assess leadership skills and
+                  team collaboration.
+                </p>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4 text-sm text-gray-500">
+                  <div class="flex items-center">
+                    <svg
+                      class="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      ></path>
+                    </svg>
+                    Interview Scheduled
+                  </div>
+                  <div class="flex items-center">
+                    <svg
+                      class="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+                    Applied Sep 29, 2025
+                  </div>
+                </div>
+                <div class="flex space-x-2">
+                  <button
+                    onclick="viewFullProfile(3)"
+                    class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+                  >
+                    View Full Profile
+                  </button>
+                  <button
+                    onclick="rescheduleInterview(3)"
+                    class="px-4 py-2 border border-yellow-300 text-yellow-700 text-sm rounded-md hover:bg-yellow-50"
+                  >
+                    Reschedule
+                  </button>
+                  <button
+                    onclick="addInterviewNotes(3)"
+                    class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
+                  >
+                    Add Notes
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center py-8">
+              <button
+                onclick="loadMoreApplicants()"
+                class="px-8 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium"
+              >
+                Load More Applicants (15 remaining)
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Interview Scheduling Modal -->
     <div id="interviewModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
-            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-            
-            <div class="relative bg-white rounded-lg max-w-md w-full shadow-xl">
-                <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-                    <h3 class="text-lg font-semibold text-gray-900">Schedule Interview</h3>
-                    <button onclick="closeInterviewModal()" class="text-gray-400 hover:text-gray-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-                
-                <div class="p-6">
-                    <form id="interviewForm">
-                        <div class="mb-4">
-                            <label for="interview_date" class="block text-sm font-medium text-gray-700 mb-2">Interview Date</label>
-                            <input type="date" id="interview_date" name="interview_date" required
-                                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                        </div>
-                        
-                        <div class="mb-4">
-                            <label for="interview_time" class="block text-sm font-medium text-gray-700 mb-2">Interview Time</label>
-                            <input type="time" id="interview_time" name="interview_time" required
-                                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                        </div>
+      <div
+        class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center"
+      >
+        <div
+          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+        ></div>
 
-                        <div class="mb-4">
-                            <label for="interview_type" class="block text-sm font-medium text-gray-700 mb-2">Interview Type</label>
-                            <select id="interview_type" name="interview_type" required
-                                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                <option value="">Select Type</option>
-                                <option value="phone">Phone Interview</option>
-                                <option value="video">Video Interview</option>
-                                <option value="onsite">On-site Interview</option>
-                                <option value="technical">Technical Interview</option>
-                            </select>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <label for="interview_notes" class="block text-sm font-medium text-gray-700 mb-2">Notes (Optional)</label>
-                            <textarea id="interview_notes" name="interview_notes" rows="3"
-                                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                placeholder="Any special instructions or notes for the interview..."></textarea>
-                        </div>
-                    </form>
-                </div>
+        <div class="relative bg-white rounded-lg max-w-md w-full shadow-xl">
+          <div
+            class="px-6 py-4 border-b border-gray-200 flex justify-between items-center"
+          >
+            <h3 class="text-lg font-semibold text-gray-900">
+              Schedule Interview
+            </h3>
+            <button
+              onclick="closeInterviewModal()"
+              class="text-gray-400 hover:text-gray-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
 
-                <div class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3">
-                    <button onclick="closeInterviewModal()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">
-                        Cancel
-                    </button>
-                    <button onclick="submitInterview()" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700">
-                        Schedule Interview
-                    </button>
-                </div>
-            </div>
+          <div class="p-6">
+            <form id="interviewForm">
+              <div class="mb-4">
+                <label
+                  for="interview_date"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                  >Interview Date</label
+                >
+                <input
+                  type="date"
+                  id="interview_date"
+                  name="interview_date"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                />
+              </div>
+
+              <div class="mb-4">
+                <label
+                  for="interview_time"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                  >Interview Time</label
+                >
+                <input
+                  type="time"
+                  id="interview_time"
+                  name="interview_time"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                />
+              </div>
+
+              <div class="mb-4">
+                <label
+                  for="interview_type"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                  >Interview Type</label
+                >
+                <select
+                  id="interview_type"
+                  name="interview_type"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                >
+                  <option value="">Select Type</option>
+                  <option value="phone">Phone Interview</option>
+                  <option value="video">Video Interview</option>
+                  <option value="onsite">On-site Interview</option>
+                  <option value="technical">Technical Interview</option>
+                </select>
+              </div>
+
+              <div class="mb-6">
+                <label
+                  for="interview_notes"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                  >Notes (Optional)</label
+                >
+                <textarea
+                  id="interview_notes"
+                  name="interview_notes"
+                  rows="3"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="Any special instructions or notes for the interview..."
+                ></textarea>
+              </div>
+            </form>
+          </div>
+
+          <div
+            class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3"
+          >
+            <button
+              onclick="closeInterviewModal()"
+              class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+            >
+              Cancel
+            </button>
+            <button
+              onclick="submitInterview()"
+              class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700"
+            >
+              Schedule Interview
+            </button>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Applicant Profile Modal -->
     <div id="profileModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
-            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-            
-            <div class="relative bg-white rounded-lg max-w-4xl w-full shadow-xl max-h-screen overflow-y-auto">
-                <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-                    <h3 class="text-lg font-semibold text-gray-900">Applicant Profile</h3>
-                    <button onclick="closeProfileModal()" class="text-gray-400 hover:text-gray-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-                
-                <div class="p-6" id="profileContent">
-                    <!-- Profile content will be loaded here -->
-                </div>
-            </div>
+      <div
+        class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center"
+      >
+        <div
+          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+        ></div>
+
+        <div
+          class="relative bg-white rounded-lg max-w-4xl w-full shadow-xl max-h-screen overflow-y-auto"
+        >
+          <div
+            class="px-6 py-4 border-b border-gray-200 flex justify-between items-center"
+          >
+            <h3 class="text-lg font-semibold text-gray-900">
+              Applicant Profile
+            </h3>
+            <button
+              onclick="closeProfileModal()"
+              class="text-gray-400 hover:text-gray-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="p-6" id="profileContent">
+            <!-- Profile content will be loaded here -->
+          </div>
         </div>
+      </div>
     </div>
 
     <script>
-        let currentApplicantId = null;
+      let currentApplicantId = null;
 
-        function toggleUserMenu() {
-            const menu = document.getElementById('userMenu');
-            menu.classList.toggle('hidden');
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+      }
+
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
         }
+      }
 
-        function logout() {
-            if (confirm('Are you sure you want to logout?')) {
-                window.location.href = '../login.html';
-            }
-        }
+      function updateApplicantStatus(applicantId, status) {
+        console.log(`Updating applicant ${applicantId} status to: ${status}`);
+        // Here you would typically make an API call to update the status
+        alert(`Applicant status updated to: ${status.replace("_", " ")}`);
+      }
 
-        function updateApplicantStatus(applicantId, status) {
-            console.log(`Updating applicant ${applicantId} status to: ${status}`);
-            // Here you would typically make an API call to update the status
-            alert(`Applicant status updated to: ${status.replace('_', ' ')}`);
-        }
+      function viewFullProfile(applicantId) {
+        currentApplicantId = applicantId;
 
-        function viewFullProfile(applicantId) {
-            currentApplicantId = applicantId;
-            
-            // Sample profile data - in real app, this would come from API
-            const profileData = {
-                1: {
-                    name: 'Maria Rodriguez',
-                    email: 'maria.rodriguez@email.com',
-                    phone: '+63 912 345 6789',
-                    program: 'BSIT',
-                    graduation: '2018',
-                    experience: '6 years',
-                    skills: ['JavaScript', 'React', 'Node.js', 'MongoDB', 'AWS'],
-                    resume: 'Available for download',
-                    coverLetter: 'Full cover letter text would be displayed here...'
-                }
-            };
+        // Sample profile data - in real app, this would come from API
+        const profileData = {
+          1: {
+            name: "Maria Rodriguez",
+            email: "maria.rodriguez@email.com",
+            phone: "+63 912 345 6789",
+            program: "BSIT",
+            graduation: "2018",
+            experience: "6 years",
+            skills: ["JavaScript", "React", "Node.js", "MongoDB", "AWS"],
+            resume: "Available for download",
+            coverLetter: "Full cover letter text would be displayed here...",
+          },
+        };
 
-            const profile = profileData[applicantId] || profileData[1];
-            
-            document.getElementById('profileContent').innerHTML = `
+        const profile = profileData[applicantId] || profileData[1];
+
+        document.getElementById("profileContent").innerHTML = `
                 <div class="space-y-6">
                     <div class="text-center">
                         <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span class="text-blue-600 font-semibold text-2xl">${profile.name.split(' ').map(n => n[0]).join('')}</span>
+                            <span class="text-blue-600 font-semibold text-2xl">${profile.name
+                              .split(" ")
+                              .map((n) => n[0])
+                              .join("")}</span>
                         </div>
-                        <h2 class="text-2xl font-bold text-gray-900">${profile.name}</h2>
-                        <p class="text-gray-600">${profile.program} Graduate (${profile.graduation}) • ${profile.experience} experience</p>
+                        <h2 class="text-2xl font-bold text-gray-900">${
+                          profile.name
+                        }</h2>
+                        <p class="text-gray-600">${profile.program} Graduate (${
+          profile.graduation
+        }) • ${profile.experience} experience</p>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <h3 class="font-semibold text-gray-900 mb-3">Contact Information</h3>
-                            <p class="text-sm text-gray-600 mb-1">📧 ${profile.email}</p>
-                            <p class="text-sm text-gray-600 mb-1">📱 ${profile.phone}</p>
+                            <p class="text-sm text-gray-600 mb-1">📧 ${
+                              profile.email
+                            }</p>
+                            <p class="text-sm text-gray-600 mb-1">📱 ${
+                              profile.phone
+                            }</p>
                         </div>
                         
                         <div>
                             <h3 class="font-semibold text-gray-900 mb-3">Skills</h3>
                             <div class="flex flex-wrap gap-2">
-                                ${profile.skills.map(skill => `<span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">${skill}</span>`).join('')}
+                                ${profile.skills
+                                  .map(
+                                    (skill) =>
+                                      `<span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">${skill}</span>`
+                                  )
+                                  .join("")}
                             </div>
                         </div>
                     </div>
@@ -642,7 +935,9 @@
                     <div>
                         <h3 class="font-semibold text-gray-900 mb-3">Cover Letter</h3>
                         <div class="bg-gray-50 p-4 rounded-lg">
-                            <p class="text-sm text-gray-700">${profile.coverLetter}</p>
+                            <p class="text-sm text-gray-700">${
+                              profile.coverLetter
+                            }</p>
                         </div>
                     </div>
                     
@@ -653,115 +948,115 @@
                         <button onclick="scheduleInterview(${applicantId})" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700">
                             Schedule Interview
                         </button>
-                        <button onclick="sendMessage(${applicantId})" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">
-                            Send Message
-                        </button>
+
                     </div>
                 </div>
             `;
-            
-            document.getElementById('profileModal').classList.remove('hidden');
+
+        document.getElementById("profileModal").classList.remove("hidden");
+      }
+
+      function closeProfileModal() {
+        document.getElementById("profileModal").classList.add("hidden");
+      }
+
+      function scheduleInterview(applicantId) {
+        currentApplicantId = applicantId;
+        document.getElementById("interviewModal").classList.remove("hidden");
+      }
+
+      function closeInterviewModal() {
+        document.getElementById("interviewModal").classList.add("hidden");
+        currentApplicantId = null;
+      }
+
+      function submitInterview() {
+        const date = document.getElementById("interview_date").value;
+        const time = document.getElementById("interview_time").value;
+        const type = document.getElementById("interview_type").value;
+        const notes = document.getElementById("interview_notes").value;
+
+        if (!date || !time || !type) {
+          alert("Please fill in all required fields.");
+          return;
         }
 
-        function closeProfileModal() {
-            document.getElementById('profileModal').classList.add('hidden');
+        alert(
+          `Interview scheduled for applicant ${currentApplicantId} on ${date} at ${time} (${type})`
+        );
+        closeInterviewModal();
+        // Here you would typically send the data to your backend
+      }
+
+      function downloadResume(applicantId) {
+        alert(`Downloading resume for applicant ${applicantId}...`);
+      }
+
+      function exportApplicants() {
+        alert("Exporting applicant data to CSV...");
+      }
+
+      function bulkAction() {
+        alert("Opening bulk actions menu...");
+      }
+
+      function loadMoreApplicants() {
+        alert("Loading more applicants...");
+      }
+
+      function markAllAsReviewed() {
+        if (confirm("Mark all pending applicants as reviewed?")) {
+          alert("All applicants marked as reviewed.");
         }
+      }
 
-        function scheduleInterview(applicantId) {
-            currentApplicantId = applicantId;
-            document.getElementById('interviewModal').classList.remove('hidden');
+      function scheduleMultipleInterviews() {
+        alert("Opening batch interview scheduling...");
+      }
+
+      function rescheduleInterview(applicantId) {
+        scheduleInterview(applicantId);
+      }
+
+      function addInterviewNotes(applicantId) {
+        const notes = prompt("Add interview notes for this applicant:");
+        if (notes) {
+          alert(`Notes added for applicant ${applicantId}: ${notes}`);
         }
+      }
 
-        function closeInterviewModal() {
-            document.getElementById('interviewModal').classList.add('hidden');
-            currentApplicantId = null;
-        }
+      // Close modals when clicking outside
+      document
+        .getElementById("profileModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeProfileModal();
+          }
+        });
 
-        function submitInterview() {
-            const date = document.getElementById('interview_date').value;
-            const time = document.getElementById('interview_time').value;
-            const type = document.getElementById('interview_type').value;
-            const notes = document.getElementById('interview_notes').value;
-
-            if (!date || !time || !type) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-
-            alert(`Interview scheduled for applicant ${currentApplicantId} on ${date} at ${time} (${type})`);
+      document
+        .getElementById("interviewModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
             closeInterviewModal();
-            // Here you would typically send the data to your backend
-        }
-
-        function sendMessage(applicantId) {
-            alert(`Opening message composer for applicant ${applicantId}...`);
-        }
-
-        function downloadResume(applicantId) {
-            alert(`Downloading resume for applicant ${applicantId}...`);
-        }
-
-        function exportApplicants() {
-            alert('Exporting applicant data to CSV...');
-        }
-
-        function bulkAction() {
-            alert('Opening bulk actions menu...');
-        }
-
-        function loadMoreApplicants() {
-            alert('Loading more applicants...');
-        }
-
-        function markAllAsReviewed() {
-            if (confirm('Mark all pending applicants as reviewed?')) {
-                alert('All applicants marked as reviewed.');
-            }
-        }
-
-        function scheduleMultipleInterviews() {
-            alert('Opening batch interview scheduling...');
-        }
-
-        function rescheduleInterview(applicantId) {
-            scheduleInterview(applicantId);
-        }
-
-        function addInterviewNotes(applicantId) {
-            const notes = prompt('Add interview notes for this applicant:');
-            if (notes) {
-                alert(`Notes added for applicant ${applicantId}: ${notes}`);
-            }
-        }
-
-        // Close modals when clicking outside
-        document.getElementById('profileModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeProfileModal();
-            }
+          }
         });
 
-        document.getElementById('interviewModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeInterviewModal();
-            }
-        });
+      // Close user menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const menu = document.getElementById("userMenu");
+        const button = event.target.closest("button");
 
-        // Close user menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('userMenu');
-            const button = event.target.closest('button');
-            
-            if (!button || button.onclick !== toggleUserMenu) {
-                menu.classList.add('hidden');
-            }
-        });
+        if (!button || button.onclick !== toggleUserMenu) {
+          menu.classList.add("hidden");
+        }
+      });
 
-        // Set minimum date to today for interview scheduling
-        document.addEventListener('DOMContentLoaded', function() {
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('interview_date').min = today;
-        });
+      // Set minimum date to today for interview scheduling
+      document.addEventListener("DOMContentLoaded", function () {
+        const today = new Date().toISOString().split("T")[0];
+        document.getElementById("interview_date").min = today;
+      });
     </script>
-</body>
+  </body>
 </html>

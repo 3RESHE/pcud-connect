@@ -1,656 +1,1302 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Job Search - PCU-DASMA Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1E40AF',
-                        secondary: '#3B82F6',
-                        accent: '#F59E0B'
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-gray-50">
+  </head>
+  <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class="bg-white shadow-sm border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
-                    <div class="hidden md:ml-10 md:flex md:space-x-8">
-                        <a href="dashboard.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
-                        <a href="jobs.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">Job Search</a>
-                        <a href="network.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Network</a>
-                        <a href="events.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Events</a>
-                        <a href="profile.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Profile</a>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <button class="p-2 text-gray-400 hover:text-gray-600">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5H9l5-5z"></path>
-                        </svg>
-                    </button>
-                    <div class="relative">
-                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
-                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
-                        </button>
-                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                            <div class="py-1">
-                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                                <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <a href="../index.html" class="text-xl font-bold text-primary"
+              >PCU-DASMA Connect</a
+            >
+            <div class="hidden md:ml-10 md:flex md:space-x-8">
+              <a
+                href="dashboard.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Dashboard</a
+              >
+              <a
+                href="jobs.html"
+                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Job Opportunities</a
+              >
+              <a
+                href="events.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Events</a
+              >
+              <a
+                href="profile.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Profile</a
+              >
             </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="relative">
+              <button
+                onclick="toggleUserMenu()"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                <img
+                  class="h-8 w-8 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </button>
+              <div
+                id="userMenu"
+                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+              >
+                <div class="py-1">
+                  <a
+                    href="profile.html"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Profile</a
+                  >
+                  <a
+                    href="settings.html"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Settings</a
+                  >
+                  <a
+                    href="#"
+                    onclick="logout()"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Logout</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </nav>
 
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <!-- Header -->
-        <div class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-900">Job Opportunities</h1>
-            <p class="text-gray-600">Discover career opportunities from registered partner organizations tailored for PCU-DASMA students and alumni</p>
+      <!-- Header -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900">Job Opportunities</h1>
+        <p class="text-gray-600">
+          Discover career opportunities from registered partner organizations
+          tailored for PCU-DASMA students and alumni
+        </p>
+      </div>
+
+      <!-- Search and Filters -->
+      <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+        <div
+          class="flex flex-col lg:flex-row lg:items-center space-y-4 lg:space-y-0 lg:space-x-4"
+        >
+          <!-- Search Bar -->
+          <div class="flex-1">
+            <div class="relative">
+              <svg
+                class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+              <input
+                type="text"
+                id="job-search"
+                placeholder="Search job titles, companies, skills, or keywords..."
+                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              />
+            </div>
+          </div>
+
+          <!-- Location Filter -->
+          <div class="lg:w-48">
+            <select
+              id="location-filter"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              <option value="">All Locations</option>
+              <option value="makati">Makati City</option>
+              <option value="bgc">BGC, Taguig</option>
+              <option value="ortigas">Ortigas Center</option>
+              <option value="quezon">Quezon City</option>
+              <option value="remote">Remote</option>
+              <option value="hybrid">Hybrid</option>
+            </select>
+          </div>
+
+          <!-- Job Type Filter -->
+          <div class="lg:w-48">
+            <select
+              id="job-type-filter"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              <option value="">All Types</option>
+              <option value="full-time">Full-time</option>
+              <option value="part-time">Part-time</option>
+              <option value="internship">Internship</option>
+              <option value="contract">Contract</option>
+              <option value="freelance">Freelance</option>
+              <option value="project">Project-based</option>
+            </select>
+          </div>
+
+          <!-- Experience Level Filter -->
+          <div class="lg:w-48">
+            <select
+              id="experience-level-filter"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              <option value="">All Experience Levels</option>
+              <option value="entry">Entry Level (0-2 years)</option>
+              <option value="mid">Mid Level (3-5 years)</option>
+              <option value="senior">Senior Level (6+ years)</option>
+              <option value="lead">Lead/Manager Level</option>
+              <option value="student">Student/Fresh Graduate</option>
+            </select>
+          </div>
+
+          <!-- Department Filter -->
+          <div class="lg:w-48">
+            <select
+              id="department-filter"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              <option value="">All Departments</option>
+              <option value="it">Information Technology</option>
+              <option value="engineering">Engineering</option>
+              <option value="marketing">Marketing</option>
+              <option value="sales">Sales</option>
+              <option value="hr">Human Resources</option>
+              <option value="finance">Finance</option>
+              <option value="operations">Operations</option>
+              <option value="customer_service">Customer Service</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <!-- Program Filter -->
+          <div class="lg:w-48">
+            <select
+              id="program-filter"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              <option value="">All Programs</option>
+              <option value="bsit">BSIT</option>
+              <option value="bscs">BSCS</option>
+              <option value="bsba">BSBA</option>
+              <option value="bsed">BSED</option>
+              <option value="bsn">BSN</option>
+              <option value="any">Any Program</option>
+            </select>
+          </div>
+
+          <!-- Company Filter -->
+          <div class="lg:w-48">
+            <select
+              id="company-filter"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              <option value="">All Companies</option>
+              <option value="techsolutions">TechSolutions Inc.</option>
+              <option value="innovatehub">InnovateHub Philippines</option>
+              <option value="cyberguard">CyberGuard Solutions</option>
+              <option value="marketpro">MarketPro Solutions</option>
+              <option value="globalconsulting">Global Consulting Group</option>
+              <option value="innovationcorp">Innovation Corp</option>
+              <option value="digitalsolutions">Digital Solutions Ltd.</option>
+            </select>
+          </div>
+
+          <!-- Search Button -->
+          <button
+            onclick="searchJobs()"
+            class="lg:w-auto w-full px-6 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+
+      <!-- Job Type Quick Filters -->
+      <div class="mb-8">
+        <div class="flex flex-wrap gap-3">
+          <button
+            onclick="quickFilter('all')"
+            class="job-quick-filter active px-4 py-2 bg-primary text-white rounded-full text-sm hover:bg-blue-700"
+          >
+            All Jobs
+          </button>
+          <button
+            onclick="quickFilter('full-time')"
+            class="job-quick-filter px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-full text-sm hover:bg-gray-50"
+          >
+            Full-time
+          </button>
+          <button
+            onclick="quickFilter('part-time')"
+            class="job-quick-filter px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-full text-sm hover:bg-gray-50"
+          >
+            Part-time
+          </button>
+          <button
+            onclick="quickFilter('internship')"
+            class="job-quick-filter px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-full text-sm hover:bg-gray-50"
+          >
+            Internships
+          </button>
+          <button
+            onclick="quickFilter('contract')"
+            class="job-quick-filter px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-full text-sm hover:bg-gray-50"
+          >
+            Contract/Project
+          </button>
+        </div>
+      </div>
+
+      <!-- Results Header -->
+      <div class="flex justify-between items-center mb-6">
+        <p class="text-gray-600">
+          Showing <span class="font-semibold">24</span> job opportunities
+        </p>
+        <div class="flex items-center space-x-2">
+          <label for="sort-by" class="text-sm text-gray-600">Sort by:</label>
+          <select
+            id="sort-by"
+            class="px-3 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+          >
+            <option value="newest">Newest First</option>
+            <option value="relevance">Relevance</option>
+            <option value="salary">Salary Range</option>
+            <option value="company">Company Name</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Job Listings -->
+      <div class="space-y-6">
+        <!-- Featured Full-time Job -->
+        <div
+          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500 hover:shadow-md transition-shadow"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-2">
+                <span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium mr-2"
+                  >Featured</span
+                >
+                <span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs"
+                  >Full-time</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Senior Software Developer
+              </h3>
+              <div class="flex items-center text-sm text-gray-600 mb-3">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                  ></path>
+                </svg>
+                <span class="font-medium">Tech Solutions Inc.</span>
+                <span class="mx-2">•</span>
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                </svg>
+                Makati City
+                <span class="mx-2">•</span>
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                  ></path>
+                </svg>
+                ₱80,000 - ₱120,000/month
+              </div>
+
+              <p class="text-gray-600 mb-4">
+                We are looking for an experienced Senior Software Developer to
+                join our dynamic team. The ideal candidate will have expertise
+                in modern web technologies and a passion for creating innovative
+                solutions.
+              </p>
+
+              <div class="flex items-center space-x-4 text-sm text-gray-500">
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  Posted 2 days ago
+                </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  45 applicants
+                </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"
+                    ></path>
+                  </svg>
+                  IT Department
+                </div>
+              </div>
+            </div>
+            <div class="ml-6 flex flex-col space-y-2">
+              <a
+                href="job-details.html?id=1"
+                class="px-6 py-2 bg-primary text-white text-sm rounded-lg hover:bg-blue-700 text-center font-medium"
+              >
+                View Details
+              </a>
+            </div>
+          </div>
         </div>
 
-        <!-- Search and Filters -->
-        <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
-            <div class="flex flex-col lg:flex-row lg:items-center space-y-4 lg:space-y-0 lg:space-x-4">
-                <!-- Search Bar -->
-                <div class="flex-1">
-                    <div class="relative">
-                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                        <input type="text" id="job-search" placeholder="Search job titles, companies, skills, or keywords..." 
-                            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                    </div>
-                </div>
-                
-                <!-- Location Filter -->
-                <div class="lg:w-48">
-                    <select id="location-filter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                        <option value="">All Locations</option>
-                        <option value="makati">Makati City</option>
-                        <option value="bgc">BGC, Taguig</option>
-                        <option value="ortigas">Ortigas Center</option>
-                        <option value="quezon">Quezon City</option>
-                        <option value="remote">Remote</option>
-                        <option value="hybrid">Hybrid</option>
-                    </select>
-                </div>
+        <!-- IT Project Manager -->
+        <div
+          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-2">
+                <span
+                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs"
+                  >Full-time</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                IT Project Manager
+              </h3>
+              <div class="flex items-center text-sm text-gray-600 mb-3">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                  ></path>
+                </svg>
+                <span class="font-medium">Global Consulting Group</span>
+                <span class="mx-2">•</span>
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                </svg>
+                BGC, Taguig
+                <span class="mx-2">•</span>
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                  ></path>
+                </svg>
+                ₱90,000 - ₱130,000/month
+              </div>
 
-                <!-- Job Type Filter -->
-                <div class="lg:w-48">
-                    <select id="job-type-filter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                        <option value="">All Types</option>
-                        <option value="full-time">Full-time</option>
-                        <option value="part-time">Part-time</option>
-                        <option value="internship">Internship</option>
-                        <option value="contract">Contract</option>
-                        <option value="freelance">Freelance</option>
-                        <option value="project">Project-based</option>
-                    </select>
-                </div>
+              <p class="text-gray-600 mb-4">
+                Lead and manage IT projects from conception to completion. Work
+                with cross-functional teams to deliver innovative technology
+                solutions on time and within budget.
+              </p>
 
-                <!-- Experience Level Filter -->
-                <div class="lg:w-48">
-                    <select id="experience-level-filter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                        <option value="">All Experience Levels</option>
-                        <option value="entry">Entry Level (0-2 years)</option>
-                        <option value="mid">Mid Level (3-5 years)</option>
-                        <option value="senior">Senior Level (6+ years)</option>
-                        <option value="lead">Lead/Manager Level</option>
-                        <option value="student">Student/Fresh Graduate</option>
-                    </select>
+              <div class="flex items-center space-x-4 text-sm text-gray-500">
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  Posted 5 hours ago
                 </div>
-
-                <!-- Department Filter -->
-                <div class="lg:w-48">
-                    <select id="department-filter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                        <option value="">All Departments</option>
-                        <option value="it">Information Technology</option>
-                        <option value="engineering">Engineering</option>
-                        <option value="marketing">Marketing</option>
-                        <option value="sales">Sales</option>
-                        <option value="hr">Human Resources</option>
-                        <option value="finance">Finance</option>
-                        <option value="operations">Operations</option>
-                        <option value="customer_service">Customer Service</option>
-                        <option value="other">Other</option>
-                    </select>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  20 applicants
                 </div>
-
-                <!-- Program Filter -->
-                <div class="lg:w-48">
-                    <select id="program-filter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                        <option value="">All Programs</option>
-                        <option value="bsit">BSIT</option>
-                        <option value="bscs">BSCS</option>
-                        <option value="bsba">BSBA</option>
-                        <option value="bsed">BSED</option>
-                        <option value="bsn">BSN</option>
-                        <option value="any">Any Program</option>
-                    </select>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"
+                    ></path>
+                  </svg>
+                  IT Department
                 </div>
-
-                <!-- Company Filter -->
-                <div class="lg:w-48">
-                    <select id="company-filter" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                        <option value="">All Companies</option>
-                        <option value="techsolutions">TechSolutions Inc.</option>
-                        <option value="innovatehub">InnovateHub Philippines</option>
-                        <option value="cyberguard">CyberGuard Solutions</option>
-                        <option value="marketpro">MarketPro Solutions</option>
-                    </select>
-                </div>
-
-                <!-- Search Button -->
-                <button onclick="searchJobs()" class="lg:w-auto w-full px-6 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary">
-                    Search
-                </button>
+              </div>
             </div>
+            <div class="ml-6 flex flex-col space-y-2">
+              <a
+                href="job-details.html?id=2"
+                class="px-6 py-2 bg-primary text-white text-sm rounded-lg hover:bg-blue-700 text-center font-medium"
+              >
+                View Details
+              </a>
+            </div>
+          </div>
         </div>
 
-        <!-- Job Type Quick Filters -->
-        <div class="mb-8">
-            <div class="flex flex-wrap gap-3">
-                <button onclick="quickFilter('all')" class="job-quick-filter active px-4 py-2 bg-primary text-white rounded-full text-sm hover:bg-blue-700">All Jobs</button>
-                <button onclick="quickFilter('full-time')" class="job-quick-filter px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-full text-sm hover:bg-gray-50">Full-time</button>
-                <button onclick="quickFilter('part-time')" class="job-quick-filter px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-full text-sm hover:bg-gray-50">Part-time</button>
-                <button onclick="quickFilter('internship')" class="job-quick-filter px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-full text-sm hover:bg-gray-50">Internships</button>
-                <button onclick="quickFilter('contract')" class="job-quick-filter px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-full text-sm hover:bg-gray-50">Contract/Project</button>
+        <!-- Business Analyst -->
+        <div
+          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-2">
+                <span
+                  class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs"
+                  >Full-time</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Business Analyst
+              </h3>
+              <div class="flex items-center text-sm text-gray-600 mb-3">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                  ></path>
+                </svg>
+                <span class="font-medium">Innovation Corp</span>
+                <span class="mx-2">•</span>
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                </svg>
+                Ortigas Center
+                <span class="mx-2">•</span>
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                  ></path>
+                </svg>
+                ₱60,000 - ₱85,000/month
+              </div>
+
+              <p class="text-gray-600 mb-4">
+                Analyze business processes and requirements to provide
+                data-driven recommendations for process improvement and
+                optimization.
+              </p>
+
+              <div class="flex items-center space-x-4 text-sm text-gray-500">
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  Posted 1 day ago
+                </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  15 applicants
+                </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"
+                    ></path>
+                  </svg>
+                  Operations Department
+                </div>
+              </div>
             </div>
+            <div class="ml-6 flex flex-col space-y-2">
+              <a
+                href="job-details.html?id=3"
+                class="px-6 py-2 bg-primary text-white text-sm rounded-lg hover:bg-blue-700 text-center font-medium"
+              >
+                View Details
+              </a>
+            </div>
+          </div>
         </div>
 
-        <!-- Results Header -->
-        <div class="flex justify-between items-center mb-6">
-            <p class="text-gray-600">Showing <span class="font-semibold">24</span> job opportunities</p>
-            <div class="flex items-center space-x-2">
-                <label for="sort-by" class="text-sm text-gray-600">Sort by:</label>
-                <select id="sort-by" class="px-3 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary">
-                    <option value="newest">Newest First</option>
-                    <option value="relevance">Relevance</option>
-                    <option value="salary">Salary Range</option>
-                    <option value="company">Company Name</option>
-                </select>
+        <!-- Frontend Developer -->
+        <div
+          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-2">
+                <span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs"
+                  >Full-time</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Frontend Developer
+              </h3>
+              <div class="flex items-center text-sm text-gray-600 mb-3">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                  ></path>
+                </svg>
+                <span class="font-medium">Digital Solutions Ltd.</span>
+                <span class="mx-2">•</span>
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                </svg>
+                Makati City
+                <span class="mx-2">•</span>
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                  ></path>
+                </svg>
+                ₱70,000 - ₱110,000/month
+              </div>
+
+              <p class="text-gray-600 mb-4">
+                Join our team as a Frontend Developer and create amazing user
+                experiences.
+              </p>
+
+              <div class="flex items-center space-x-4 text-sm text-gray-500">
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  Posted 2 hours ago
+                </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  12 applicants
+                </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"
+                    ></path>
+                  </svg>
+                  IT Department
+                </div>
+              </div>
             </div>
+            <div class="ml-6 flex flex-col space-y-2">
+              <a
+                href="job-details.html?id=4"
+                class="px-6 py-2 bg-primary text-white text-sm rounded-lg hover:bg-blue-700 text-center font-medium"
+              >
+                View Details
+              </a>
+            </div>
+          </div>
         </div>
 
-        <!-- Recommended Jobs Section -->
-        <div class="mb-12">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4">Recommended for You</h2>
-            <p class="text-gray-600 mb-6">Based on your profile, skills, and program</p>
-            <!-- Example Recommended Job -->
-            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-accent hover:shadow-md transition-shadow">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                        <div class="flex items-center mb-2">
-                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium mr-2">Recommended</span>
-                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Full-time</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Senior Software Developer</h3>
-                        <div class="flex items-center text-sm text-gray-600 mb-3">
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2-2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                            </svg>
-                            <span class="font-medium">TechSolutions Inc.</span>
-                            <span class="mx-2">•</span>
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                            </svg>
-                            Makati City
-                            <span class="mx-2">•</span>
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                            </svg>
-                            ₱90,000 - ₱150,000/month
-                        </div>
+        <!-- Part-time Job -->
+        <div
+          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-2">
+                <span
+                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs"
+                  >Part-time</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Digital Marketing Specialist
+              </h3>
+              <div class="flex items-center text-sm text-gray-600 mb-3">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                  ></path>
+                </svg>
+                <span class="font-medium">MarketPro Solutions</span>
+                <span class="mx-2">•</span>
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                </svg>
+                Remote/Hybrid
+                <span class="mx-2">•</span>
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                  ></path>
+                </svg>
+                ₱200 - ₱300/hour
+              </div>
 
-                        <p class="text-gray-600 mb-4">
-                            Matches your BSIT background and skills in software development. Work on cutting-edge projects with a dynamic team.
-                        </p>
-                        
-                        <div class="flex items-center space-x-4 text-sm text-gray-500">
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                Posted 2 days ago
-                            </div>
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                                45 applicants
-                            </div>
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
-                                </svg>
-                                IT Department
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ml-6 flex flex-col space-y-2">
-                        <button onclick="saveJob(1)" class="p-2 text-gray-400 hover:text-red-500 transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
-                        </button>
-                        <a href="job-details.html?id=1" class="px-6 py-2 bg-primary text-white text-sm rounded-lg hover:bg-blue-700 text-center font-medium">
-                            View Details
-                        </a>
-                        <button onclick="quickApply(1)" class="px-6 py-2 border border-primary text-primary text-sm rounded-lg hover:bg-blue-50 font-medium">
-                            Quick Apply
-                        </button>
-                    </div>
+              <p class="text-gray-600 mb-4">
+                Perfect for students or professionals seeking flexible work
+                arrangements. Manage social media campaigns, create content, and
+                support digital marketing initiatives on a part-time basis.
+              </p>
+
+              <div class="flex items-center space-x-4 text-sm text-gray-500">
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  Posted 1 day ago
                 </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  20-25 hours/week
+                </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  18 applicants
+                </div>
+              </div>
             </div>
+            <div class="ml-6 flex flex-col space-y-2">
+              <a
+                href="job-details.html?id=5"
+                class="px-6 py-2 bg-primary text-white text-sm rounded-lg hover:bg-blue-700 text-center font-medium"
+              >
+                View Details
+              </a>
+            </div>
+          </div>
         </div>
 
-        <!-- Job Listings -->
-        <div class="space-y-6">
-            <!-- Featured Full-time Job -->
-            <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500 hover:shadow-md transition-shadow">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                        <div class="flex items-center mb-2">
-                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium mr-2">Featured</span>
-                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Full-time</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Senior Software Developer</h3>
-                        <div class="flex items-center text-sm text-gray-600 mb-3">
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2-2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                            </svg>
-                            <span class="font-medium">TechSolutions Inc.</span>
-                            <span class="mx-2">•</span>
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                            </svg>
-                            Makati City
-                            <span class="mx-2">•</span>
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                            </svg>
-                            ₱90,000 - ₱150,000/month
-                        </div>
+        <!-- Internship -->
+        <div
+          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-2">
+                <span
+                  class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs"
+                  >Internship</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Cybersecurity Intern
+              </h3>
+              <div class="flex items-center text-sm text-gray-600 mb-3">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                  ></path>
+                </svg>
+                <span class="font-medium">CyberGuard Solutions Inc.</span>
+                <span class="mx-2">•</span>
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                </svg>
+                Quezon City
+                <span class="mx-2">•</span>
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                  ></path>
+                </svg>
+                ₱8,000 - ₱12,000/month • 6 months
+              </div>
 
-                        <p class="text-gray-600 mb-4">
-                            We're looking for an experienced software developer to join our growing team. You'll work on cutting-edge projects using modern technologies and collaborate with talented professionals in an innovative environment.
-                        </p>
-                        
-                        <div class="flex items-center space-x-4 text-sm text-gray-500">
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                Posted 2 days ago
-                            </div>
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                                45 applicants
-                            </div>
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
-                                </svg>
-                                IT Department
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ml-6 flex flex-col space-y-2">
-                        <button onclick="saveJob(1)" class="p-2 text-gray-400 hover:text-red-500 transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
-                        </button>
-                        <a href="job-details.html?id=1" class="px-6 py-2 bg-primary text-white text-sm rounded-lg hover:bg-blue-700 text-center font-medium">
-                            View Details
-                        </a>
-                        <button onclick="quickApply(1)" class="px-6 py-2 border border-primary text-primary text-sm rounded-lg hover:bg-blue-50 font-medium">
-                            Quick Apply
-                        </button>
-                    </div>
+              <p class="text-gray-600 mb-4">
+                Gain hands-on experience in cybersecurity operations, learn from
+                industry experts, and work on real projects. Perfect for IT
+                students looking to specialize in cybersecurity.
+              </p>
+
+              <div class="flex items-center space-x-4 text-sm text-gray-500">
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  Posted 3 days ago
                 </div>
-            </div>
-
-            <!-- Part-time Job -->
-            <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                        <div class="flex items-center mb-2">
-                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Part-time</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Digital Marketing Specialist</h3>
-                        <div class="flex items-center text-sm text-gray-600 mb-3">
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2-2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                            </svg>
-                            <span class="font-medium">MarketPro Solutions</span>
-                            <span class="mx-2">•</span>
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                            </svg>
-                            Remote/Hybrid
-                            <span class="mx-2">•</span>
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                            </svg>
-                            ₱200 - ₱300/hour
-                        </div>
-
-                        <p class="text-gray-600 mb-4">
-                            Perfect for students or professionals seeking flexible work arrangements. Manage social media campaigns, create content, and support digital marketing initiatives on a part-time basis.
-                        </p>
-                        
-                        <div class="flex items-center space-x-4 text-sm text-gray-500">
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                Posted 1 day ago
-                            </div>
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                20-25 hours/week
-                            </div>
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                                18 applicants
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ml-6 flex flex-col space-y-2">
-                        <button onclick="saveJob(2)" class="p-2 text-gray-400 hover:text-red-500 transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
-                        </button>
-                        <a href="job-details.html?id=2" class="px-6 py-2 bg-primary text-white text-sm rounded-lg hover:bg-blue-700 text-center font-medium">
-                            View Details
-                        </a>
-                        <button onclick="quickApply(2)" class="px-6 py-2 border border-primary text-primary text-sm rounded-lg hover:bg-blue-50 font-medium">
-                            Quick Apply
-                        </button>
-                    </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                  Starts January 2026
                 </div>
-            </div>
-
-            <!-- Internship -->
-            <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                        <div class="flex items-center mb-2">
-                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">Internship</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Cybersecurity Intern</h3>
-                        <div class="flex items-center text-sm text-gray-600 mb-3">
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2-2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                            </svg>
-                            <span class="font-medium">CyberGuard Solutions Inc.</span>
-                            <span class="mx-2">•</span>
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                            </svg>
-                            Quezon City
-                            <span class="mx-2">•</span>
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                            </svg>
-                            ₱8,000 - ₱12,000/month • 6 months
-                        </div>
-
-                        <p class="text-gray-600 mb-4">
-                            Gain hands-on experience in cybersecurity operations, learn from industry experts, and work on real projects. Perfect for IT students looking to specialize in cybersecurity.
-                        </p>
-                        
-                        <div class="flex items-center space-x-4 text-sm text-gray-500">
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                Posted 3 days ago
-                            </div>
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                                Starts January 2026
-                            </div>
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                                12 applicants
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ml-6 flex flex-col space-y-2">
-                        <button onclick="saveJob(3)" class="p-2 text-gray-400 hover:text-red-500 transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
-                        </button>
-                        <a href="job-details.html?id=3" class="px-6 py-2 bg-primary text-white text-sm rounded-lg hover:bg-blue-700 text-center font-medium">
-                            View Details
-                        </a>
-                        <button onclick="quickApply(3)" class="px-6 py-2 border border-primary text-primary text-sm rounded-lg hover:bg-blue-50 font-medium">
-                            Apply Now
-                        </button>
-                    </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  12 applicants
                 </div>
+              </div>
             </div>
-
-            <!-- Contract/Project-based Job -->
-            <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                        <div class="flex items-center mb-2">
-                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs">Project-based</span>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Web Development Project</h3>
-                        <div class="flex items-center text-sm text-gray-600 mb-3">
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2-2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                            </svg>
-                            <span class="font-medium">InnovateHub Philippines</span>
-                            <span class="mx-2">•</span>
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                            </svg>
-                            Remote
-                            <span class="mx-2">•</span>
-                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                            </svg>
-                            ₱100,000 - ₱200,000 total • 3-month project
-                        </div>
-                        
-                        <p class="text-gray-600 mb-4">
-                            Build a complete e-commerce platform using React and Node.js. Perfect for experienced developers looking for project-based work with flexible timeline.
-                        </p>
-                        
-                        <div class="flex items-center space-x-4 text-sm text-gray-500">
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                Posted 5 days ago
-                            </div>
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                                Flexible timeline
-                            </div>
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                                8 proposals
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ml-6 flex flex-col space-y-2">
-                        <button onclick="saveJob(4)" class="p-2 text-gray-400 hover:text-red-500 transition-colors">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
-                        </button>
-                        <a href="job-details.html?id=4" class="px-6 py-2 bg-primary text-white text-sm rounded-lg hover:bg-blue-700 text-center font-medium">
-                            View Details
-                        </a>
-                        <button onclick="quickApply(4)" class="px-6 py-2 border border-primary text-primary text-sm rounded-lg hover:bg-blue-50 font-medium">
-                            Submit Proposal
-                        </button>
-                    </div>
-                </div>
+            <div class="ml-6 flex flex-col space-y-2">
+              <a
+                href="job-details.html?id=6"
+                class="px-6 py-2 bg-primary text-white text-sm rounded-lg hover:bg-blue-700 text-center font-medium"
+              >
+                View Details
+              </a>
             </div>
-
-            <!-- Load More Button -->
-            <div class="text-center py-8">
-                <button onclick="loadMoreJobs()" class="px-8 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium">
-                    Load More Jobs (20 remaining)
-                </button>
-            </div>
+          </div>
         </div>
-    </div>
 
-    <!-- Quick Apply Modal -->
-    <div id="quickApplyModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
-            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-            
-            <div class="relative bg-white rounded-lg max-w-md w-full shadow-xl">
-                <div class="px-6 py-4 border-b border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-900">Quick Apply</h3>
-                    <button onclick="closeQuickApply()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
+        <!-- Contract/Project-based Job -->
+        <div
+          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-2">
+                <span
+                  class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs"
+                  >Project-based</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Web Development Project
+              </h3>
+              <div class="flex items-center text-sm text-gray-600 mb-3">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                  ></path>
+                </svg>
+                <span class="font-medium">InnovateHub Philippines</span>
+                <span class="mx-2">•</span>
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                </svg>
+                Remote
+                <span class="mx-2">•</span>
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                  ></path>
+                </svg>
+                ₱100,000 - ₱200,000 total • 3-month project
+              </div>
+
+              <p class="text-gray-600 mb-4">
+                Build a complete e-commerce platform using React and Node.js.
+                Perfect for experienced developers looking for project-based
+                work with flexible timeline.
+              </p>
+
+              <div class="flex items-center space-x-4 text-sm text-gray-500">
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  Posted 5 days ago
                 </div>
-                
-                <div class="p-6">
-                    <p class="text-sm text-gray-600 mb-4">
-                        Your profile information will be sent to the employer. Make sure your profile is up to date.
-                    </p>
-                    <div class="flex space-x-3">
-                        <button onclick="closeQuickApply()" class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">
-                            Cancel
-                        </button>
-                        <button onclick="submitQuickApply()" class="flex-1 px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700">
-                            Send Application
-                        </button>
-                    </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                  Flexible timeline
                 </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  8 proposals
+                </div>
+              </div>
             </div>
+            <div class="ml-6 flex flex-col space-y-2">
+              <a
+                href="job-details.html?id=7"
+                class="px-6 py-2 bg-primary text-white text-sm rounded-lg hover:bg-blue-700 text-center font-medium"
+              >
+                View Details
+              </a>
+            </div>
+          </div>
         </div>
+
+        <!-- Load More Button -->
+        <div class="text-center py-8">
+          <button
+            onclick="loadMoreJobs()"
+            class="px-8 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium"
+          >
+            Load More Jobs (24 remaining)
+          </button>
+        </div>
+      </div>
     </div>
 
     <script>
-        function toggleUserMenu() {
-            const menu = document.getElementById('userMenu');
-            menu.classList.toggle('hidden');
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+      }
+
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
         }
+      }
 
-        function logout() {
-            if (confirm('Are you sure you want to logout?')) {
-                window.location.href = '../login.html';
-            }
-        }
+      function searchJobs() {
+        const searchTerm = document.getElementById("job-search").value;
+        const location = document.getElementById("location-filter").value;
+        const jobType = document.getElementById("job-type-filter").value;
+        const experienceLevel = document.getElementById(
+          "experience-level-filter"
+        ).value;
+        const department = document.getElementById("department-filter").value;
+        const program = document.getElementById("program-filter").value;
+        const company = document.getElementById("company-filter").value;
 
-        function searchJobs() {
-            const searchTerm = document.getElementById('job-search').value;
-            const location = document.getElementById('location-filter').value;
-            const jobType = document.getElementById('job-type-filter').value;
-            const experienceLevel = document.getElementById('experience-level-filter').value;
-            const department = document.getElementById('department-filter').value;
-            const program = document.getElementById('program-filter').value;
-            const company = document.getElementById('company-filter').value;
-            
-            console.log('Searching jobs:', { searchTerm, location, jobType, experienceLevel, department, program, company });
-            // Implement search functionality
-        }
+        console.log("Searching jobs:", {
+          searchTerm,
+          location,
+          jobType,
+          experienceLevel,
+          department,
+          program,
+          company,
+        });
+        // Implement search functionality
+      }
 
-        function quickFilter(type) {
-            // Update active button
-            document.querySelectorAll('.job-quick-filter').forEach(btn => {
-                btn.classList.remove('active', 'bg-primary', 'text-white');
-                btn.classList.add('bg-white', 'border-gray-300', 'text-gray-700');
-            });
-
-            event.target.classList.add('active', 'bg-primary', 'text-white');
-            event.target.classList.remove('bg-white', 'border-gray-300', 'text-gray-700');
-
-            console.log('Quick filtering by:', type);
-            // Implement filter functionality
-        }
-
-        function saveJob(jobId) {
-            alert(`Job ${jobId} saved to your favorites!`);
-        }
-
-        let currentJobId = null;
-
-        function quickApply(jobId) {
-            currentJobId = jobId;
-            document.getElementById('quickApplyModal').classList.remove('hidden');
-        }
-
-        function closeQuickApply() {
-            document.getElementById('quickApplyModal').classList.add('hidden');
-            currentJobId = null;
-        }
-
-        function submitQuickApply() {
-            if (currentJobId) {
-                alert(`Application submitted for job ${currentJobId}! The employer will receive your profile and contact you if interested.`);
-                closeQuickApply();
-            }
-        }
-
-        function loadMoreJobs() {
-            alert('Loading more job opportunities...');
-        }
-
-        // Close user menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('userMenu');
-            const button = event.target.closest('button');
-            
-            if (!button || button.onclick !== toggleUserMenu) {
-                menu.classList.add('hidden');
-            }
+      function quickFilter(type) {
+        // Update active button
+        document.querySelectorAll(".job-quick-filter").forEach((btn) => {
+          btn.classList.remove("active", "bg-primary", "text-white");
+          btn.classList.add(
+            "bg-white",
+            "border",
+            "border-gray-300",
+            "text-gray-700"
+          );
         });
 
-        // Close modal when clicking outside
-        document.getElementById('quickApplyModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeQuickApply();
-            }
-        });
+        event.target.classList.add("active", "bg-primary", "text-white");
+        event.target.classList.remove(
+          "bg-white",
+          "border",
+          "border-gray-300",
+          "text-gray-700"
+        );
+
+        console.log("Quick filtering by:", type);
+        // Implement filter functionality
+      }
+
+      function loadMoreJobs() {
+        alert("Loading more job opportunities...");
+      }
+
+      // Close user menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const menu = document.getElementById("userMenu");
+        const button = event.target.closest("button");
+
+        if (!button || button.onclick !== toggleUserMenu) {
+          menu.classList.add("hidden");
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
