@@ -1,636 +1,857 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events - PCU-DASMA Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#1E40AF",
-              secondary: "#3B82F6",
-              accent: "#F59E0B",
-            },
-          },
-        },
-      };
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E40AF',
+                        secondary: '#3B82F6',
+                        accent: '#F59E0B'
+                    }
+                }
+            }
+        }
     </script>
-  </head>
-  <body class="bg-gray-50">
+</head>
+<body class="bg-gray-50">
     <!-- Navigation -->
     <nav class="bg-white shadow-sm border-b">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-          <div class="flex items-center">
-            <a href="../index.html" class="text-xl font-bold text-primary"
-              >PCU-DASMA Connect</a
-            >
-            <div class="hidden md:ml-10 md:flex md:space-x-8">
-              <a
-                href="dashboard.html"
-                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
-                >Dashboard</a
-              >
-              <a
-                href="jobs.html"
-                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
-                >Job Opportunities</a
-              >
-              <a
-                href="events.html"
-                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
-                >Events</a
-              >
-            </div>
-          </div>
-          <div class="flex items-center space-x-4">
-            <div class="relative">
-              <button
-                onclick="toggleUserMenu()"
-                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                <img
-                  class="h-8 w-8 rounded-full"
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
-                  alt="Profile"
-                />
-              </button>
-              <div
-                id="userMenu"
-                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
-              >
-                <div class="py-1">
-                  <a
-                    href="profile.html"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >Profile</a
-                  >
-                  <a
-                    href="#"
-                    onclick="logout()"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >Logout</a
-                  >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="dashboard.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
+                        <a href="jobs.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Job Opportunities</a>
+                        <a href="events.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">Events</a>
+                    </div>
                 </div>
-              </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
+                        </button>
+                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                            <div class="py-1">
+                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </nav>
 
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-      <!-- Header -->
-      <div class="mb-8">
-        <h1 class="text-3xl font-bold text-gray-900">Alumni Events</h1>
-        <p class="text-gray-600">
-          Discover and register for events tailored for PCU-DASMA alumni
-        </p>
-      </div>
-
-      <!-- Filter Tabs -->
-      <div class="mb-8">
-        <div class="border-b border-gray-200">
-          <nav class="-mb-px flex space-x-8">
-            <button
-              onclick="filterEvents('all')"
-              class="event-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium"
-            >
-              All Events
-            </button>
-            <button
-              onclick="filterEvents('registered')"
-              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
-            >
-              My Registrations
-            </button>
-            <button
-              onclick="filterEvents('alumni')"
-              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
-            >
-              Alumni Only
-            </button>
-            <button
-              onclick="filterEvents('networking')"
-              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
-            >
-              Networking
-            </button>
-          </nav>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Events List -->
-        <div class="lg:col-span-2 space-y-6">
-          <!-- Featured Event -->
-          <div
-            class="bg-gradient-to-r from-primary to-secondary rounded-lg p-6 text-white"
-          >
-            <div class="flex items-center justify-between mb-4">
-              <span
-                class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm font-medium"
-                >Featured</span
-              >
-              <span class="text-sm opacity-90">October 15, 2025</span>
-            </div>
-            <h2 class="text-2xl font-bold mb-3">
-              PCU-DASMA Alumni Homecoming 2025
-            </h2>
-            <p class="mb-4 opacity-90">
-              The biggest alumni gathering of the year! Reconnect with
-              classmates, faculty, and celebrate our shared legacy.
-            </p>
-            <div class="flex items-center justify-between">
-              <div class="flex items-center text-sm opacity-90">
-                <svg
-                  class="w-4 h-4 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  ></path>
-                </svg>
-                PCU-DASMA Campus • 9:00 AM - 8:00 PM
-              </div>
-              <button
-                onclick="registerEvent(1)"
-                class="bg-white text-primary px-6 py-2 rounded-md font-medium hover:bg-gray-100 transition-colors"
-              >
-                Register Free
-              </button>
-            </div>
-          </div>
-
-          <!-- Regular Events -->
-          <div class="space-y-6">
-            <!-- Event Card 1 -->
-            <div
-              class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow"
-            >
-              <div class="flex items-start justify-between mb-4">
-                <div class="flex-1">
-                  <div class="flex items-center mb-2">
-                    <span
-                      class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
-                      >Career</span
-                    >
-                    <span
-                      class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3"
-                      >RSVP Required</span
-                    >
-                    <span class="text-sm text-gray-500"
-                      >Oct 22 • 9:00 AM - 5:00 PM</span
-                    >
-                  </div>
-                  <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                    Virtual Career Fair 2025
-                  </h3>
-                  <p class="text-gray-600 mb-3">
-                    Connect with 50+ top employers looking specifically for
-                    PCU-DASMA alumni. Network with recruiters and discover new
-                    opportunities.
-                  </p>
-                  <div class="flex items-center text-sm text-gray-500 mb-3">
-                    <svg
-                      class="w-4 h-4 mr-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"
-                      ></path>
-                    </svg>
-                    Online Event • Zoom Platform
-                  </div>
-                  <div class="flex items-center text-sm text-gray-500">
-                    <svg
-                      class="w-4 h-4 mr-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                      ></path>
-                    </svg>
-                    127 alumni registered
-                  </div>
-                </div>
-                <div class="ml-4 flex flex-col space-y-2">
-                  <button
-                    onclick="registerEvent(2)"
-                    class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
-                  >
-                    Register
-                  </button>
-                  <button
-                    onclick="viewEventDetails(2)"
-                    class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
-                  >
-                    Details
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Event Card 2 -->
-            <div
-              class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-green-500"
-            >
-              <div class="flex items-start justify-between mb-4">
-                <div class="flex-1">
-                  <div class="flex items-center mb-2">
-                    <span
-                      class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
-                      >Networking</span
-                    >
-                    <span
-                      class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
-                      >Registered</span
-                    >
-                    <span class="text-sm text-gray-500"
-                      >Nov 5 • 6:00 PM - 9:00 PM</span
-                    >
-                  </div>
-                  <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                    Alumni Business Networking Night
-                  </h3>
-                  <p class="text-gray-600 mb-3">
-                    An exclusive evening for alumni entrepreneurs and business
-                    leaders. Share experiences, explore collaborations, and
-                    expand your network.
-                  </p>
-                  <div class="flex items-center text-sm text-gray-500 mb-3">
-                    <svg
-                      class="w-4 h-4 mr-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      ></path>
-                    </svg>
-                    The Peninsula Manila, Makati • Cocktail Reception
-                  </div>
-                  <div class="flex items-center text-sm text-green-600">
-                    <svg
-                      class="w-4 h-4 mr-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                      ></path>
-                    </svg>
-                    You're registered! Check your email for details.
-                  </div>
-                </div>
-                <div class="ml-4 flex flex-col space-y-2">
-                  <button
-                    onclick="cancelRegistration(3)"
-                    class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onclick="viewEventDetails(3)"
-                    class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
-                  >
-                    Details
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Event Card 3 -->
-            <div
-              class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow"
-            >
-              <div class="flex items-start justify-between mb-4">
-                <div class="flex-1">
-                  <div class="flex items-center mb-2">
-                    <span
-                      class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3"
-                      >Workshop</span
-                    >
-                    <span class="text-sm text-gray-500"
-                      >Oct 30 • 2:00 PM - 4:00 PM</span
-                    >
-                  </div>
-                  <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                    Leadership Development Workshop
-                  </h3>
-                  <p class="text-gray-600 mb-3">
-                    Enhance your leadership skills with interactive workshops
-                    led by successful alumni executives. Perfect for career
-                    advancement.
-                  </p>
-                  <div class="flex items-center text-sm text-gray-500 mb-3">
-                    <svg
-                      class="w-4 h-4 mr-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      ></path>
-                    </svg>
-                    Hybrid Event (Campus + Online) • Limited to 30 participants
-                  </div>
-                  <div class="flex items-center text-sm text-orange-600">
-                    <svg
-                      class="w-4 h-4 mr-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      ></path>
-                    </svg>
-                    Registration closes in 3 days
-                  </div>
-                </div>
-                <div class="ml-4 flex flex-col space-y-2">
-                  <button
-                    onclick="registerEvent(4)"
-                    class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
-                  >
-                    Register
-                  </button>
-                  <button
-                    onclick="viewEventDetails(4)"
-                    class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
-                  >
-                    Details
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">Alumni Events</h1>
+            <p class="text-gray-600">Discover and register for events tailored for PCU-DASMA alumni</p>
         </div>
 
-        <!-- Sidebar -->
-        <div class="space-y-6">
-          <!-- My Registrations -->
-          <div class="bg-white rounded-lg shadow-sm p-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">
-              My Registrations
-            </h3>
-            <div class="space-y-3">
-              <div class="flex items-center p-3 bg-green-50 rounded-lg">
-                <div
-                  class="flex-shrink-0 w-10 h-10 bg-green-600 text-white rounded-lg flex items-center justify-center"
-                >
-                  <span class="text-xs font-bold">5</span>
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Available Events</p>
+                        <p class="text-2xl font-semibold text-gray-900">18</p>
+                    </div>
                 </div>
-                <div class="ml-3 flex-1">
-                  <h4 class="text-sm font-medium text-gray-900">
-                    Networking Night
-                  </h4>
-                  <p class="text-xs text-gray-500">Nov 5, 6:00 PM</p>
-                </div>
-              </div>
-
-              <div class="flex items-center p-3 bg-blue-50 rounded-lg">
-                <div
-                  class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center"
-                >
-                  <span class="text-xs font-bold">15</span>
-                </div>
-                <div class="ml-3 flex-1">
-                  <h4 class="text-sm font-medium text-gray-900">
-                    Homecoming 2025
-                  </h4>
-                  <p class="text-xs text-gray-500">Oct 15, 9:00 AM</p>
-                </div>
-              </div>
             </div>
-            <button class="w-full mt-4 text-sm text-primary hover:underline">
-              View all registrations
-            </button>
-          </div>
 
-          <!-- Upcoming Deadlines -->
-          <div class="bg-yellow-50 rounded-lg p-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">
-              Registration Deadlines
-            </h3>
-            <div class="space-y-3">
-              <div class="flex items-center justify-between">
-                <div>
-                  <h4 class="text-sm font-medium text-gray-900">
-                    Leadership Workshop
-                  </h4>
-                  <p class="text-xs text-gray-500">Oct 30 event</p>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">My Registrations</p>
+                        <p class="text-2xl font-semibold text-gray-900">3</p>
+                    </div>
                 </div>
-                <span
-                  class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded"
-                  >3 days left</span
-                >
-              </div>
+            </div>
 
-              <div class="flex items-center justify-between">
-                <div>
-                  <h4 class="text-sm font-medium text-gray-900">
-                    Tech Symposium
-                  </h4>
-                  <p class="text-xs text-gray-500">Nov 8 event</p>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 614 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Alumni Only</p>
+                        <p class="text-2xl font-semibold text-gray-900">8</p>
+                    </div>
                 </div>
-                <span
-                  class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded"
-                  >10 days left</span
-                >
-              </div>
             </div>
-          </div>
 
-          <!-- Event Categories -->
-          <div class="bg-white rounded-lg shadow-sm p-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">
-              Event Categories
-            </h3>
-            <div class="space-y-2">
-              <div class="flex justify-between items-center">
-                <span class="text-gray-700">Networking Events</span>
-                <span
-                  class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs"
-                  >5</span
-                >
-              </div>
-              <div class="flex justify-between items-center">
-                <span class="text-gray-700">Career Development</span>
-                <span
-                  class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs"
-                  >8</span
-                >
-              </div>
-              <div class="flex justify-between items-center">
-                <span class="text-gray-700">Social Gatherings</span>
-                <span
-                  class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs"
-                  >3</span
-                >
-              </div>
-              <div class="flex justify-between items-center">
-                <span class="text-gray-700">Professional Workshops</span>
-                <span
-                  class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs"
-                  >4</span
-                >
-              </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">This Week</p>
+                        <p class="text-2xl font-semibold text-gray-900">4</p>
+                    </div>
+                </div>
             </div>
-          </div>
-
-          <!-- Event Calendar Preview -->
-          <div class="bg-white rounded-lg shadow-sm p-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">This Month</h3>
-            <div class="grid grid-cols-7 gap-1 text-center text-xs mb-3">
-              <div class="font-medium text-gray-500">S</div>
-              <div class="font-medium text-gray-500">M</div>
-              <div class="font-medium text-gray-500">T</div>
-              <div class="font-medium text-gray-500">W</div>
-              <div class="font-medium text-gray-500">T</div>
-              <div class="font-medium text-gray-500">F</div>
-              <div class="font-medium text-gray-500">S</div>
-
-              <div class="p-1"></div>
-              <div class="p-1"></div>
-              <div class="p-1">1</div>
-              <div class="p-1">2</div>
-              <div class="p-1">3</div>
-              <div class="p-1">4</div>
-              <div class="p-1">5</div>
-              <div class="p-1">6</div>
-              <div class="p-1">7</div>
-              <div class="p-1">8</div>
-              <div class="p-1">9</div>
-              <div class="p-1">10</div>
-              <div class="p-1">11</div>
-              <div class="p-1">12</div>
-              <div class="p-1">13</div>
-              <div class="p-1">14</div>
-              <div class="p-1 bg-primary text-white rounded">15</div>
-              <div class="p-1">16</div>
-              <div class="p-1">17</div>
-              <div class="p-1">18</div>
-              <div class="p-1">19</div>
-              <div class="p-1">20</div>
-              <div class="p-1">21</div>
-              <div class="p-1 bg-green-100 text-green-800 rounded">22</div>
-              <div class="p-1">23</div>
-              <div class="p-1">24</div>
-              <div class="p-1">25</div>
-              <div class="p-1">26</div>
-              <div class="p-1">27</div>
-              <div class="p-1">28</div>
-              <div class="p-1">29</div>
-              <div class="p-1 bg-purple-100 text-purple-800 rounded">30</div>
-              <div class="p-1">31</div>
-              <div class="p-1"></div>
-              <div class="p-1"></div>
-            </div>
-            <div class="text-xs text-gray-500">
-              <div class="flex items-center mb-1">
-                <div class="w-2 h-2 bg-primary rounded mr-2"></div>
-                Homecoming
-              </div>
-              <div class="flex items-center mb-1">
-                <div class="w-2 h-2 bg-green-500 rounded mr-2"></div>
-                Career Fair
-              </div>
-              <div class="flex items-center">
-                <div class="w-2 h-2 bg-purple-500 rounded mr-2"></div>
-                Workshop
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
+
+        <!-- Search and Filter -->
+        <div class="bg-white rounded-lg shadow-sm mb-6">
+            <div class="p-6">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+                    <!-- Search Bar -->
+                    <div class="flex-1 max-w-lg">
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </div>
+                            <input type="text" id="searchEvents" placeholder="Search events by title, description, or location..." 
+                                class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary focus:border-primary">
+                        </div>
+                    </div>
+
+                    <!-- Filter Dropdowns -->
+                    <div class="flex space-x-3">
+                        <select id="categoryFilter" class="block px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-primary focus:border-primary">
+                            <option value="">All Categories</option>
+                            <option value="career">Career Development</option>
+                            <option value="networking">Networking</option>
+                            <option value="alumni">Alumni Events</option>
+                            <option value="workshop">Workshops</option>
+                            <option value="social">Social Events</option>
+                            <option value="academic">Academic</option>
+                        </select>
+
+                        <select id="formatFilter" class="block px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-primary focus:border-primary">
+                            <option value="">All Formats</option>
+                            <option value="in_person">In-Person</option>
+                            <option value="virtual">Virtual</option>
+                            <option value="hybrid">Hybrid</option>
+                        </select>
+
+                        <select id="timeFilter" class="block px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-primary focus:border-primary">
+                            <option value="">All Time</option>
+                            <option value="this_week">This Week</option>
+                            <option value="next_week">Next Week</option>
+                            <option value="this_month">This Month</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="mb-8">
+            <div class="border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8">
+                    <button onclick="filterEvents('all')" class="event-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium">
+                        All Events (18)
+                    </button>
+                    <button onclick="filterEvents('registered')" class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                        My Registrations (3)
+                    </button>
+                    <button onclick="filterEvents('alumni')" class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                        Alumni Only (8)
+                    </button>
+                    <button onclick="filterEvents('networking')" class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                        Networking (5)
+                    </button>
+                    <button onclick="filterEvents('partnership')" class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                        Partnership Events (7)
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Events List -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Featured Event -->
+                <div class="bg-gradient-to-r from-primary to-secondary rounded-lg p-6 text-white">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm font-medium">Featured</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">University Event</span>
+                        </div>
+                        <span class="text-sm opacity-90">October 15, 2025 • 9:00 AM - 8:00 PM</span>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-3">PCU-DASMA Alumni Homecoming 2025</h2>
+                    <p class="mb-4 opacity-90">
+                        The biggest alumni gathering of the year! Reconnect with classmates, faculty, and celebrate our shared legacy. Special recognition ceremony, campus tours, and networking reception.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center text-sm opacity-90">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            </svg>
+                            PCU-DASMA Campus • In-Person Event
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="text-sm opacity-90">847 alumni registered</div>
+                            <button onclick="registerEvent(1)" class="bg-white text-primary px-6 py-2 rounded-md font-medium hover:bg-gray-100 transition-colors">
+                                Register Free
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Regular Events -->
+                <div class="space-y-6">
+                    <!-- Partnership Event - Digital Marketing Workshop -->
+                    <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex-1">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3">Workshop Series</span>
+                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3">Partnership Event</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3">Hybrid</span>
+                                    <span class="text-sm text-gray-500">Oct 22-Nov 18 • 4 weeks</span>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Digital Marketing Mastery Workshop Series</h3>
+                                <p class="text-sm text-blue-600 mb-3">Partnership with DigitalBridge Marketing Solutions</p>
+                                <p class="text-gray-600 mb-3">
+                                    Comprehensive 4-week workshop series covering modern digital marketing strategies including social media marketing, content creation, SEO, and analytics. Gain hands-on experience with industry-standard tools.
+                                </p>
+                                <div class="flex items-center text-sm text-gray-500 mb-3">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    </svg>
+                                    PCU-DASMA + Virtual Platform • Tuesdays 7:00 PM - 9:00 PM
+                                </div>
+                                <div class="flex items-center text-sm text-gray-500 mb-3">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 614 0z"></path>
+                                    </svg>
+                                    73/80 participants • Alumni & Students welcome
+                                </div>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Marketing</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Professional Development</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Certificate Program</span>
+                                </div>
+                                <div class="flex items-center text-sm text-orange-600">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    Registration closes Oct 20 • Limited spots remaining
+                                </div>
+                            </div>
+                            <div class="ml-4 flex flex-col space-y-2">
+                                <button onclick="registerEvent(2)" class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700">
+                                    Register ₱2,500
+                                </button>
+                                <button onclick="viewEventDetails(2)" class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Virtual Career Fair -->
+                    <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-green-500">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex-1">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3">Career Fair</span>
+                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3">Partnership Event</span>
+                                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3">Virtual</span>
+                                    <span class="text-sm text-gray-500">Oct 22 • 9:00 AM - 5:00 PM</span>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Virtual Tech Career Fair 2025</h3>
+                                <p class="text-sm text-blue-600 mb-3">Partnership with InnovateHub Philippines</p>
+                                <p class="text-gray-600 mb-3">
+                                    Connect with 40+ leading tech companies looking specifically for PCU-DASMA alumni. Virtual networking sessions, company presentations, and one-on-one interviews with recruiters.
+                                </p>
+                                <div class="flex items-center text-sm text-gray-500 mb-3">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+                                    </svg>
+                                    Online Event • InnovateHub Platform
+                                </div>
+                                <div class="flex items-center text-sm text-gray-500 mb-3">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 614 0z"></path>
+                                    </svg>
+                                    167 alumni registered • Students & Alumni
+                                </div>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Career Development</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Tech Industry</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Job Opportunities</span>
+                                </div>
+                            </div>
+                            <div class="ml-4 flex flex-col space-y-2">
+                                <button onclick="registerEvent(3)" class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700">
+                                    Register Free
+                                </button>
+                                <button onclick="viewEventDetails(3)" class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Already Registered Event -->
+                    <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-green-500">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex-1">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3">Networking</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3">Registered ✓</span>
+                                    <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3">University Event</span>
+                                    <span class="text-sm text-gray-500">Nov 5 • 6:00 PM - 9:00 PM</span>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Alumni Business Networking Night</h3>
+                                <p class="text-gray-600 mb-3">
+                                    An exclusive evening for alumni entrepreneurs and business leaders. Share experiences, explore collaborations, and expand your professional network in a sophisticated setting.
+                                </p>
+                                <div class="flex items-center text-sm text-gray-500 mb-3">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    </svg>
+                                    The Peninsula Manila, Makati • Cocktail Reception
+                                </div>
+                                <div class="flex items-center text-sm text-green-600 mb-3">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    You're registered! Check email for venue details and dress code.
+                                </div>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Business Networking</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Entrepreneurs</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Professional</span>
+                                </div>
+                            </div>
+                            <div class="ml-4 flex flex-col space-y-2">
+                                <button onclick="viewMyRegistration(4)" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">
+                                    My Registration
+                                </button>
+                                <button onclick="cancelRegistration(4)" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
+                                    Cancel
+                                </button>
+                                <button onclick="viewEventDetails(4)" class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- University Event - Workshop -->
+                    <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-purple-500">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex-1">
+                                <div class="flex items-center mb-2">
+                                    <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3">Workshop</span>
+                                    <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3">University Event</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3">Hybrid</span>
+                                    <span class="text-sm text-gray-500">Oct 30 • 2:00 PM - 4:00 PM</span>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">Leadership Development Workshop</h3>
+                                <p class="text-gray-600 mb-3">
+                                    Enhance your leadership skills with interactive workshops led by successful alumni executives. Perfect for career advancement and personal development with practical applications.
+                                </p>
+                                <div class="flex items-center text-sm text-gray-500 mb-3">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    </svg>
+                                    PCU-DASMA Campus + Zoom • Limited to 30 participants
+                                </div>
+                                <div class="flex items-center text-sm text-orange-600 mb-3">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    Registration closes in 3 days • 18/30 slots filled
+                                </div>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Leadership</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Career Development</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Professional Skills</span>
+                                </div>
+                            </div>
+                            <div class="ml-4 flex flex-col space-y-2">
+                                <button onclick="registerEvent(5)" class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700">
+                                    Register
+                                </button>
+                                <button onclick="viewEventDetails(5)" class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Load More Button -->
+                    <div class="text-center py-6">
+                        <button onclick="loadMoreEvents()" class="px-6 py-2 bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 font-medium">
+                            Load More Events
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- My Registrations -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">My Registrations</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center p-3 bg-green-50 rounded-lg">
+                            <div class="flex-shrink-0 w-10 h-10 bg-green-600 text-white rounded-lg flex items-center justify-center">
+                                <span class="text-xs font-bold">5</span>
+                            </div>
+                            <div class="ml-3 flex-1">
+                                <h4 class="text-sm font-medium text-gray-900">Networking Night</h4>
+                                <p class="text-xs text-gray-500">Nov 5, 6:00 PM</p>
+                                <p class="text-xs text-green-600">Confirmed</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center p-3 bg-blue-50 rounded-lg">
+                            <div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center">
+                                <span class="text-xs font-bold">15</span>
+                            </div>
+                            <div class="ml-3 flex-1">
+                                <h4 class="text-sm font-medium text-gray-900">Homecoming 2025</h4>
+                                <p class="text-xs text-gray-500">Oct 15, 9:00 AM</p>
+                                <p class="text-xs text-blue-600">Confirmed</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center p-3 bg-purple-50 rounded-lg">
+                            <div class="flex-shrink-0 w-10 h-10 bg-purple-600 text-white rounded-lg flex items-center justify-center">
+                                <span class="text-xs font-bold">22</span>
+                            </div>
+                            <div class="ml-3 flex-1">
+                                <h4 class="text-sm font-medium text-gray-900">Digital Marketing</h4>
+                                <p class="text-xs text-gray-500">Oct 22-Nov 18</p>
+                                <p class="text-xs text-orange-600">Payment Pending</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="viewAllRegistrations()" class="w-full mt-4 text-sm text-primary hover:underline">
+                        View all registrations →
+                    </button>
+                </div>
+
+                <!-- Upcoming Deadlines -->
+                <div class="bg-yellow-50 rounded-lg p-6 border border-yellow-200">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Registration Deadlines</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="text-sm font-medium text-gray-900">Digital Marketing Series</h4>
+                                <p class="text-xs text-gray-500">Oct 22 event</p>
+                            </div>
+                            <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">1 day left</span>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="text-sm font-medium text-gray-900">Leadership Workshop</h4>
+                                <p class="text-xs text-gray-500">Oct 30 event</p>
+                            </div>
+                            <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">3 days left</span>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="text-sm font-medium text-gray-900">Tech Symposium</h4>
+                                <p class="text-xs text-gray-500">Nov 8 event</p>
+                            </div>
+                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">10 days left</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Categories -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Event Categories</h3>
+                    <div class="space-y-2">
+                        <button onclick="filterByCategory('networking')" class="w-full flex justify-between items-center p-2 rounded hover:bg-gray-50">
+                            <span class="text-gray-700">Networking Events</span>
+                            <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">5</span>
+                        </button>
+                        <button onclick="filterByCategory('career')" class="w-full flex justify-between items-center p-2 rounded hover:bg-gray-50">
+                            <span class="text-gray-700">Career Development</span>
+                            <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">8</span>
+                        </button>
+                        <button onclick="filterByCategory('social')" class="w-full flex justify-between items-center p-2 rounded hover:bg-gray-50">
+                            <span class="text-gray-700">Social Gatherings</span>
+                            <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">3</span>
+                        </button>
+                        <button onclick="filterByCategory('workshop')" class="w-full flex justify-between items-center p-2 rounded hover:bg-gray-50">
+                            <span class="text-gray-700">Professional Workshops</span>
+                            <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">4</span>
+                        </button>
+                        <button onclick="filterByCategory('partnership')" class="w-full flex justify-between items-center p-2 rounded hover:bg-gray-50">
+                            <span class="text-gray-700">Partnership Events</span>
+                            <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">7</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Event Calendar Preview -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">October 2025</h3>
+                    <div class="grid grid-cols-7 gap-1 text-center text-xs mb-3">
+                        <div class="font-medium text-gray-500">S</div>
+                        <div class="font-medium text-gray-500">M</div>
+                        <div class="font-medium text-gray-500">T</div>
+                        <div class="font-medium text-gray-500">W</div>
+                        <div class="font-medium text-gray-500">T</div>
+                        <div class="font-medium text-gray-500">F</div>
+                        <div class="font-medium text-gray-500">S</div>
+
+                        <div class="p-1"></div>
+                        <div class="p-1"></div>
+                        <div class="p-1">1</div>
+                        <div class="p-1">2</div>
+                        <div class="p-1">3</div>
+                        <div class="p-1">4</div>
+                        <div class="p-1">5</div>
+                        <div class="p-1">6</div>
+                        <div class="p-1">7</div>
+                        <div class="p-1">8</div>
+                        <div class="p-1 bg-yellow-100 text-yellow-800 rounded cursor-pointer" onclick="showDayEvents('9')" title="Current Day">9</div>
+                        <div class="p-1">10</div>
+                        <div class="p-1">11</div>
+                        <div class="p-1">12</div>
+                        <div class="p-1">13</div>
+                        <div class="p-1">14</div>
+                        <div class="p-1 bg-primary text-white rounded cursor-pointer" onclick="showDayEvents('15')" title="Homecoming">15</div>
+                        <div class="p-1">16</div>
+                        <div class="p-1">17</div>
+                        <div class="p-1">18</div>
+                        <div class="p-1">19</div>
+                        <div class="p-1 bg-orange-100 text-orange-800 rounded cursor-pointer" onclick="showDayEvents('20')" title="Registration Deadline">20</div>
+                        <div class="p-1">21</div>
+                        <div class="p-1 bg-green-100 text-green-800 rounded cursor-pointer" onclick="showDayEvents('22')" title="Career Fair">22</div>
+                        <div class="p-1">23</div>
+                        <div class="p-1">24</div>
+                        <div class="p-1">25</div>
+                        <div class="p-1">26</div>
+                        <div class="p-1">27</div>
+                        <div class="p-1">28</div>
+                        <div class="p-1">29</div>
+                        <div class="p-1 bg-purple-100 text-purple-800 rounded cursor-pointer" onclick="showDayEvents('30')" title="Workshop">30</div>
+                        <div class="p-1">31</div>
+                        <div class="p-1"></div>
+                        <div class="p-1"></div>
+                    </div>
+                    <div class="text-xs text-gray-500">
+                        <div class="flex items-center mb-1">
+                            <div class="w-2 h-2 bg-primary rounded mr-2"></div>
+                            Homecoming
+                        </div>
+                        <div class="flex items-center mb-1">
+                            <div class="w-2 h-2 bg-green-500 rounded mr-2"></div>
+                            Career Fair
+                        </div>
+                        <div class="flex items-center mb-1">
+                            <div class="w-2 h-2 bg-purple-500 rounded mr-2"></div>
+                            Workshop
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-2 h-2 bg-orange-500 rounded mr-2"></div>
+                            Deadlines
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+                    <div class="space-y-2">
+                        <button onclick="viewAllRegistrations()" class="w-full text-left px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50">
+                            📋 View My Registrations
+                        </button>
+                        <button onclick="downloadCalendar()" class="w-full text-left px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50">
+                            📅 Download Event Calendar
+                        </button>
+                        <button onclick="setEventReminders()" class="w-full text-left px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50">
+                            🔔 Manage Event Reminders
+                        </button>
+                        <button onclick="shareEvents()" class="w-full text-left px-3 py-2 text-sm text-gray-700 rounded hover:bg-gray-50">
+                            📤 Share Events
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Details Modal (Hidden by default) -->
+    <div id="eventModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+            
+            <div class="relative bg-white rounded-lg max-w-3xl w-full shadow-xl">
+                <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                    <h3 class="text-xl font-semibold text-gray-900">Event Details</h3>
+                    <button onclick="closeEventModal()" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="p-6 max-h-96 overflow-y-auto">
+                    <div id="eventModalContent">
+                        <!-- Dynamic content will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3">
+                    <button onclick="closeEventModal()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">
+                        Close
+                    </button>
+                    <button onclick="registerFromModal()" id="modalRegisterBtn" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700">
+                        Register for Event
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-      function toggleUserMenu() {
-        const menu = document.getElementById("userMenu");
-        menu.classList.toggle("hidden");
-      }
+        let currentEventId = null;
 
-      function logout() {
-        if (confirm("Are you sure you want to logout?")) {
-          window.location.href = "../login.html";
+        function toggleUserMenu() {
+            const menu = document.getElementById('userMenu');
+            menu.classList.toggle('hidden');
         }
-      }
 
-      function filterEvents(category) {
-        document.querySelectorAll(".event-filter").forEach((filter) => {
-          filter.classList.remove("active", "border-primary", "text-primary");
-          filter.classList.add("border-transparent", "text-gray-500");
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '../login.html';
+            }
+        }
+
+        function filterEvents(category) {
+            document.querySelectorAll('.event-filter').forEach(filter => {
+                filter.classList.remove('active', 'border-primary', 'text-primary');
+                filter.classList.add('border-transparent', 'text-gray-500');
+            });
+
+            event.target.classList.add('active', 'border-primary', 'text-primary');
+            event.target.classList.remove('border-transparent', 'text-gray-500');
+
+            console.log('Filtering events by:', category);
+        }
+
+        function filterByCategory(category) {
+            document.getElementById('categoryFilter').value = category;
+            console.log('Filtering by category:', category);
+        }
+
+        function registerEvent(eventId) {
+            currentEventId = eventId;
+            alert(`Successfully registered for event #${eventId}! Check your email for confirmation and payment instructions (if applicable).`);
+        }
+
+        function cancelRegistration(eventId) {
+            if (confirm('Are you sure you want to cancel your registration? You may lose your spot and any fees paid may not be refundable.')) {
+                alert(`Registration for event #${eventId} has been cancelled. You will receive a confirmation email shortly.`);
+                location.reload();
+            }
+        }
+
+        function viewEventDetails(eventId) {
+            currentEventId = eventId;
+            
+            // Sample event details (in real app, this would come from API)
+            const eventDetails = {
+                1: {
+                    title: 'PCU-DASMA Alumni Homecoming 2025',
+                    date: 'October 15, 2025',
+                    time: '9:00 AM - 8:00 PM',
+                    location: 'PCU-DASMA Campus',
+                    description: 'The biggest alumni gathering of the year! Reconnect with classmates, faculty, and celebrate our shared legacy. Features include: campus tours, recognition ceremony, networking lunch, alumni exhibits, and evening gala dinner.',
+                    organizer: 'Alumni Relations Office',
+                    type: 'University Event',
+                    fee: 'Free',
+                    capacity: '1000 alumni',
+                    registered: '847'
+                },
+                2: {
+                    title: 'Digital Marketing Mastery Workshop Series',
+                    date: 'October 22 - November 18, 2025',
+                    time: 'Tuesdays 7:00 PM - 9:00 PM',
+                    location: 'PCU-DASMA Campus + Virtual',
+                    description: 'Comprehensive 4-week workshop series covering modern digital marketing strategies including social media marketing, content creation, SEO, and analytics. Participants will gain hands-on experience with industry-standard tools and develop real marketing campaigns.',
+                    organizer: 'Partnership with DigitalBridge Marketing Solutions',
+                    type: 'Partnership Event',
+                    fee: '₱2,500',
+                    capacity: '80 participants',
+                    registered: '73'
+                },
+                3: {
+                    title: 'Virtual Tech Career Fair 2025',
+                    date: 'October 22, 2025',
+                    time: '9:00 AM - 5:00 PM',
+                    location: 'Online Event - InnovateHub Platform',
+                    description: 'Connect with 40+ leading tech companies looking specifically for PCU-DASMA alumni. Virtual networking sessions, company presentations, and one-on-one interviews with recruiters. Companies include major tech firms, startups, and consulting companies.',
+                    organizer: 'Partnership with InnovateHub Philippines',
+                    type: 'Partnership Event',
+                    fee: 'Free',
+                    capacity: '250 participants',
+                    registered: '167'
+                }
+            };
+
+            const event = eventDetails[eventId] || eventDetails[1];
+            const modalContent = `
+                <div class="space-y-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">${event.title}</h2>
+                        <div class="flex items-center space-x-4 text-sm text-gray-600 mb-4">
+                            <span>📅 ${event.date}</span>
+                            <span>🕐 ${event.time}</span>
+                            <span>📍 ${event.location}</span>
+                        </div>
+                        <div class="flex items-center space-x-2 mb-4">
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">${event.type}</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">${event.fee}</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">About This Event</h3>
+                        <p class="text-gray-600">${event.description}</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Organizer</h4>
+                            <p class="text-gray-600">${event.organizer}</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Capacity</h4>
+                            <p class="text-gray-600">${event.registered}/${event.capacity.split(' ')[0]} registered</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-gray-900 mb-2">Registration Information</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Registration confirmation will be sent via email</li>
+                            <li>• Please arrive 15 minutes early for check-in</li>
+                            <li>• Bring a valid ID for verification</li>
+                            <li>• Contact alumni@pcu.edu.ph for questions</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('eventModalContent').innerHTML = modalContent;
+            document.getElementById('eventModal').classList.remove('hidden');
+        }
+
+        function closeEventModal() {
+            document.getElementById('eventModal').classList.add('hidden');
+        }
+
+        function registerFromModal() {
+            if (currentEventId) {
+                registerEvent(currentEventId);
+                closeEventModal();
+            }
+        }
+
+        function viewMyRegistration(eventId) {
+            alert(`Opening your registration details for event #${eventId}...`);
+        }
+
+        function viewAllRegistrations() {
+            alert('Opening your complete registration history...');
+        }
+
+        function loadMoreEvents() {
+            alert('Loading more events...');
+        }
+
+        function showDayEvents(day) {
+            alert(`Showing events for October ${day}, 2025...`);
+        }
+
+        function downloadCalendar() {
+            alert('Downloading alumni events calendar...');
+        }
+
+        function setEventReminders() {
+            alert('Opening event reminder settings...');
+        }
+
+        function shareEvents() {
+            alert('Opening share options for alumni events...');
+        }
+
+        // Search functionality
+        document.getElementById('searchEvents').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            console.log('Searching events for:', searchTerm);
         });
 
-        event.target.classList.add("active", "border-primary", "text-primary");
-        event.target.classList.remove("border-transparent", "text-gray-500");
+        // Filter functionality
+        document.getElementById('categoryFilter').addEventListener('change', function(e) {
+            console.log('Category filter changed:', e.target.value);
+        });
 
-        console.log("Filtering events by:", category);
-      }
+        document.getElementById('formatFilter').addEventListener('change', function(e) {
+            console.log('Format filter changed:', e.target.value);
+        });
 
-      function registerEvent(eventId) {
-        alert(
-          `Successfully registered for event #${eventId}! Check your email for confirmation.`
-        );
-      }
+        document.getElementById('timeFilter').addEventListener('change', function(e) {
+            console.log('Time filter changed:', e.target.value);
+        });
 
-      function cancelRegistration(eventId) {
-        if (confirm("Are you sure you want to cancel your registration?")) {
-          alert(`Registration for event #${eventId} has been cancelled.`);
-          location.reload();
-        }
-      }
+        // Close modal when clicking outside
+        document.getElementById('eventModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeEventModal();
+            }
+        });
 
-      function viewEventDetails(eventId) {
-        alert(`Opening details for event #${eventId}...`);
-      }
+        // Close user menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('userMenu');
+            const button = event.target.closest('button');
 
-      // Close user menu when clicking outside
-      document.addEventListener("click", function (event) {
-        const menu = document.getElementById("userMenu");
-        const button = event.target.closest("button");
-
-        if (!button || button.onclick !== toggleUserMenu) {
-          menu.classList.add("hidden");
-        }
-      });
+            if (!button || button.onclick !== toggleUserMenu) {
+                menu.classList.add('hidden');
+            }
+        });
     </script>
-  </body>
+</body>
 </html>
