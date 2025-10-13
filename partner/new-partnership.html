@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create Partnership Proposal - PCU-DASMA Connect</title>
+    <title>Create Community Partnership Proposal - PCU-DASMA Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -24,39 +24,56 @@
     <nav class="bg-white shadow-sm border-b">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
+          <!-- Logo and Desktop Navigation -->
           <div class="flex items-center">
-            <a href="../index.html" class="text-xl font-bold text-primary"
-              >PCU-DASMA Connect</a
-            >
+            <a href="../index.html" class="text-xl font-bold text-primary">
+              PCU-DASMA Connect
+            </a>
+            <!-- Desktop Navigation Menu -->
             <div class="hidden md:ml-10 md:flex md:space-x-8">
               <a
                 href="dashboard.html"
-                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
-                >Dashboard</a
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
               >
+                Dashboard
+              </a>
               <a
                 href="job-postings.html"
-                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
-                >Job Postings</a
+                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
               >
+                Job Postings
+              </a>
               <a
                 href="partnerships.html"
-                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
-                >Partnerships</a
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
               >
-  
+                Partnerships
+              </a>
+
+              <a
+                href="news.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                News
+              </a>
+
               <a
                 href="profile.html"
-                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
-                >Profile</a
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
               >
+                Profile
+              </a>
             </div>
           </div>
-          <div class="flex items-center space-x-4">
+
+          <!-- Desktop User Menu -->
+          <div class="hidden md:flex items-center space-x-4">
             <div class="relative">
               <button
                 onclick="toggleUserMenu()"
-                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"
+                aria-label="Open user menu"
+                aria-haspopup="true"
               >
                 <img
                   class="h-8 w-8 rounded-full"
@@ -66,22 +83,146 @@
               </button>
               <div
                 id="userMenu"
-                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 transform transition-all duration-200"
+                role="menu"
+                aria-orientation="vertical"
               >
                 <div class="py-1">
                   <a
                     href="profile.html"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >Profile</a
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
                   >
+                    Profile
+                  </a>
                   <a
                     href="#"
                     onclick="logout()"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >Logout</a
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
                   >
+                    Logout
+                  </a>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+            <button
+              onclick="toggleMobileMenu()"
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-all duration-200"
+              aria-label="Open main menu"
+              aria-expanded="false"
+            >
+              <svg
+                id="hamburgerIcon"
+                class="block h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <svg
+                id="closeIcon"
+                class="hidden h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div
+          id="mobileMenu"
+          class="md:hidden hidden transition-all duration-300 ease-in-out"
+        >
+          <div
+            class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200 bg-white"
+          >
+            <a
+              href="dashboard.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Dashboard
+            </a>
+            <a
+              href="job-postings.html"
+              class="text-primary bg-primary bg-opacity-10 block px-3 py-2 rounded-md text-base font-medium"
+            >
+              Job Postings
+            </a>
+            <a
+              href="partnerships.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Partnerships
+            </a>
+            <a
+              href="news.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              News
+            </a>
+            <a
+              href="profile.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Profile
+            </a>
+          </div>
+          <div class="pt-4 pb-3 border-t border-gray-200">
+            <div class="flex items-center px-5">
+              <div class="flex-shrink-0">
+                <img
+                  class="h-10 w-10 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </div>
+              <div class="ml-3">
+                <div class="text-base font-medium leading-none text-gray-900">
+                  User Account
+                </div>
+                <div
+                  class="text-sm font-medium leading-none text-gray-500 mt-1"
+                >
+                  user@pcudasma.edu.ph
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 px-2 space-y-1">
+              <a
+                href="profile.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              >
+                Profile
+              </a>
+              <a
+                href="#"
+                onclick="logout()"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              >
+                Logout
+              </a>
             </div>
           </div>
         </div>
@@ -112,289 +253,46 @@
             </svg>
           </a>
           <h1 class="text-3xl font-bold text-gray-900">
-            Create Partnership Proposal
+            Create Community Partnership Proposal
           </h1>
         </div>
         <p class="text-gray-600">
-          Submit a proposal for events, programs, workshops, or collaborations
-          with PCU-DASMA
+          Submit a proposal for walk-in community activities, outreach programs,
+          and inclusive events that require no registration and welcome open
+          participation
         </p>
       </div>
 
       <!-- Form Container -->
       <div class="bg-white shadow-sm rounded-lg">
         <form id="partnershipForm" class="divide-y divide-gray-200">
-          <!-- Partnership Type Selection -->
+          <!-- Community Activity Type Selection -->
           <div class="px-6 py-6">
             <h2 class="text-lg font-medium text-gray-900 mb-4">
-              Partnership Type
+              Community Activity Type
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label
-                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
-                >
-                  <input
-                    type="radio"
-                    name="partnership_type"
-                    value="training_program"
-                    class="sr-only"
-                    onchange="togglePartnershipFields()"
-                  />
-                  <div class="flex-1">
-                    <div class="flex items-center">
-                      <div
-                        class="partnership-type-icon w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3"
-                      >
-                        <svg
-                          class="w-5 h-5 text-blue-600"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                          ></path>
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 class="text-sm font-medium text-gray-900">
-                          Training Program
-                        </h3>
-                        <p class="text-sm text-gray-500">
-                          Certification or skills training
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="partnership-type-radio hidden">
-                    <div
-                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
-                    >
-                      <div class="w-2 h-2 bg-white rounded-full"></div>
-                    </div>
-                  </div>
-                </label>
-              </div>
+            <p class="text-sm text-gray-600 mb-6">
+              Select the type of community activity that allows open, walk-in
+              participation without formal registration.
+            </p>
 
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <!-- Feeding Programs -->
               <div>
                 <label
                   class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
                 >
                   <input
                     type="radio"
-                    name="partnership_type"
-                    value="workshop_series"
+                    name="activity_type"
+                    value="feeding_program"
                     class="sr-only"
-                    onchange="togglePartnershipFields()"
+                    onchange="toggleActivityFields()"
                   />
                   <div class="flex-1">
                     <div class="flex items-center">
                       <div
-                        class="partnership-type-icon w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3"
-                      >
-                        <svg
-                          class="w-5 h-5 text-purple-600"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
-                          ></path>
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 class="text-sm font-medium text-gray-900">
-                          Workshop Series
-                        </h3>
-                        <p class="text-sm text-gray-500">
-                          Multi-session educational workshops
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="partnership-type-radio hidden">
-                    <div
-                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
-                    >
-                      <div class="w-2 h-2 bg-white rounded-full"></div>
-                    </div>
-                  </div>
-                </label>
-              </div>
-
-              <div>
-                <label
-                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
-                >
-                  <input
-                    type="radio"
-                    name="partnership_type"
-                    value="community_event"
-                    class="sr-only"
-                    onchange="togglePartnershipFields()"
-                  />
-                  <div class="flex-1">
-                    <div class="flex items-center">
-                      <div
-                        class="partnership-type-icon w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center mr-3"
-                      >
-                        <svg
-                          class="w-5 h-5 text-pink-600"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                          ></path>
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 class="text-sm font-medium text-gray-900">
-                          Community Event
-                        </h3>
-                        <p class="text-sm text-gray-500">
-                          Public events, competitions, hackathons
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="partnership-type-radio hidden">
-                    <div
-                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
-                    >
-                      <div class="w-2 h-2 bg-white rounded-full"></div>
-                    </div>
-                  </div>
-                </label>
-              </div>
-
-              <div>
-                <label
-                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
-                >
-                  <input
-                    type="radio"
-                    name="partnership_type"
-                    value="research_collaboration"
-                    class="sr-only"
-                    onchange="togglePartnershipFields()"
-                  />
-                  <div class="flex-1">
-                    <div class="flex items-center">
-                      <div
-                        class="partnership-type-icon w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3"
-                      >
-                        <svg
-                          class="w-5 h-5 text-green-600"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                          ></path>
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 class="text-sm font-medium text-gray-900">
-                          Research Collaboration
-                        </h3>
-                        <p class="text-sm text-gray-500">
-                          Joint research projects and studies
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="partnership-type-radio hidden">
-                    <div
-                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
-                    >
-                      <div class="w-2 h-2 bg-white rounded-full"></div>
-                    </div>
-                  </div>
-                </label>
-              </div>
-
-              <div>
-                <label
-                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
-                >
-                  <input
-                    type="radio"
-                    name="partnership_type"
-                    value="scholarship_program"
-                    class="sr-only"
-                    onchange="togglePartnershipFields()"
-                  />
-                  <div class="flex-1">
-                    <div class="flex items-center">
-                      <div
-                        class="partnership-type-icon w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mr-3"
-                      >
-                        <svg
-                          class="w-5 h-5 text-yellow-600"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
-                          ></path>
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 class="text-sm font-medium text-gray-900">
-                          Scholarship Program
-                        </h3>
-                        <p class="text-sm text-gray-500">
-                          Financial aid and scholarships
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="partnership-type-radio hidden">
-                    <div
-                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
-                    >
-                      <div class="w-2 h-2 bg-white rounded-full"></div>
-                    </div>
-                  </div>
-                </label>
-              </div>
-
-              <div>
-                <label
-                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
-                >
-                  <input
-                    type="radio"
-                    name="partnership_type"
-                    value="internship_program"
-                    class="sr-only"
-                    onchange="togglePartnershipFields()"
-                  />
-                  <div class="flex-1">
-                    <div class="flex items-center">
-                      <div
-                        class="partnership-type-icon w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3"
+                        class="activity-type-icon w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3"
                       >
                         <svg
                           class="w-5 h-5 text-orange-600"
@@ -406,21 +304,21 @@
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             stroke-width="2"
-                            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                           ></path>
                         </svg>
                       </div>
                       <div>
                         <h3 class="text-sm font-medium text-gray-900">
-                          Internship Program
+                          Feeding Programs
                         </h3>
                         <p class="text-sm text-gray-500">
-                          Student internship opportunities
+                          On-site meals for children & vulnerable groups
                         </p>
                       </div>
                     </div>
                   </div>
-                  <div class="partnership-type-radio hidden">
+                  <div class="activity-type-radio hidden">
                     <div
                       class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
                     >
@@ -430,21 +328,226 @@
                 </label>
               </div>
 
+              <!-- Brigada Eskwela -->
               <div>
                 <label
                   class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
                 >
                   <input
                     type="radio"
-                    name="partnership_type"
-                    value="other"
+                    name="activity_type"
+                    value="brigada_eskwela"
                     class="sr-only"
-                    onchange="togglePartnershipFields()"
+                    onchange="toggleActivityFields()"
                   />
                   <div class="flex-1">
                     <div class="flex items-center">
                       <div
-                        class="partnership-type-icon w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mr-3"
+                        class="activity-type-icon w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3"
+                      >
+                        <svg
+                          class="w-5 h-5 text-blue-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 class="text-sm font-medium text-gray-900">
+                          Brigada Eskwela
+                        </h3>
+                        <p class="text-sm text-gray-500">
+                          School clean-up, repair & maintenance
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="activity-type-radio hidden">
+                    <div
+                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
+                    >
+                      <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Community Clean-up -->
+              <div>
+                <label
+                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                >
+                  <input
+                    type="radio"
+                    name="activity_type"
+                    value="community_cleanup"
+                    class="sr-only"
+                    onchange="toggleActivityFields()"
+                  />
+                  <div class="flex-1">
+                    <div class="flex items-center">
+                      <div
+                        class="activity-type-icon w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3"
+                      >
+                        <svg
+                          class="w-5 h-5 text-green-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 class="text-sm font-medium text-gray-900">
+                          Community Clean-up
+                        </h3>
+                        <p class="text-sm text-gray-500">
+                          Environmental protection activities
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="activity-type-radio hidden">
+                    <div
+                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
+                    >
+                      <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Tree Planting -->
+              <div>
+                <label
+                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                >
+                  <input
+                    type="radio"
+                    name="activity_type"
+                    value="tree_planting"
+                    class="sr-only"
+                    onchange="toggleActivityFields()"
+                  />
+                  <div class="flex-1">
+                    <div class="flex items-center">
+                      <div
+                        class="activity-type-icon w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center mr-3"
+                      >
+                        <svg
+                          class="w-5 h-5 text-emerald-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 class="text-sm font-medium text-gray-900">
+                          Tree Planting
+                        </h3>
+                        <p class="text-sm text-gray-500">
+                          Park beautification & environmental care
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="activity-type-radio hidden">
+                    <div
+                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
+                    >
+                      <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Donation Drive -->
+              <div>
+                <label
+                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                >
+                  <input
+                    type="radio"
+                    name="activity_type"
+                    value="donation_drive"
+                    class="sr-only"
+                    onchange="toggleActivityFields()"
+                  />
+                  <div class="flex-1">
+                    <div class="flex items-center">
+                      <div
+                        class="activity-type-icon w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3"
+                      >
+                        <svg
+                          class="w-5 h-5 text-purple-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 class="text-sm font-medium text-gray-900">
+                          Donation Drive
+                        </h3>
+                        <p class="text-sm text-gray-500">
+                          Clothes, food & school supplies collection
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="activity-type-radio hidden">
+                    <div
+                      class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
+                    >
+                      <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Other -->
+              <div>
+                <label
+                  class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50"
+                >
+                  <input
+                    type="radio"
+                    name="activity_type"
+                    value="other"
+                    class="sr-only"
+                    onchange="toggleActivityFields()"
+                  />
+                  <div class="flex-1">
+                    <div class="flex items-center">
+                      <div
+                        class="activity-type-icon w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center mr-3"
                       >
                         <svg
                           class="w-5 h-5 text-gray-600"
@@ -463,12 +566,12 @@
                       <div>
                         <h3 class="text-sm font-medium text-gray-900">Other</h3>
                         <p class="text-sm text-gray-500">
-                          Custom partnership proposal
+                          Custom community activity
                         </p>
                       </div>
                     </div>
                   </div>
-                  <div class="partnership-type-radio hidden">
+                  <div class="activity-type-radio hidden">
                     <div
                       class="w-4 h-4 bg-primary rounded-full flex items-center justify-center"
                     >
@@ -479,13 +582,13 @@
               </div>
             </div>
 
-            <!-- Other Partnership Type Input -->
-            <div id="other_partnership_type" class="hidden mt-4">
+            <!-- Other Activity Type Input -->
+            <div id="other_activity_type" class="hidden mt-4">
               <label
                 for="other_type_input"
                 class="block text-sm font-medium text-gray-700 mb-1"
               >
-                Please specify the type of partnership
+                Please specify the type of community activity
                 <span class="text-red-500">*</span>
               </label>
               <input
@@ -493,12 +596,45 @@
                 id="other_type_input"
                 name="other_type_input"
                 class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                placeholder="e.g., Mentorship Program, Industry Panel Discussion, etc."
+                placeholder="e.g., Mobile Health Clinic, Book Distribution, Relief Goods Distribution, etc."
               />
+            </div>
+
+            <!-- Open Participation Notice -->
+            <div
+              id="open_participation_notice"
+              class="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg"
+            >
+              <div class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-600 mr-2 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                <div>
+                  <h4 class="font-semibold text-green-800">
+                    Open Community Participation
+                  </h4>
+                  <p class="text-sm text-green-700">
+                    This community activity welcomes walk-in participation
+                    without formal registration. Community members can join
+                    spontaneously, fostering inclusive engagement and broader
+                    community collaboration.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- Organization Information (NEW SECTION) -->
+          <!-- Organization Information -->
           <div class="px-6 py-6">
             <h2 class="text-lg font-medium text-gray-900 mb-4">
               Organization Information
@@ -510,7 +646,7 @@
                     for="organization_name"
                     class="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Organization Name <span class="text-red-500">*</span>
+                    Organization/Group Name <span class="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -518,10 +654,9 @@
                     name="organization_name"
                     required
                     class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    placeholder="e.g., TechCorp Solutions Inc."
+                    placeholder="e.g., Community Helpers Foundation, Barangay Volunteer Group"
                   />
                 </div>
-
                 <div>
                   <label
                     for="organization_type"
@@ -536,17 +671,25 @@
                     class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
                   >
                     <option value="">Select Organization Type</option>
-                    <option value="private_company">Private Company</option>
-                    <option value="government_agency">Government Agency</option>
+                    <option value="volunteer_group">Volunteer Group</option>
+                    <option value="community_group">Community Group</option>
                     <option value="non_profit">Non-Profit Organization</option>
-                    <option value="educational_institution">
-                      Educational Institution
+                    <option value="charity_foundation">
+                      Charity Foundation
                     </option>
-                    <option value="startup">Startup</option>
-                    <option value="international_organization">
-                      International Organization
+                    <option value="religious_organization">
+                      Religious Organization
                     </option>
-                    <option value="foundation">Foundation</option>
+                    <option value="barangay_organization">
+                      Barangay Organization
+                    </option>
+                    <option value="civic_organization">
+                      Civic Organization
+                    </option>
+                    <option value="student_organization">
+                      Student Organization
+                    </option>
+                    <option value="youth_group">Youth Group</option>
                     <option value="other">Other</option>
                   </select>
                 </div>
@@ -554,18 +697,18 @@
 
               <div>
                 <label
-                  for="organization_address"
+                  for="organization_background"
                   class="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Organization Address <span class="text-red-500">*</span>
+                  Organization Background <span class="text-red-500">*</span>
                 </label>
                 <textarea
-                  id="organization_address"
-                  name="organization_address"
-                  rows="2"
+                  id="organization_background"
+                  name="organization_background"
+                  rows="4"
                   required
                   class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="Complete address including city, province, and postal code"
+                  placeholder="Brief background about your organization, its mission, and experience in community service activities..."
                 ></textarea>
               </div>
 
@@ -575,17 +718,16 @@
                     for="organization_website"
                     class="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Website URL
+                    Website/Social Media URL
                   </label>
                   <input
                     type="url"
                     id="organization_website"
                     name="organization_website"
                     class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    placeholder="https://www.company.com"
+                    placeholder="https://www.facebook.com/yourgroup or website"
                   />
                 </div>
-
                 <div>
                   <label
                     for="organization_phone"
@@ -603,303 +745,62 @@
                   />
                 </div>
               </div>
-
-              <div>
-                <label
-                  for="organization_background"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Organization Background <span class="text-red-500">*</span>
-                </label>
-                <textarea
-                  id="organization_background"
-                  name="organization_background"
-                  rows="4"
-                  required
-                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="Brief background about your organization, its mission, and relevant experience in partnership or educational programs..."
-                ></textarea>
-              </div>
             </div>
           </div>
 
-          <!-- Basic Information -->
+          <!-- Activity Information -->
           <div class="px-6 py-6">
             <h2 class="text-lg font-medium text-gray-900 mb-4">
-              Basic Information
+              Community Activity Details
             </h2>
             <div class="grid grid-cols-1 gap-6">
               <div>
                 <label
-                  for="title"
+                  for="activity_title"
                   class="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  <span id="title_label">Partnership Title</span>
-                  <span class="text-red-500">*</span>
+                  Activity Title <span class="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
-                  id="title"
-                  name="title"
+                  id="activity_title"
+                  name="activity_title"
                   required
                   class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="e.g., Cybersecurity Awareness Workshop Series"
+                  placeholder="e.g., Weekend Feeding Program for Street Children in Dasmarinas"
                 />
               </div>
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label
-                    for="target_audience"
+                    for="target_beneficiaries"
                     class="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Target Audience <span class="text-red-500">*</span>
+                    Target Beneficiaries <span class="text-red-500">*</span>
                   </label>
-                  <div class="grid grid-cols-1 gap-2 mt-2">
-                    <label class="flex items-center">
-                      <input
-                        type="radio"
-                        name="target_audience"
-                        value="all_students"
-                        class="border-gray-300 text-primary focus:ring-primary"
-                        onchange="toggleDepartmentSelection()"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >All Students</span
-                      >
-                    </label>
-                    <label class="flex items-center">
-                      <input
-                        type="radio"
-                        name="target_audience"
-                        value="specific_year_levels"
-                        class="border-gray-300 text-primary focus:ring-primary"
-                        onchange="toggleDepartmentSelection()"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >Specific Year Levels</span
-                      >
-                    </label>
-                    <label class="flex items-center">
-                      <input
-                        type="radio"
-                        name="target_audience"
-                        value="alumni"
-                        class="border-gray-300 text-primary focus:ring-primary"
-                        onchange="toggleDepartmentSelection()"
-                      />
-                      <span class="ml-2 text-sm text-gray-700">Alumni</span>
-                    </label>
-                    <label class="flex items-center">
-                      <input
-                        type="radio"
-                        name="target_audience"
-                        value="faculty_staff"
-                        class="border-gray-300 text-primary focus:ring-primary"
-                        onchange="toggleDepartmentSelection()"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >Faculty & Staff</span
-                      >
-                    </label>
-                    <label class="flex items-center">
-                      <input
-                        type="radio"
-                        name="target_audience"
-                        value="open_for_all"
-                        class="border-gray-300 text-primary focus:ring-primary"
-                        onchange="toggleDepartmentSelection()"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >Open for All</span
-                      >
-                    </label>
-                  </div>
-
-                  <!-- Department Selection (shown when All Students or Specific Year Levels is selected) -->
-                  <div
-                    id="department_selection"
-                    class="hidden mt-4 p-4 bg-gray-50 rounded-lg"
+                  <select
+                    id="target_beneficiaries"
+                    name="target_beneficiaries"
+                    required
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
                   >
-                    <label class="block text-sm font-medium text-gray-700 mb-3">
-                      Select Target Departments
-                      <span class="text-red-500">*</span>
-                    </label>
-
-                    <div class="mb-3">
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          id="select_all_departments"
-                          class="rounded border-gray-300 text-primary focus:ring-primary"
-                          onchange="toggleAllDepartments()"
-                        />
-                        <span class="ml-2 text-sm font-semibold text-gray-900"
-                          >Select All Departments</span
-                        >
-                      </label>
-                    </div>
-
-                    <div class="grid grid-cols-1 gap-2 ml-4">
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="departments[]"
-                          value="college_of_arts_and_sciences"
-                          class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
-                          onchange="updateSelectAllState()"
-                        />
-                        <span class="ml-2 text-sm text-gray-700"
-                          >College of Arts and Sciences</span
-                        >
-                      </label>
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="departments[]"
-                          value="college_of_business_and_accountancy"
-                          class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
-                          onchange="updateSelectAllState()"
-                        />
-                        <span class="ml-2 text-sm text-gray-700"
-                          >College of Business and Accountancy</span
-                        >
-                      </label>
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="departments[]"
-                          value="college_of_criminal_justice"
-                          class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
-                          onchange="updateSelectAllState()"
-                        />
-                        <span class="ml-2 text-sm text-gray-700"
-                          >College of Criminal Justice</span
-                        >
-                      </label>
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="departments[]"
-                          value="college_of_engineering_and_technology"
-                          class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
-                          onchange="updateSelectAllState()"
-                        />
-                        <span class="ml-2 text-sm text-gray-700"
-                          >College of Engineering and Technology</span
-                        >
-                      </label>
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="departments[]"
-                          value="college_of_education"
-                          class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
-                          onchange="updateSelectAllState()"
-                        />
-                        <span class="ml-2 text-sm text-gray-700"
-                          >College of Education</span
-                        >
-                      </label>
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="departments[]"
-                          value="college_of_informatics"
-                          class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
-                          onchange="updateSelectAllState()"
-                        />
-                        <span class="ml-2 text-sm text-gray-700"
-                          >College of Informatics</span
-                        >
-                      </label>
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="departments[]"
-                          value="college_of_hospitality_and_tourism_management"
-                          class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
-                          onchange="updateSelectAllState()"
-                        />
-                        <span class="ml-2 text-sm text-gray-700"
-                          >College of Hospitality and Tourism Management</span
-                        >
-                      </label>
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="departments[]"
-                          value="college_of_nursing_and_health_sciences"
-                          class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
-                          onchange="updateSelectAllState()"
-                        />
-                        <span class="ml-2 text-sm text-gray-700"
-                          >College of Nursing and Health Sciences</span
-                        >
-                      </label>
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="departments[]"
-                          value="college_of_social_work"
-                          class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
-                          onchange="updateSelectAllState()"
-                        />
-                        <span class="ml-2 text-sm text-gray-700"
-                          >College of Social Work</span
-                        >
-                      </label>
-                    </div>
-                  </div>
-
-                  <!-- Year Level Selection (shown when Specific Year Levels is selected) -->
-                  <div
-                    id="year_level_selection"
-                    class="hidden mt-4 p-4 bg-gray-50 rounded-lg"
-                  >
-                    <label class="block text-sm font-medium text-gray-700 mb-3">
-                      Select Target Year Levels
-                      <span class="text-red-500">*</span>
-                    </label>
-                    <div class="grid grid-cols-2 gap-2">
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="year_levels[]"
-                          value="1st_year"
-                          class="rounded border-gray-300 text-primary focus:ring-primary"
-                        />
-                        <span class="ml-2 text-sm text-gray-700">1st Year</span>
-                      </label>
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="year_levels[]"
-                          value="2nd_year"
-                          class="rounded border-gray-300 text-primary focus:ring-primary"
-                        />
-                        <span class="ml-2 text-sm text-gray-700">2nd Year</span>
-                      </label>
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="year_levels[]"
-                          value="3rd_year"
-                          class="rounded border-gray-300 text-primary focus:ring-primary"
-                        />
-                        <span class="ml-2 text-sm text-gray-700">3rd Year</span>
-                      </label>
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="year_levels[]"
-                          value="4th_year"
-                          class="rounded border-gray-300 text-primary focus:ring-primary"
-                        />
-                        <span class="ml-2 text-sm text-gray-700">4th Year</span>
-                      </label>
-                    </div>
-                  </div>
+                    <option value="">Select Primary Beneficiaries</option>
+                    <option value="street_children">Street Children</option>
+                    <option value="children">Children</option>
+                    <option value="elderly">Elderly</option>
+                    <option value="homeless">Homeless Individuals</option>
+                    <option value="families_in_need">Families in Need</option>
+                    <option value="students">Students</option>
+                    <option value="community_members">
+                      All Community Members
+                    </option>
+                    <option value="disaster_victims">Disaster Victims</option>
+                    <option value="persons_with_disabilities">
+                      Persons with Disabilities
+                    </option>
+                    <option value="general_public">General Public</option>
+                  </select>
                 </div>
 
                 <div>
@@ -907,527 +808,198 @@
                     for="expected_participants"
                     class="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Expected Participants <span class="text-red-500">*</span>
+                    Expected Walk-in Participants
+                    <span class="text-red-500">*</span>
                   </label>
                   <input
                     type="number"
                     id="expected_participants"
                     name="expected_participants"
-                    min="1"
+                    min="10"
                     required
                     class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    placeholder="100"
+                    placeholder="50"
                   />
                 </div>
               </div>
 
               <div>
                 <label
-                  for="description"
+                  for="activity_description"
                   class="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  <span id="description_label">Partnership Description</span>
-                  <span class="text-red-500">*</span>
+                  Activity Description <span class="text-red-500">*</span>
                 </label>
                 <textarea
-                  id="description"
-                  name="description"
+                  id="activity_description"
+                  name="activity_description"
                   rows="5"
                   required
                   class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="Provide a detailed description of your partnership proposal, including objectives, expected outcomes, and benefits for students..."
+                  placeholder="Provide a detailed description of your community activity, including what will be provided, how people can participate, and the expected community impact..."
                 ></textarea>
               </div>
             </div>
           </div>
 
-          <!-- Program Structure & Curriculum (for training/workshop) -->
-          <div id="program_structure" class="px-6 py-6 hidden">
-            <h2 class="text-lg font-medium text-gray-900 mb-4">
-              Program Structure & Curriculum
-            </h2>
-            <div class="grid grid-cols-1 gap-6">
-              <div>
-                <label
-                  for="curriculum_outline"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Curriculum Outline
-                </label>
-                <textarea
-                  id="curriculum_outline"
-                  name="curriculum_outline"
-                  rows="8"
-                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="Provide detailed week-by-week breakdown:
-Week 1: Introduction to [Topic]
-- Key concepts and principles
-- Hands-on lab activities
-
-Week 2: [Advanced Topics]
-- Practical applications
-- Real-world case studies
-
-..."
-                ></textarea>
-              </div>
-
-              <div>
-                <label
-                  for="learning_outcomes"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Learning Outcomes & Student Benefits
-                </label>
-                <textarea
-                  id="learning_outcomes"
-                  name="learning_outcomes"
-                  rows="4"
-                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="List specific skills students will gain, certificates provided, career benefits, etc."
-                ></textarea>
-              </div>
-
-              <div>
-                <label
-                  for="assessment_methods"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Assessment Methods & Certification
-                </label>
-                <textarea
-                  id="assessment_methods"
-                  name="assessment_methods"
-                  rows="3"
-                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="Describe how student progress will be assessed and what certifications will be awarded..."
-                ></textarea>
-              </div>
-            </div>
-          </div>
-
-          <!-- Internship Program Fields (NEW SECTION) -->
-          <div id="internship_fields" class="px-6 py-6 hidden">
-            <h2 class="text-lg font-medium text-gray-900 mb-4">
-              Internship Program Details
-            </h2>
-            <div class="grid grid-cols-1 gap-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label
-                    for="internship_duration"
-                    class="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Duration (months)
-                  </label>
-                  <input
-                    type="number"
-                    id="internship_duration"
-                    name="internship_duration"
-                    min="1"
-                    max="12"
-                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    placeholder="3"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    for="internship_positions"
-                    class="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Available Positions
-                  </label>
-                  <input
-                    type="number"
-                    id="internship_positions"
-                    name="internship_positions"
-                    min="1"
-                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    placeholder="10"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label
-                  for="internship_requirements"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Requirements & Qualifications
-                </label>
-                <textarea
-                  id="internship_requirements"
-                  name="internship_requirements"
-                  rows="3"
-                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="List specific requirements, skills, year level, GPA requirements, etc."
-                ></textarea>
-              </div>
-
-              <div>
-                <label
-                  for="internship_benefits"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Benefits & Compensation
-                </label>
-                <textarea
-                  id="internship_benefits"
-                  name="internship_benefits"
-                  rows="3"
-                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="Describe compensation, benefits, training, mentorship, etc."
-                ></textarea>
-              </div>
-
-              <div>
-                <label
-                  for="work_arrangement"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Work Arrangement
-                </label>
-                <select
-                  id="work_arrangement"
-                  name="work_arrangement"
-                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                >
-                  <option value="">Select Work Arrangement</option>
-                  <option value="on_site">On-site</option>
-                  <option value="remote">Remote</option>
-                  <option value="hybrid">Hybrid</option>
-                  <option value="flexible">Flexible</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <!-- Timeline & Schedule -->
+          <!-- Schedule & Location -->
           <div class="px-6 py-6">
             <h2 class="text-lg font-medium text-gray-900 mb-4">
-              Timeline & Schedule
+              Schedule & Location
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label
-                  for="start_date"
+                  for="activity_date"
                   class="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  <span id="start_date_label">Start Date</span>
-                  <span class="text-red-500">*</span>
+                  Activity Date <span class="text-red-500">*</span>
                 </label>
                 <input
                   type="date"
-                  id="start_date"
-                  name="start_date"
+                  id="activity_date"
+                  name="activity_date"
                   required
                   class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
                 />
               </div>
-
               <div>
                 <label
-                  for="end_date"
+                  for="activity_time"
                   class="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  <span id="end_date_label">End Date</span>
+                  Activity Time <span class="text-red-500">*</span>
                 </label>
                 <input
-                  type="date"
-                  id="end_date"
-                  name="end_date"
+                  type="time"
+                  id="activity_time"
+                  name="activity_time"
+                  required
                   class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
                 />
               </div>
             </div>
 
-            <!-- Dynamic Schedule Fields -->
-            <div id="training_schedule" class="mt-6 hidden">
+            <div class="mt-6">
               <label
-                for="schedule_details"
+                for="activity_duration"
                 class="block text-sm font-medium text-gray-700 mb-1"
               >
-                Training Schedule
+                Expected Duration <span class="text-red-500">*</span>
+              </label>
+              <select
+                id="activity_duration"
+                name="activity_duration"
+                required
+                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary md:w-1/2"
+              >
+                <option value="">Select Duration</option>
+                <option value="1_hour">1 Hour</option>
+                <option value="2_hours">2 Hours</option>
+                <option value="3_hours">3 Hours</option>
+                <option value="4_hours">4 Hours</option>
+                <option value="half_day">Half Day (4-6 hours)</option>
+                <option value="full_day">Full Day (8+ hours)</option>
+                <option value="multi_day">Multiple Days</option>
+              </select>
+            </div>
+
+            <div class="mt-6">
+              <label
+                for="venue_location"
+                class="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Activity Location <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="venue_location"
+                name="venue_location"
+                required
+                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                placeholder="e.g., Barangay Hall, Public Park, Street Corner, Community Center"
+              />
+            </div>
+
+            <div class="mt-6">
+              <label
+                for="venue_address"
+                class="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Complete Address <span class="text-red-500">*</span>
               </label>
               <textarea
-                id="schedule_details"
-                name="schedule_details"
-                rows="3"
+                id="venue_address"
+                name="venue_address"
+                rows="2"
+                required
                 class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                placeholder="e.g., Every Saturday, 8:00 AM - 5:00 PM for 4 weeks"
+                placeholder="Complete address including barangay, city, and landmarks for easy location"
               ></textarea>
             </div>
-
-            <div id="event_schedule" class="mt-6 hidden">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label
-                    for="event_time"
-                    class="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Event Time
-                  </label>
-                  <input
-                    type="time"
-                    id="event_time"
-                    name="event_time"
-                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  />
-                </div>
-                <div>
-                  <label
-                    for="duration_hours"
-                    class="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Duration (hours)
-                  </label>
-                  <input
-                    type="number"
-                    id="duration_hours"
-                    name="duration_hours"
-                    min="1"
-                    max="48"
-                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    placeholder="8"
-                  />
-                </div>
-              </div>
-            </div>
           </div>
 
-          <!-- Location & Venue -->
+          <!-- Resources & Support Needed -->
           <div class="px-6 py-6">
             <h2 class="text-lg font-medium text-gray-900 mb-4">
-              Location & Venue
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label
-                  for="venue_type"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Venue Type <span class="text-red-500">*</span>
-                </label>
-                <select
-                  id="venue_type"
-                  name="venue_type"
-                  required
-                  onchange="toggleVenueFields()"
-                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                >
-                  <option value="">Select Venue Type</option>
-                  <option value="pcu_campus">PCU-DASMA Campus</option>
-                  <option value="partner_location">
-                    Partner Organization Location
-                  </option>
-                  <option value="external_venue">External Venue</option>
-                  <option value="online">Online/Virtual</option>
-                  <option value="hybrid">Hybrid (Online + Physical)</option>
-                </select>
-              </div>
-
-              <div id="venue_details" class="hidden">
-                <label
-                  for="venue_address"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Venue Address/Details
-                </label>
-                <input
-                  type="text"
-                  id="venue_address"
-                  name="venue_address"
-                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="Specific location or online platform details"
-                />
-              </div>
-            </div>
-
-            <!-- Resource Requirements -->
-            <div id="resource_requirements" class="mt-6">
-              <h3 class="text-lg font-medium text-gray-900 mb-4">
-                Resource Requirements
-              </h3>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-3">
-                    PCU-DASMA Will Provide
-                  </label>
-                  <div class="space-y-2">
-                    <label class="flex items-center">
-                      <input
-                        type="checkbox"
-                        name="pcu_provides[]"
-                        value="classroom_facilities"
-                        class="rounded border-gray-300 text-primary focus:ring-primary"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >Classroom Facilities</span
-                      >
-                    </label>
-                    <label class="flex items-center">
-                      <input
-                        type="checkbox"
-                        name="pcu_provides[]"
-                        value="computer_laboratory"
-                        class="rounded border-gray-300 text-primary focus:ring-primary"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >Computer Laboratory</span
-                      >
-                    </label>
-                    <label class="flex items-center">
-                      <input
-                        type="checkbox"
-                        name="pcu_provides[]"
-                        value="internet_connectivity"
-                        class="rounded border-gray-300 text-primary focus:ring-primary"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >High-speed Internet</span
-                      >
-                    </label>
-                    <label class="flex items-center">
-                      <input
-                        type="checkbox"
-                        name="pcu_provides[]"
-                        value="av_equipment"
-                        class="rounded border-gray-300 text-primary focus:ring-primary"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >Audio-Visual Equipment</span
-                      >
-                    </label>
-                    <label class="flex items-center">
-                      <input
-                        type="checkbox"
-                        name="pcu_provides[]"
-                        value="administrative_support"
-                        class="rounded border-gray-300 text-primary focus:ring-primary"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >Administrative Support</span
-                      >
-                    </label>
-                    <label class="flex items-center">
-                      <input
-                        type="checkbox"
-                        name="pcu_provides[]"
-                        value="student_coordination"
-                        class="rounded border-gray-300 text-primary focus:ring-primary"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >Student Registration & Coordination</span
-                      >
-                    </label>
-                  </div>
-                </div>
-
-                <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-3">
-                    Partner Will Provide
-                  </label>
-                  <div class="space-y-2">
-                    <label class="flex items-center">
-                      <input
-                        type="checkbox"
-                        name="partner_provides[]"
-                        value="expert_trainers"
-                        class="rounded border-gray-300 text-primary focus:ring-primary"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >Expert Trainers/Facilitators</span
-                      >
-                    </label>
-                    <label class="flex items-center">
-                      <input
-                        type="checkbox"
-                        name="partner_provides[]"
-                        value="training_materials"
-                        class="rounded border-gray-300 text-primary focus:ring-primary"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >Training Materials & Software</span
-                      >
-                    </label>
-                    <label class="flex items-center">
-                      <input
-                        type="checkbox"
-                        name="partner_provides[]"
-                        value="equipment"
-                        class="rounded border-gray-300 text-primary focus:ring-primary"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >Specialized Equipment</span
-                      >
-                    </label>
-                    <label class="flex items-center">
-                      <input
-                        type="checkbox"
-                        name="partner_provides[]"
-                        value="certificates"
-                        class="rounded border-gray-300 text-primary focus:ring-primary"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >Certificates & Assessment</span
-                      >
-                    </label>
-                    <label class="flex items-center">
-                      <input
-                        type="checkbox"
-                        name="partner_provides[]"
-                        value="refreshments"
-                        class="rounded border-gray-300 text-primary focus:ring-primary"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >Refreshments/Meals</span
-                      >
-                    </label>
-                    <label class="flex items-center">
-                      <input
-                        type="checkbox"
-                        name="partner_provides[]"
-                        value="transportation"
-                        class="rounded border-gray-300 text-primary focus:ring-primary"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >Transportation (if applicable)</span
-                      >
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Budget & Resources -->
-          <div class="px-6 py-6">
-            <h2 class="text-lg font-medium text-gray-900 mb-4">
-              Budget & Resources
+              Resources & Support Needed
             </h2>
             <div class="grid grid-cols-1 gap-6">
+              <div>
+                <label
+                  for="resources_provided"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  What Your Organization Will Provide
+                  <span class="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="resources_provided"
+                  name="resources_provided"
+                  rows="4"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="List what your organization will provide (food, supplies, volunteers, equipment, etc.)..."
+                ></textarea>
+              </div>
+
+              <div>
+                <label
+                  for="support_needed"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Support Needed from PCU-DASMA
+                  <span class="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="support_needed"
+                  name="support_needed"
+                  rows="4"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="What support do you need? (venue coordination, student volunteers, promotion, logistics support, etc.)"
+                ></textarea>
+              </div>
+
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label
-                    for="total_budget"
+                    for="estimated_budget"
                     class="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Total Budget
+                    Estimated Budget
                   </label>
                   <div class="relative">
                     <span class="absolute left-3 top-2 text-gray-500">₱</span>
                     <input
                       type="number"
-                      id="total_budget"
-                      name="total_budget"
+                      id="estimated_budget"
+                      name="estimated_budget"
                       class="block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                      placeholder="150000"
+                      placeholder="10000"
                     />
                   </div>
                 </div>
-
                 <div>
                   <label
                     for="funding_source"
@@ -1441,203 +1013,81 @@ Week 2: [Advanced Topics]
                     required
                     class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
                   >
-                    <option value="">Select Funding Source</option>
-                    <option value="partner_funded">
-                      Partner Organization Funded
+                    <option value="">Select Primary Funding</option>
+                    <option value="organization_funded">
+                      Our Organization
                     </option>
-                    <option value="shared_cost">
-                      Shared Cost (Partner + PCU-DASMA)
+                    <option value="donations">Private Donations</option>
+                    <option value="crowdfunding">Community Crowdfunding</option>
+                    <option value="shared_cost">Shared with PCU-DASMA</option>
+                    <option value="corporate_sponsor">
+                      Corporate Sponsorship
                     </option>
-                    <option value="pcu_funded">PCU-DASMA Funded</option>
-                    <option value="participant_fee">Participant Fee</option>
-                    <option value="sponsorship">External Sponsorship</option>
-                    <option value="grant_funded">Grant Funded</option>
+                    <option value="government_support">
+                      Government Support
+                    </option>
+                    <option value="volunteer_contributions">
+                      Volunteer Contributions
+                    </option>
                   </select>
                 </div>
-              </div>
-
-              <!-- Budget Breakdown (NEW) -->
-              <div>
-                <label
-                  for="budget_breakdown"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Budget Breakdown
-                </label>
-                <textarea
-                  id="budget_breakdown"
-                  name="budget_breakdown"
-                  rows="4"
-                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="Provide a detailed breakdown of costs:
-- Trainer fees: ₱50,000
-- Materials & supplies: ₱30,000
-- Venue & equipment: ₱20,000
-- Administrative costs: ₱10,000
-- Contingency: ₱10,000"
-                ></textarea>
-              </div>
-
-              <!-- Scholarship specific fields -->
-              <div id="scholarship_fields" class="hidden space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      for="scholarship_amount"
-                      class="block text-sm font-medium text-gray-700 mb-1"
-                    >
-                      Scholarship Amount (per recipient)
-                    </label>
-                    <div class="relative">
-                      <span class="absolute left-3 top-2 text-gray-500">₱</span>
-                      <input
-                        type="number"
-                        id="scholarship_amount"
-                        name="scholarship_amount"
-                        class="block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                        placeholder="50000"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      for="scholarship_recipients"
-                      class="block text-sm font-medium text-gray-700 mb-1"
-                    >
-                      Number of Recipients
-                    </label>
-                    <input
-                      type="number"
-                      id="scholarship_recipients"
-                      name="scholarship_recipients"
-                      min="1"
-                      class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                      placeholder="10"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    for="eligibility_criteria"
-                    class="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Eligibility Criteria
-                  </label>
-                  <textarea
-                    id="eligibility_criteria"
-                    name="eligibility_criteria"
-                    rows="3"
-                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    placeholder="e.g., Minimum GPA of 3.5, IT field students, financial need assessment..."
-                  ></textarea>
-                </div>
-
-                <div>
-                  <label
-                    for="selection_process"
-                    class="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    Selection Process
-                  </label>
-                  <textarea
-                    id="selection_process"
-                    name="selection_process"
-                    rows="3"
-                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    placeholder="Describe the scholarship selection process, timeline, and criteria evaluation..."
-                  ></textarea>
-                </div>
-              </div>
-
-              <div>
-                <label
-                  for="resources_provided"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Resources/Materials Provided
-                </label>
-                <textarea
-                  id="resources_provided"
-                  name="resources_provided"
-                  rows="3"
-                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="Describe materials, certificates, equipment, or other resources that will be provided..."
-                ></textarea>
               </div>
             </div>
           </div>
 
-          <!-- Objectives & Outcomes -->
+          <!-- Community Impact -->
           <div class="px-6 py-6">
             <h2 class="text-lg font-medium text-gray-900 mb-4">
-              Objectives & Expected Outcomes
+              Community Impact & Goals
             </h2>
             <div class="grid grid-cols-1 gap-6">
               <div>
                 <label
-                  for="objectives"
+                  for="activity_objectives"
                   class="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Partnership Objectives <span class="text-red-500">*</span>
+                  Activity Objectives <span class="text-red-500">*</span>
                 </label>
                 <textarea
-                  id="objectives"
-                  name="objectives"
+                  id="activity_objectives"
+                  name="activity_objectives"
                   rows="4"
                   required
                   class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="List the main objectives and goals of this partnership..."
+                  placeholder="What are the main goals and objectives of this community activity?"
                 ></textarea>
               </div>
 
               <div>
                 <label
-                  for="expected_outcomes"
+                  for="expected_impact"
                   class="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Expected Outcomes <span class="text-red-500">*</span>
+                  Expected Community Impact <span class="text-red-500">*</span>
                 </label>
                 <textarea
-                  id="expected_outcomes"
-                  name="expected_outcomes"
+                  id="expected_impact"
+                  name="expected_impact"
                   rows="4"
                   required
                   class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="Describe the expected results, benefits for students, and measurable outcomes..."
+                  placeholder="How will this activity benefit the community? What positive changes do you expect to see?"
                 ></textarea>
               </div>
 
               <div>
                 <label
-                  for="success_metrics"
+                  for="sustainability_plan"
                   class="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Success Metrics
+                  Sustainability & Future Plans
                 </label>
                 <textarea
-                  id="success_metrics"
-                  name="success_metrics"
+                  id="sustainability_plan"
+                  name="sustainability_plan"
                   rows="3"
                   class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="How will the success of this partnership be measured? (e.g., completion rates, satisfaction scores, employment rates...)"
-                ></textarea>
-              </div>
-
-              <div>
-                <label
-                  for="long_term_impact"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Long-term Impact & Sustainability
-                </label>
-                <textarea
-                  id="long_term_impact"
-                  name="long_term_impact"
-                  rows="3"
-                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="Describe the long-term benefits and how this partnership could be sustained or expanded..."
+                  placeholder="Is this a one-time activity or part of a regular program? Any plans for continuation or expansion?"
                 ></textarea>
               </div>
             </div>
@@ -1646,12 +1096,12 @@ Week 2: [Advanced Topics]
           <!-- Contact Information -->
           <div class="px-6 py-6">
             <h2 class="text-lg font-medium text-gray-900 mb-4">
-              Contact Information
+              Primary Contact Information
             </h2>
             <div class="grid grid-cols-1 gap-6">
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">
-                  Main Contact Person <span class="text-red-500">*</span>
+                  Primary Contact Person <span class="text-red-500">*</span>
                 </label>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <input
@@ -1666,7 +1116,7 @@ Week 2: [Advanced Topics]
                     name="contact_position"
                     required
                     class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    placeholder="Position/Title"
+                    placeholder="Position/Role"
                   />
                 </div>
               </div>
@@ -1685,10 +1135,9 @@ Week 2: [Advanced Topics]
                     name="contact_email"
                     required
                     class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    placeholder="contact@organization.com"
+                    placeholder="contact@organization.org"
                   />
                 </div>
-
                 <div>
                   <label
                     for="contact_phone"
@@ -1706,33 +1155,6 @@ Week 2: [Advanced Topics]
                   />
                 </div>
               </div>
-
-              <!-- Alternative Contact (NEW) -->
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">
-                  Alternative Contact (Optional)
-                </label>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <input
-                    type="text"
-                    name="alt_contact_name"
-                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    placeholder="Full Name"
-                  />
-                  <input
-                    type="email"
-                    name="alt_contact_email"
-                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    placeholder="Email Address"
-                  />
-                  <input
-                    type="tel"
-                    name="alt_contact_phone"
-                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    placeholder="Contact Number"
-                  />
-                </div>
-              </div>
             </div>
           </div>
 
@@ -1744,17 +1166,17 @@ Week 2: [Advanced Topics]
             <div class="grid grid-cols-1 gap-6">
               <div>
                 <label
-                  for="previous_partnerships"
+                  for="previous_experience"
                   class="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Previous Partnerships & Experience
+                  Previous Community Service Experience
                 </label>
                 <textarea
-                  id="previous_partnerships"
-                  name="previous_partnerships"
+                  id="previous_experience"
+                  name="previous_experience"
                   rows="3"
                   class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="Describe any previous partnerships or collaborations with educational institutions..."
+                  placeholder="Describe any previous community service activities or outreach programs your organization has conducted..."
                 ></textarea>
               </div>
 
@@ -1763,64 +1185,15 @@ Week 2: [Advanced Topics]
                   for="additional_notes"
                   class="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Additional Notes or Requirements
+                  Additional Notes & Special Considerations
                 </label>
                 <textarea
                   id="additional_notes"
                   name="additional_notes"
                   rows="3"
                   class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="Any other information, special requirements, or considerations..."
+                  placeholder="Any other information, special requirements, accessibility considerations, or coordination needs..."
                 ></textarea>
-              </div>
-
-              <!-- File Upload (NEW) -->
-              <div>
-                <label
-                  for="supporting_documents"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Supporting Documents (Optional)
-                </label>
-                <div
-                  class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md"
-                >
-                  <div class="space-y-1 text-center">
-                    <svg
-                      class="mx-auto h-12 w-12 text-gray-400"
-                      stroke="currentColor"
-                      fill="none"
-                      viewBox="0 0 48 48"
-                    >
-                      <path
-                        d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                    <div class="flex text-sm text-gray-600">
-                      <label
-                        for="supporting_documents"
-                        class="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary"
-                      >
-                        <span>Upload files</span>
-                        <input
-                          id="supporting_documents"
-                          name="supporting_documents"
-                          type="file"
-                          class="sr-only"
-                          multiple
-                          accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png"
-                        />
-                      </label>
-                      <p class="pl-1">or drag and drop</p>
-                    </div>
-                    <p class="text-xs text-gray-500">
-                      PDF, DOC, PPT, Images up to 10MB each
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -1838,7 +1211,7 @@ Week 2: [Advanced Topics]
               <div class="flex space-x-3">
                 <button
                   type="button"
-                  onclick="previewPartnership()"
+                  onclick="previewActivity()"
                   class="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 font-medium"
                 >
                   Preview
@@ -1869,7 +1242,7 @@ Week 2: [Advanced Topics]
             class="px-6 py-4 border-b border-gray-200 flex justify-between items-center"
           >
             <h3 class="text-xl font-semibold text-gray-900">
-              Partnership Proposal Preview
+              Community Activity Proposal Preview
             </h3>
             <button
               onclick="closePreviewModal()"
@@ -1890,13 +1263,11 @@ Week 2: [Advanced Topics]
               </svg>
             </button>
           </div>
-
           <div class="p-6 max-h-96 overflow-y-auto">
             <div id="previewContent">
               <!-- Preview content will be loaded here -->
             </div>
           </div>
-
           <div
             class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3"
           >
@@ -1918,101 +1289,55 @@ Week 2: [Advanced Topics]
     </div>
 
     <script>
+      // Mobile menu toggle function
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const hamburgerIcon = document.getElementById('hamburgerIcon');
+        const closeIcon = document.getElementById('closeIcon');
+        
+        // Toggle menu visibility
+        mobileMenu.classList.toggle('hidden');
+        
+        // Toggle icons
+        hamburgerIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+        
+        // Update aria-expanded attribute
+        const button = document.querySelector('[onclick="toggleMobileMenu()"]');
+        const isExpanded = !mobileMenu.classList.contains('hidden');
+        button.setAttribute('aria-expanded', isExpanded);
+      }
+
+      // User menu toggle function
       function toggleUserMenu() {
-        const menu = document.getElementById("userMenu");
-        menu.classList.toggle("hidden");
+        const menu = document.getElementById('userMenu');
+        menu.classList.toggle('hidden');
       }
 
-      function logout() {
-        if (confirm("Are you sure you want to logout?")) {
-          window.location.href = "../login.html";
-        }
-      }
-
-      function togglePartnershipFields() {
+      function toggleActivityFields() {
         const selectedType = document.querySelector(
-          'input[name="partnership_type"]:checked'
+          'input[name="activity_type"]:checked'
         )?.value;
 
-        const trainingSchedule = document.getElementById("training_schedule");
-        const eventSchedule = document.getElementById("event_schedule");
-        const scholarshipFields = document.getElementById("scholarship_fields");
-        const programStructure = document.getElementById("program_structure");
-        const internshipFields = document.getElementById("internship_fields");
-        const otherPartnershipType = document.getElementById(
-          "other_partnership_type"
-        );
-
-        // Hide all dynamic fields first
-        trainingSchedule.classList.add("hidden");
-        eventSchedule.classList.add("hidden");
-        scholarshipFields.classList.add("hidden");
-        programStructure.classList.add("hidden");
-        internshipFields.classList.add("hidden");
-        otherPartnershipType.classList.add("hidden");
-
-        // Show/hide other type input field
+        // Hide/show other activity type input
         if (selectedType === "other") {
-          otherPartnershipType.classList.remove("hidden");
+          document
+            .getElementById("other_activity_type")
+            .classList.remove("hidden");
           document.getElementById("other_type_input").required = true;
         } else {
+          document
+            .getElementById("other_activity_type")
+            .classList.add("hidden");
           document.getElementById("other_type_input").required = false;
-        }
-
-        // Update labels and show relevant fields based on type
-        if (
-          selectedType === "training_program" ||
-          selectedType === "workshop_series"
-        ) {
-          document.getElementById("title_label").textContent =
-            selectedType === "training_program"
-              ? "Training Program Title"
-              : "Workshop Series Title";
-          document.getElementById("description_label").textContent =
-            selectedType === "training_program"
-              ? "Training Program Description"
-              : "Workshop Series Description";
-          trainingSchedule.classList.remove("hidden");
-          programStructure.classList.remove("hidden");
-        } else if (selectedType === "community_event") {
-          document.getElementById("title_label").textContent = "Event Title";
-          document.getElementById("description_label").textContent =
-            "Event Description";
-          document.getElementById("start_date_label").textContent =
-            "Event Date";
-          document.getElementById("end_date_label").textContent =
-            "End Date (if multi-day)";
-          eventSchedule.classList.remove("hidden");
-        } else if (selectedType === "scholarship_program") {
-          document.getElementById("title_label").textContent =
-            "Scholarship Program Title";
-          document.getElementById("description_label").textContent =
-            "Scholarship Program Description";
-          scholarshipFields.classList.remove("hidden");
-        } else if (selectedType === "internship_program") {
-          document.getElementById("title_label").textContent =
-            "Internship Program Title";
-          document.getElementById("description_label").textContent =
-            "Internship Program Description";
-          internshipFields.classList.remove("hidden");
-        } else if (selectedType === "research_collaboration") {
-          document.getElementById("title_label").textContent =
-            "Research Project Title";
-          document.getElementById("description_label").textContent =
-            "Research Project Description";
-        } else if (selectedType === "other") {
-          document.getElementById("title_label").textContent =
-            "Partnership Title";
-          document.getElementById("description_label").textContent =
-            "Partnership Description";
         }
 
         // Update radio button visual state
         document
-          .querySelectorAll('input[name="partnership_type"]')
+          .querySelectorAll('input[name="activity_type"]')
           .forEach((radio) => {
             const label = radio.closest("label");
-            const radioIcon = label.querySelector(".partnership-type-radio");
+            const radioIcon = label.querySelector(".activity-type-radio");
 
             if (radio.checked) {
               label.classList.add("border-primary", "bg-blue-50");
@@ -2024,163 +1349,72 @@ Week 2: [Advanced Topics]
           });
       }
 
-      function toggleDepartmentSelection() {
-        const selectedAudience = document.querySelector(
-          'input[name="target_audience"]:checked'
-        )?.value;
-        const departmentSelection = document.getElementById(
-          "department_selection"
-        );
-        const yearLevelSelection = document.getElementById(
-          "year_level_selection"
-        );
-
-        if (
-          selectedAudience === "all_students" ||
-          selectedAudience === "specific_year_levels"
-        ) {
-          departmentSelection.classList.remove("hidden");
-          updateDepartmentValidation(true);
-
-          if (selectedAudience === "specific_year_levels") {
-            yearLevelSelection.classList.remove("hidden");
-          } else {
-            yearLevelSelection.classList.add("hidden");
-          }
-        } else {
-          departmentSelection.classList.add("hidden");
-          yearLevelSelection.classList.add("hidden");
-          updateDepartmentValidation(false);
-          document
-            .querySelectorAll('input[name="departments[]"]')
-            .forEach((checkbox) => {
-              checkbox.checked = false;
-            });
-          document.getElementById("select_all_departments").checked = false;
-        }
-      }
-
-      function toggleAllDepartments() {
-        const selectAll = document.getElementById("select_all_departments");
-        const departmentCheckboxes = document.querySelectorAll(
-          ".department-checkbox"
-        );
-
-        departmentCheckboxes.forEach((checkbox) => {
-          checkbox.checked = selectAll.checked;
-        });
-      }
-
-      function updateSelectAllState() {
-        const departmentCheckboxes = document.querySelectorAll(
-          ".department-checkbox"
-        );
-        const selectAll = document.getElementById("select_all_departments");
-        const checkedCount = document.querySelectorAll(
-          ".department-checkbox:checked"
-        ).length;
-
-        selectAll.checked = checkedCount === departmentCheckboxes.length;
-        selectAll.indeterminate =
-          checkedCount > 0 && checkedCount < departmentCheckboxes.length;
-      }
-
-      function updateDepartmentValidation(required) {
-        const departmentCheckboxes = document.querySelectorAll(
-          'input[name="departments[]"]'
-        );
-        departmentCheckboxes.forEach((checkbox) => {
-          if (required) {
-            checkbox.setAttribute("required", "required");
-          } else {
-            checkbox.removeAttribute("required");
-          }
-        });
-      }
-
-      function toggleVenueFields() {
-        const venueType = document.getElementById("venue_type").value;
-        const venueDetails = document.getElementById("venue_details");
-
-        if (venueType && venueType !== "pcu_campus") {
-          venueDetails.classList.remove("hidden");
-        } else {
-          venueDetails.classList.add("hidden");
-        }
-      }
-
       function saveDraft() {
         if (confirm("Save current progress as draft?")) {
           alert(
-            "Partnership proposal saved as draft! You can continue editing later."
+            "Community activity proposal saved as draft! You can continue editing later."
           );
           window.location.href = "partnerships.html";
         }
       }
 
-      function previewPartnership() {
+      function previewActivity() {
         const formData = new FormData(
           document.getElementById("partnershipForm")
         );
-        const partnershipType = formData.get("partnership_type");
-        const otherTypeInput = formData.get("other_type_input");
-        const title = formData.get("title");
+        const activityType = formData.get("activity_type");
+        const title = formData.get("activity_title");
         const organizationName = formData.get("organization_name");
-        const expectedParticipants = formData.get("expected_participants");
-        const startDate = formData.get("start_date");
-        const description = formData.get("description");
-        const objectives = formData.get("objectives");
 
-        if (!partnershipType || !title || !organizationName) {
+        if (!activityType || !title || !organizationName) {
           alert("Please fill in the required fields before previewing.");
           return;
         }
 
-        if (partnershipType === "other" && !otherTypeInput) {
-          alert("Please specify the type of partnership.");
-          return;
-        }
-
         const typeLabels = {
-          training_program: "Training Program",
-          workshop_series: "Workshop Series",
-          community_event: "Community Event",
-          research_collaboration: "Research Project",
-          scholarship_program: "Scholarship Program",
-          internship_program: "Internship Program",
-          other: otherTypeInput || "Partnership",
+          feeding_program: "Feeding Program",
+          brigada_eskwela: "Brigada Eskwela",
+          community_cleanup: "Community Clean-up",
+          tree_planting: "Tree Planting",
+          donation_drive: "Donation Drive",
+          other: formData.get("other_type_input") || "Community Activity",
         };
 
-        const typeLabel = typeLabels[partnershipType] || "Partnership";
+        const typeLabel = typeLabels[activityType] || "Community Activity";
+        const description = formData.get("activity_description");
+        const objectives = formData.get("activity_objectives");
+        const beneficiaries = formData.get("target_beneficiaries");
 
         const previewContent = `
                 <div class="space-y-6">
                     <div>
                         <div class="flex items-center mb-2">
                             <span class="px-2 py-1 rounded-full text-xs mr-2 bg-green-100 text-green-800">${typeLabel}</span>
-                            <span class="text-sm text-gray-500">Expected Participants: ${
-                              expectedParticipants || "Not specified"
-                            }</span>
+                            <span class="px-2 py-1 rounded-full text-xs mr-2 bg-blue-100 text-blue-800">Open Participation</span>
                         </div>
-                        <h2 class="text-2xl font-bold text-gray-900 mb-2">${
-                          title || "Partnership Title"
-                        }</h2>
-                        <p class="text-lg text-gray-600 mb-2">by ${organizationName}</p>
-                        ${
-                          startDate
-                            ? `<p class="text-gray-600">Start Date: ${new Date(
-                                startDate
-                              ).toLocaleDateString()}</p>`
-                            : ""
-                        }
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">${title}</h2>
+                        <p class="text-lg text-gray-600">${organizationName}</p>
                     </div>
                     
                     ${
                       description
                         ? `
                     <div>
-                        <h3 class="font-semibold text-gray-900 mb-2">Description</h3>
+                        <h3 class="font-semibold text-gray-900 mb-2">Activity Description</h3>
                         <p class="text-gray-700 whitespace-pre-wrap">${description}</p>
+                    </div>
+                    `
+                        : ""
+                    }
+                    
+                    ${
+                      beneficiaries
+                        ? `
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">Target Beneficiaries</h3>
+                        <p class="text-gray-700">${beneficiaries
+                          .replace(/_/g, " ")
+                          .replace(/\b\w/g, (l) => l.toUpperCase())}</p>
                     </div>
                     `
                         : ""
@@ -2197,8 +1431,20 @@ Week 2: [Advanced Topics]
                         : ""
                     }
                     
+                    <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                        <div class="flex items-start">
+                            <svg class="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <div>
+                                <h4 class="font-semibold text-green-800">Walk-in Community Activity</h4>
+                                <p class="text-sm text-green-700">This activity welcomes open participation without registration requirements, encouraging spontaneous community involvement.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="text-sm text-gray-500">
-                        <p><strong>Note:</strong> This is a preview of your partnership proposal. Complete all required fields before submitting for review.</p>
+                        <p><strong>Note:</strong> This is a preview of your community activity proposal. Complete all required fields before submitting for review.</p>
                     </div>
                 </div>
             `;
@@ -2224,54 +1470,27 @@ Week 2: [Advanced Topics]
           e.preventDefault();
 
           const formData = new FormData(this);
-          const partnershipType = formData.get("partnership_type");
-          const title = formData.get("title");
+          const activityType = formData.get("activity_type");
+          const title = formData.get("activity_title");
           const organizationName = formData.get("organization_name");
-          const targetAudience = formData.get("target_audience");
 
-          if (!partnershipType) {
-            alert("Please select a partnership type.");
+          if (!activityType) {
+            alert("Please select a community activity type.");
             return;
           }
 
-          if (!organizationName) {
-            alert("Please enter your organization name.");
+          if (activityType === "other" && !formData.get("other_type_input")) {
+            alert("Please specify the type of community activity.");
             return;
-          }
-
-          if (
-            partnershipType === "other" &&
-            !formData.get("other_type_input")
-          ) {
-            alert("Please specify the type of partnership.");
-            return;
-          }
-
-          if (!targetAudience) {
-            alert("Please select a target audience.");
-            return;
-          }
-
-          if (
-            targetAudience === "all_students" ||
-            targetAudience === "specific_year_levels"
-          ) {
-            const selectedDepartments = formData.getAll("departments[]");
-            if (selectedDepartments.length === 0) {
-              alert(
-                "Please select at least one department for the target audience."
-              );
-              return;
-            }
           }
 
           if (
             confirm(
-              `Submit partnership proposal "${title}" from ${organizationName} for admin review?`
+              `Submit community activity proposal "${title}" from ${organizationName} for admin review?`
             )
           ) {
             alert(
-              "Partnership proposal submitted successfully! It will be reviewed by PCU-DASMA administrators."
+              "Community activity proposal submitted successfully! It will be reviewed by PCU-DASMA administrators for approval and coordination support."
             );
             window.location.href = "partnerships.html";
           }
@@ -2299,8 +1518,7 @@ Week 2: [Advanced Topics]
       // Set minimum date to today
       document.addEventListener("DOMContentLoaded", function () {
         const today = new Date().toISOString().split("T")[0];
-        document.getElementById("start_date").setAttribute("min", today);
-        document.getElementById("end_date").setAttribute("min", today);
+        document.getElementById("activity_date").setAttribute("min", today);
       });
     </script>
   </body>

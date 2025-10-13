@@ -1,303 +1,643 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Company Profile - PCU-DASMA Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1E40AF',
-                        secondary: '#3B82F6',
-                        accent: '#F59E0B'
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-gray-50">
+  </head>
+  <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class="bg-white shadow-sm border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
-                    <div class="hidden md:ml-10 md:flex md:space-x-8">
-                        <a href="dashboard.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
-                        <a href="job-postings.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Job Postings</a>
-                        <a href="partnerships.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Partnerships</a>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <!-- Logo and Desktop Navigation -->
+          <div class="flex items-center">
+            <a href="../index.html" class="text-xl font-bold text-primary">
+              PCU-DASMA Connect
+            </a>
+            <!-- Desktop Navigation Menu -->
+            <div class="hidden md:ml-10 md:flex md:space-x-8">
+              <a
+                href="dashboard.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                Dashboard
+              </a>
+              <a
+                href="job-postings.html"
+                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
+              >
+                Job Postings
+              </a>
+              <a
+                href="partnerships.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                Partnerships
+              </a>
 
-                        <a href="profile.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">Profile</a>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <div class="relative">
-                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
-                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
-                        </button>
-                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                            <div class="py-1">
-                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              <a
+                href="news.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                News
+              </a>
+
+              <a
+                href="profile.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                Profile
+              </a>
             </div>
+          </div>
+
+          <!-- Desktop User Menu -->
+          <div class="hidden md:flex items-center space-x-4">
+            <div class="relative">
+              <button
+                onclick="toggleUserMenu()"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"
+                aria-label="Open user menu"
+                aria-haspopup="true"
+              >
+                <img
+                  class="h-8 w-8 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </button>
+              <div
+                id="userMenu"
+                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 transform transition-all duration-200"
+                role="menu"
+                aria-orientation="vertical"
+              >
+                <div class="py-1">
+                  <a
+                    href="profile.html"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
+                  >
+                    Profile
+                  </a>
+                  <a
+                    href="#"
+                    onclick="logout()"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
+                  >
+                    Logout
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+            <button
+              onclick="toggleMobileMenu()"
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-all duration-200"
+              aria-label="Open main menu"
+              aria-expanded="false"
+            >
+              <svg
+                id="hamburgerIcon"
+                class="block h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <svg
+                id="closeIcon"
+                class="hidden h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
+
+        <!-- Mobile Menu -->
+        <div
+          id="mobileMenu"
+          class="md:hidden hidden transition-all duration-300 ease-in-out"
+        >
+          <div
+            class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200 bg-white"
+          >
+            <a
+              href="dashboard.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Dashboard
+            </a>
+            <a
+              href="job-postings.html"
+              class="text-primary bg-primary bg-opacity-10 block px-3 py-2 rounded-md text-base font-medium"
+            >
+              Job Postings
+            </a>
+            <a
+              href="partnerships.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Partnerships
+            </a>
+            <a
+              href="news.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              News
+            </a>
+            <a
+              href="profile.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Profile
+            </a>
+          </div>
+          <div class="pt-4 pb-3 border-t border-gray-200">
+            <div class="flex items-center px-5">
+              <div class="flex-shrink-0">
+                <img
+                  class="h-10 w-10 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </div>
+              <div class="ml-3">
+                <div class="text-base font-medium leading-none text-gray-900">
+                  User Account
+                </div>
+                <div
+                  class="text-sm font-medium leading-none text-gray-500 mt-1"
+                >
+                  user@pcudasma.edu.ph
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 px-2 space-y-1">
+              <a
+                href="profile.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              >
+                Profile
+              </a>
+              <a
+                href="#"
+                onclick="logout()"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              >
+                Logout
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </nav>
 
     <!-- Main Content -->
     <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <!-- Header -->
-        <div class="mb-8">
-            <h1 class="text-3xl font-bold text-gray-900">Company Profile</h1>
-            <p class="text-gray-600">Manage your organization's profile and visibility settings</p>
+      <!-- Header -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900">Company Profile</h1>
+        <p class="text-gray-600">
+          Manage your organization's profile and visibility settings
+        </p>
+      </div>
+
+      <!-- Profile Form -->
+      <div class="space-y-8">
+        <!-- Company Information -->
+        <div class="bg-white shadow-sm rounded-lg">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-900">
+              Company Information
+            </h3>
+            <p class="text-sm text-gray-600">
+              Basic information about your organization
+            </p>
+          </div>
+          <div class="px-6 py-6">
+            <div class="grid grid-cols-1 gap-6">
+              <!-- Company Logo -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Company Logo</label
+                >
+                <div class="flex items-center space-x-6">
+                  <div
+                    class="w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-12 h-12 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <button
+                      type="button"
+                      class="bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary"
+                    >
+                      Change Logo
+                    </button>
+                    <p class="text-xs text-gray-500 mt-1">PNG, JPG up to 2MB</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Company Name -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    for="company_name"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Company Name <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="company_name"
+                    name="company_name"
+                    value="TechSolutions Inc."
+                    required
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    for="industry"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Industry <span class="text-red-500">*</span>
+                  </label>
+                  <select
+                    id="industry"
+                    name="industry"
+                    required
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  >
+                    <option value="">Select Industry</option>
+                    <option value="technology" selected>Technology</option>
+                    <option value="finance">Finance & Banking</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="education">Education</option>
+                    <option value="manufacturing">Manufacturing</option>
+                    <option value="retail">Retail</option>
+                    <option value="consulting">Consulting</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Company Size -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    for="company_size"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Company Size
+                  </label>
+                  <select
+                    id="company_size"
+                    name="company_size"
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  >
+                    <option value="">Select Company Size</option>
+                    <option value="1-10">1-10 employees</option>
+                    <option value="11-50" selected>11-50 employees</option>
+                    <option value="51-200">51-200 employees</option>
+                    <option value="201-500">201-500 employees</option>
+                    <option value="501-1000">501-1000 employees</option>
+                    <option value="1000+">1000+ employees</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label
+                    for="founded_year"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Founded Year
+                  </label>
+                  <input
+                    type="number"
+                    id="founded_year"
+                    name="founded_year"
+                    value="2018"
+                    min="1900"
+                    max="2025"
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  />
+                </div>
+              </div>
+
+              <!-- Company Description -->
+              <div>
+                <label
+                  for="description"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Company Description <span class="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="description"
+                  name="description"
+                  rows="5"
+                  required
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="Tell students about your company, mission, values, and what makes you a great place to work..."
+                >
+TechSolutions Inc. is a leading software development company specializing in innovative digital solutions for businesses. We are committed to fostering talent development and providing growth opportunities for emerging professionals.</textarea
+                >
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Profile Form -->
-        <div class="space-y-8">
-            <!-- Company Information -->
-            <div class="bg-white shadow-sm rounded-lg">
-                <div class="px-6 py-4 border-b border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-900">Company Information</h3>
-                    <p class="text-sm text-gray-600">Basic information about your organization</p>
+        <!-- Contact Information -->
+        <div class="bg-white shadow-sm rounded-lg">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-900">
+              Contact Information
+            </h3>
+            <p class="text-sm text-gray-600">
+              How students can reach your organization
+            </p>
+          </div>
+          <div class="px-6 py-6">
+            <div class="grid grid-cols-1 gap-6">
+              <!-- Primary Contact -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    for="contact_person"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Primary Contact Person <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="contact_person"
+                    name="contact_person"
+                    value="Maria Santos"
+                    required
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  />
                 </div>
-                <div class="px-6 py-6">
-                    <div class="grid grid-cols-1 gap-6">
-                        <!-- Company Logo -->
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Company Logo</label>
-                            <div class="flex items-center space-x-6">
-                                <div class="w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center">
-                                    <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <button type="button" class="bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary">
-                                        Change Logo
-                                    </button>
-                                    <p class="text-xs text-gray-500 mt-1">PNG, JPG up to 2MB</p>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Company Name -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="company_name" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Company Name <span class="text-red-500">*</span>
-                                </label>
-                                <input type="text" id="company_name" name="company_name" value="TechSolutions Inc." required
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                            </div>
-
-                            <div>
-                                <label for="industry" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Industry <span class="text-red-500">*</span>
-                                </label>
-                                <select id="industry" name="industry" required
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                    <option value="">Select Industry</option>
-                                    <option value="technology" selected>Technology</option>
-                                    <option value="finance">Finance & Banking</option>
-                                    <option value="healthcare">Healthcare</option>
-                                    <option value="education">Education</option>
-                                    <option value="manufacturing">Manufacturing</option>
-                                    <option value="retail">Retail</option>
-                                    <option value="consulting">Consulting</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Company Size -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="company_size" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Company Size
-                                </label>
-                                <select id="company_size" name="company_size"
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                    <option value="">Select Company Size</option>
-                                    <option value="1-10">1-10 employees</option>
-                                    <option value="11-50" selected>11-50 employees</option>
-                                    <option value="51-200">51-200 employees</option>
-                                    <option value="201-500">201-500 employees</option>
-                                    <option value="501-1000">501-1000 employees</option>
-                                    <option value="1000+">1000+ employees</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label for="founded_year" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Founded Year
-                                </label>
-                                <input type="number" id="founded_year" name="founded_year" value="2018" min="1900" max="2025"
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                            </div>
-                        </div>
-
-                        <!-- Company Description -->
-                        <div>
-                            <label for="description" class="block text-sm font-medium text-gray-700 mb-1">
-                                Company Description <span class="text-red-500">*</span>
-                            </label>
-                            <textarea id="description" name="description" rows="5" required
-                                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                placeholder="Tell students about your company, mission, values, and what makes you a great place to work...">TechSolutions Inc. is a leading software development company specializing in innovative digital solutions for businesses. We are committed to fostering talent development and providing growth opportunities for emerging professionals.</textarea>
-                        </div>
-                    </div>
+                <div>
+                  <label
+                    for="contact_title"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Job Title
+                  </label>
+                  <input
+                    type="text"
+                    id="contact_title"
+                    name="contact_title"
+                    value="HR Manager"
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  />
                 </div>
+              </div>
+
+              <!-- Contact Details -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    for="email"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Email Address <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value="hr@techsolutions.ph"
+                    required
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    for="phone"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value="+639 X123-4567"
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  />
+                </div>
+              </div>
+
+              <!-- Address -->
+              <div>
+                <label
+                  for="address"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Business Address
+                </label>
+                <textarea
+                  id="address"
+                  name="address"
+                  rows="3"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="Complete business address..."
+                >
+123 Innovation Drive, Makati City, Metro Manila 1200, Philippines</textarea
+                >
+              </div>
+
+              <!-- Website and Social Media -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    for="website"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Company Website
+                  </label>
+                  <input
+                    type="url"
+                    id="website"
+                    name="website"
+                    value="https://techsolutions.ph"
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    for="linkedin"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    LinkedIn Profile
+                  </label>
+                  <input
+                    type="url"
+                    id="linkedin"
+                    name="linkedin"
+                    value="https://linkedin.com/company/techsolutions"
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  />
+                </div>
+              </div>
             </div>
-
-            <!-- Contact Information -->
-            <div class="bg-white shadow-sm rounded-lg">
-                <div class="px-6 py-4 border-b border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-900">Contact Information</h3>
-                    <p class="text-sm text-gray-600">How students can reach your organization</p>
-                </div>
-                <div class="px-6 py-6">
-                    <div class="grid grid-cols-1 gap-6">
-                        <!-- Primary Contact -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="contact_person" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Primary Contact Person <span class="text-red-500">*</span>
-                                </label>
-                                <input type="text" id="contact_person" name="contact_person" value="Maria Santos" required
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                            </div>
-
-                            <div>
-                                <label for="contact_title" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Job Title
-                                </label>
-                                <input type="text" id="contact_title" name="contact_title" value="HR Manager"
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                            </div>
-                        </div>
-
-                        <!-- Contact Details -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Email Address <span class="text-red-500">*</span>
-                                </label>
-                                <input type="email" id="email" name="email" value="hr@techsolutions.ph" required
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                            </div>
-
-                            <div>
-                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Phone Number
-                                </label>
-                                <input type="tel" id="phone" name="phone" value="+639 X123-4567"
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                            </div>
-                        </div>
-
-                        <!-- Address -->
-                        <div>
-                            <label for="address" class="block text-sm font-medium text-gray-700 mb-1">
-                                Business Address
-                            </label>
-                            <textarea id="address" name="address" rows="3"
-                                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                placeholder="Complete business address...">123 Innovation Drive, Makati City, Metro Manila 1200, Philippines</textarea>
-                        </div>
-
-                        <!-- Website and Social Media -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="website" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Company Website
-                                </label>
-                                <input type="url" id="website" name="website" value="https://techsolutions.ph"
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                            </div>
-
-                            <div>
-                                <label for="linkedin" class="block text-sm font-medium text-gray-700 mb-1">
-                                    LinkedIn Profile
-                                </label>
-                                <input type="url" id="linkedin" name="linkedin" value="https://linkedin.com/company/techsolutions"
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="flex justify-between">
-                <button type="button" onclick="resetForm()" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 font-medium">
-                    Reset Changes
-                </button>
-                <div class="flex space-x-3">
-                    <button type="button" onclick="previewProfile()" class="px-6 py-2 border border-primary text-primary rounded-md hover:bg-blue-50 font-medium">
-                        Preview Profile
-                    </button>
-                    <button type="submit" onclick="saveProfile()" class="px-6 py-2 bg-primary text-white rounded-md hover:bg-blue-700 font-medium">
-                        Save Changes
-                    </button>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <!-- Action Buttons -->
+        <div class="flex justify-between">
+          <button
+            type="button"
+            onclick="resetForm()"
+            class="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 font-medium"
+          >
+            Reset Changes
+          </button>
+          <div class="flex space-x-3">
+            <button
+              type="button"
+              onclick="previewProfile()"
+              class="px-6 py-2 border border-primary text-primary rounded-md hover:bg-blue-50 font-medium"
+            >
+              Preview Profile
+            </button>
+            <button
+              type="submit"
+              onclick="saveProfile()"
+              class="px-6 py-2 bg-primary text-white rounded-md hover:bg-blue-700 font-medium"
+            >
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
-        function toggleUserMenu() {
-            const menu = document.getElementById('userMenu');
-            menu.classList.toggle('hidden');
+      // Mobile menu toggle function
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById("mobileMenu");
+        const hamburgerIcon = document.getElementById("hamburgerIcon");
+        const closeIcon = document.getElementById("closeIcon");
+
+        // Toggle menu visibility
+        mobileMenu.classList.toggle("hidden");
+
+        // Toggle icons
+        hamburgerIcon.classList.toggle("hidden");
+        closeIcon.classList.toggle("hidden");
+
+        // Update aria-expanded attribute
+        const button = document.querySelector('[onclick="toggleMobileMenu()"]');
+        const isExpanded = !mobileMenu.classList.contains("hidden");
+        button.setAttribute("aria-expanded", isExpanded);
+      }
+
+      // User menu toggle function
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+      }
+
+      function resetForm() {
+        if (
+          confirm(
+            "Are you sure you want to reset all changes? This will restore your last saved profile information."
+          )
+        ) {
+          location.reload();
+        }
+      }
+
+      function previewProfile() {
+        alert(
+          "Opening profile preview... This shows how your profile appears to students."
+        );
+      }
+
+      function saveProfile() {
+        // Basic validation
+        const companyName = document.getElementById("company_name").value;
+        const email = document.getElementById("email").value;
+        const description = document.getElementById("description").value;
+
+        if (!companyName || !email || !description) {
+          alert("Please fill in all required fields (marked with *)");
+          return;
         }
 
-        function logout() {
-            if (confirm('Are you sure you want to logout?')) {
-                window.location.href = '../login.html';
-            }
+        if (confirm("Save profile changes?")) {
+          alert(
+            "Profile updated successfully! Your changes are now visible to students."
+          );
         }
+      }
 
-        function resetForm() {
-            if (confirm('Are you sure you want to reset all changes? This will restore your last saved profile information.')) {
-                location.reload();
-            }
+      // Close user menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const menu = document.getElementById("userMenu");
+        const button = event.target.closest("button");
+
+        if (!button || button.onclick !== toggleUserMenu) {
+          menu.classList.add("hidden");
         }
-
-        function previewProfile() {
-            alert('Opening profile preview... This shows how your profile appears to students.');
-        }
-
-        function saveProfile() {
-            // Basic validation
-            const companyName = document.getElementById('company_name').value;
-            const email = document.getElementById('email').value;
-            const description = document.getElementById('description').value;
-
-            if (!companyName || !email || !description) {
-                alert('Please fill in all required fields (marked with *)');
-                return;
-            }
-
-            if (confirm('Save profile changes?')) {
-                alert('Profile updated successfully! Your changes are now visible to students.');
-            }
-        }
-
-        // Close user menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('userMenu');
-            const button = event.target.closest('button');
-            
-            if (!button || button.onclick !== toggleUserMenu) {
-                menu.classList.add('hidden');
-            }
-        });
+      });
     </script>
-</body>
+  </body>
 </html>

@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News & Updates - PCU-DASMA Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <!-- Logo and Desktop Navigation -->
+          <div class="flex items-center">
+            <a href="../index.html" class="text-xl font-bold text-primary">
+              PCU-DASMA Connect
+            </a>
+            <!-- Desktop Navigation Menu -->
+            <div class="hidden md:ml-10 md:flex md:space-x-8">
+              <a
+                href="dashboard.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                Dashboard
+              </a>
+              <a
+                href="job-postings.html"
+                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
+              >
+                Job Postings
+              </a>
+              <a
+                href="partnerships.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                Partnerships
+              </a>
+
+              <a
+                href="news.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                News
+              </a>
+
+              <a
+                href="profile.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                Profile
+              </a>
+            </div>
+          </div>
+
+          <!-- Desktop User Menu -->
+          <div class="hidden md:flex items-center space-x-4">
+            <div class="relative">
+              <button
+                onclick="toggleUserMenu()"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"
+                aria-label="Open user menu"
+                aria-haspopup="true"
+              >
+                <img
+                  class="h-8 w-8 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </button>
+              <div
+                id="userMenu"
+                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 transform transition-all duration-200"
+                role="menu"
+                aria-orientation="vertical"
+              >
+                <div class="py-1">
+                  <a
+                    href="profile.html"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
+                  >
+                    Profile
+                  </a>
+                  <a
+                    href="#"
+                    onclick="logout()"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
+                  >
+                    Logout
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+            <button
+              onclick="toggleMobileMenu()"
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-all duration-200"
+              aria-label="Open main menu"
+              aria-expanded="false"
+            >
+              <svg
+                id="hamburgerIcon"
+                class="block h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <svg
+                id="closeIcon"
+                class="hidden h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div
+          id="mobileMenu"
+          class="md:hidden hidden transition-all duration-300 ease-in-out"
+        >
+          <div
+            class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200 bg-white"
+          >
+            <a
+              href="dashboard.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Dashboard
+            </a>
+            <a
+              href="job-postings.html"
+              class="text-primary bg-primary bg-opacity-10 block px-3 py-2 rounded-md text-base font-medium"
+            >
+              Job Postings
+            </a>
+            <a
+              href="partnerships.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Partnerships
+            </a>
+            <a
+              href="news.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              News
+            </a>
+            <a
+              href="profile.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Profile
+            </a>
+          </div>
+          <div class="pt-4 pb-3 border-t border-gray-200">
+            <div class="flex items-center px-5">
+              <div class="flex-shrink-0">
+                <img
+                  class="h-10 w-10 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </div>
+              <div class="ml-3">
+                <div class="text-base font-medium leading-none text-gray-900">
+                  User Account
+                </div>
+                <div
+                  class="text-sm font-medium leading-none text-gray-500 mt-1"
+                >
+                  user@pcudasma.edu.ph
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 px-2 space-y-1">
+              <a
+                href="profile.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              >
+                Profile
+              </a>
+              <a
+                href="#"
+                onclick="logout()"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              >
+                Logout
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation Toggle (hidden by default) -->
+    <div class="md:hidden">
+      <button
+        id="mobileMenuBtn"
+        class="fixed top-4 left-4 z-50 p-2 bg-white rounded-md shadow-lg"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          ></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <!-- Header Section -->
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">News & Updates</h1>
+        <p class="text-gray-600">
+          Stay connected with the latest news from PCU-DASMA and your fellow
+          alumni
+        </p>
+      </div>
+
+      <!-- Search and Filter Section -->
+      <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+        <div
+          class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0"
+        >
+          <div class="flex-1 max-w-md">
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+              >
+                <svg
+                  class="h-5 w-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  ></path>
+                </svg>
+              </div>
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Search news articles..."
+                class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary focus:border-primary"
+              />
+            </div>
+          </div>
+          <div class="flex space-x-4">
+            <select
+              id="categoryFilter"
+              class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+            >
+              <option value="">All Categories</option>
+              <option value="university">University Updates</option>
+              <option value="alumni">Alumni Success</option>
+              <option value="partnership">Community Partnerships</option>
+              <option value="research">Research & Innovation</option>
+              <option value="events">Events</option>
+              <option value="achievements">Achievements</option>
+            </select>
+            <select
+              id="sortFilter"
+              class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+            >
+              <option value="recent">Most Recent</option>
+              <option value="popular">Most Popular</option>
+              <option value="trending">Trending</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured News Section -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Featured News</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Main Featured Article -->
+          <div onclick="viewNews('ART-2025-005')" class="group cursor-pointer">
+            <div
+              class="relative overflow-hidden rounded-lg bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <img
+                class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23E5E7EB' viewBox='0 0 400 256'%3E%3Crect width='400' height='256' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' font-size='14' text-anchor='middle' dy='.3em' fill='%236B7280'%3EPCU-DASMA Alumni Network%3C/text%3E%3C/svg%3E"
+                alt="Featured Image"
+              />
+              <div class="absolute top-4 left-4">
+                <span
+                  class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium"
+                  >Featured</span
+                >
+              </div>
+              <div class="p-6">
+                <div class="flex items-center text-sm text-gray-500 mb-2">
+                  <span
+                    class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                    >University Update</span
+                  >
+                  <span>October 9, 2025</span>
+                </div>
+                <h3
+                  class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors"
+                >
+                  PCU-DASMA Connect Reaches 1,000+ Alumni Members
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  We're excited to announce that PCU-DASMA Connect has
+                  successfully onboarded over 1,000 alumni members, creating the
+                  largest digital alumni network in the university's history...
+                </p>
+                <div class="flex items-center justify-between">
+                  <div
+                    class="flex items-center space-x-4 text-sm text-gray-500"
+                  >
+                    <div class="flex items-center">
+                      <svg
+                        class="w-4 h-4 mr-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 616 0z"
+                        ></path>
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                        ></path>
+                      </svg>
+                      1,234 views
+                    </div>
+                    <div class="flex items-center">
+                      <svg
+                        class="w-4 h-4 mr-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                        ></path>
+                      </svg>
+                      45 comments
+                    </div>
+                  </div>
+                  <span class="text-primary font-medium group-hover:underline"
+                    >Read More →</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Secondary Featured Articles -->
+          <div class="space-y-6">
+            <div
+              onclick="viewNews('ART-2025-004')"
+              class="group cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+            >
+              <div class="flex">
+                <img
+                  class="w-32 h-24 object-cover group-hover:scale-105 transition-transform duration-300"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23E5E7EB' viewBox='0 0 128 96'%3E%3Crect width='128' height='96' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' font-size='10' text-anchor='middle' dy='.3em' fill='%236B7280'%3ESupplies Drive%3C/text%3E%3C/svg%3E"
+                  alt="News Image"
+                />
+                <div class="flex-1 p-4">
+                  <div class="flex items-center text-xs text-gray-500 mb-1">
+                    <span
+                      class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-2"
+                      >Partnership</span
+                    >
+                    <span>October 8, 2025</span>
+                  </div>
+                  <h4
+                    class="text-sm font-semibold text-gray-900 mb-1 group-hover:text-primary transition-colors"
+                  >
+                    Back-to-School Supplies Drive: Supporting 750 Students
+                  </h4>
+                  <p class="text-xs text-gray-600">
+                    The recent back-to-school supplies drive partnership
+                    successfully distributed school supplies to 750 students...
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              onclick="viewNews('ART-2025-003')"
+              class="group cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+            >
+              <div class="flex">
+                <img
+                  class="w-32 h-24 object-cover group-hover:scale-105 transition-transform duration-300"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23E5E7EB' viewBox='0 0 128 96'%3E%3Crect width='128' height='96' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' font-size='10' text-anchor='middle' dy='.3em' fill='%236B7280'%3EResearch Lab%3C/text%3E%3C/svg%3E"
+                  alt="News Image"
+                />
+                <div class="flex-1 p-4">
+                  <div class="flex items-center text-xs text-gray-500 mb-1">
+                    <span
+                      class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-2"
+                      >Research</span
+                    >
+                    <span>October 1, 2025</span>
+                  </div>
+                  <h4
+                    class="text-sm font-semibold text-gray-900 mb-1 group-hover:text-primary transition-colors"
+                  >
+                    New IT Laboratory Complex Opens at PCU-DASMA
+                  </h4>
+                  <p class="text-xs text-gray-600">
+                    Philippine Christian University-Dasmariñas proudly
+                    inaugurates its state-of-the-art IT Laboratory Complex...
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              onclick="viewNews('ART-2025-002')"
+              class="group cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+            >
+              <div class="flex">
+                <img
+                  class="w-32 h-24 object-cover group-hover:scale-105 transition-transform duration-300"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23E5E7EB' viewBox='0 0 128 96'%3E%3Crect width='128' height='96' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' font-size='10' text-anchor='middle' dy='.3em' fill='%236B7280'%3EInnovation Award%3C/text%3E%3C/svg%3E"
+                  alt="News Image"
+                />
+                <div class="flex-1 p-4">
+                  <div class="flex items-center text-xs text-gray-500 mb-1">
+                    <span
+                      class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-2"
+                      >Alumni Success</span
+                    >
+                    <span>September 28, 2025</span>
+                  </div>
+                  <h4
+                    class="text-sm font-semibold text-gray-900 mb-1 group-hover:text-primary transition-colors"
+                  >
+                    PCU-DASMA Graduate Wins International Innovation Award
+                  </h4>
+                  <p class="text-xs text-gray-600">
+                    Anna Marie Santos, a 2023 BSIT graduate from PCU-DASMA, has
+                    been awarded the prestigious International Young Innovator
+                    Award...
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent News Section -->
+      <div class="mb-12">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold text-gray-900">Latest News</h2>
+          <a href="#" class="text-primary hover:text-blue-700 font-medium"
+            >View All →</a
+          >
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          id="newsGrid"
+        >
+          <!-- News Article 1 -->
+          <div
+            onclick="viewNews('ART-2025-006')"
+            class="group cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+          >
+            <img
+              class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23E5E7EB' viewBox='0 0 300 192'%3E%3Crect width='300' height='192' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' font-size='12' text-anchor='middle' dy='.3em' fill='%236B7280'%3EClean-up Drive%3C/text%3E%3C/svg%3E"
+              alt="News Image"
+            />
+            <div class="p-6">
+              <div class="flex items-center text-sm text-gray-500 mb-2">
+                <span
+                  class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Partnership</span
+                >
+                <span>October 5, 2025</span>
+              </div>
+              <h3
+                class="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors"
+              >
+                Great Dasmarinas Bay Clean-up Drive Success
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                The recent coastal clean-up partnership between PCU-DASMA and
+                Clean Seas Alliance exceeded all expectations, with 450
+                volunteers collecting 3.2 tons of waste...
+              </p>
+              <div
+                class="flex items-center justify-between text-sm text-gray-500"
+              >
+                <div class="flex items-center space-x-4">
+                  <div class="flex items-center">
+                    <svg
+                      class="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 616 0z"
+                      ></path>
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      ></path>
+                    </svg>
+                    892 views
+                  </div>
+                  <div class="flex items-center">
+                    <svg
+                      class="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                      ></path>
+                    </svg>
+                    34
+                  </div>
+                </div>
+                <span class="text-primary font-medium group-hover:underline"
+                  >Read More</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- News Article 2 -->
+          <div
+            onclick="viewNews('ART-2025-007')"
+            class="group cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+          >
+            <img
+              class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23E5E7EB' viewBox='0 0 300 192'%3E%3Crect width='300' height='192' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' font-size='12' text-anchor='middle' dy='.3em' fill='%236B7280'%3EGraduation%3C/text%3E%3C/svg%3E"
+              alt="News Image"
+            />
+            <div class="p-6">
+              <div class="flex items-center text-sm text-gray-500 mb-2">
+                <span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >University Update</span
+                >
+                <span>September 25, 2025</span>
+              </div>
+              <h3
+                class="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors"
+              >
+                Fall 2025 Graduation Ceremony Highlights
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                PCU-DASMA celebrated the achievements of over 500 graduates in
+                the Fall 2025 commencement ceremony, marking another milestone
+                in academic excellence...
+              </p>
+              <div
+                class="flex items-center justify-between text-sm text-gray-500"
+              >
+                <div class="flex items-center space-x-4">
+                  <div class="flex items-center">
+                    <svg
+                      class="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 616 0z"
+                      ></path>
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      ></path>
+                    </svg>
+                    675 views
+                  </div>
+                  <div class="flex items-center">
+                    <svg
+                      class="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                      ></path>
+                    </svg>
+                    22
+                  </div>
+                </div>
+                <span class="text-primary font-medium group-hover:underline"
+                  >Read More</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- News Article 3 -->
+          <div
+            onclick="viewNews('ART-2025-008')"
+            class="group cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+          >
+            <img
+              class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23E5E7EB' viewBox='0 0 300 192'%3E%3Crect width='300' height='192' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' font-size='12' text-anchor='middle' dy='.3em' fill='%236B7280'%3EStartup Launch%3C/text%3E%3C/svg%3E"
+              alt="News Image"
+            />
+            <div class="p-6">
+              <div class="flex items-center text-sm text-gray-500 mb-2">
+                <span
+                  class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Alumni Success</span
+                >
+                <span>September 20, 2025</span>
+              </div>
+              <h3
+                class="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors"
+              >
+                Alumni Entrepreneurs Launch Tech Startup
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Three PCU-DASMA alumni have successfully launched a fintech
+                startup that has already secured ₱50M in Series A funding,
+                showcasing the entrepreneurial spirit of our graduates...
+              </p>
+              <div
+                class="flex items-center justify-between text-sm text-gray-500"
+              >
+                <div class="flex items-center space-x-4">
+                  <div class="flex items-center">
+                    <svg
+                      class="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 616 0z"
+                      ></path>
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      ></path>
+                    </svg>
+                    1,156 views
+                  </div>
+                  <div class="flex items-center">
+                    <svg
+                      class="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                      ></path>
+                    </svg>
+                    67
+                  </div>
+                </div>
+                <span class="text-primary font-medium group-hover:underline"
+                  >Read More</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- News Article 4 -->
+          <div
+            onclick="viewNews('ART-2025-009')"
+            class="group cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+          >
+            <img
+              class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23E5E7EB' viewBox='0 0 300 192'%3E%3Crect width='300' height='192' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' font-size='12' text-anchor='middle' dy='.3em' fill='%236B7280'%3EResearch%3C/text%3E%3C/svg%3E"
+              alt="News Image"
+            />
+            <div class="p-6">
+              <div class="flex items-center text-sm text-gray-500 mb-2">
+                <span
+                  class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Research</span
+                >
+                <span>September 15, 2025</span>
+              </div>
+              <h3
+                class="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors"
+              >
+                Faculty Research on AI Ethics Published
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                PCU-DASMA faculty members published groundbreaking research on
+                artificial intelligence ethics in a prestigious international
+                journal, contributing to the global AI discourse...
+              </p>
+              <div
+                class="flex items-center justify-between text-sm text-gray-500"
+              >
+                <div class="flex items-center space-x-4">
+                  <div class="flex items-center">
+                    <svg
+                      class="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 616 0z"
+                      ></path>
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      ></path>
+                    </svg>
+                    543 views
+                  </div>
+                  <div class="flex items-center">
+                    <svg
+                      class="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                      ></path>
+                    </svg>
+                    18
+                  </div>
+                </div>
+                <span class="text-primary font-medium group-hover:underline"
+                  >Read More</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- News Article 5 -->
+          <div
+            onclick="viewNews('ART-2025-010')"
+            class="group cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+          >
+            <img
+              class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23E5E7EB' viewBox='0 0 300 192'%3E%3Crect width='300' height='192' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' font-size='12' text-anchor='middle' dy='.3em' fill='%236B7280'%3ESports%3C/text%3E%3C/svg%3E"
+              alt="News Image"
+            />
+            <div class="p-6">
+              <div class="flex items-center text-sm text-gray-500 mb-2">
+                <span
+                  class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Sports</span
+                >
+                <span>September 12, 2025</span>
+              </div>
+              <h3
+                class="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors"
+              >
+                PCU-DASMA Teams Excel in Regional Championships
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Our university's basketball and volleyball teams secured top
+                positions in the regional collegiate championships, bringing
+                honor to PCU-DASMA...
+              </p>
+              <div
+                class="flex items-center justify-between text-sm text-gray-500"
+              >
+                <div class="flex items-center space-x-4">
+                  <div class="flex items-center">
+                    <svg
+                      class="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 616 0z"
+                      ></path>
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      ></path>
+                    </svg>
+                    423 views
+                  </div>
+                  <div class="flex items-center">
+                    <svg
+                      class="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                      ></path>
+                    </svg>
+                    31
+                  </div>
+                </div>
+                <span class="text-primary font-medium group-hover:underline"
+                  >Read More</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- News Article 6 -->
+          <div
+            onclick="viewNews('ART-2025-011')"
+            class="group cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+          >
+            <img
+              class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23E5E7EB' viewBox='0 0 300 192'%3E%3Crect width='300' height='192' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' font-size='12' text-anchor='middle' dy='.3em' fill='%236B7280'%3EScholarship%3C/text%3E%3C/svg%3E"
+              alt="News Image"
+            />
+            <div class="p-6">
+              <div class="flex items-center text-sm text-gray-500 mb-2">
+                <span
+                  class="bg-teal-100 text-teal-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Scholarships</span
+                >
+                <span>September 8, 2025</span>
+              </div>
+              <h3
+                class="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors"
+              >
+                New Alumni Scholarship Program Launched
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                Thanks to generous alumni contributions, PCU-DASMA launches a
+                new scholarship program that will support 50 deserving students
+                annually with full tuition coverage...
+              </p>
+              <div
+                class="flex items-center justify-between text-sm text-gray-500"
+              >
+                <div class="flex items-center space-x-4">
+                  <div class="flex items-center">
+                    <svg
+                      class="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 616 0z"
+                      ></path>
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      ></path>
+                    </svg>
+                    789 views
+                  </div>
+                  <div class="flex items-center">
+                    <svg
+                      class="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                      ></path>
+                    </svg>
+                    45
+                  </div>
+                </div>
+                <span class="text-primary font-medium group-hover:underline"
+                  >Read More</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Load More Button -->
+      <div class="text-center">
+        <button
+          onclick="loadMoreNews()"
+          class="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+        >
+          Load More Articles
+        </button>
+      </div>
+    </div>
+
+    <!-- Newsletter Subscription -->
+    <div class="bg-primary text-white py-12 mt-16">
+      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold mb-4">Stay Updated</h2>
+        <p class="text-lg mb-8">
+          Subscribe to our newsletter and never miss important news and updates
+          from PCU-DASMA
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
+          />
+          <button
+            class="bg-white text-primary px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+          >
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-lg font-semibold mb-4">PCU-DASMA Connect</h3>
+            <p class="text-gray-400">
+              Connecting alumni, fostering relationships, and building a
+              stronger community.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-md font-medium mb-4">Quick Links</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="dashboard.html" class="hover:text-white">Dashboard</a>
+              </li>
+              <li>
+                <a href="networking.html" class="hover:text-white"
+                  >Networking</a
+                >
+              </li>
+              <li><a href="events.html" class="hover:text-white">Events</a></li>
+              <li>
+                <a href="jobs.html" class="hover:text-white">Job Board</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-md font-medium mb-4">Categories</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white">University Updates</a>
+              </li>
+              <li><a href="#" class="hover:text-white">Alumni Success</a></li>
+              <li><a href="#" class="hover:text-white">Research</a></li>
+              <li><a href="#" class="hover:text-white">Partnerships</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-md font-medium mb-4">Connect</h4>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+                  />
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"
+                  />
+                </svg>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400"
+        >
+          <p>&copy; 2025 PCU-DASMA Connect. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle function
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById("mobileMenu");
+        const hamburgerIcon = document.getElementById("hamburgerIcon");
+        const closeIcon = document.getElementById("closeIcon");
+
+        // Toggle menu visibility
+        mobileMenu.classList.toggle("hidden");
+
+        // Toggle icons
+        hamburgerIcon.classList.toggle("hidden");
+        closeIcon.classList.toggle("hidden");
+
+        // Update aria-expanded attribute
+        const button = document.querySelector('[onclick="toggleMobileMenu()"]');
+        const isExpanded = !mobileMenu.classList.contains("hidden");
+        button.setAttribute("aria-expanded", isExpanded);
+      }
+
+      // User menu toggle function
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+      }
+
+      function viewNews(articleId) {
+        window.location.href = `news-details.html?id=${articleId}`;
+      }
+
+      function loadMoreNews() {
+        // Simulate loading more articles
+        alert(
+          "Loading more articles... This would fetch additional news items from the server."
+        );
+      }
+
+      // Search functionality
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", function (e) {
+          const searchTerm = e.target.value.toLowerCase();
+          const newsCards = document.querySelectorAll("#newsGrid > div");
+
+          newsCards.forEach((card) => {
+            const title = card.querySelector("h3").textContent.toLowerCase();
+            const content = card.querySelector("p").textContent.toLowerCase();
+
+            if (title.includes(searchTerm) || content.includes(searchTerm)) {
+              card.style.display = "block";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+
+      // Filter functionality
+      document
+        .getElementById("categoryFilter")
+        .addEventListener("change", function (e) {
+          const category = e.target.value;
+          const newsCards = document.querySelectorAll("#newsGrid > div");
+
+          newsCards.forEach((card) => {
+            if (category === "") {
+              card.style.display = "block";
+            } else {
+              const cardCategory = card
+                .querySelector("span")
+                .textContent.toLowerCase();
+              if (cardCategory.includes(category)) {
+                card.style.display = "block";
+              } else {
+                card.style.display = "none";
+              }
+            }
+          });
+        });
+
+      // Sort functionality
+      document
+        .getElementById("sortFilter")
+        .addEventListener("change", function (e) {
+          const sortBy = e.target.value;
+          const newsGrid = document.getElementById("newsGrid");
+          const newsCards = Array.from(newsGrid.children);
+
+          // Simple sort simulation (in real app, this would involve server-side sorting)
+          if (sortBy === "popular") {
+            alert(
+              "Sorting by popularity... This would reorder articles by view count."
+            );
+          } else if (sortBy === "trending") {
+            alert(
+              "Sorting by trending... This would show trending articles first."
+            );
+          }
+        });
+
+      // Close user menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const userMenu = document.getElementById("userMenu");
+        const button = event.target.closest(
+          'button[onclick="toggleUserMenu()"]'
+        );
+
+        if (!button && !userMenu.contains(event.target)) {
+          userMenu.classList.add("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>
