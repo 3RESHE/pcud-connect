@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Approved Partnership - PCU-DASMA Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1E40AF",
+                        secondary: "#3B82F6",
+                        accent: "#F59E0B",
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="dashboard.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
+                        <a href="approve-partnerships.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">Community Partnerships</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile" />
+                        </button>
+                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                            <div class="py-1">
+                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Profile</a>
+                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <div class="flex items-center mb-4">
+                <a href="approve-partnerships.html" class="text-gray-400 hover:text-gray-600 mr-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </a>
+                <div class="flex items-center space-x-4">
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-900">Partnership #MHC-2025-009</h1>
+                        <p class="text-gray-600">Approved partnership ready for activation</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Approved</span>
+                        <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">Mobile Health Clinic</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Open Participation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Approved Status Alert -->
+        <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-8">
+            <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div>
+                    <h4 class="font-semibold text-green-800">Partnership Approved</h4>
+                    <p class="text-sm text-green-700">This partnership has been approved and is ready for activation. Partner organization has been notified and is preparing for implementation.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Partnership Overview -->
+        <div class="bg-white shadow rounded-lg mb-8">
+            <div class="px-6 py-5 border-b border-gray-200">
+                <h2 class="text-xl font-semibold text-gray-900">Free Medical Mission for Rural Communities</h2>
+                <div class="mt-2 flex items-center text-sm text-gray-600 space-x-6">
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                        HealthCare Heroes Foundation
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Approved: November 10, 2025
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                        Dr. Michael Tan, Medical Director
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-6 py-5">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Mission Date</h3>
+                        <p class="mt-1 text-lg text-gray-900">December 3, 2025</p>
+                        <p class="text-sm text-gray-600">7:00 AM - 3:00 PM</p>
+                        <p class="text-sm text-green-600 font-medium">Starts in 3 weeks</p>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Expected Patients</h3>
+                        <p class="mt-1 text-lg text-gray-900">400 patients</p>
+                        <p class="text-sm text-gray-600">Walk-in basis</p>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Location</h3>
+                        <p class="mt-1 text-lg text-gray-900">Barangay Salawag</p>
+                        <p class="text-sm text-gray-600">Multi-purpose Hall</p>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-medium text-gray-900 mb-3">Mission Overview</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Free medical consultation, basic health screening, and medicine distribution for underserved communities. No appointment needed - first-come, first-served basis. Includes dental checkup and health education sessions. The mission aims to provide accessible healthcare services to rural communities and promote preventive health awareness.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Two-column Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Content -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Implementation Plan -->
+                <div class="bg-white shadow rounded-lg p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Implementation Plan</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Pre-Mission Preparation</h3>
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <ul class="text-sm text-green-800 space-y-1">
+                                    <li>✓ Medical team coordination completed</li>
+                                    <li>✓ Medicine procurement in progress (₱150,000 budget)</li>
+                                    <li>✓ Venue setup requirements confirmed</li>
+                                    <li>• Student volunteer orientation scheduled (Nov 25)</li>
+                                    <li>• Equipment delivery and setup (Dec 2)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Medical Services Offered</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-900">Primary Care</h4>
+                                    <ul class="text-sm text-gray-600 mt-1">
+                                        <li>• General consultation</li>
+                                        <li>• Blood pressure monitoring</li>
+                                        <li>• Blood sugar testing</li>
+                                        <li>• Basic laboratory tests</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-900">Specialized Services</h4>
+                                    <ul class="text-sm text-gray-600 mt-1">
+                                        <li>• Dental examination</li>
+                                        <li>• Vision screening</li>
+                                        <li>• Health education sessions</li>
+                                        <li>• Medicine distribution</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Partnership Resources</h3>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                    <div>
+                                        <strong>Healthcare Heroes Provides:</strong><br>
+                                        • 8 doctors, 12 nurses, 6 dentists<br>
+                                        • ₱150,000 worth of medicines<br>
+                                        • Medical equipment and supplies<br>
+                                        • Professional liability insurance
+                                    </div>
+                                    <div>
+                                        <strong>PCU-DASMA Provides:</strong><br>
+                                        • 30 nursing/health science students<br>
+                                        • Venue coordination support<br>
+                                        • Registration and crowd management<br>
+                                        • Promotional and outreach support
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Organization Information -->
+                <div class="bg-white shadow rounded-lg p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Partner Organization</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Organization Type</h3>
+                            <p class="text-gray-900">Healthcare Non-Profit</p>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Years of Operation</h3>
+                            <p class="text-gray-900">12 years</p>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Previous Missions</h3>
+                            <p class="text-gray-900">45+ medical missions</p>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Patients Served</h3>
+                            <p class="text-gray-900">18,000+ patients</p>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Organization Mission</h3>
+                        <p class="text-gray-700">
+                            HealthCare Heroes Foundation is dedicated to providing accessible healthcare services to underserved communities. We focus on preventive care, health education, and building sustainable healthcare networks in rural areas. Our volunteer medical professionals are committed to serving those who need it most.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Approval History -->
+                <div class="bg-white shadow rounded-lg p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Approval History</h2>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-medium text-gray-900">Partnership Approved</h4>
+                                <span class="text-sm text-gray-500">2 days ago</span>
+                            </div>
+                            <p class="text-sm text-gray-700 mb-2">Admin approved the partnership with the following notes:</p>
+                            <ul class="text-sm text-gray-600 space-y-1 ml-4">
+                                <li>• Excellent track record and professional medical team</li>
+                                <li>• Comprehensive service offering aligned with community needs</li>
+                                <li>• Strong safety protocols and insurance coverage</li>
+                                <li>• Clear implementation plan and resource allocation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Action Panel -->
+                <div class="bg-white shadow rounded-lg p-6">
+                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Partnership Actions</h2>
+                    <div class="space-y-3">
+                        <button onclick="activatePartnership()" class="w-full px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700">
+                            Activate Partnership
+                        </button>
+                        <div class="border-t border-gray-200 pt-3">
+                            <a href="implementation-guide.html" class="w-full px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200 block text-center">
+                                View Implementation Guide
+                            </a>
+                            <a href="partnership-agreement.pdf" class="w-full px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200 block text-center mt-2">
+                                Download Agreement
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Implementation Timeline -->
+                <div class="bg-white shadow rounded-lg p-6">
+                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Implementation Timeline</h2>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 w-3 h-3 bg-green-400 rounded-full"></div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-900">Partnership Approved</p>
+                                <p class="text-xs text-gray-500">November 10, 2025</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 w-3 h-3 bg-yellow-400 rounded-full"></div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-900">Volunteer Orientation</p>
+                                <p class="text-xs text-gray-500">November 25, 2025</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 w-3 h-3 bg-yellow-400 rounded-full"></div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-900">Equipment Setup</p>
+                                <p class="text-xs text-gray-500">December 2, 2025</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 w-3 h-3 bg-blue-400 rounded-full"></div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-900">Medical Mission Day</p>
+                                <p class="text-xs text-gray-500">December 3, 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="bg-white shadow rounded-lg p-6">
+                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Primary Contact</h2>
+                    <div class="space-y-3">
+                        <div>
+                            <p class="text-sm font-medium text-gray-900">Dr. Michael Tan</p>
+                            <p class="text-xs text-gray-500">Medical Director</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500">Email</p>
+                            <p class="text-sm text-gray-900">michael.tan@healthcareheroes.org</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500">Phone</p>
+                            <p class="text-sm text-gray-900">+639 345 678 901</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500">Emergency Contact</p>
+                            <p class="text-sm text-gray-900">Dr. Sarah Lee - +639 876 543 210</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mission Stats -->
+                <div class="bg-white shadow rounded-lg p-6">
+                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Mission Statistics</h2>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-600">Expected Patients</span>
+                            <span class="text-sm font-medium text-gray-900">400</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-600">Medical Team</span>
+                            <span class="text-sm font-medium text-gray-900">26 professionals</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-600">Student Volunteers</span>
+                            <span class="text-sm font-medium text-gray-900">30</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-600">Medicine Budget</span>
+                            <span class="text-sm font-medium text-gray-900">₱150,000</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-600">Duration</span>
+                            <span class="text-sm font-medium text-gray-900">8 hours</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleUserMenu() {
+            const menu = document.getElementById("userMenu");
+            menu.classList.toggle("hidden");
+        }
+
+        function logout() {
+            if (confirm("Are you sure you want to logout?")) {
+                window.location.href = "../login.html";
+            }
+        }
+
+        function activatePartnership() {
+            if (confirm("Activate this approved medical mission partnership? It will move to active status and implementation will begin.")) {
+                alert("Partnership activated! Status updated to 'Active'.\nHealthCare Heroes Foundation has been notified to begin implementation phase.");
+                window.location.href = "approve-partnerships.html";
+            }
+        }
+
+        // Close user menu when clicking outside
+        document.addEventListener("click", function (event) {
+            const menu = document.getElementById("userMenu");
+            const button = event.target.closest('button[onclick="toggleUserMenu()"]');
+
+            if (!button && !menu.contains(event.target)) {
+                menu.classList.add("hidden");
+            }
+        });
+    </script>
+</body>
+</html>

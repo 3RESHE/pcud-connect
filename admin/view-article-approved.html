@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Approved Article - PCU-DASMA Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1E40AF",
+                        secondary: "#3B82F6",
+                        accent: "#F59E0B",
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="dashboard.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
+                        <a href="approve-news.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">News Approvals</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile" />
+                        </button>
+                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                            <div class="py-1">
+                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Profile</a>
+                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="mb-8">
+            <div class="flex items-center mb-4">
+                <a href="approve-news.html" class="text-gray-400 hover:text-gray-600 mr-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </a>
+                <div class="flex items-center space-x-4">
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-900">Approved Article</h1>
+                        <p class="text-gray-600">Ready for publication</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Approved</span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Partnership Success</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Approved Status Alert -->
+        <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-8">
+            <div class="flex items-start">
+                <svg class="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div>
+                    <h4 class="font-semibold text-green-800">Article Approved</h4>
+                    <p class="text-sm text-green-700">This article has passed administrative review and is ready for publication. You can publish it immediately or schedule it for later.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Article Overview -->
+        <div class="bg-white shadow rounded-lg mb-8">
+            <div class="px-6 py-5 border-b border-gray-200">
+                <h2 class="text-xl font-semibold text-gray-900">Back-to-School Supplies Drive: Supporting 750 Students</h2>
+                <div class="mt-2 flex items-center text-sm text-gray-600 space-x-6">
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                        By: Communications Staff
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Approved: October 12, 2025 - 9:45 PM
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2M7 4h10M7 4v16a2 2 0 002 2h6a2 2 0 002-2V4M11 6v2M11 10v2"></path>
+                        </svg>
+                        Category: Community Partnership
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-6 py-5">
+                <div class="mb-6">
+                    <h3 class="text-lg font-medium text-gray-900 mb-3">Article Summary</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        The recent back-to-school supplies drive partnership successfully distributed school supplies to 750 students across 12 partner schools in remote barangays, valued at ₱420,000. Strong campus community participation made this initiative highly successful.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Publication Status</h3>
+                        <p class="mt-1 text-lg text-green-600 font-medium">Ready to Publish</p>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Content Quality</h3>
+                        <p class="mt-1 text-lg text-gray-900">Approved</p>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Partnership Reference</h3>
+                        <p class="mt-1 text-lg text-gray-900">BSS-2025-014</p>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Tags</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Partnership</span>
+                        <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded">Education</span>
+                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Success Story</span>
+                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Community Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Two-column Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Content -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Article Content -->
+                <div class="bg-white shadow rounded-lg p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Article Content</h2>
+                    
+                    <!-- Featured Image -->
+                    <div class="mb-6">
+                        <img class="w-full h-64 object-cover rounded-lg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23E5E7EB' viewBox='0 0 600 256'%3E%3Crect width='600' height='256' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' font-size='18' text-anchor='middle' dy='.3em' fill='%236B7280'%3ESupplies Distribution Photo%3C/text%3E%3C/svg%3E" alt="Featured Image">
+                    </div>
+
+                    <!-- Article Text -->
+                    <div class="prose max-w-none">
+                        <p class="text-gray-700 mb-4">
+                            The Back-to-School Supplies Drive 2025 concluded on September 28, 2025, successfully supporting educational access for students in remote barangays of Dasmarinas and surrounding areas.
+                        </p>
+
+                        <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">Distribution Impact</h3>
+                        <p class="text-gray-700 mb-4">
+                            This comprehensive initiative achieved remarkable results in supporting educational equity:
+                        </p>
+
+                        <ul class="list-disc list-inside text-gray-700 mb-4 space-y-1">
+                            <li><strong>750 students</strong> received complete school supply sets</li>
+                            <li><strong>12 partner schools</strong> in remote barangays reached</li>
+                            <li><strong>200 school uniforms</strong> distributed to students in need</li>
+                            <li><strong>₱420,000 total value</strong> of educational supplies provided</li>
+                            <li><strong>100% target achievement</strong> in reaching planned beneficiaries</li>
+                        </ul>
+
+                        <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">Community Collaboration</h3>
+                        <p class="text-gray-700 mb-4">
+                            The success of this program demonstrates the power of coordinated community effort. The Education for All Coalition provided funding and supply procurement, while PCU-DASMA organized student volunteers for packing and distribution logistics.
+                        </p>
+
+                        <blockquote class="border-l-4 border-purple-500 pl-4 italic text-gray-700 mb-4">
+                            "Seeing the joy on students' faces when they received their supplies reminded us why education access matters. These partnerships create real change in our community." 
+                            <cite class="block text-sm text-gray-600 mt-1">— Ms. Carmen Dela Rosa, Program Coordinator, Education for All Coalition</cite>
+                        </blockquote>
+
+                        <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">Student Volunteer Experience</h3>
+                        <p class="text-gray-700 mb-4">
+                            Over 50 PCU-DASMA students participated in the supply packing and distribution activities, gaining valuable experience in community service and understanding educational challenges in rural areas. Many volunteers expressed interest in continuing their involvement in similar initiatives.
+                        </p>
+
+                        <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">Sustainable Impact</h3>
+                        <p class="text-gray-700">
+                            Beyond immediate supply distribution, this initiative has strengthened relationships between PCU-DASMA and rural schools, laying groundwork for future educational support programs and mentorship opportunities. The partnership model established this year will serve as a template for expanding educational equity initiatives.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Approval History -->
+                <div class="bg-white shadow rounded-lg p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Approval History</h2>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-medium text-gray-900">Article Approved</h4>
+                                <span class="text-sm text-gray-500">2 hours ago</span>
+                            </div>
+                            <p class="text-sm text-gray-700 mb-2">Admin approved the article with the following notes:</p>
+                            <ul class="text-sm text-gray-600 space-y-1 ml-4">
+                                <li>• Excellent reporting on partnership outcomes and community impact</li>
+                                <li>• Well-structured content with appropriate supporting data</li>
+                                <li>• High-quality featured image and proper citations</li>
+                                <li>• Ready for immediate publication</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Publication Actions -->
+                <div class="bg-white shadow rounded-lg p-6">
+                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Publication Actions</h2>
+                    <div class="space-y-3">
+                        <button onclick="publishNow()" class="w-full px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700">
+                            Publish Now
+                        </button>
+                        <button onclick="schedulePublish()" class="w-full px-4 py-2 bg-indigo-600 text-white text-sm rounded-md hover:bg-indigo-700">
+                            Schedule Publication
+                        </button>
+                        <div class="border-t border-gray-200 pt-3">
+                            <button onclick="editArticle()" class="w-full px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200">
+                                Edit Article
+                            </button>
+                            <button onclick="previewArticle()" class="w-full px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200 mt-2">
+                                Preview Article
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Publication Timeline -->
+                <div class="bg-white shadow rounded-lg p-6">
+                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Publication Timeline</h2>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 w-3 h-3 bg-green-400 rounded-full"></div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-900">Article Submitted</p>
+                                <p class="text-xs text-gray-500">October 12, 2025 - 7:30 PM</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 w-3 h-3 bg-green-400 rounded-full"></div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-900">Article Approved</p>
+                                <p class="text-xs text-gray-500">October 12, 2025 - 9:45 PM</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 w-3 h-3 bg-yellow-400 rounded-full"></div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-900">Ready for Publication</p>
+                                <p class="text-xs text-gray-500">Current status</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article Details -->
+                <div class="bg-white shadow rounded-lg p-6">
+                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Article Details</h2>
+                    <div class="space-y-3">
+                        <div>
+                            <p class="text-sm font-medium text-gray-900">Approved By</p>
+                            <p class="text-sm text-gray-600">Admin User</p>
+                            <p class="text-xs text-gray-500">admin@pcu.edu.ph</p>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-900">Article Type</p>
+                            <p class="text-sm text-gray-600">Partnership Success Story</p>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-900">Publication Settings</p>
+                            <p class="text-sm text-gray-600">Send notifications: Yes</p>
+                            <p class="text-sm text-gray-600">Allow comments: Yes</p>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-900">SEO Status</p>
+                            <p class="text-sm text-green-600">Optimized</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Statistics -->
+                <div class="bg-white shadow rounded-lg p-6">
+                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Content Statistics</h2>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-600">Word Count</span>
+                            <span class="text-sm font-medium text-gray-900">892</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-600">Reading Time</span>
+                            <span class="text-sm font-medium text-gray-900">4 minutes</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-600">Images</span>
+                            <span class="text-sm font-medium text-gray-900">1 featured</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-600">Tags</span>
+                            <span class="text-sm font-medium text-gray-900">4</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm text-gray-600">Quality Score</span>
+                            <span class="text-sm font-medium text-green-600">Excellent</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleUserMenu() {
+            const menu = document.getElementById("userMenu");
+            menu.classList.toggle("hidden");
+        }
+
+        function logout() {
+            if (confirm("Are you sure you want to logout?")) {
+                window.location.href = "../login.html";
+            }
+        }
+
+        function publishNow() {
+            if (confirm("Publish this approved article immediately? It will be visible to all users and subscribers will be notified.")) {
+                alert("Article published successfully!\n\nThe article is now live on the website. Subscribers have been notified and the article has been shared on social media channels.");
+                window.location.href = "approve-news.html";
+            }
+        }
+
+        function schedulePublish() {
+            const datetime = prompt("Schedule publication date and time:\n\nFormat: YYYY-MM-DD HH:MM\nExample: 2025-10-15 09:00");
+            
+            if (datetime && datetime.trim()) {
+                if (confirm(`Schedule this article for publication on ${datetime}?`)) {
+                    alert(`Article scheduled for publication on ${datetime}.\n\nThe article will automatically be published at the specified time and subscribers will be notified.`);
+                    window.location.href = "approve-news.html";
+                }
+            }
+        }
+
+        function editArticle() {
+            if (confirm("Edit this approved article? Any changes will require re-approval before publication.")) {
+                window.location.href = "../staff/create-news.html?edit=ART-2025-004";
+            }
+        }
+
+        function previewArticle() {
+            alert("Opening article preview...\n\nThis shows exactly how the article will appear to readers once published.");
+        }
+
+        // Close user menu when clicking outside
+        document.addEventListener("click", function (event) {
+            const userMenu = document.getElementById("userMenu");
+            const button = event.target.closest('button[onclick="toggleUserMenu()"]');
+
+            if (!button && !userMenu.contains(event.target)) {
+                userMenu.classList.add("hidden");
+            }
+        });
+
+        // Get URL parameters for article loading
+        window.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = urlParams.get('id');
+            const status = urlParams.get('status');
+            
+            if (articleId && status) {
+                console.log(`Loading article ${articleId} with status ${status}`);
+                // Here you would load the specific article data based on the ID
+            }
+        });
+    </script>
+</body>
+</html>
