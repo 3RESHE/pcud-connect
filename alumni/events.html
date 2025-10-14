@@ -245,9 +245,9 @@
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
       <!-- Header -->
       <div class="mb-8">
-        <h1 class="text-3xl font-bold text-gray-900">Alumni Events</h1>
+        <h1 class="text-3xl font-bold text-gray-900">Events</h1>
         <p class="text-gray-600">
-          Discover and register for events tailored for PCU-DASMA alumni
+          Discover and register for events created by PCU-DASMA staff and alumni
         </p>
       </div>
 
@@ -276,7 +276,7 @@
             </div>
             <div class="ml-4">
               <p class="text-sm font-medium text-gray-600">Available Events</p>
-              <p class="text-2xl font-semibold text-gray-900">15</p>
+              <p class="text-2xl font-semibold text-gray-900">5</p>
             </div>
           </div>
         </div>
@@ -304,7 +304,7 @@
             </div>
             <div class="ml-4">
               <p class="text-sm font-medium text-gray-600">My Registrations</p>
-              <p class="text-2xl font-semibold text-gray-900">3</p>
+              <p class="text-2xl font-semibold text-gray-900">2</p>
             </div>
           </div>
         </div>
@@ -331,10 +331,8 @@
               </div>
             </div>
             <div class="ml-4">
-              <p class="text-sm font-medium text-gray-600">
-                Partnership Events
-              </p>
-              <p class="text-2xl font-semibold text-gray-900">9</p>
+              <p class="text-sm font-medium text-gray-600">Alumni Only</p>
+              <p class="text-2xl font-semibold text-gray-900">2</p>
             </div>
           </div>
         </div>
@@ -361,8 +359,8 @@
               </div>
             </div>
             <div class="ml-4">
-              <p class="text-sm font-medium text-gray-600">University Events</p>
-              <p class="text-2xl font-semibold text-gray-900">6</p>
+              <p class="text-sm font-medium text-gray-600">Student Only</p>
+              <p class="text-2xl font-semibold text-gray-900">2</p>
             </div>
           </div>
         </div>
@@ -406,35 +404,35 @@
               data-tab="all"
               class="event-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium"
             >
-              All Events (15)
+              All Events (6)
             </button>
             <button
-              onclick="filterEvents('registered')"
-              data-tab="registered"
+              onclick="filterEvents('my_registrations')"
+              data-tab="my_registrations"
               class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
             >
-              My Registrations (3)
+              My Registrations (2)
             </button>
             <button
-              onclick="filterEvents('alumni')"
-              data-tab="alumni"
+              onclick="filterEvents('alumni_only')"
+              data-tab="alumni_only"
               class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
             >
-              Alumni Only (4)
+              Alumni Only (2)
             </button>
             <button
-              onclick="filterEvents('partnership')"
-              data-tab="partnership"
+              onclick="filterEvents('student_only')"
+              data-tab="student_only"
               class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
             >
-              Partnership Events (9)
+              Student Only (2)
             </button>
             <button
-              onclick="filterEvents('university')"
-              data-tab="university"
+              onclick="filterEvents('completed')"
+              data-tab="completed"
               class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
             >
-              University Events (6)
+              Completed Events (1)
             </button>
           </nav>
         </div>
@@ -442,10 +440,10 @@
 
       <!-- Events List (Centered) -->
       <div class="mx-auto space-y-6" id="eventsList">
-        <!-- Featured University Event -->
+        <!-- Featured Staff-Created Event -->
         <div
           class="bg-gradient-to-r from-primary to-secondary rounded-lg p-6 text-white event-card"
-          data-category="all alumni university"
+          data-category="all alumni_only staff"
         >
           <div class="flex items-center justify-between mb-4">
             <div class="flex items-center space-x-2">
@@ -455,7 +453,7 @@
               >
               <span
                 class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs"
-                >University Event</span
+                >Staff-Created Event</span
               >
             </div>
             <span class="text-sm opacity-90"
@@ -500,41 +498,34 @@
           </div>
         </div>
 
-        <!-- Partnership Event - Training Program -->
+        <!-- Pending Event -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500 event-card"
-          data-category="all partnership"
+          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-yellow-500 event-card"
+          data-category="all student_only"
         >
           <div class="flex items-start justify-between mb-4">
             <div class="flex-1">
               <div class="flex items-center mb-2">
                 <span
-                  class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Training Program</span
+                  class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Under Review</span
                 >
                 <span
-                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Partnership Event</span
-                >
-                <span
-                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Hybrid</span
+                  class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Student Only</span
                 >
                 <span class="text-sm text-gray-500"
-                  >Oct 22-Nov 18 • 8 weeks</span
+                  >Submitted Oct 13, 2025</span
                 >
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                Industry 4.0 & IoT Training Program
+                Advanced Web Development Bootcamp
               </h3>
               <p class="text-sm text-blue-600 mb-3">
-                Partnership with TechnoForward Industries Inc.
+                Organized by Prof. Carlos Martinez
               </p>
               <p class="text-gray-600 mb-3">
-                Intensive 8-week training program on Industry 4.0 technologies
-                and IoT applications. Includes hands-on lab work, real-world
-                projects, and industry certifications. Equipment and laboratory
-                setup provided by partner.
+                Comprehensive 6-week bootcamp covering modern web development technologies including React, Node.js, and cloud deployment. Designed to prepare students for industry-level development roles.
               </p>
               <div class="flex items-center text-sm text-gray-500 mb-3">
                 <svg
@@ -550,8 +541,7 @@
                     d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                   ></path>
                 </svg>
-                PCU-DASMA Labs + Virtual Platform • Mondays & Wednesdays 6:00 PM
-                - 8:00 PM
+                IT Laboratory 1 & 2 • December 15, 2025 • 9:00 AM - 5:00 PM (6 weeks)
               </div>
               <div class="flex items-center text-sm text-gray-500">
                 <svg
@@ -567,16 +557,10 @@
                     d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                   ></path>
                 </svg>
-                48/60 participants • Students & Faculty welcome
+                30/30 participants • Students only
               </div>
             </div>
             <div class="ml-4 flex flex-col space-y-2">
-              <button
-                onclick="showRegistrationModal(2)"
-                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
-              >
-                Register Now
-              </button>
               <button
                 onclick="viewEventDetails(2)"
                 class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
@@ -587,127 +571,34 @@
           </div>
         </div>
 
-        <!-- Partnership Event - Scholarship Program (Registered) -->
+        <!-- My Registrations Event -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-green-500 event-card"
-          data-category="all registered partnership"
+          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500 event-card"
+          data-category="all my_registrations student_only"
         >
           <div class="flex items-start justify-between mb-4">
             <div class="flex-1">
               <div class="flex items-center mb-2">
                 <span
-                  class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Scholarship Program</span
-                >
-                <span
-                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Registered ✓</span
-                >
-                <span
                   class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Partnership Event</span
+                  >Registered</span
+                >
+                <span
+                  class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Student Only</span
                 >
                 <span class="text-sm text-gray-500"
-                  >Nov 1 • Application Review</span
+                  >Registered Oct 10, 2025</span
                 >
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                Future Engineers Scholarship Program
+                Student Leadership Development Workshop
               </h3>
               <p class="text-sm text-blue-600 mb-3">
-                Partnership with National Engineering Foundation
+                Organized by Ms. Angela Reyes
               </p>
               <p class="text-gray-600 mb-3">
-                Merit-based scholarship program providing financial support to
-                outstanding engineering students. Recipients receive full
-                tuition coverage, mentorship opportunities, and guaranteed
-                internship placements.
-              </p>
-              <div class="flex items-center text-sm text-gray-500 mb-3">
-                <svg
-                  class="w-4 h-4 mr-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-                15 scholarship recipients • Engineering students only
-              </div>
-              <div class="flex items-center text-sm text-green-600">
-                <svg
-                  class="w-4 h-4 mr-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-                Application submitted! Review in progress.
-              </div>
-            </div>
-            <div class="ml-4 flex flex-col space-y-2">
-              <button
-                onclick="viewMyRegistration(3)"
-                class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
-              >
-                View Application
-              </button>
-              <button
-                onclick="cancelRegistration(3)"
-                class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700"
-              >
-                Withdraw Application
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Partnership Event - Workshop Series -->
-        <div
-          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-purple-500 event-card"
-          data-category="all partnership"
-        >
-          <div class="flex items-start justify-between mb-4">
-            <div class="flex-1">
-              <div class="flex items-center mb-2">
-                <span
-                  class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Workshop Series</span
-                >
-                <span
-                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Partnership Event</span
-                >
-                <span
-                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Hybrid</span
-                >
-                <span class="text-sm text-gray-500"
-                  >Oct 25-Nov 15 • 4 weeks</span
-                >
-              </div>
-              <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                Digital Marketing Mastery Workshop Series
-              </h3>
-              <p class="text-sm text-blue-600 mb-3">
-                Partnership with DigitalBridge Marketing Solutions
-              </p>
-              <p class="text-gray-600 mb-3">
-                Comprehensive 4-week workshop series covering modern digital
-                marketing strategies including social media marketing, content
-                creation, SEO, and analytics. Gain hands-on experience with
-                industry-standard tools.
+                Interactive workshop series focused on developing leadership skills among students. Covers communication, team management, and project leadership.
               </p>
               <div class="flex items-center text-sm text-gray-500 mb-3">
                 <svg
@@ -723,9 +614,9 @@
                     d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                   ></path>
                 </svg>
-                PCU-DASMA + Virtual Platform • Fridays 7:00 PM - 9:00 PM
+                Main Hall • December 10, 2025 • 1:00 PM - 4:00 PM
               </div>
-              <div class="flex items-center text-sm text-orange-600">
+              <div class="flex items-center text-sm text-gray-500">
                 <svg
                   class="w-4 h-4 mr-1"
                   fill="none"
@@ -736,10 +627,89 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                   ></path>
                 </svg>
-                Registration closes Oct 23 • 67/80 slots filled
+                25/50 participants • Students only
+              </div>
+            </div>
+            <div class="ml-4 flex flex-col space-y-2">
+              <button
+                onclick="viewMyRegistration(3)"
+                class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
+              >
+                View Registration
+              </button>
+              <button
+                onclick="cancelRegistration(3)"
+                class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700"
+              >
+                Cancel Registration
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alumni Only Event -->
+        <div
+          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-purple-500 event-card"
+          data-category="all alumni_only"
+        >
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-2">
+                <span
+                  class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Alumni Only</span
+                >
+                <span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >In-Person</span
+                >
+                <span class="text-sm text-gray-500"
+                  >Published Oct 11, 2025</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Alumni Networking Night
+              </h3>
+              <p class="text-sm text-blue-600 mb-3">
+                Organized by Dr. Elena Garcia
+              </p>
+              <p class="text-gray-600 mb-3">
+                An evening of networking and professional development for PCU-DASMA alumni, featuring guest speakers and industry connections.
+              </p>
+              <div class="flex items-center text-sm text-gray-500 mb-3">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                </svg>
+                Alumni Center • November 20, 2025 • 6:00 PM - 9:00 PM
+              </div>
+              <div class="flex items-center text-sm text-gray-500">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  ></path>
+                </svg>
+                32/50 participants • Alumni only
               </div>
             </div>
             <div class="ml-4 flex flex-col space-y-2">
@@ -759,41 +729,34 @@
           </div>
         </div>
 
-        <!-- Partnership Event - Community Event -->
+        <!-- Student Only Event -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-green-500 event-card"
-          data-category="all partnership"
+          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500 event-card"
+          data-category="all student_only"
         >
           <div class="flex items-start justify-between mb-4">
             <div class="flex-1">
               <div class="flex items-center mb-2">
                 <span
-                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Community Event</span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Student Only</span
                 >
                 <span
                   class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Partnership Event</span
-                >
-                <span
-                  class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >In-Person</span
+                  >Hybrid</span
                 >
                 <span class="text-sm text-gray-500"
-                  >Nov 8 • 8:00 AM - 5:00 PM</span
+                  >Published Oct 11, 2025</span
                 >
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                Environmental Conservation Drive
+                Digital Marketing Mastery Workshop Series
               </h3>
               <p class="text-sm text-blue-600 mb-3">
-                Partnership with GreenFuture Foundation
+                Organized by Ms. Patricia Cruz
               </p>
               <p class="text-gray-600 mb-3">
-                Join our community-wide environmental conservation initiative.
-                Activities include tree planting, coastal cleanup, recycling
-                workshops, and sustainable living seminars. Make a positive
-                impact on our environment.
+                4-week workshop series covering modern digital marketing strategies, tailored for student participants.
               </p>
               <div class="flex items-center text-sm text-gray-500 mb-3">
                 <svg
@@ -809,7 +772,7 @@
                     d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                   ></path>
                 </svg>
-                Various locations in Dasmarinas • Community service
+                Lecture Hall 3 • November 15, 2025 • 9:00 AM - 12:00 PM
               </div>
               <div class="flex items-center text-sm text-gray-500">
                 <svg
@@ -825,7 +788,7 @@
                     d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                   ></path>
                 </svg>
-                156 volunteers registered • Open to all
+                67/80 participants • Students only
               </div>
             </div>
             <div class="ml-4 flex flex-col space-y-2">
@@ -845,38 +808,30 @@
           </div>
         </div>
 
-        <!-- Alumni Only University Event -->
+        <!-- Completed Event -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-orange-500 event-card"
-          data-category="all alumni university"
+          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-gray-500 event-card opacity-80"
+          data-category="all completed"
         >
           <div class="flex items-start justify-between mb-4">
             <div class="flex-1">
               <div class="flex items-center mb-2">
                 <span
-                  class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Alumni Only</span
-                >
-                <span
-                  class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >University Event</span
-                >
-                <span
-                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >In-Person</span
+                  class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Completed</span
                 >
                 <span class="text-sm text-gray-500"
-                  >Nov 12 • 2:00 PM - 5:00 PM</span
+                  >Completed Oct 08, 2025</span
                 >
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                Career Mentorship Program Launch
+                AI in Education Seminar
               </h3>
+              <p class="text-sm text-blue-600 mb-3">
+                Organized by Dr. Elena Garcia
+              </p>
               <p class="text-gray-600 mb-3">
-                Launch event for our new career mentorship program connecting
-                successful alumni with current students. Learn about mentoring
-                opportunities, program structure, and how to make a meaningful
-                impact on the next generation.
+                Seminar on integrating AI tools in educational practices, completed successfully with positive feedback.
               </p>
               <div class="flex items-center text-sm text-gray-500 mb-3">
                 <svg
@@ -892,7 +847,7 @@
                     d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                   ></path>
                 </svg>
-                PCU-DASMA Conference Hall • Alumni professionals only
+                Conference Room A • October 08, 2025 • 10:00 AM - 1:00 PM
               </div>
               <div class="flex items-center text-sm text-gray-500">
                 <svg
@@ -908,65 +863,52 @@
                     d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                   ></path>
                 </svg>
-                32/50 alumni registered
+                45/50 participants • Open to all
               </div>
             </div>
             <div class="ml-4 flex flex-col space-y-2">
-              <button
-                onclick="showRegistrationModal(6)"
-                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
-              >
-                Register Now
-              </button>
               <button
                 onclick="viewEventDetails(6)"
                 class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
               >
                 View Details
               </button>
+              <button
+                onclick="viewFeedback(6)"
+                class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700"
+              >
+                View Feedback
+              </button>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Partnership Event - Research Collaboration -->
+      <!-- Registration Modal -->
+      <div
+        id="registrationModal"
+        class="hidden fixed inset-0 z-50 overflow-y-auto"
+      >
         <div
-          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-teal-500 event-card"
-          data-category="all partnership"
+          class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center"
         >
-          <div class="flex items-start justify-between mb-4">
-            <div class="flex-1">
-              <div class="flex items-center mb-2">
-                <span
-                  class="bg-teal-100 text-teal-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Research Collaboration</span
-                >
-                <span
-                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Partnership Event</span
-                >
-                <span
-                  class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Virtual</span
-                >
-                <span class="text-sm text-gray-500"
-                  >Nov 15 • 1:00 PM - 4:00 PM</span
-                >
-              </div>
-              <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                AI & Machine Learning Research Symposium
+          <div
+            class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+          ></div>
+
+          <div class="relative bg-white rounded-lg max-w-2xl w-full shadow-xl">
+            <div
+              class="px-6 py-4 border-b border-gray-200 flex justify-between items-center"
+            >
+              <h3 class="text-xl font-semibold text-gray-900">
+                Event Registration
               </h3>
-              <p class="text-sm text-blue-600 mb-3">
-                Partnership with Philippine Research Institute
-              </p>
-              <p class="text-gray-600 mb-3">
-                Collaborative research symposium featuring latest developments
-                in AI and machine learning. Presentations from researchers,
-                networking with industry experts, and opportunities for research
-                partnerships.
-              </p>
-              <div class="flex items-center text-sm text-gray-500 mb-3">
+              <button
+                onclick="closeRegistrationModal()"
+                class="text-gray-400 hover:text-gray-600"
+              >
                 <svg
-                  class="w-4 h-4 mr-1"
+                  class="w-6 h-6"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -975,613 +917,496 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"
+                    d="M6 18L18 6M6 6l12 12"
                   ></path>
                 </svg>
-                Online via Zoom • Research presentations and demos
-              </div>
-              <div class="flex items-center text-sm text-gray-500">
-                <svg
-                  class="w-4 h-4 mr-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  ></path>
-                </svg>
-                89 researchers registered • Faculty & graduate students
+              </button>
+            </div>
+
+            <div class="p-6">
+              <div id="registrationContent">
+                <!-- Dynamic content will be loaded here -->
               </div>
             </div>
-            <div class="ml-4 flex flex-col space-y-2">
+
+            <div
+              class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3"
+            >
               <button
-                onclick="showRegistrationModal(7)"
-                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+                onclick="closeRegistrationModal()"
+                class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
               >
-                Register Now
+                Cancel
               </button>
               <button
-                onclick="viewEventDetails(7)"
-                class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
+                onclick="proceedToRegistration()"
+                id="registerBtn"
+                class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700"
               >
-                View Details
+                Proceed to Registration
               </button>
             </div>
           </div>
         </div>
-
-        <!-- Load More Button -->
-        <div class="text-center py-6">
-          <button
-            onclick="loadMoreEvents()"
-            class="px-6 py-2 bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 font-medium"
-          >
-            Load More Events
-          </button>
-        </div>
       </div>
-    </div>
 
-    <!-- Registration Modal -->
-    <div
-      id="registrationModal"
-      class="hidden fixed inset-0 z-50 overflow-y-auto"
-    >
-      <div
-        class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center"
-      >
+      <!-- OTP Verification Modal -->
+      <div id="otpModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
         <div
-          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-        ></div>
-
-        <div class="relative bg-white rounded-lg max-w-2xl w-full shadow-xl">
+          class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center"
+        >
           <div
-            class="px-6 py-4 border-b border-gray-200 flex justify-between items-center"
-          >
-            <h3 class="text-xl font-semibold text-gray-900">
-              Event Registration
-            </h3>
-            <button
-              onclick="closeRegistrationModal()"
-              class="text-gray-400 hover:text-gray-600"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                ></path>
-              </svg>
-            </button>
-          </div>
+            class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+          ></div>
 
-          <div class="p-6">
-            <div id="registrationContent">
-              <!-- Dynamic content will be loaded here -->
-            </div>
-          </div>
-
-          <div
-            class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3"
-          >
-            <button
-              onclick="closeRegistrationModal()"
-              class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
-            >
-              Cancel
-            </button>
-            <button
-              onclick="proceedToRegistration()"
-              id="registerBtn"
-              class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700"
-            >
-              Proceed to Registration
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- OTP Verification Modal -->
-    <div id="otpModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
-      <div
-        class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center"
-      >
-        <div
-          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-        ></div>
-
-        <div class="relative bg-white rounded-lg max-w-md w-full shadow-xl">
-          <div class="px-6 py-4 border-b border-gray-200">
-            <h3 class="text-xl font-semibold text-gray-900 text-center">
-              Verify Your Email
-            </h3>
-          </div>
-
-          <div class="p-6">
-            <div class="text-center mb-6">
-              <div
-                class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center"
-              >
-                <svg
-                  class="w-8 h-8 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  ></path>
-                </svg>
-              </div>
-              <p class="text-gray-600">
-                We've sent a verification code to your email address. Please
-                enter it below to complete your registration.
-              </p>
+          <div class="relative bg-white rounded-lg max-w-md w-full shadow-xl">
+            <div class="px-6 py-4 border-b border-gray-200">
+              <h3 class="text-xl font-semibold text-gray-900 text-center">
+                Verify Your Email
+              </h3>
             </div>
 
-            <div class="space-y-4">
-              <div>
-                <label
-                  for="otpCode"
-                  class="block text-sm font-medium text-gray-700 mb-2"
+            <div class="p-6">
+              <div class="text-center mb-6">
+                <div
+                  class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center"
                 >
-                  Verification Code
-                </label>
-                <input
-                  type="text"
-                  id="otpCode"
-                  maxlength="6"
-                  placeholder="Enter 6-digit code"
-                  class="block w-full px-3 py-3 border border-gray-300 rounded-md text-center text-lg font-mono focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                />
-              </div>
-
-              <div class="text-center">
-                <p class="text-sm text-gray-500">Didn't receive the code?</p>
-                <button
-                  onclick="resendOTP()"
-                  class="text-primary hover:text-blue-700 text-sm font-medium"
-                >
-                  Resend verification code
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3"
-          >
-            <button
-              onclick="closeOTPModal()"
-              class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
-            >
-              Cancel
-            </button>
-            <button
-              onclick="verifyOTP()"
-              class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700"
-            >
-              Verify & Register
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script>
-      let currentEventId = null;
-      let currentEventData = null;
-
-      // Sample event data based on partnership types
-      const eventData = {
-        1: {
-          title: "PCU-DASMA Alumni Homecoming 2025",
-          date: "October 15, 2025",
-          time: "9:00 AM - 8:00 PM",
-          location: "PCU-DASMA Campus",
-          description:
-            "The biggest alumni gathering of the year! Reconnect with classmates, faculty, and celebrate our shared legacy. Features include campus tours, recognition ceremony, networking lunch, and evening gala dinner.",
-          organizer: "Alumni Relations Office",
-          type: "University Event",
-          capacity: 1000,
-          registered: 847,
-          requirements: [
-            "Valid Alumni ID",
-            "RSVP Required",
-            "Dress Code: Business Casual",
-          ],
-        },
-        2: {
-          title: "Industry 4.0 & IoT Training Program",
-          date: "October 22 - November 18, 2025",
-          time: "Mondays & Wednesdays 6:00 PM - 8:00 PM",
-          location: "PCU-DASMA Labs + Virtual Platform",
-          description:
-            "Intensive 8-week training program on Industry 4.0 technologies and IoT applications. Includes hands-on lab work, real-world projects, and industry certifications. Equipment and laboratory setup provided by partner.",
-          organizer: "Partnership with TechnoForward Industries Inc.",
-          type: "Partnership Event - Training Program",
-          capacity: 60,
-          registered: 48,
-          requirements: [
-            "Basic engineering knowledge",
-            "Laptop required",
-            "Commitment to full program",
-          ],
-        },
-        3: {
-          title: "Future Engineers Scholarship Program",
-          date: "November 1, 2025",
-          time: "Application Review Process",
-          location: "Application-based Program",
-          description:
-            "Merit-based scholarship program providing financial support to outstanding engineering students. Recipients receive full tuition coverage, mentorship opportunities, and guaranteed internship placements.",
-          organizer: "Partnership with National Engineering Foundation",
-          type: "Partnership Event - Scholarship Program",
-          capacity: 15,
-          registered: 78,
-          requirements: [
-            "Engineering student",
-            "GPA 3.5 or higher",
-            "Complete application portfolio",
-          ],
-        },
-        4: {
-          title: "Digital Marketing Mastery Workshop Series",
-          date: "October 25 - November 15, 2025",
-          time: "Fridays 7:00 PM - 9:00 PM",
-          location: "PCU-DASMA + Virtual Platform",
-          description:
-            "Comprehensive 4-week workshop series covering modern digital marketing strategies including social media marketing, content creation, SEO, and analytics. Gain hands-on experience with industry-standard tools.",
-          organizer: "Partnership with DigitalBridge Marketing Solutions",
-          type: "Partnership Event - Workshop Series",
-          capacity: 80,
-          registered: 67,
-          requirements: [
-            "Basic computer skills",
-            "Social media familiarity",
-            "Creative mindset",
-          ],
-        },
-        5: {
-          title: "Environmental Conservation Drive",
-          date: "November 8, 2025",
-          time: "8:00 AM - 5:00 PM",
-          location: "Various locations in Dasmarinas",
-          description:
-            "Join our community-wide environmental conservation initiative. Activities include tree planting, coastal cleanup, recycling workshops, and sustainable living seminars. Make a positive impact on our environment.",
-          organizer: "Partnership with GreenFuture Foundation",
-          type: "Partnership Event - Community Event",
-          capacity: 200,
-          registered: 156,
-          requirements: [
-            "Physical fitness",
-            "Sun protection",
-            "Commitment to full day",
-          ],
-        },
-        6: {
-          title: "Career Mentorship Program Launch",
-          date: "November 12, 2025",
-          time: "2:00 PM - 5:00 PM",
-          location: "PCU-DASMA Conference Hall",
-          description:
-            "Launch event for our new career mentorship program connecting successful alumni with current students. Learn about mentoring opportunities, program structure, and how to make a meaningful impact.",
-          organizer: "Alumni Relations Office",
-          type: "University Event - Alumni Only",
-          capacity: 50,
-          registered: 32,
-          requirements: [
-            "Alumni verification",
-            "Professional experience",
-            "Mentoring commitment",
-          ],
-        },
-        7: {
-          title: "AI & Machine Learning Research Symposium",
-          date: "November 15, 2025",
-          time: "1:00 PM - 4:00 PM",
-          location: "Online via Zoom",
-          description:
-            "Collaborative research symposium featuring latest developments in AI and machine learning. Presentations from researchers, networking with industry experts, and opportunities for research partnerships.",
-          organizer: "Partnership with Philippine Research Institute",
-          type: "Partnership Event - Research Collaboration",
-          capacity: 150,
-          registered: 89,
-          requirements: [
-            "Research background",
-            "Technical presentation",
-            "Academic credentials",
-          ],
-        },
-      };
-
-      // Mobile menu toggle function
-      function toggleMobileMenu() {
-        const mobileMenu = document.getElementById("mobileMenu");
-        const hamburgerIcon = document.getElementById("hamburgerIcon");
-        const closeIcon = document.getElementById("closeIcon");
-
-        // Toggle menu visibility
-        mobileMenu.classList.toggle("hidden");
-
-        // Toggle icons
-        hamburgerIcon.classList.toggle("hidden");
-        closeIcon.classList.toggle("hidden");
-
-        // Update aria-expanded attribute
-        const button = document.querySelector('[onclick="toggleMobileMenu()"]');
-        const isExpanded = !mobileMenu.classList.contains("hidden");
-        button.setAttribute("aria-expanded", isExpanded);
-      }
-
-      // User menu toggle function
-      function toggleUserMenu() {
-        const menu = document.getElementById("userMenu");
-        menu.classList.toggle("hidden");
-      }
-
-      function logout() {
-        if (confirm("Are you sure you want to logout?")) {
-          window.location.href = "../login.html";
-        }
-      }
-
-      function filterEvents(category) {
-        // Update tab appearance
-        document.querySelectorAll(".event-filter").forEach((filter) => {
-          filter.classList.remove("active", "border-primary", "text-primary");
-          filter.classList.add("border-transparent", "text-gray-500");
-        });
-
-        const activeTab = document.querySelector(`[data-tab="${category}"]`);
-        if (activeTab) {
-          activeTab.classList.add("active", "border-primary", "text-primary");
-          activeTab.classList.remove("border-transparent", "text-gray-500");
-        }
-
-        // Filter event cards
-        const eventCards = document.querySelectorAll(".event-card");
-        eventCards.forEach((card) => {
-          const cardCategories = card.getAttribute("data-category").split(" ");
-          if (category === "all" || cardCategories.includes(category)) {
-            card.style.display = "block";
-          } else {
-            card.style.display = "none";
-          }
-        });
-      }
-
-      function showRegistrationModal(eventId) {
-        currentEventId = eventId;
-        currentEventData = eventData[eventId];
-
-        if (!currentEventData) {
-          alert("Event data not found!");
-          return;
-        }
-
-        const modalContent = `
-                <div class="space-y-4">
-                    <div class="text-center">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-2">${
-                          currentEventData.title
-                        }</h2>
-                        <div class="flex items-center justify-center space-x-4 text-sm text-gray-600 mb-4">
-                            <span>📅 ${currentEventData.date}</span>
-                            <span>🕐 ${currentEventData.time}</span>
-                        </div>
-                        <div class="flex items-center justify-center space-x-2 mb-4">
-                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">${
-                              currentEventData.type
-                            }</span>
-                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Free Event</span>
-                        </div>
-                    </div>
-                    
-                    <div class="text-left">
-                        <h3 class="font-semibold text-gray-900 mb-2">Event Description</h3>
-                        <p class="text-gray-600 mb-4">${
-                          currentEventData.description
-                        }</p>
-                        
-                        <div class="grid grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Location</h4>
-                                <p class="text-gray-600">${
-                                  currentEventData.location
-                                }</p>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Availability</h4>
-                                <p class="text-gray-600">${
-                                  currentEventData.registered
-                                }/${currentEventData.capacity} registered</p>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-4">
-                            <h4 class="font-semibold text-gray-900 mb-2">Requirements</h4>
-                            <ul class="text-sm text-gray-600 space-y-1">
-                                ${currentEventData.requirements
-                                  .map((req) => `<li>• ${req}</li>`)
-                                  .join("")}
-                            </ul>
-                        </div>
-                        
-                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                            <div class="flex items-start">
-                                <svg class="w-5 h-5 text-yellow-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <div>
-                                    <h4 class="font-semibold text-yellow-800">Registration Process</h4>
-                                    <p class="text-sm text-yellow-700">After clicking "Proceed to Registration", we'll send a verification code to your email. You'll need to enter this code to complete your registration.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  <svg
+                    class="w-8 h-8 text-blue-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    ></path>
+                  </svg>
                 </div>
-            `;
+                <p class="text-gray-600">
+                  We've sent a verification code to your email address. Please
+                  enter it below to complete your registration.
+                </p>
+              </div>
 
-        document.getElementById("registrationContent").innerHTML = modalContent;
-        document.getElementById("registrationModal").classList.remove("hidden");
-      }
+              <div class="space-y-4">
+                <div>
+                  <label
+                    for="otpCode"
+                    class="block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Verification Code
+                  </label>
+                  <input
+                    type="text"
+                    id="otpCode"
+                    maxlength="6"
+                    placeholder="Enter 6-digit code"
+                    class="block w-full px-3 py-3 border border-gray-300 rounded-md text-center text-lg font-mono focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                  />
+                </div>
 
-      function closeRegistrationModal() {
-        document.getElementById("registrationModal").classList.add("hidden");
-        currentEventId = null;
-        currentEventData = null;
-      }
+                <div class="text-center">
+                  <p class="text-sm text-gray-500">Didn't receive the code?</p>
+                  <button
+                    onclick="resendOTP()"
+                    class="text-primary hover:text-blue-700 text-sm font-medium"
+                  >
+                    Resend verification code
+                  </button>
+                </div>
+              </div>
+            </div>
 
-      function proceedToRegistration() {
-        if (!currentEventId) return;
+            <div
+              class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3"
+            >
+              <button
+                onclick="closeOTPModal()"
+                class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+              >
+                Cancel
+              </button>
+              <button
+                onclick="verifyOTP()"
+                class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700"
+              >
+                Verify & Register
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        // Close registration modal
-        closeRegistrationModal();
+      <script>
+        let currentEventId = null;
+        let currentEventData = null;
 
-        // Show OTP modal
-        document.getElementById("otpModal").classList.remove("hidden");
+        // Updated event data
+        const eventData = {
+          1: {
+            title: "PCU-DASMA Alumni Homecoming 2025",
+            date: "October 15, 2025",
+            time: "9:00 AM - 8:00 PM",
+            location: "PCU-DASMA Campus",
+            description:
+              "The biggest alumni gathering of the year! Reconnect with classmates, faculty, and celebrate our shared legacy. Features include campus tours, recognition ceremony, networking lunch, and evening gala dinner.",
+            organizer: "Alumni Relations Office",
+            type: "Staff-Created Event",
+            capacity: 1000,
+            registered: 847,
+            requirements: [
+              "Valid Alumni ID",
+              "RSVP Required",
+              "Dress Code: Business Casual",
+            ],
+          },
+          2: {
+            title: "Advanced Web Development Bootcamp",
+            date: "December 15, 2025",
+            time: "9:00 AM - 5:00 PM (6 weeks)",
+            location: "IT Laboratory 1 & 2",
+            description:
+              "Comprehensive 6-week bootcamp covering modern web development technologies including React, Node.js, and cloud deployment. Designed to prepare students for industry-level development roles.",
+            organizer: "Prof. Carlos Martinez",
+            type: "Student Only",
+            capacity: 30,
+            registered: 30,
+            requirements: [
+              "Basic programming knowledge",
+              "Laptop required",
+              "Commitment to full program",
+            ],
+          },
+          3: {
+            title: "Student Leadership Development Workshop",
+            date: "December 10, 2025",
+            time: "1:00 PM - 4:00 PM",
+            location: "Main Hall",
+            description:
+              "Interactive workshop series focused on developing leadership skills among students. Covers communication, team management, and project leadership.",
+            organizer: "Ms. Angela Reyes",
+            type: "Student Only",
+            capacity: 50,
+            registered: 25,
+            requirements: [
+              "Student enrollment",
+              "Interest in leadership",
+            ],
+          },
+          4: {
+            title: "Alumni Networking Night",
+            date: "November 20, 2025",
+            time: "6:00 PM - 9:00 PM",
+            location: "Alumni Center",
+            description:
+              "An evening of networking and professional development for PCU-DASMA alumni, featuring guest speakers and industry connections.",
+            organizer: "Dr. Elena Garcia",
+            type: "Alumni Only",
+            capacity: 50,
+            registered: 32,
+            requirements: [
+              "Alumni verification",
+              "Professional attire",
+            ],
+          },
+          5: {
+            title: "Digital Marketing Mastery Workshop Series",
+            date: "November 15, 2025",
+            time: "9:00 AM - 12:00 PM",
+            location: "Lecture Hall 3",
+            description:
+              "4-week workshop series covering modern digital marketing strategies, tailored for student participants.",
+            organizer: "Ms. Patricia Cruz",
+            type: "Student Only",
+            capacity: 80,
+            registered: 67,
+            requirements: [
+              "Basic computer skills",
+              "Social media familiarity",
+            ],
+          },
+          6: {
+            title: "AI in Education Seminar",
+            date: "October 08, 2025",
+            time: "10:00 AM - 1:00 PM",
+            location: "Conference Room A",
+            description:
+              "Seminar on integrating AI tools in educational practices, completed successfully with positive feedback.",
+            organizer: "Dr. Elena Garcia",
+            type: "Completed",
+            capacity: 50,
+            registered: 45,
+            requirements: [
+              "Open to all",
+              "Interest in educational technology",
+            ],
+          },
+        };
 
-        // Simulate sending OTP
-        setTimeout(() => {
-          alert("Verification code sent to your email address!");
-        }, 500);
-      }
+        // Mobile menu toggle function
+        function toggleMobileMenu() {
+          const mobileMenu = document.getElementById("mobileMenu");
+          const hamburgerIcon = document.getElementById("hamburgerIcon");
+          const closeIcon = document.getElementById("closeIcon");
 
-      function closeOTPModal() {
-        document.getElementById("otpModal").classList.add("hidden");
-        document.getElementById("otpCode").value = "";
-      }
+          // Toggle menu visibility
+          mobileMenu.classList.toggle("hidden");
 
-      function verifyOTP() {
-        const otpCode = document.getElementById("otpCode").value;
+          // Toggle icons
+          hamburgerIcon.classList.toggle("hidden");
+          closeIcon.classList.toggle("hidden");
 
-        if (otpCode.length !== 6) {
-          alert("Please enter a valid 6-digit verification code.");
-          return;
+          // Update aria-expanded attribute
+          const button = document.querySelector('[onclick="toggleMobileMenu()"]');
+          const isExpanded = !mobileMenu.classList.contains("hidden");
+          button.setAttribute("aria-expanded", isExpanded);
         }
 
-        // Simulate OTP verification
-        if (otpCode === "123456") {
-          closeOTPModal();
-          alert(
-            `Registration successful! You have been registered for "${currentEventData.title}". A confirmation email has been sent to your registered email address.`
-          );
-
-          // Refresh page to show updated registration status
-          setTimeout(() => {
-            location.reload();
-          }, 1000);
-        } else {
-          alert("Invalid verification code. Please try again.");
+        // User menu toggle function
+        function toggleUserMenu() {
+          const menu = document.getElementById("userMenu");
+          menu.classList.toggle("hidden");
         }
-      }
 
-      function resendOTP() {
-        alert("New verification code sent to your email address!");
-        document.getElementById("otpCode").value = "";
-      }
-
-      function viewEventDetails(eventId) {
-        showRegistrationModal(eventId);
-      }
-
-      function cancelRegistration(eventId) {
-        if (
-          confirm(
-            "Are you sure you want to cancel your registration? You will lose your spot for this event."
-          )
-        ) {
-          alert(
-            `Registration cancelled successfully for event #${eventId}. You will receive a confirmation email.`
-          );
-          location.reload();
+        function logout() {
+          if (confirm("Are you sure you want to logout?")) {
+            window.location.href = "../login.html";
+          }
         }
-      }
 
-      function viewMyRegistration(eventId) {
-        alert(`Opening your registration details for event #${eventId}...`);
-      }
+        function filterEvents(category) {
+          // Update tab appearance
+          document.querySelectorAll(".event-filter").forEach((filter) => {
+            filter.classList.remove("active", "border-primary", "text-primary");
+            filter.classList.add("border-transparent", "text-gray-500");
+          });
 
-      function loadMoreEvents() {
-        alert("Loading more events...");
-      }
+          const activeTab = document.querySelector(`[data-tab="${category}"]`);
+          if (activeTab) {
+            activeTab.classList.add("active", "border-primary", "text-primary");
+            activeTab.classList.remove("border-transparent", "text-gray-500");
+          }
 
-      // Search functionality
-      document
-        .getElementById("searchEvents")
-        .addEventListener("input", function (e) {
-          const searchTerm = e.target.value.toLowerCase();
+          // Filter event cards
           const eventCards = document.querySelectorAll(".event-card");
-
           eventCards.forEach((card) => {
-            const title = card
-              .querySelector("h2, h3")
-              .textContent.toLowerCase();
-            const description = card
-              .querySelector("p")
-              .textContent.toLowerCase();
-
-            if (
-              title.includes(searchTerm) ||
-              description.includes(searchTerm)
-            ) {
+            const cardCategories = card.getAttribute("data-category").split(" ");
+            if (category === "all" || cardCategories.includes(category)) {
               card.style.display = "block";
             } else {
               card.style.display = "none";
             }
           });
-        });
-
-      // Close modals when clicking outside
-      document
-        .getElementById("registrationModal")
-        .addEventListener("click", function (e) {
-          if (e.target === this) {
-            closeRegistrationModal();
-          }
-        });
-
-      document
-        .getElementById("otpModal")
-        .addEventListener("click", function (e) {
-          if (e.target === this) {
-            closeOTPModal();
-          }
-        });
-
-      // Close user menu when clicking outside
-      document.addEventListener("click", function (event) {
-        const userMenu = document.getElementById("userMenu");
-        const button = event.target.closest(
-          'button[onclick="toggleUserMenu()"]'
-        );
-
-        if (!button && !userMenu.contains(event.target)) {
-          userMenu.classList.add("hidden");
         }
-      });
 
-      // Auto-format OTP input
-      document
-        .getElementById("otpCode")
-        .addEventListener("input", function (e) {
-          this.value = this.value.replace(/[^0-9]/g, "");
+        function showRegistrationModal(eventId) {
+          currentEventId = eventId;
+          currentEventData = eventData[eventId];
+
+          if (!currentEventData) {
+            alert("Event data not found!");
+            return;
+          }
+
+          const modalContent = `
+                  <div class="space-y-4">
+                      <div class="text-center">
+                          <h2 class="text-2xl font-bold text-gray-900 mb-2">${currentEventData.title}</h2>
+                          <div class="flex items-center justify-center space-x-4 text-sm text-gray-600 mb-4">
+                              <span>📅 ${currentEventData.date}</span>
+                              <span>🕐 ${currentEventData.time}</span>
+                          </div>
+                          <div class="flex items-center justify-center space-x-2 mb-4">
+                              <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">${currentEventData.type}</span>
+                              <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Free Event</span>
+                          </div>
+                      </div>
+                      
+                      <div class="text-left">
+                          <h3 class="font-semibold text-gray-900 mb-2">Event Description</h3>
+                          <p class="text-gray-600 mb-4">${currentEventData.description}</p>
+                          
+                          <div class="grid grid-cols-2 gap-4 mb-4">
+                              <div>
+                                  <h4 class="font-semibold text-gray-900">Location</h4>
+                                  <p class="text-gray-600">${currentEventData.location}</p>
+                              </div>
+                              <div>
+                                  <h4 class="font-semibold text-gray-900">Availability</h4>
+                                  <p class="text-gray-600">${currentEventData.registered}/${currentEventData.capacity} registered</p>
+                              </div>
+                          </div>
+                          
+                          <div class="mb-4">
+                              <h4 class="font-semibold text-gray-900 mb-2">Requirements</h4>
+                              <ul class="text-sm text-gray-600 space-y-1">
+                                  ${currentEventData.requirements.map((req) => `<li>• ${req}</li>`).join("")}
+                              </ul>
+                          </div>
+                          
+                          <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                              <div class="flex items-start">
+                                  <svg class="w-5 h-5 text-yellow-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                  </svg>
+                                  <div>
+                                      <h4 class="font-semibold text-yellow-800">Registration Process</h4>
+                                      <p class="text-sm text-yellow-700">After clicking "Proceed to Registration", we'll send a verification code to your email. You'll need to enter this code to complete your registration.</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              `;
+
+          document.getElementById("registrationContent").innerHTML = modalContent;
+          document.getElementById("registrationModal").classList.remove("hidden");
+        }
+
+        function closeRegistrationModal() {
+          document.getElementById("registrationModal").classList.add("hidden");
+          currentEventId = null;
+          currentEventData = null;
+        }
+
+        function proceedToRegistration() {
+          if (!currentEventId) return;
+
+          // Close registration modal
+          closeRegistrationModal();
+
+          // Show OTP modal
+          document.getElementById("otpModal").classList.remove("hidden");
+
+          // Simulate sending OTP
+          setTimeout(() => {
+            alert("Verification code sent to your email address!");
+          }, 500);
+        }
+
+        function closeOTPModal() {
+          document.getElementById("otpModal").classList.add("hidden");
+          document.getElementById("otpCode").value = "";
+        }
+
+        function verifyOTP() {
+          const otpCode = document.getElementById("otpCode").value;
+
+          if (otpCode.length !== 6) {
+            alert("Please enter a valid 6-digit verification code.");
+            return;
+          }
+
+          // Simulate OTP verification
+          if (otpCode === "123456") {
+            closeOTPModal();
+            alert(
+              `Registration successful! You have been registered for "${currentEventData.title}". A confirmation email has been sent to your registered email address.`
+            );
+
+            // Refresh page to show updated registration status
+            setTimeout(() => {
+              location.reload();
+            }, 1000);
+          } else {
+            alert("Invalid verification code. Please try again.");
+          }
+        }
+
+        function resendOTP() {
+          alert("New verification code sent to your email address!");
+          document.getElementById("otpCode").value = "";
+        }
+
+        function viewEventDetails(eventId) {
+          showRegistrationModal(eventId);
+        }
+
+        function cancelRegistration(eventId) {
+          if (
+            confirm(
+              "Are you sure you want to cancel your registration? You will lose your spot for this event."
+            )
+          ) {
+            alert(
+              `Registration cancelled successfully for event #${eventId}. You will receive a confirmation email.`
+            );
+            location.reload();
+          }
+        }
+
+        function viewMyRegistration(eventId) {
+          alert(`Opening your registration details for event #${eventId}...`);
+        }
+
+        function viewFeedback(eventId) {
+          alert(`Viewing feedback for completed event #${eventId}...`);
+        }
+
+        // Search functionality
+        document
+          .getElementById("searchEvents")
+          .addEventListener("input", function (e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const eventCards = document.querySelectorAll(".event-card");
+
+            eventCards.forEach((card) => {
+              const title = card
+                .querySelector("h2, h3")
+                .textContent.toLowerCase();
+              const description = card
+                .querySelector("p")
+                .textContent.toLowerCase();
+
+              if (
+                title.includes(searchTerm) ||
+                description.includes(searchTerm)
+              ) {
+                card.style.display = "block";
+              } else {
+                card.style.display = "none";
+              }
+            });
+          });
+
+        // Close modals when clicking outside
+        document
+          .getElementById("registrationModal")
+          .addEventListener("click", function (e) {
+            if (e.target === this) {
+              closeRegistrationModal();
+            }
+          });
+
+        document
+          .getElementById("otpModal")
+          .addEventListener("click", function (e) {
+            if (e.target === this) {
+              closeOTPModal();
+            }
+          });
+
+        // Close user menu when clicking outside
+        document.addEventListener("click", function (event) {
+          const userMenu = document.getElementById("userMenu");
+          const button = event.target.closest(
+            'button[onclick="toggleUserMenu()"]'
+          );
+
+          if (!button && !userMenu.contains(event.target)) {
+            userMenu.classList.add("hidden");
+          }
         });
-    </script>
-  </body>
+
+        // Auto-format OTP input
+        document
+          .getElementById("otpCode")
+          .addEventListener("input", function (e) {
+            this.value = this.value.replace(/[^0-9]/g, "");
+          });
+      </script>
+    </body>
 </html>
