@@ -1,872 +1,1661 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Event Approvals - PCU-DASMA Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1E40AF',
-                        secondary: '#3B82F6',
-                        accent: '#F59E0B'
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-gray-50">
+  </head>
+  <body class="bg-gray-50">
     <div class="flex h-screen overflow-hidden">
-        <!-- Sidebar -->
-        <aside id="sidebar" class="bg-white w-64 min-h-screen shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 fixed z-50">
-            <div class="flex flex-col h-full">
-                <!-- Logo -->
-                <div class="flex items-center justify-between p-4 border-b border-gray-200">
-                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
-                    <button id="closeSidebar" class="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
+      <!-- Sidebar -->
+      <aside
+        id="sidebar"
+        class="bg-white w-64 min-h-screen shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 fixed z-50"
+      >
+        <div class="flex flex-col h-full">
+          <!-- Logo -->
+          <div
+            class="flex items-center justify-between p-4 border-b border-gray-200"
+          >
+            <a href="../index.html" class="text-xl font-bold text-primary"
+              >PCU-DASMA Connect</a
+            >
+            <button
+              id="closeSidebar"
+              class="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Navigation -->
+          <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <!-- Dashboard -->
+            <a
+              href="dashboard.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m8 5 4-4 4 4"
+                ></path>
+              </svg>
+              Dashboard
+            </a>
+
+            <!-- Users -->
+            <a
+              href="users.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                ></path>
+              </svg>
+              Users
+            </a>
+
+            <!-- Approvals Dropdown -->
+            <div class="space-y-1">
+              <button
+                onclick="toggleDropdown('approvals')"
+                class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg focus:outline-none"
+              >
+                <div class="flex items-center">
+                  <svg
+                    class="w-5 h-5 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  Approvals
                 </div>
-
-                <!-- Navigation -->
-                <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
-                    <!-- Dashboard -->
-                    <a href="dashboard.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
-                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 5 4-4 4 4"></path>
-                        </svg>
-                        Dashboard
-                    </a>
-
-                    <!-- Users -->
-                    <a href="users.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
-                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
-                        </svg>
-                        Users
-                    </a>
-
-                    <!-- Approvals Dropdown -->
-                    <div class="space-y-1">
-                        <button onclick="toggleDropdown('approvals')" class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg focus:outline-none">
-                            <div class="flex items-center">
-                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                Approvals
-                            </div>
-                            <svg id="approvals-arrow" class="w-4 h-4 transform transition-transform duration-200 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="approvals-menu" class="ml-4 space-y-1">
-                            <a href="approve-jobs.html" class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100">
-                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
-                                </svg>
-                                Job Post Approvals
-                                <span class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full">3</span>
-                            </a>
-                            <a href="approve-news.html" class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100">
-                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
-                                </svg>
-                                News Approvals
-                                <span class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full">2</span>
-                            </a>
-                            <a href="approve-events.html" class="flex items-center px-4 py-2 text-sm text-primary font-medium bg-blue-50 rounded-lg">
-                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                                Event Approvals
-                                <span class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full">4</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Partnerships -->
-                    <a href="approve-partnerships.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
-                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 614 0z"></path>
-                        </svg>
-                        Partnerships
-                        <span class="ml-auto bg-yellow-100 text-yellow-800 text-xs px-2 py-0.5 rounded-full">2</span>
-                    </a>
-
-                    <!-- Analytics -->
-                     
-
-                    <!-- Divider -->
-                    <div class="border-t border-gray-200 my-4"></div>
-
-                    <!-- Settings -->
-                    <a href="settings.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
-                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                        Settings
-                    </a>
-                </nav>
-
-                <!-- User Profile -->
-                <div class="border-t border-gray-200 p-4">
-                    <div class="flex items-center">
-                        <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
-                        <div class="ml-3 flex-1">
-                            <p class="text-sm font-medium text-gray-700">Admin User</p>
-                            <p class="text-xs text-gray-500">admin@pcu.edu.ph</p>
-                        </div>
-                        <div class="relative">
-                            <button onclick="toggleUserMenu()" class="p-2 rounded-md text-gray-400 hover:text-gray-600">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
-                                </svg>
-                            </button>
-                            <div id="userMenu" class="hidden origin-bottom-right absolute bottom-0 right-0 mb-12 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                                <div class="py-1">
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Profile</a>
-                                    <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <svg
+                  id="approvals-arrow"
+                  class="w-4 h-4 transform transition-transform duration-200 rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div id="approvals-menu" class="ml-4 space-y-1">
+                <a
+                  href="approve-jobs.html"
+                  class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"
+                    ></path>
+                  </svg>
+                  Job Post Approvals
+                  <span
+                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
+                    >3</span
+                  >
+                </a>
+                <a
+                  href="approve-news.html"
+                  class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+                    ></path>
+                  </svg>
+                  News Approvals
+                  <span
+                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
+                    >2</span
+                  >
+                </a>
+                <a
+                  href="approve-events.html"
+                  class="flex items-center px-4 py-2 text-sm text-primary font-medium bg-blue-50 rounded-lg"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                  Event Approvals
+                  <span
+                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
+                    >4</span
+                  >
+                </a>
+              </div>
             </div>
-        </aside>
 
-        <!-- Main Content -->
-        <div class="flex-1 flex flex-col overflow-hidden">
-            <!-- Top Header -->
-            <header class="bg-white shadow-sm border-b lg:hidden">
-                <div class="flex items-center justify-between px-4 py-3">
-                    <button id="openSidebar" class="p-2 rounded-md text-gray-400 hover:text-gray-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                    <h1 class="text-xl font-bold text-primary">Event Approvals</h1>
-                    <div class="w-10"></div> <!-- Spacer -->
+            <!-- Partnerships -->
+            <a
+              href="approve-partnerships.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+              </svg>
+              Partnerships
+              <span
+                class="ml-auto bg-yellow-100 text-yellow-800 text-xs px-2 py-0.5 rounded-full"
+                >2</span
+              >
+            </a>
+
+            <!-- Divider -->
+            <div class="border-t border-gray-200 my-4"></div>
+
+            <!-- Settings -->
+            <a
+              href="settings.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                ></path>
+              </svg>
+              Settings
+            </a>
+          </nav>
+
+          <!-- User Profile -->
+          <div class="border-t border-gray-200 p-4">
+            <div class="flex items-center">
+              <img
+                class="h-8 w-8 rounded-full"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                alt="Profile"
+              />
+              <div class="ml-3 flex-1">
+                <p class="text-sm font-medium text-gray-700">Admin User</p>
+                <p class="text-xs text-gray-500">admin@pcu.edu.ph</p>
+              </div>
+              <div class="relative">
+                <button
+                  onclick="toggleUserMenu()"
+                  class="p-2 rounded-md text-gray-400 hover:text-gray-600"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                    ></path>
+                  </svg>
+                </button>
+                <div
+                  id="userMenu"
+                  class="hidden origin-bottom-right absolute bottom-0 right-0 mb-12 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                >
+                  <div class="py-1">
+                    <a
+                      href="#"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >Admin Profile</a
+                    >
+                    <a
+                      href="#"
+                      onclick="logout()"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >Logout</a
+                    >
+                  </div>
                 </div>
-            </header>
-
-            <!-- Content Area -->
-            <main class="flex-1 overflow-y-auto">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                    <!-- Header -->
-                    <div class="mb-8">
-                        <h1 class="text-3xl font-bold text-gray-900">Event Approvals</h1>
-                        <p class="text-gray-600">Review and approve event submissions from staff members</p>
-                    </div>
-
-                    <!-- Admin Process Notice -->
-                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8">
-                        <div class="flex">
-                            <div class="flex-shrink-0">
-                                <svg class="h-5 w-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </div>
-                            <div class="ml-3">
-                                <h3 class="text-sm font-medium text-blue-800">Admin Review Process</h3>
-                                <div class="mt-2 text-sm text-blue-700">
-                                    <p>Staff members submit event proposals for your review. You can approve, request changes, or reject submissions. Approved events will be published automatically and become visible to users for registration.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Stats Cards -->
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                        <div class="bg-white p-6 rounded-lg shadow-sm">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0">
-                                    <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
-                                        <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-600">Pending Review</p>
-                                    <p class="text-2xl font-semibold text-gray-900">4</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-white p-6 rounded-lg shadow-sm">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0">
-                                    <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                                        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-600">Approved Today</p>
-                                    <p class="text-2xl font-semibold text-gray-900">3</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-white p-6 rounded-lg shadow-sm">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0">
-                                    <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
-                                        <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-600">Changes Requested</p>
-                                    <p class="text-2xl font-semibold text-gray-900">2</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-white p-6 rounded-lg shadow-sm">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0">
-                                    <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-600">Published Events</p>
-                                    <p class="text-2xl font-semibold text-gray-900">18</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Filter Tabs -->
-                    <div class="mb-8">
-                        <div class="border-b border-gray-200">
-                            <nav class="-mb-px flex space-x-8">
-                                <button onclick="filterEvents('pending')" class="event-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium">
-                                    Pending Review (4)
-                                </button>
-                                <button onclick="filterEvents('changes_requested')" class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
-                                    Changes Requested (2)
-                                </button>
-                                <button onclick="filterEvents('approved')" class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
-                                    Approved (18)
-                                </button>
-                                <button onclick="filterEvents('rejected')" class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
-                                    Rejected (3)
-                                </button>
-                            </nav>
-                        </div>
-                    </div>
-
-                    <!-- Events List -->
-                    <div class="space-y-6">
-                        <!-- Pending Event - Partnership Based -->
-                        <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500">
-                            <div class="flex justify-between items-start mb-4">
-                                <div class="flex-1">
-                                    <div class="flex items-center mb-3">
-                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Under Review</span>
-                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3">Career Fair</span>
-                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3">Partnership Event</span>
-                                        <span class="text-sm text-gray-500">Submitted Oct 28, 2025 • 3 hours ago</span>
-                                    </div>
-                                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Virtual Tech Career Fair 2025</h3>
-                                    <div class="flex items-center text-sm text-gray-600 mb-4">
-                                        <div class="flex items-center mr-6">
-                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                            </svg>
-                                            <strong>Staff:</strong> Prof. Maria Elena Santos (Career Services)
-                                        </div>
-                                        <div class="flex items-center mr-6">
-                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                            </svg>
-                                            October 28, 2025 • 9:00 AM - 5:00 PM
-                                        </div>
-                                        <div class="flex items-center">
-                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
-                                            </svg>
-                                            Virtual Event Platform
-                                        </div>
-                                    </div>
-                                    <p class="text-gray-600 mb-4">
-                                        Virtual career fair connecting PCU-DASMA students and alumni with 40+ leading tech companies. Partnership with InnovateHub Philippines provides platform and company recruitment services.
-                                    </p>
-                                    
-                                    <!-- Partnership Information -->
-                                    <div class="bg-blue-50 p-4 rounded-lg mb-4 border border-blue-200">
-                                        <h4 class="font-medium text-blue-900 mb-2">Partnership Details:</h4>
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-blue-700">
-                                            <div><strong>Partner:</strong> InnovateHub Philippines</div>
-                                            <div><strong>Partnership Type:</strong> Co-Organizer</div>
-                                            <div><strong>Companies:</strong> 40+ participating employers</div>
-                                            <div><strong>Platform:</strong> InnovateHub Virtual Career Platform</div>
-                                            <div><strong>Investment:</strong> Platform access & recruitment services</div>
-                                            <div><strong>Duration:</strong> Full day event + follow-up sessions</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
-                                        <h4 class="font-medium text-gray-900 mb-2">Event Requirements Review:</h4>
-                                        <div class="grid grid-cols-2 gap-4 text-sm text-gray-600">
-                                            <div><strong>Expected Participants:</strong> 200-250 students/alumni</div>
-                                            <div><strong>Registration Fee:</strong> Free</div>
-                                            <div><strong>Technical Requirements:</strong> Virtual platform access</div>
-                                            <div><strong>Marketing Support:</strong> University & partner channels</div>
-                                            <div><strong>Budget Impact:</strong> No additional university costs</div>
-                                            <div><strong>Resource Requirements:</strong> Staff coordination only</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Career Development</span>
-                                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Tech Industry</span>
-                                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Virtual Event</span>
-                                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Job Opportunities</span>
-                                    </div>
-                                </div>
-                                <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
-                                    <button onclick="previewEvent(1)" class="px-4 py-2 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700">
-                                        Preview Submission
-                                    </button>
-                                    <button onclick="approveEvent(1)" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">
-                                        Approve & Publish
-                                    </button>
-                                    <button onclick="requestEventChanges(1)" class="px-4 py-2 bg-orange-600 text-white text-sm rounded-md hover:bg-orange-700">
-                                        Request Changes
-                                    </button>
-                                    <button onclick="rejectEvent(1)" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
-                                        Reject Submission
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Event - University Event -->
-                        <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500">
-                            <div class="flex justify-between items-start mb-4">
-                                <div class="flex-1">
-                                    <div class="flex items-center mb-3">
-                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Under Review</span>
-                                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3">Workshop</span>
-                                        <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3">University Event</span>
-                                        <span class="text-sm text-gray-500">Submitted Nov 1, 2025 • 1 hour ago</span>
-                                    </div>
-                                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Advanced Web Development Bootcamp</h3>
-                                    <div class="flex items-center text-sm text-gray-600 mb-4">
-                                        <div class="flex items-center mr-6">
-                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                            </svg>
-                                            <strong>Staff:</strong> Prof. Carlos Martinez (Computer Science Dept.)
-                                        </div>
-                                        <div class="flex items-center mr-6">
-                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                            </svg>
-                                            December 15, 2025 • 9:00 AM - 5:00 PM (6 weeks)
-                                        </div>
-                                        <div class="flex items-center">
-                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                            </svg>
-                                            IT Laboratory 1 & 2
-                                        </div>
-                                    </div>
-                                    <p class="text-gray-600 mb-4">
-                                        Comprehensive 6-week bootcamp covering modern web development technologies including React, Node.js, and cloud deployment. Designed to prepare students for industry-level development roles.
-                                    </p>
-
-                                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
-                                        <h4 class="font-medium text-gray-900 mb-2">Event Requirements Review:</h4>
-                                        <div class="grid grid-cols-2 gap-4 text-sm text-gray-600">
-                                            <div><strong>Expected Participants:</strong> 30 students</div>
-                                            <div><strong>Registration Fee:</strong> ₱2,500.00 per participant</div>
-                                            <div><strong>Venue Booking:</strong> IT Labs 1 & 2 (6 weeks)</div>
-                                            <div><strong>Materials Cost:</strong> ₱15,000.00 (covered by fees)</div>
-                                            <div><strong>Instructor:</strong> Prof. Martinez + 2 guest instructors</div>
-                                            <div><strong>Equipment:</strong> Existing lab computers</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="bg-orange-50 p-3 rounded-lg mb-4 border border-orange-200">
-                                        <div class="flex items-center">
-                                            <svg class="w-4 h-4 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-                                            </svg>
-                                            <span class="text-orange-800 text-sm">
-                                                <strong>Admin Note:</strong> Check lab availability for 6-week duration and verify guest instructor approvals.
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Web Development</span>
-                                        <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Bootcamp</span>
-                                        <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Professional Development</span>
-                                        <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Extended Program</span>
-                                    </div>
-                                </div>
-                                <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
-                                    <button onclick="previewEvent(2)" class="px-4 py-2 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700">
-                                        Preview Submission
-                                    </button>
-                                    <button onclick="approveEvent(2)" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">
-                                        Approve & Publish
-                                    </button>
-                                    <button onclick="requestEventChanges(2)" class="px-4 py-2 bg-orange-600 text-white text-sm rounded-md hover:bg-orange-700">
-                                        Request Changes
-                                    </button>
-                                    <button onclick="rejectEvent(2)" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
-                                        Reject Submission
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Changes Requested Event -->
-                        <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-orange-500">
-                            <div class="flex justify-between items-start mb-4">
-                                <div class="flex-1">
-                                    <div class="flex items-center mb-3">
-                                        <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Changes Requested</span>
-                                        <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs mr-3">Workshop</span>
-                                        <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3">University Event</span>
-                                        <span class="text-sm text-gray-500">Feedback sent Oct 30, 2025 • Awaiting revision</span>
-                                    </div>
-                                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Student Leadership Development Workshop</h3>
-                                    <div class="flex items-center text-sm text-gray-600 mb-4">
-                                        <div class="flex items-center mr-6">
-                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                            </svg>
-                                            <strong>Staff:</strong> Ms. Angela Reyes (Student Affairs)
-                                        </div>
-                                        <div class="flex items-center">
-                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                            </svg>
-                                            <strong>Deadline for Revision:</strong> November 5, 2025
-                                        </div>
-                                    </div>
-                                    <p class="text-gray-600 mb-4">
-                                        Interactive workshop series focused on developing leadership skills among students. Covers communication, team management, and project leadership.
-                                    </p>
-
-                                    <div class="bg-orange-50 p-4 rounded-lg mb-4 border border-orange-200">
-                                        <h4 class="font-medium text-orange-800 mb-2">Admin Feedback Provided:</h4>
-                                        <div class="space-y-2 text-sm text-orange-700">
-                                            <p><strong>• Schedule Conflict:</strong> Proposed dates conflict with mid-term exam period. Please reschedule to December 2025.</p>
-                                            <p><strong>• Budget Concerns:</strong> Material costs exceed department allocation by 20%. Please reduce to ₱8,000 or find alternative funding.</p>
-                                            <p><strong>• Facilitator Details:</strong> Need additional credentials and availability confirmation for external facilitator.</p>
-                                            <p><strong>• Venue Capacity:</strong> Proposed venue only seats 40, but registration target is 60. Please adjust or find larger venue.</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded">Leadership</span>
-                                        <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded">Student Development</span>
-                                        <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded">Awaiting Revision</span>
-                                    </div>
-                                </div>
-                                <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
-                                    <button onclick="viewFeedbackSent(3)" class="px-4 py-2 bg-orange-600 text-white text-sm rounded-md hover:bg-orange-700">
-                                        View Feedback Sent
-                                    </button>
-                                    <button onclick="sendReminder(3)" class="px-4 py-2 border border-orange-300 text-orange-700 text-sm rounded-md hover:bg-orange-50">
-                                        Send Reminder
-                                    </button>
-                                    <button onclick="viewOriginalSubmission(3)" class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50">
-                                        View Original
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Recently Approved Event -->
-                        <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-400 opacity-90">
-                            <div class="flex justify-between items-start mb-4">
-                                <div class="flex-1">
-                                    <div class="flex items-center mb-3">
-                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Approved & Published</span>
-                                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3">Workshop Series</span>
-                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3">Partnership Event</span>
-                                        <span class="text-sm text-gray-500">Approved Oct 25, 2025 • Currently live</span>
-                                    </div>
-                                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Digital Marketing Mastery Workshop Series</h3>
-                                    <div class="flex items-center text-sm text-gray-600 mb-4">
-                                        <div class="flex items-center mr-6">
-                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                            </svg>
-                                            <strong>Staff:</strong> Ms. Patricia Cruz (Marketing Dept.)
-                                        </div>
-                                        <div class="flex items-center mr-6">
-                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                            </svg>
-                                            <strong>Status:</strong> Published & Accepting Registrations
-                                        </div>
-                                        <div class="flex items-center">
-                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 614 0z"></path>
-                                            </svg>
-                                            <strong>Registrations:</strong> 73/80 confirmed • 12 pending
-                                        </div>
-                                    </div>
-                                    <p class="text-gray-600 mb-4">
-                                        Successfully approved and published! 4-week workshop series covering modern digital marketing strategies with DigitalBridge Marketing Solutions partnership.
-                                    </p>
-                                    <div class="bg-green-50 p-3 rounded-lg mb-4 border border-green-200">
-                                        <div class="flex items-center text-sm text-green-700">
-                                            <svg class="w-4 h-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                            </svg>
-                                            <span><strong>Event Performance:</strong> Excellent registration rate • Strong partner collaboration • No issues reported</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Marketing</span>
-                                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Professional Development</span>
-                                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Active Registration</span>
-                                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Partnership Success</span>
-                                    </div>
-                                </div>
-                                <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
-                                    <a href="../events/digital-marketing-workshop" target="_blank" class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 text-center">
-                                        View Published Event
-                                    </a>
-                                    <button onclick="manageRegistrations(4)" class="px-4 py-2 bg-purple-600 text-white text-sm rounded-md hover:bg-purple-700">
-                                        Manage Registrations
-                                    </button>
-                                    <button onclick="unpublishEvent(4)" class="px-4 py-2 border border-red-300 text-red-700 text-sm rounded-md hover:bg-red-50">
-                                        Unpublish Event
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Rejected Event Example -->
-                        <div class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-red-400 opacity-80">
-                            <div class="flex justify-between items-start mb-4">
-                                <div class="flex-1">
-                                    <div class="flex items-center mb-3">
-                                        <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Rejected</span>
-                                        <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs mr-3">Social Event</span>
-                                        <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3">University Event</span>
-                                        <span class="text-sm text-gray-500">Rejected Oct 20, 2025</span>
-                                    </div>
-                                    <h3 class="text-xl font-semibold text-gray-900 mb-2">International Food Festival</h3>
-                                    <div class="flex items-center text-sm text-gray-600 mb-4">
-                                        <div class="flex items-center mr-6">
-                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                            </svg>
-                                            <strong>Staff:</strong> Mr. Jose Delgado (Student Life Office)
-                                        </div>
-                                        <div class="flex items-center">
-                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-                                            </svg>
-                                            <strong>Rejection Date:</strong> Oct 20, 2025
-                                        </div>
-                                    </div>
-                                    <p class="text-gray-600 mb-4">
-                                        Proposed multi-cultural food festival featuring international cuisines from student communities. Rejected due to budget and logistical concerns.
-                                    </p>
-                                    <div class="bg-red-50 p-4 rounded-lg mb-4 border border-red-200">
-                                        <h4 class="font-medium text-red-800 mb-2">Rejection Reasons:</h4>
-                                        <div class="space-y-1 text-sm text-red-700">
-                                            <p>• Budget exceeds available funds for social events this semester (₱150,000 requested vs ₱50,000 available)</p>
-                                            <p>• Scheduling conflict with Homecoming Week activities</p>
-                                            <p>• Insufficient lead time for vendor coordination and health permits</p>
-                                            <p>• Lack of detailed safety and sanitation protocols for food handling</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Food Festival</span>
-                                        <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Cultural</span>
-                                        <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Budget Issues</span>
-                                        <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Rejected</span>
-                                    </div>
-                                </div>
-                                <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
-                                    <button onclick="viewRejectionDetails(5)" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">
-                                        View Full Details
-                                    </button>
-                                    <button onclick="sendDetailedFeedback(5)" class="px-4 py-2 border border-blue-300 text-blue-700 text-sm rounded-md hover:bg-blue-50">
-                                        Send Guidance
-                                    </button>
-                                    <button onclick="archiveRejection(5)" class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50">
-                                        Archive
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Pagination -->
-                    <div class="mt-8 flex justify-center">
-                        <nav class="flex items-center space-x-2">
-                            <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-500 rounded-md">Previous</button>
-                            <button class="px-3 py-1 text-sm bg-primary text-white rounded-md">1</button>
-                            <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">2</button>
-                            <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">Next</button>
-                        </nav>
-                    </div>
-                </div>
-            </main>
+              </div>
+            </div>
+          </div>
         </div>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="flex-1 flex flex-col overflow-hidden">
+        <!-- Main Header -->
+        <header class="bg-white shadow-sm border-b lg:hidden">
+          <div class="flex items-center justify-between px-4 py-3">
+            <button
+              id="openSidebar"
+              class="p-2 rounded-md text-gray-400 hover:text-gray-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </button>
+            <h1 class="text-xl font-bold text-primary">Event Approvals</h1>
+            <div class="w-10"></div>
+            <!-- Spacer -->
+          </div>
+        </header>
+
+        <!-- Content Area -->
+        <main class="flex-1 overflow-y-auto">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <!-- Header -->
+            <div class="mb-8">
+              <h1 class="text-3xl font-bold text-gray-900">Event Approvals</h1>
+              <p class="text-gray-600">
+                Review and approve event submissions from staff members
+              </p>
+            </div>
+
+            <!-- Admin Process Notice -->
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg
+                    class="h-5 w-5 text-blue-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <h3 class="text-sm font-medium text-blue-800">
+                    Admin Review Process
+                  </h3>
+                  <div class="mt-2 text-sm text-blue-700">
+                    <p>
+                      Staff members submit event proposals for your review. You
+                      can approve, request changes, or reject submissions.
+                      Approved events will be published automatically and become
+                      visible to users for registration.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                  <div class="flex-shrink-0">
+                    <div
+                      class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center"
+                    >
+                      <svg
+                        class="w-5 h-5 text-yellow-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-600">
+                      Pending Review
+                    </p>
+                    <p class="text-2xl font-semibold text-gray-900">1</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                  <div class="flex-shrink-0">
+                    <div
+                      class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center"
+                    >
+                      <svg
+                        class="w-5 h-5 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-600">
+                      Approved Today
+                    </p>
+                    <p class="text-2xl font-semibold text-gray-900">1</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                  <div class="flex-shrink-0">
+                    <div
+                      class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center"
+                    >
+                      <svg
+                        class="w-5 h-5 text-orange-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-600">
+                      Changes Requested
+                    </p>
+                    <p class="text-2xl font-semibold text-gray-900">1</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                  <div class="flex-shrink-0">
+                    <div
+                      class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center"
+                    >
+                      <svg
+                        class="w-5 h-5 text-blue-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-600">
+                      Published Events
+                    </p>
+                    <p class="text-2xl font-semibold text-gray-900">1</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="mb-8">
+              <div class="border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8">
+                  <button
+                    onclick="filterEvents('pending')"
+                    class="event-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium"
+                  >
+                    Pending Review (1)
+                  </button>
+                  <button
+                    onclick="filterEvents('changes_requested')"
+                    class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+                  >
+                    Changes Requested (1)
+                  </button>
+                  <button
+                    onclick="filterEvents('approved')"
+                    class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+                  >
+                    Approved (1)
+                  </button>
+                  <button
+                    onclick="filterEvents('published')"
+                    class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+                  >
+                    Published (1)
+                  </button>
+                  <button
+                    onclick="filterEvents('rejected')"
+                    class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+                  >
+                    Rejected (1)
+                  </button>
+                </nav>
+              </div>
+            </div>
+
+            <!-- Events List -->
+            <div class="space-y-6" id="eventsList">
+              <!-- Pending Event - University Event -->
+              <div
+                class="event-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500"
+                data-status="pending"
+              >
+                <div class="flex justify-between items-start mb-4">
+                  <div class="flex-1">
+                    <div class="flex items-center mb-3">
+                      <span
+                        class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
+                        >Under Review</span
+                      >
+                      <span
+                        class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
+                        >University Event</span
+                      >
+                      <span class="text-sm text-gray-500"
+                        >Submitted Oct 13, 2025 • 1 day ago</span
+                      >
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                      Advanced Web Development Bootcamp
+                    </h3>
+                    <div class="flex items-center text-sm text-gray-600 mb-4">
+                      <div class="flex items-center mr-6">
+                        <svg
+                          class="w-4 h-4 mr-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                          ></path>
+                        </svg>
+                        <strong>Staff:</strong> Prof. Carlos Martinez
+                      </div>
+                      <div class="flex items-center mr-6">
+                        <svg
+                          class="w-4 h-4 mr-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          ></path>
+                        </svg>
+                        December 15, 2025 • 9:00 AM - 5:00 PM (6 weeks)
+                      </div>
+                      <div class="flex items-center">
+                        <svg
+                          class="w-4 h-4 mr-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                          ></path>
+                        </svg>
+                        IT Laboratory 1 & 2
+                      </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                      Comprehensive 6-week bootcamp covering modern web
+                      development technologies including React, Node.js, and
+                      cloud deployment. Designed to prepare students for
+                      industry-level development roles.
+                    </p>
+
+                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                      <h4 class="font-medium text-gray-900 mb-2">
+                        Event Details Review:
+                      </h4>
+                      <div class="grid grid-cols-2 gap-4 text-sm text-gray-600">
+                        <div>
+                          <strong>Expected Participants:</strong> 30 students
+                        </div>
+                        <div>
+                          <strong>Venue Booking:</strong> IT Labs 1 & 2 (6
+                          weeks)
+                        </div>
+                        <div>
+                          <strong>Instructor:</strong> Prof. Martinez + 2 guest
+                          instructors
+                        </div>
+                        <div>
+                          <strong>Equipment:</strong> Existing lab computers
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="bg-orange-50 p-3 rounded-lg mb-4 border border-orange-200"
+                    >
+                      <div class="flex items-center">
+                        <svg
+                          class="w-4 h-4 text-orange-600 mr-2"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+                          ></path>
+                        </svg>
+                        <span class="text-orange-800 text-sm">
+                          <strong>Admin Note:</strong> Check lab availability
+                          for 6-week duration and verify guest instructor
+                          approvals.
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2">
+                      <span
+                        class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded"
+                        >Web Development</span
+                      >
+                      <span
+                        class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded"
+                        >Bootcamp</span
+                      >
+                      <span
+                        class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded"
+                        >Professional Development</span
+                      >
+                      <span
+                        class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded"
+                        >Extended Program</span
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0"
+                  >
+                    <a
+                      href="view-event-pending-details.html.html"
+                      class="px-4 py-2 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700 text-center"
+                    >
+                      View Details
+                    </a>
+                    <button
+                      onclick="approveAndPublishEvent(1)"
+                      class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
+                    >
+                      Approve and Publish
+                    </button>
+                    <button
+                      onclick="rejectEvent(1)"
+                      class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700"
+                    >
+                      Reject
+                    </button>
+                    <button
+                      onclick="requestEventChanges(1)"
+                      class="px-4 py-2 bg-orange-600 text-white text-sm rounded-md hover:bg-orange-700"
+                    >
+                      Request Changes
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Changes Requested Event -->
+              <div
+                class="event-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-orange-500"
+                data-status="changes_requested"
+              >
+                <div class="flex justify-between items-start mb-4">
+                  <div class="flex-1">
+                    <div class="flex items-center mb-3">
+                      <span
+                        class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
+                        >Changes Requested</span
+                      >
+                      <span
+                        class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
+                        >University Event</span
+                      >
+                      <span class="text-sm text-gray-500"
+                        >Feedback sent Oct 10, 2025 • Awaiting revision</span
+                      >
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                      Student Leadership Development Workshop
+                    </h3>
+                    <div class="flex items-center text-sm text-gray-600 mb-4">
+                      <div class="flex items-center mr-6">
+                        <svg
+                          class="w-4 h-4 mr-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                          ></path>
+                        </svg>
+                        <strong>Staff:</strong> Ms. Angela Reyes
+                      </div>
+                      <div class="flex items-center">
+                        <svg
+                          class="w-4 h-4 mr-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+                          ></path>
+                        </svg>
+                        <strong>Deadline for Revision:</strong> Oct 17, 2025
+                      </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                      Interactive workshop series focused on developing
+                      leadership skills among students. Covers communication,
+                      team management, and project leadership.
+                    </p>
+
+                    <div
+                      class="bg-orange-50 p-4 rounded-lg mb-4 border border-orange-200"
+                    >
+                      <h4 class="font-medium text-orange-800 mb-2">
+                        Admin Feedback Provided:
+                      </h4>
+                      <div class="space-y-2 text-sm text-orange-700">
+                        <p>
+                          <strong>• Schedule Conflict:</strong> Proposed dates
+                          conflict with mid-term exam period. Please reschedule
+                          to December 2025.
+                        </p>
+                        <p>
+                          <strong>• Facilitator Details:</strong> Need
+                          additional credentials and availability confirmation
+                          for external facilitator.
+                        </p>
+                        <p>
+                          <strong>• Venue Capacity:</strong> Proposed venue only
+                          seats 40, but registration target is 60. Please adjust
+                          or find larger venue.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2">
+                      <span
+                        class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded"
+                        >Leadership</span
+                      >
+                      <span
+                        class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded"
+                        >Student Development</span
+                      >
+                      <span
+                        class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded"
+                        >Awaiting Revision</span
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0"
+                  >
+                    <a
+                      href="view-event-request.html"
+                      class="px-4 py-2 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700 text-center"
+                    >
+                      View Details
+                    </a>
+                    <button
+                      onclick="approveAndPublishEvent(3)"
+                      class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
+                    >
+                      Approve and Publish
+                    </button>
+                    <button
+                      onclick="rejectEvent(3)"
+                      class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700"
+                    >
+                      Reject
+                    </button>
+                    <button
+                      onclick="viewFeedbackSent(3)"
+                      class="px-4 py-2 bg-orange-600 text-white text-sm rounded-md hover:bg-orange-700"
+                    >
+                      View Feedback Sent
+                    </button>
+                    <button
+                      onclick="sendReminder(3)"
+                      class="px-4 py-2 border border-orange-300 text-orange-700 text-sm rounded-md hover:bg-orange-50"
+                    >
+                      Send Reminder
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Approved Event -->
+              <div
+                class="event-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-400 opacity-90"
+                data-status="approved"
+              >
+                <div class="flex justify-between items-start mb-4">
+                  <div class="flex-1">
+                    <div class="flex items-center mb-3">
+                      <span
+                        class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
+                        >Approved</span
+                      >
+                      <span
+                        class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
+                        >University Event</span
+                      >
+                      <span class="text-sm text-gray-500"
+                        >Approved Oct 12, 2025</span
+                      >
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                      Digital Marketing Mastery Workshop Series
+                    </h3>
+                    <div class="flex items-center text-sm text-gray-600 mb-4">
+                      <div class="flex items-center mr-6">
+                        <svg
+                          class="w-4 h-4 mr-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                          ></path>
+                        </svg>
+                        <strong>Staff:</strong> Ms. Patricia Cruz
+                      </div>
+                      <div class="flex items-center mr-6">
+                        <svg
+                          class="w-4 h-4 mr-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                          ></path>
+                        </svg>
+                        <strong>Status:</strong> Approved
+                      </div>
+                      <div class="flex items-center">
+                        <svg
+                          class="w-4 h-4 mr-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                          ></path>
+                        </svg>
+                        <strong>Registrations:</strong> 0/80
+                      </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                      Successfully approved! 4-week workshop series covering
+                      modern digital marketing strategies.
+                    </p>
+                    <div
+                      class="bg-green-50 p-3 rounded-lg mb-4 border border-green-200"
+                    >
+                      <div class="flex items-center text-sm text-green-700">
+                        <svg
+                          class="w-4 h-4 text-green-600 mr-2"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                          ></path>
+                        </svg>
+                        <span
+                          ><strong>Event Performance:</strong> Ready for
+                          publication</span
+                        >
+                      </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                      <span
+                        class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                        >Marketing</span
+                      >
+                      <span
+                        class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                        >Professional Development</span
+                      >
+                      <span
+                        class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                        >Ready for Publish</span
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0"
+                  >
+                    <button
+                      onclick="featureEvent(4)"
+                      class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-md hover:bg-indigo-700"
+                    >
+                      Feature This Event
+                    </button>
+                    <a
+                      href="view-event-approved-details.html"
+                      class="px-4 py-2 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700 text-center"
+                    >
+                      View Details
+                    </a>
+                    <button
+                      onclick="approveAndPublishEvent(4)"
+                      class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
+                    >
+                      Approve and Publish
+                    </button>
+                    <button
+                      onclick="rejectEvent(4)"
+                      class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700"
+                    >
+                      Reject
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Published Event -->
+              <div
+                class="event-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-400 opacity-90"
+                data-status="published"
+              >
+                <div class="flex justify-between items-start mb-4">
+                  <div class="flex-1">
+                    <div class="flex items-center mb-3">
+                      <span
+                        class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
+                        >Published</span
+                      >
+                      <span
+                        class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
+                        >University Event</span
+                      >
+                      <span class="text-sm text-gray-500"
+                        >Published Oct 11, 2025 • Currently live</span
+                      >
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                      AI in Education Seminar
+                    </h3>
+                    <div class="flex items-center text-sm text-gray-600 mb-4">
+                      <div class="flex items-center mr-6">
+                        <svg
+                          class="w-4 h-4 mr-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                          ></path>
+                        </svg>
+                        <strong>Staff:</strong> Dr. Elena Garcia
+                      </div>
+                      <div class="flex items-center mr-6">
+                        <svg
+                          class="w-4 h-4 mr-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                          ></path>
+                        </svg>
+                        <strong>Status:</strong> Published & Accepting
+                        Registrations
+                      </div>
+                      <div class="flex items-center">
+                        <svg
+                          class="w-4 h-4 mr-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                          ></path>
+                        </svg>
+                        <strong>Registrations:</strong> 45/100 confirmed • 5
+                        pending
+                      </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                      Seminar on integrating AI tools in educational practices.
+                      Includes hands-on sessions with AI teaching assistants.
+                    </p>
+                    <div
+                      class="bg-blue-50 p-3 rounded-lg mb-4 border border-blue-200"
+                    >
+                      <div class="flex items-center text-sm text-blue-700">
+                        <svg
+                          class="w-4 h-4 text-blue-600 mr-2"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                          ></path>
+                        </svg>
+                        <span
+                          ><strong>Event Performance:</strong> Good registration
+                          rate • No issues reported</span
+                        >
+                      </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                      <span
+                        class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                        >AI</span
+                      >
+                      <span
+                        class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                        >Education</span
+                      >
+                      <span
+                        class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                        >Active Registration</span
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0"
+                  >
+                    <button
+                      onclick="featureEvent(5)"
+                      class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-md hover:bg-indigo-700"
+                    >
+                      Feature This Event
+                    </button>
+                    <a
+                      href="view-event-approved-published.html.html"
+                      class="px-4 py-2 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700 text-center"
+                    >
+                      View Details
+                    </a>
+                    <button
+                      onclick="unpublishEvent(5)"
+                      class="px-4 py-2 border border-red-300 text-red-700 text-sm rounded-md hover:bg-red-50"
+                    >
+                      Unpublish Event
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Rejected Event Example -->
+              <div
+                class="event-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-red-400 opacity-80"
+                data-status="rejected"
+              >
+                <div class="flex justify-between items-start mb-4">
+                  <div class="flex-1">
+                    <div class="flex items-center mb-3">
+                      <span
+                        class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
+                        >Rejected</span
+                      >
+                      <span
+                        class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
+                        >University Event</span
+                      >
+                      <span class="text-sm text-gray-500"
+                        >Rejected Oct 08, 2025</span
+                      >
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                      International Food Festival
+                    </h3>
+                    <div class="flex items-center text-sm text-gray-600 mb-4">
+                      <div class="flex items-center mr-6">
+                        <svg
+                          class="w-4 h-4 mr-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                          ></path>
+                        </svg>
+                        <strong>Staff:</strong> Mr. Jose Delgado
+                      </div>
+                      <div class="flex items-center">
+                        <svg
+                          class="w-4 h-4 mr-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+                          ></path>
+                        </svg>
+                        <strong>Rejection Date:</strong> Oct 08, 2025
+                      </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                      Proposed multi-cultural food festival featuring
+                      international cuisines from student communities. Rejected
+                      due to logistical concerns.
+                    </p>
+                    <div
+                      class="bg-red-50 p-4 rounded-lg mb-4 border border-red-200"
+                    >
+                      <h4 class="font-medium text-red-800 mb-2">
+                        Rejection Reasons:
+                      </h4>
+                      <div class="space-y-1 text-sm text-red-700">
+                        <p>
+                          • Scheduling conflict with Homecoming Week activities
+                        </p>
+                        <p>
+                          • Insufficient lead time for vendor coordination and
+                          health permits
+                        </p>
+                        <p>
+                          • Lack of detailed safety and sanitation protocols for
+                          food handling
+                        </p>
+                      </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                      <span
+                        class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded"
+                        >Food Festival</span
+                      >
+                      <span
+                        class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded"
+                        >Cultural</span
+                      >
+                      <span
+                        class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded"
+                        >Logistical Issues</span
+                      >
+                      <span
+                        class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded"
+                        >Rejected</span
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0"
+                  >
+                    <a
+                      href="view-event-approved-published.html.html"
+                      class="px-4 py-2 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700 text-center"
+                    >
+                      View Details
+                    </a>
+                    <button
+                      onclick="approveAndPublishEvent(5)"
+                      class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
+                    >
+                      Approve and Publish
+                    </button>
+                    <button
+                      onclick="viewRejectionDetails(5)"
+                      class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700"
+                    >
+                      View Rejection Details
+                    </button>
+                    <button
+                      onclick="archiveRejection(5)"
+                      class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
+                    >
+                      Archive
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-8 flex justify-center">
+              <nav class="flex items-center space-x-2">
+                <button
+                  class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-500 rounded-md"
+                >
+                  Previous
+                </button>
+                <button
+                  class="px-3 py-1 text-sm bg-primary text-white rounded-md"
+                >
+                  1
+                </button>
+                <button
+                  class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+                >
+                  2
+                </button>
+                <button
+                  class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+                >
+                  Next
+                </button>
+              </nav>
+            </div>
+          </div>
+        </main>
+      </div>
     </div>
 
     <!-- Overlay for mobile -->
-    <div id="sidebarOverlay" class="fixed inset-0 bg-gray-600 bg-opacity-50 z-40 lg:hidden hidden"></div>
+    <div
+      id="sidebarOverlay"
+      class="fixed inset-0 bg-gray-600 bg-opacity-50 z-40 lg:hidden hidden"
+    ></div>
 
     <!-- Feedback Modal -->
     <div id="feedbackModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
-            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-            
-            <div class="relative bg-white rounded-lg max-w-2xl w-full shadow-xl">
-                <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-                    <h3 class="text-xl font-semibold text-gray-900">Provide Event Feedback</h3>
-                    <button onclick="closeFeedbackModal()" class="text-gray-400 hover:text-gray-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-                
-                <div class="p-6">
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Feedback Category</label>
-                            <select id="feedbackCategory" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                <option>Request Changes</option>
-                                <option>Request Additional Information</option>
-                                <option>Scheduling Concerns</option>
-                                <option>Budget Issues</option>
-                                <option>Venue/Resource Conflicts</option>
-                                <option>Other</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Detailed Feedback</label>
-                            <textarea id="feedbackText" rows="6" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary" placeholder="Provide specific feedback and suggestions for the staff member..."></textarea>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Response Deadline</label>
-                            <input type="date" id="responseDeadline" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                        </div>
-                    </div>
-                    <div class="mt-6 flex justify-end space-x-3">
-                        <button onclick="closeFeedbackModal()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">
-                            Cancel
-                        </button>
-                        <button onclick="sendFeedback()" class="px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700">
-                            Send Feedback
-                        </button>
-                    </div>
-                </div>
+      <div
+        class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center"
+      >
+        <div
+          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+        ></div>
+
+        <div class="relative bg-white rounded-lg max-w-2xl w-full shadow-xl">
+          <div
+            class="px-6 py-4 border-b border-gray-200 flex justify-between items-center"
+          >
+            <h3 class="text-xl font-semibold text-gray-900">
+              Provide Event Feedback
+            </h3>
+            <button
+              onclick="closeFeedbackModal()"
+              class="text-gray-400 hover:text-gray-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="p-6">
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Feedback Category</label
+                >
+                <select
+                  id="feedbackCategory"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                >
+                  <option>Request Changes</option>
+                  <option>Request Additional Information</option>
+                  <option>Scheduling Concerns</option>
+                  <option>Venue/Resource Conflicts</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Detailed Feedback</label
+                >
+                <textarea
+                  id="feedbackText"
+                  rows="6"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="Provide specific feedback and suggestions for the staff member..."
+                ></textarea>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Response Deadline</label
+                >
+                <input
+                  type="date"
+                  id="responseDeadline"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                />
+              </div>
             </div>
+            <div class="mt-6 flex justify-end space-x-3">
+              <button
+                onclick="closeFeedbackModal()"
+                class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+              >
+                Cancel
+              </button>
+              <button
+                onclick="sendFeedback()"
+                class="px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700"
+              >
+                Send Feedback
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <script>
-        // Sidebar toggle functionality
-        const sidebar = document.getElementById('sidebar');
-        const openSidebar = document.getElementById('openSidebar');
-        const closeSidebar = document.getElementById('closeSidebar');
-        const sidebarOverlay = document.getElementById('sidebarOverlay');
+      // Sidebar toggle functionality
+      const sidebar = document.getElementById("sidebar");
+      const openSidebar = document.getElementById("openSidebar");
+      const closeSidebar = document.getElementById("closeSidebar");
+      const sidebarOverlay = document.getElementById("sidebarOverlay");
 
-        function showSidebar() {
-            sidebar.classList.remove('-translate-x-full');
-            sidebarOverlay.classList.remove('hidden');
+      function showSidebar() {
+        sidebar.classList.remove("-translate-x-full");
+        sidebarOverlay.classList.remove("hidden");
+      }
+
+      function hideSidebar() {
+        sidebar.classList.add("-translate-x-full");
+        sidebarOverlay.classList.add("hidden");
+      }
+
+      openSidebar?.addEventListener("click", showSidebar);
+      closeSidebar?.addEventListener("click", hideSidebar);
+      sidebarOverlay?.addEventListener("click", hideSidebar);
+
+      // Dropdown functionality
+      function toggleDropdown(dropdownId) {
+        const menu = document.getElementById(dropdownId + "-menu");
+        const arrow = document.getElementById(dropdownId + "-arrow");
+
+        if (menu.classList.contains("hidden")) {
+          menu.classList.remove("hidden");
+          arrow.classList.add("rotate-180");
+        } else {
+          menu.classList.add("hidden");
+          arrow.classList.remove("rotate-180");
+        }
+      }
+
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+      }
+
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
+        }
+      }
+
+      function filterEvents(status) {
+        document.querySelectorAll(".event-filter").forEach((filter) => {
+          filter.classList.remove("active", "border-primary", "text-primary");
+          filter.classList.add("border-transparent", "text-gray-500");
+        });
+
+        const clickedButton = event
+          ? event.target
+          : document.querySelector(".event-filter.active");
+        clickedButton.classList.add("active", "border-primary", "text-primary");
+        clickedButton.classList.remove("border-transparent", "text-gray-500");
+
+        document.querySelectorAll(".event-card").forEach((card) => {
+          if (status === "all" || card.dataset.status === status) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+
+      function featureEvent(eventId) {
+        if (confirm("Are you sure you want to feature this event?")) {
+          alert(`Event #${eventId} has been featured successfully!`);
+        }
+      }
+
+      function approveEvent(eventId) {
+        if (confirm("Are you sure you want to approve this event?")) {
+          alert(
+            `Event #${eventId} has been approved successfully! Email notification sent to staff member.`
+          );
+          location.reload();
+        }
+      }
+
+      function approveAndPublishEvent(eventId) {
+        if (
+          confirm(
+            "Are you sure you want to approve and publish this event? It will become immediately visible to users for registration."
+          )
+        ) {
+          alert(
+            `Event #${eventId} has been approved and published successfully! Email notification sent to staff member.`
+          );
+          location.reload();
+        }
+      }
+
+      function requestEventChanges(eventId) {
+        document.getElementById("feedbackModal").classList.remove("hidden");
+        window.currentEventId = eventId;
+      }
+
+      function closeFeedbackModal() {
+        document.getElementById("feedbackModal").classList.add("hidden");
+        document.getElementById("feedbackText").value = "";
+        document.getElementById("responseDeadline").value = "";
+      }
+
+      function sendFeedback() {
+        const category = document.getElementById("feedbackCategory").value;
+        const text = document.getElementById("feedbackText").value;
+        const deadline = document.getElementById("responseDeadline").value;
+
+        if (!text.trim()) {
+          alert("Please provide detailed feedback.");
+          return;
         }
 
-        function hideSidebar() {
-            sidebar.classList.add('-translate-x-full');
-            sidebarOverlay.classList.add('hidden');
-        }
+        alert(
+          `Feedback sent for event #${window.currentEventId}!\nCategory: ${category}\nDeadline: ${deadline}\n\nStaff member will receive notification and can revise their submission.`
+        );
+        closeFeedbackModal();
+        location.reload();
+      }
 
-        openSidebar?.addEventListener('click', showSidebar);
-        closeSidebar?.addEventListener('click', hideSidebar);
-        sidebarOverlay?.addEventListener('click', hideSidebar);
-
-        // Dropdown functionality
-        function toggleDropdown(dropdownId) {
-            const menu = document.getElementById(dropdownId + '-menu');
-            const arrow = document.getElementById(dropdownId + '-arrow');
-            
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-                arrow.classList.add('rotate-180');
-            } else {
-                menu.classList.add('hidden');
-                arrow.classList.remove('rotate-180');
-            }
-        }
-
-        function toggleUserMenu() {
-            const menu = document.getElementById('userMenu');
-            menu.classList.toggle('hidden');
-        }
-
-        function logout() {
-            if (confirm('Are you sure you want to logout?')) {
-                window.location.href = '../login.html';
-            }
-        }
-
-        function filterEvents(status) {
-            document.querySelectorAll('.event-filter').forEach(filter => {
-                filter.classList.remove('active', 'border-primary', 'text-primary');
-                filter.classList.add('border-transparent', 'text-gray-500');
-            });
-
-            event.target.classList.add('active', 'border-primary', 'text-primary');
-            event.target.classList.remove('border-transparent', 'text-gray-500');
-
-            console.log('Filtering events by:', status);
-        }
-
-        function previewEvent(eventId) {
-            alert(`Opening detailed preview for event submission #${eventId}...`);
-        }
-
-        function approveEvent(eventId) {
-            if (confirm('Are you sure you want to approve and publish this event? It will become immediately visible to users for registration.')) {
-                alert(`Event #${eventId} has been approved and published successfully! Email notification sent to staff member.`);
-                location.reload();
-            }
-        }
-
-        function requestEventChanges(eventId) {
-            document.getElementById('feedbackModal').classList.remove('hidden');
-            window.currentEventId = eventId;
-        }
-
-        function closeFeedbackModal() {
-            document.getElementById('feedbackModal').classList.add('hidden');
-            document.getElementById('feedbackText').value = '';
-            document.getElementById('responseDeadline').value = '';
-        }
-
-        function sendFeedback() {
-            const category = document.getElementById('feedbackCategory').value;
-            const text = document.getElementById('feedbackText').value;
-            const deadline = document.getElementById('responseDeadline').value;
-            
-            if (!text.trim()) {
-                alert('Please provide detailed feedback.');
-                return;
-            }
-            
-            alert(`Feedback sent for event #${window.currentEventId}!\nCategory: ${category}\nDeadline: ${deadline}\n\nStaff member will receive notification and can revise their submission.`);
-            closeFeedbackModal();
+      function rejectEvent(eventId) {
+        const reason = prompt(
+          "Please provide a detailed reason for rejection:"
+        );
+        if (reason && reason.trim()) {
+          if (
+            confirm(
+              `Reject event #${eventId}? Staff member will be notified with your reason.`
+            )
+          ) {
+            alert(
+              `Event #${eventId} has been rejected.\nReason: ${reason}\n\nRejection notice sent to staff member.`
+            );
             location.reload();
+          }
         }
+      }
 
-        function rejectEvent(eventId) {
-            const reason = prompt('Please provide a detailed reason for rejection:');
-            if (reason && reason.trim()) {
-                if (confirm(`Reject event #${eventId}? Staff member will be notified with your reason.`)) {
-                    alert(`Event #${eventId} has been rejected.\nReason: ${reason}\n\nRejection notice sent to staff member.`);
-                    location.reload();
-                }
-            }
+      function viewFeedbackSent(eventId) {
+        alert(`Opening detailed feedback history for event #${eventId}...`);
+      }
+
+      function sendReminder(eventId) {
+        if (confirm("Send revision reminder to staff member?")) {
+          alert(`Reminder sent for event #${eventId}!`);
         }
+      }
 
-        function viewFeedbackSent(eventId) {
-            alert(`Opening detailed feedback history for event #${eventId}...`);
+      function manageRegistrations(eventId) {
+        alert(
+          `Opening registration management for published event #${eventId}...`
+        );
+        // Redirect to event management interface
+      }
+
+      function unpublishEvent(eventId) {
+        if (
+          confirm(
+            "Are you sure you want to unpublish this event? It will no longer be visible to users and registrations will be paused."
+          )
+        ) {
+          alert(`Event #${eventId} has been unpublished.`);
+          location.reload();
         }
+      }
 
-        function sendReminder(eventId) {
-            if (confirm('Send revision reminder to staff member?')) {
-                alert(`Reminder sent for event #${eventId}!`);
-            }
+      function viewRejectionDetails(eventId) {
+        alert(
+          `Opening complete rejection details and history for event #${eventId}...`
+        );
+      }
+
+      function sendDetailedFeedback(eventId) {
+        alert(`Opening feedback composer for rejected event #${eventId}...`);
+      }
+
+      function archiveRejection(eventId) {
+        if (confirm("Archive this rejected event?")) {
+          alert(`Event #${eventId} has been archived.`);
+          location.reload();
         }
+      }
 
-        function viewOriginalSubmission(eventId) {
-            alert(`Opening original submission for event #${eventId}...`);
-        }
-
-        function manageRegistrations(eventId) {
-            alert(`Opening registration management for published event #${eventId}...`);
-            // Redirect to event management interface
-        }
-
-        function unpublishEvent(eventId) {
-            if (confirm('Are you sure you want to unpublish this event? It will no longer be visible to users and registrations will be paused.')) {
-                alert(`Event #${eventId} has been unpublished.`);
-                location.reload();
-            }
-        }
-
-        function viewRejectionDetails(eventId) {
-            alert(`Opening complete rejection details and history for event #${eventId}...`);
-        }
-
-        function sendDetailedFeedback(eventId) {
-            alert(`Opening feedback composer for rejected event #${eventId}...`);
-        }
-
-        function archiveRejection(eventId) {
-            if (confirm('Archive this rejected event?')) {
-                alert(`Event #${eventId} has been archived.`);
-                location.reload();
-            }
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('feedbackModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeFeedbackModal();
-            }
+      // Close modal when clicking outside
+      document
+        .getElementById("feedbackModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeFeedbackModal();
+          }
         });
 
-        // Close user menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('userMenu');
-            const button = event.target.closest('button');
-            
-            if (!button || button.onclick !== toggleUserMenu) {
-                menu.classList.add('hidden');
-            }
-        });
+      // Close user menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const menu = document.getElementById("userMenu");
+        const button = event.target.closest("button");
 
-        // Initialize dropdown state
-        document.addEventListener('DOMContentLoaded', function() {
-            // Keep approvals dropdown open since we're on a sub-page
-            const approvalsMenu = document.getElementById('approvals-menu');
-            const approvalsArrow = document.getElementById('approvals-arrow');
-            if (approvalsMenu && approvalsArrow) {
-                approvalsMenu.classList.remove('hidden');
-                approvalsArrow.classList.add('rotate-180');
-            }
+        if (!button || button.onclick !== toggleUserMenu) {
+          menu.classList.add("hidden");
+        }
+      });
 
-            // Set default deadline to 7 days from now
-            const deadline = document.getElementById('responseDeadline');
-            if (deadline) {
-                const date = new Date();
-                date.setDate(date.getDate() + 7);
-                deadline.value = date.toISOString().split('T')[0];
-            }
-        });
+      // Initialize dropdown state
+      document.addEventListener("DOMContentLoaded", function () {
+        // Keep approvals dropdown open since we're on a sub-page
+        const approvalsMenu = document.getElementById("approvals-menu");
+        const approvalsArrow = document.getElementById("approvals-arrow");
+        if (approvalsMenu && approvalsArrow) {
+          approvalsMenu.classList.remove("hidden");
+          approvalsArrow.classList.add("rotate-180");
+        }
+
+        // Set default deadline to 7 days from now
+        const deadline = document.getElementById("responseDeadline");
+        if (deadline) {
+          const date = new Date();
+          date.setDate(date.getDate() + 7);
+          deadline.value = date.toISOString().split("T")[0];
+        }
+
+        // Initial filter
+        filterEvents("pending");
+      });
     </script>
-</body>
+  </body>
 </html>
