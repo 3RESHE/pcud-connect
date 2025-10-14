@@ -49,14 +49,12 @@
               >
                 Partnerships
               </a>
-
               <a
                 href="news.html"
                 class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
               >
                 News
               </a>
-
               <a
                 href="profile.html"
                 class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
@@ -287,11 +285,10 @@
             </div>
             <div class="ml-4">
               <p class="text-sm font-medium text-gray-600">Active Postings</p>
-              <p class="text-2xl font-semibold text-gray-900">7</p>
+              <p class="text-2xl font-semibold text-gray-900">2</p>
             </div>
           </div>
         </div>
-
         <div class="bg-white p-6 rounded-lg shadow-sm">
           <div class="flex items-center">
             <div class="flex-shrink-0">
@@ -317,11 +314,10 @@
               <p class="text-sm font-medium text-gray-600">
                 Total Applications
               </p>
-              <p class="text-2xl font-semibold text-gray-900">58</p>
+              <p class="text-2xl font-semibold text-gray-900">29</p>
             </div>
           </div>
         </div>
-
         <div class="bg-white p-6 rounded-lg shadow-sm">
           <div class="flex items-center">
             <div class="flex-shrink-0">
@@ -345,11 +341,10 @@
             </div>
             <div class="ml-4">
               <p class="text-sm font-medium text-gray-600">Pending Review</p>
-              <p class="text-2xl font-semibold text-gray-900">2</p>
+              <p class="text-2xl font-semibold text-gray-900">1</p>
             </div>
           </div>
         </div>
-
         <div class="bg-white p-6 rounded-lg shadow-sm">
           <div class="flex items-center">
             <div class="flex-shrink-0">
@@ -388,34 +383,52 @@
       <!-- Filter Tabs -->
       <div class="mb-8">
         <div class="border-b border-gray-200">
-          <nav class="-mb-px flex space-x-8 overflow-x-auto">
+          <nav class="-mb-px flex space-x-8 overflow-x-auto" role="tablist">
             <button
               onclick="filterPostings('all')"
-              class="posting-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium whitespace-nowrap"
+              class="posting-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium whitespace-nowrap transition-colors duration-200"
+              role="tab"
+              aria-selected="true"
             >
-              All Postings (11)
+              All (6)
             </button>
             <button
-              onclick="filterPostings('full-time')"
+              onclick="filterPostings('active')"
               class="posting-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium whitespace-nowrap transition-colors duration-200"
+              role="tab"
+              aria-selected="false"
             >
-              Full-time (5)
+              Active (2)
             </button>
             <button
-              onclick="filterPostings('part-time')"
+              onclick="filterPostings('pending')"
               class="posting-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium whitespace-nowrap transition-colors duration-200"
+              role="tab"
+              aria-selected="false"
             >
-              Part-time (2)
+              Pending (1)
             </button>
             <button
-              onclick="filterPostings('internship')"
+              onclick="filterPostings('requested-changes')"
               class="posting-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium whitespace-nowrap transition-colors duration-200"
+              role="tab"
+              aria-selected="false"
             >
-              Internships (3)
+              Requested Changes (1)
+            </button>
+            <button
+              onclick="filterPostings('paused')"
+              class="posting-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium whitespace-nowrap transition-colors duration-200"
+              role="tab"
+              aria-selected="false"
+            >
+              Paused (1)
             </button>
             <button
               onclick="filterPostings('draft')"
               class="posting-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium whitespace-nowrap transition-colors duration-200"
+              role="tab"
+              aria-selected="false"
             >
               Drafts (1)
             </button>
@@ -424,24 +437,25 @@
       </div>
 
       <!-- Job Postings List -->
-      <div class="space-y-6">
-        <!-- Active Full-time Job -->
+      <div id="postingsContainer" class="space-y-6">
+        <!-- Paused Full-time Job -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500"
+          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500 status-paused"
+          data-status="paused"
         >
           <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
             <div class="flex-1">
               <div class="flex flex-wrap items-center mb-2">
                 <span
-                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3 mb-1"
-                  >Active</span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3 mb-1"
+                  >Paused</span
                 >
                 <span
                   class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3 mb-1"
                   >Full-time</span
                 >
                 <span class="text-sm text-gray-500 mb-1"
-                  >Posted 2 days ago • Expires in 28 days</span
+                  >Paused 1 day ago • Posted 2 days ago</span
                 >
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
@@ -521,19 +535,20 @@
                   Edit
                 </button>
                 <button
-                  onclick="pausePosting(1)"
-                  class="px-3 py-1 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors duration-200"
+                  onclick="resumePosting(1)"
+                  class="px-3 py-1 border border-gray-300 text-green-600 text-sm rounded-md hover:bg-green-50 transition-colors duration-200"
                 >
-                  Pause
+                  Resume
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Part-time Job -->
+        <!-- Active Part-time Job -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500"
+          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500 status-active"
+          data-status="active"
         >
           <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
             <div class="flex-1">
@@ -639,14 +654,15 @@
 
         <!-- Pending Internship -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500"
+          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500 status-pending"
+          data-status="pending"
         >
           <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
             <div class="flex-1">
               <div class="flex flex-wrap items-center mb-2">
                 <span
                   class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3 mb-1"
-                  >Under Review</span
+                  >Pending</span
                 >
                 <span
                   class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3 mb-1"
@@ -684,7 +700,8 @@
 
         <!-- Active Internship -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500"
+          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500 status-active"
+          data-status="active"
         >
           <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
             <div class="flex-1">
@@ -788,23 +805,24 @@
           </div>
         </div>
 
-        <!-- Project-based Job -->
+        <!-- Requested Changes Job -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500"
+          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-red-500 status-requested-changes"
+          data-status="requested-changes"
         >
           <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
             <div class="flex-1">
               <div class="flex flex-wrap items-center mb-2">
                 <span
-                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3 mb-1"
-                  >Active</span
+                  class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs mr-3 mb-1"
+                  >Requested Changes</span
                 >
                 <span
                   class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3 mb-1"
                   >Project-based</span
                 >
                 <span class="text-sm text-gray-500 mb-1"
-                  >Posted 1 week ago • Expires in 21 days</span
+                  >Feedback received 1 day ago</span
                 >
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
@@ -812,6 +830,9 @@
               </h3>
               <p class="text-gray-600 mb-3">Information Technology • Remote</p>
               <p class="text-lg font-semibold text-green-600 mb-3">₱150,000 total • 3-month project</p>
+              <p class="text-sm text-red-700 bg-red-50 p-3 rounded mb-3">
+                Admin Feedback: Please provide more details on the project scope and clarify the required skills for the role. Resubmit after revisions.
+              </p>
               <div class="flex flex-wrap items-center space-x-6 text-sm text-gray-500">
                 <div class="flex items-center mb-1">
                   <svg
@@ -871,32 +892,25 @@
             </div>
             <div class="mt-4 lg:mt-0 lg:ml-4 flex flex-col space-y-2">
               <button
-                onclick="viewApplications(5)"
-                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700 transition-colors duration-200"
+                onclick="revisePosting(5)"
+                class="px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700 transition-colors duration-200"
               >
-                View Proposals (6)
+                Revise
               </button>
-              <div class="flex space-x-2">
-                <button
-                  onclick="editPosting(5)"
-                  class="px-3 py-1 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors duration-200"
-                >
-                  Edit
-                </button>
-                <button
-                  onclick="pausePosting(5)"
-                  class="px-3 py-1 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50 transition-colors duration-200"
-                >
-                  Pause
-                </button>
-              </div>
+              <button
+                onclick="withdrawPosting(5)"
+                class="px-4 py-2 text-red-600 hover:bg-red-50 text-sm rounded-md transition-colors duration-200"
+              >
+                Withdraw
+              </button>
             </div>
           </div>
         </div>
 
         <!-- Draft Posting -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-gray-300 opacity-75"
+          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-gray-300 opacity-75 status-draft"
+          data-status="draft"
         >
           <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
             <div class="flex-1">
@@ -1000,13 +1014,27 @@
 
       // Filter postings function
       function filterPostings(status) {
+        // Update tab styles
         document.querySelectorAll('.posting-filter').forEach((filter) => {
           filter.classList.remove('active', 'border-primary', 'text-primary');
           filter.classList.add('border-transparent', 'text-gray-500');
+          filter.setAttribute('aria-selected', 'false');
         });
 
         event.target.classList.add('active', 'border-primary', 'text-primary');
         event.target.classList.remove('border-transparent', 'text-gray-500');
+        event.target.setAttribute('aria-selected', 'true');
+
+        // Filter postings
+        const postings = document.querySelectorAll('#postingsContainer > div');
+        postings.forEach((posting) => {
+          const postingStatus = posting.getAttribute('data-status');
+          if (status === 'all' || postingStatus === status) {
+            posting.classList.remove('hidden');
+          } else {
+            posting.classList.add('hidden');
+          }
+        });
 
         console.log('Filtering postings by:', status);
       }
@@ -1027,6 +1055,19 @@
           alert(`Job posting #${postingId} has been paused. It will no longer be visible to job seekers.`);
           location.reload();
         }
+      }
+
+      // Resume posting function
+      function resumePosting(postingId) {
+        if (confirm('Are you sure you want to resume this job posting?')) {
+          alert(`Job posting #${postingId} has been resumed and is now visible to job seekers.`);
+          location.reload();
+        }
+      }
+
+      // Revise posting function
+      function revisePosting(postingId) {
+        window.location.href = `new-job-posting.html?edit=${postingId}&revise=true`;
       }
 
       // Withdraw posting function
