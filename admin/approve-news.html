@@ -1,696 +1,1388 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>News Approvals - PCU-DASMA Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1E40AF',
-                        secondary: '#3B82F6',
-                        accent: '#F59E0B'
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-gray-50">
+  </head>
+  <body class="bg-gray-50">
     <div class="flex h-screen overflow-hidden">
-        <!-- Sidebar -->
-        <aside id="sidebar" class="bg-white w-64 min-h-screen shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 fixed z-50">
-            <div class="flex flex-col h-full">
-                <!-- Logo -->
-                <div class="flex items-center justify-between p-4 border-b border-gray-200">
-                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
-                    <button id="closeSidebar" class="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
+      <!-- Sidebar -->
+      <aside
+        id="sidebar"
+        class="bg-white w-64 min-h-screen shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 fixed z-50"
+      >
+        <div class="flex flex-col h-full">
+          <!-- Logo -->
+          <div
+            class="flex items-center justify-between p-4 border-b border-gray-200"
+          >
+            <a href="../index.html" class="text-xl font-bold text-primary"
+              >PCU-DASMA Connect</a
+            >
+            <button
+              id="closeSidebar"
+              class="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Navigation -->
+          <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <!-- Dashboard -->
+            <a
+              href="dashboard.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m8 5 4-4 4 4"
+                ></path>
+              </svg>
+              Dashboard
+            </a>
+
+            <!-- Users -->
+            <a
+              href="users.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+                ></path>
+              </svg>
+              Users
+            </a>
+
+            <!-- Approvals Dropdown -->
+            <div class="space-y-1">
+              <button
+                onclick="toggleDropdown('approvals')"
+                class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg focus:outline-none"
+              >
+                <div class="flex items-center">
+                  <svg
+                    class="w-5 h-5 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  Approvals
                 </div>
-
-                <!-- Navigation -->
-                <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
-                    <!-- Dashboard -->
-                    <a href="dashboard.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
-                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 5 4-4 4 4"></path>
-                        </svg>
-                        Dashboard
-                    </a>
-
-                    <!-- Users -->
-                    <a href="users.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
-                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
-                        </svg>
-                        Users
-                    </a>
-
-                    <!-- Approvals Dropdown -->
-                    <div class="space-y-1">
-                        <button onclick="toggleDropdown('approvals')" class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg focus:outline-none">
-                            <div class="flex items-center">
-                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                Approvals
-                            </div>
-                            <svg id="approvals-arrow" class="w-4 h-4 transform transition-transform duration-200 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                        <div id="approvals-menu" class="ml-4 space-y-1">
-                            <a href="approve-jobs.html" class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100">
-                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
-                                </svg>
-                                Job Post Approvals
-                                <span class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full">3</span>
-                            </a>
-                            <a href="approve-news.html" class="flex items-center px-4 py-2 text-sm text-primary font-medium bg-blue-50 rounded-lg">
-                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
-                                </svg>
-                                News Approvals
-                                <span class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full">5</span>
-                            </a>
-                            <a href="approve-events.html" class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100">
-                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                                Event Approvals
-                                <span class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full">1</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Partnerships -->
-                    <a href="approve-partnerships.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
-                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                        Community Partnerships
-                        <span class="ml-auto bg-yellow-100 text-yellow-800 text-xs px-2 py-0.5 rounded-full">8</span>
-                    </a>
-
-                    <!-- Analytics -->
-                    <a href="analytics.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
-                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                        </svg>
-                        Analytics
-                    </a>
-
-                    <!-- Divider -->
-                    <div class="border-t border-gray-200 my-4"></div>
-
-                    <!-- Settings -->
-                    <a href="settings.html" class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
-                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                        Settings
-                    </a>
-                </nav>
-
-                <!-- User Profile -->
-                <div class="border-t border-gray-200 p-4">
-                    <div class="flex items-center">
-                        <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
-                        <div class="ml-3 flex-1">
-                            <p class="text-sm font-medium text-gray-700">Admin User</p>
-                            <p class="text-xs text-gray-500">admin@pcu.edu.ph</p>
-                        </div>
-                        <div class="relative">
-                            <button onclick="toggleUserMenu()" class="p-2 rounded-md text-gray-400 hover:text-gray-600">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
-                                </svg>
-                            </button>
-                            <div id="userMenu" class="hidden origin-bottom-right absolute bottom-0 right-0 mb-12 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                                <div class="py-1">
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Profile</a>
-                                    <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <svg
+                  id="approvals-arrow"
+                  class="w-4 h-4 transform transition-transform duration-200 rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div id="approvals-menu" class="ml-4 space-y-1">
+                <a
+                  href="approve-jobs.html"
+                  class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"
+                    ></path>
+                  </svg>
+                  Job Post Approvals
+                  <span
+                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
+                    >3</span
+                  >
+                </a>
+                <a
+                  href="approve-news.html"
+                  class="flex items-center px-4 py-2 text-sm text-primary font-medium bg-blue-50 rounded-lg"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+                    ></path>
+                  </svg>
+                  News Approvals
+                  <span
+                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
+                    >5</span
+                  >
+                </a>
+                <a
+                  href="approve-events.html"
+                  class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                  Event Approvals
+                  <span
+                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
+                    >1</span
+                  >
+                </a>
+              </div>
             </div>
-        </aside>
 
-        <!-- Main Content -->
-        <div class="flex-1 flex flex-col overflow-hidden">
-            <!-- Top Header -->
-            <header class="bg-white shadow-sm border-b lg:hidden">
-                <div class="flex items-center justify-between px-4 py-3">
-                    <button id="openSidebar" class="p-2 rounded-md text-gray-400 hover:text-gray-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                    <h1 class="text-xl font-bold text-primary">News Approvals</h1>
-                    <div class="w-10"></div> <!-- Spacer -->
+            <!-- Partnerships -->
+            <a
+              href="approve-partnerships.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+              </svg>
+              Partnerships
+              <span
+                class="ml-auto bg-yellow-100 text-yellow-800 text-xs px-2 py-0.5 rounded-full"
+                >2</span
+              >
+            </a>
+
+            <!-- Divider -->
+            <div class="border-t border-gray-200 my-4"></div>
+
+            <!-- Settings -->
+            <a
+              href="settings.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                ></path>
+              </svg>
+              Settings
+            </a>
+          </nav>
+
+          <!-- User Profile -->
+          <div class="border-t border-gray-200 p-4">
+            <div class="flex items-center">
+              <img
+                class="h-8 w-8 rounded-full"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                alt="Profile"
+              />
+              <div class="ml-3 flex-1">
+                <p class="text-sm font-medium text-gray-700">Admin User</p>
+                <p class="text-xs text-gray-500">admin@pcu.edu.ph</p>
+              </div>
+              <div class="relative">
+                <button
+                  onclick="toggleUserMenu()"
+                  class="p-2 rounded-md text-gray-400 hover:text-gray-600"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                    ></path>
+                  </svg>
+                </button>
+                <div
+                  id="userMenu"
+                  class="hidden origin-bottom-right absolute bottom-0 right-0 mb-12 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                >
+                  <div class="py-1">
+                    <a
+                      href="#"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >Admin Profile</a
+                    >
+                    <a
+                      href="#"
+                      onclick="logout()"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >Logout</a
+                    >
+                  </div>
                 </div>
-            </header>
-
-            <!-- Content Area -->
-            <main class="flex-1 overflow-y-auto">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                    <!-- Header -->
-                    <div class="mb-8">
-                        <h1 class="text-3xl font-bold text-gray-900">News Article Management</h1>
-                        <p class="text-gray-600">Review, approve, and manage news articles submitted by staff members</p>
-                    </div>
-
-                    <!-- Stats Cards -->
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                        <div class="bg-white p-6 rounded-lg shadow-sm">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0">
-                                    <div class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
-                                        <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-600">Pending Review</p>
-                                    <p class="text-2xl font-semibold text-gray-900">5</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-white p-6 rounded-lg shadow-sm">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0">
-                                    <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                                        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-600">Approved</p>
-                                    <p class="text-2xl font-semibold text-gray-900">3</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-white p-6 rounded-lg shadow-sm">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0">
-                                    <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 616 0z"></path>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-600">Published</p>
-                                    <p class="text-2xl font-semibold text-gray-900">18</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-white p-6 rounded-lg shadow-sm">
-                            <div class="flex items-center">
-                                <div class="flex-shrink-0">
-                                    <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
-                                        <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-600">Rejected</p>
-                                    <p class="text-2xl font-semibold text-gray-900">2</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Filter Tabs -->
-                    <div class="mb-8">
-                        <div class="border-b border-gray-200">
-                            <nav class="-mb-px flex space-x-8">
-                                <button onclick="filterNews('pending')" class="news-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium">
-                                    Pending Approval (5)
-                                </button>
-                                <button onclick="filterNews('approved')" class="news-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
-                                    Approved (3)
-                                </button>
-                                <button onclick="filterNews('published')" class="news-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
-                                    Published (18)
-                                </button>
-                                <button onclick="filterNews('rejected')" class="news-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
-                                    Rejected (2)
-                                </button>
-                            </nav>
-                        </div>
-                    </div>
-
-                    <!-- News Articles List -->
-                    <div id="newsContainer" class="space-y-6">
-                        <!-- Pending Approval Tab Content -->
-                        <div id="pending-news" class="tab-content">
-                            <!-- Partnership Success Story - Pending -->
-                            <div onclick="viewArticle('ART-2025-001', 'pending')" class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500 cursor-pointer hover:shadow-md transition-shadow">
-                                <div class="flex justify-between items-start">
-                                    <div class="flex-1">
-                                        <div class="flex items-center mb-3">
-                                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Pending Approval</span>
-                                            <span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full text-xs mr-3">Partnership Success</span>
-                                            <span class="text-sm text-gray-500">Submitted 3 hours ago</span>
-                                        </div>
-                                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Great Dasmarinas Bay Clean-up Drive: A Community Success Story</h3>
-                                        <div class="flex items-center text-sm text-gray-600 mb-4">
-                                            <div class="flex items-center mr-6">
-                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                                </svg>
-                                                By: Communications Staff
-                                            </div>
-                                            <div class="flex items-center mr-6">
-                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2M7 4h10M7 4v16a2 2 0 002 2h6a2 2 0 002-2V4M11 6v2M11 10v2"></path>
-                                                </svg>
-                                                Category: Community Partnership
-                                            </div>
-                                        </div>
-                                        <p class="text-gray-600 mb-4">The recent coastal clean-up partnership between PCU-DASMA and Clean Seas Alliance exceeded all expectations, with 450 volunteers collecting 3.2 tons of waste and cleaning 1.8km of coastline...</p>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="px-2 py-1 bg-emerald-100 text-emerald-800 text-xs rounded">Community Partnership</span>
-                                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Environmental</span>
-                                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Success Story</span>
-                                        </div>
-                                    </div>
-                                    <div class="ml-6 flex flex-col space-y-2" onclick="event.stopPropagation()">
-                                        <button onclick="quickApprove('ART-2025-001')" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">Quick Approve</button>
-                                        <button onclick="quickReject('ART-2025-001')" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">Quick Reject</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- University Event Article - Pending -->
-                            <div onclick="viewArticle('ART-2025-002', 'pending')" class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500 cursor-pointer hover:shadow-md transition-shadow">
-                                <div class="flex justify-between items-start">
-                                    <div class="flex-1">
-                                        <div class="flex items-center mb-3">
-                                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Pending Approval</span>
-                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3">University Update</span>
-                                            <span class="text-sm text-gray-500">Submitted 2 hours ago</span>
-                                        </div>
-                                        <h3 class="text-xl font-semibold text-gray-900 mb-2">New Research Laboratory Opens in IT Department</h3>
-                                        <div class="flex items-center text-sm text-gray-600 mb-4">
-                                            <div class="flex items-center mr-6">
-                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                                </svg>
-                                                By: Maria Garcia
-                                            </div>
-                                            <div class="flex items-center mr-6">
-                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2M7 4h10M7 4v16a2 2 0 002 2h6a2 2 0 002-2V4M11 6v2M11 10v2"></path>
-                                                </svg>
-                                                Category: University Update
-                                            </div>
-                                        </div>
-                                        <p class="text-gray-600 mb-4">The IT Department proudly announces the opening of a new state-of-the-art research laboratory equipped with the latest technology for artificial intelligence and machine learning research...</p>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Research</span>
-                                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Technology</span>
-                                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">IT Department</span>
-                                        </div>
-                                    </div>
-                                    <div class="ml-6 flex flex-col space-y-2" onclick="event.stopPropagation()">
-                                        <button onclick="quickApprove('ART-2025-002')" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">Quick Approve</button>
-                                        <button onclick="quickReject('ART-2025-002')" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">Quick Reject</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Alumni Success Story - Pending -->
-                            <div onclick="viewArticle('ART-2025-003', 'pending')" class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500 cursor-pointer hover:shadow-md transition-shadow">
-                                <div class="flex justify-between items-start">
-                                    <div class="flex-1">
-                                        <div class="flex items-center mb-3">
-                                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Pending Approval</span>
-                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3">Alumni Success</span>
-                                            <span class="text-sm text-gray-500">Submitted 1 day ago</span>
-                                        </div>
-                                        <h3 class="text-xl font-semibold text-gray-900 mb-2">PCU-DASMA Graduate Wins International Innovation Award</h3>
-                                        <div class="flex items-center text-sm text-gray-600 mb-4">
-                                            <div class="flex items-center mr-6">
-                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                                </svg>
-                                                By: Carlos Rodriguez
-                                            </div>
-                                            <div class="flex items-center mr-6">
-                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2M7 4h10M7 4v16a2 2 0 002 2h6a2 2 0 002-2V4M11 6v2M11 10v2"></path>
-                                                </svg>
-                                                Category: Alumni Success
-                                            </div>
-                                        </div>
-                                        <p class="text-gray-600 mb-4">Anna Marie Santos, a 2023 BSIT graduate from PCU-DASMA, has been awarded the prestigious International Young Innovator Award for her groundbreaking mobile application...</p>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Alumni</span>
-                                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Innovation</span>
-                                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Awards</span>
-                                        </div>
-                                    </div>
-                                    <div class="ml-6 flex flex-col space-y-2" onclick="event.stopPropagation()">
-                                        <button onclick="quickApprove('ART-2025-003')" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700">Quick Approve</button>
-                                        <button onclick="quickReject('ART-2025-003')" class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700">Quick Reject</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Approved Tab Content -->
-                        <div id="approved-news" class="tab-content hidden">
-                            <div onclick="viewArticle('ART-2025-004', 'approved')" class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500 cursor-pointer hover:shadow-md transition-shadow">
-                                <div class="flex justify-between items-start">
-                                    <div class="flex-1">
-                                        <div class="flex items-center mb-3">
-                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Approved</span>
-                                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3">Partnership Success</span>
-                                            <span class="text-sm text-gray-500">Approved 2 hours ago • Ready to publish</span>
-                                        </div>
-                                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Back-to-School Supplies Drive: Supporting 750 Students</h3>
-                                        <div class="flex items-center text-sm text-gray-600 mb-4">
-                                            <div class="flex items-center mr-6">
-                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                                </svg>
-                                                By: Communications Staff
-                                            </div>
-                                            <div class="flex items-center mr-6">
-                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                                </svg>
-                                                Status: Ready for Publishing
-                                            </div>
-                                        </div>
-                                        <p class="text-gray-600 mb-4">The recent back-to-school supplies drive partnership successfully distributed school supplies to 750 students across 12 partner schools in remote barangays, valued at ₱420,000...</p>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Partnership</span>
-                                            <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded">Education</span>
-                                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Success Story</span>
-                                        </div>
-                                    </div>
-                                    <div class="ml-6 flex flex-col space-y-2" onclick="event.stopPropagation()">
-                                        <button onclick="publishNews('ART-2025-004')" class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700">Publish Now</button>
-                                        <button onclick="schedulePublish('ART-2025-004')" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-md hover:bg-indigo-700">Schedule</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Published Tab Content -->
-                        <div id="published-news" class="tab-content hidden">
-                            <div onclick="viewArticle('ART-2025-005', 'published')" class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500 cursor-pointer hover:shadow-md transition-shadow">
-                                <div class="flex justify-between items-start">
-                                    <div class="flex-1">
-                                        <div class="flex items-center mb-3">
-                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Published</span>
-                                            <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3">Featured</span>
-                                            <span class="text-sm text-gray-500">Published 3 days ago</span>
-                                        </div>
-                                        <h3 class="text-xl font-semibold text-gray-900 mb-2">PCU-DASMA Connect Reaches 1,000+ Alumni Members</h3>
-                                        <div class="flex items-center text-sm text-gray-600 mb-4">
-                                            <div class="flex items-center mr-6">
-                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 616 0z"></path>
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                                </svg>
-                                                1,234 views
-                                            </div>
-                                            <div class="flex items-center mr-6">
-                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                                                </svg>
-                                                45 comments
-                                            </div>
-                                            <div class="flex items-center">
-                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                                </svg>
-                                                89 likes
-                                            </div>
-                                        </div>
-                                        <p class="text-gray-600 mb-4">We're excited to announce that PCU-DASMA Connect has successfully onboarded over 1,000 alumni members, creating the largest digital alumni network in the university's history...</p>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">University Update</span>
-                                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Alumni</span>
-                                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Platform News</span>
-                                        </div>
-                                    </div>
-                                    <div class="ml-6 flex flex-col space-y-2" onclick="event.stopPropagation()">
-                                        <button onclick="viewLive('ART-2025-005')" class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700">View Live</button>
-                                        <button onclick="editArticle('ART-2025-005')" class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50">Edit</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Rejected Tab Content -->
-                        <div id="rejected-news" class="tab-content hidden">
-                            <div onclick="viewArticle('ART-2025-006', 'rejected')" class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-red-500 cursor-pointer hover:shadow-md transition-shadow">
-                                <div class="flex justify-between items-start">
-                                    <div class="flex-1">
-                                        <div class="flex items-center mb-3">
-                                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs mr-3 font-medium">Rejected</span>
-                                            <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3">University Update</span>
-                                            <span class="text-sm text-gray-500">Rejected 1 day ago</span>
-                                        </div>
-                                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Draft Article with Incomplete Information</h3>
-                                        <div class="flex items-center text-sm text-gray-600 mb-4">
-                                            <div class="flex items-center mr-6">
-                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                                </svg>
-                                                By: Staff Writer
-                                            </div>
-                                            <div class="flex items-center mr-6">
-                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                                </svg>
-                                                Reason: Incomplete content and missing sources
-                                            </div>
-                                        </div>
-                                        <p class="text-gray-600 mb-4">This article was submitted with incomplete information and requires additional research and fact-checking before publication...</p>
-                                        <div class="bg-red-50 p-3 rounded-lg mb-4">
-                                            <h4 class="font-medium text-red-900 mb-1">Rejection Feedback:</h4>
-                                            <p class="text-sm text-red-700">Article needs more detailed information, proper citations, and verification of facts mentioned. Please revise and resubmit with complete content.</p>
-                                        </div>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded">Rejected</span>
-                                            <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">Incomplete</span>
-                                        </div>
-                                    </div>
-                                    <div class="ml-6 flex flex-col space-y-2" onclick="event.stopPropagation()">
-                                        <button onclick="reconsiderArticle('ART-2025-006')" class="px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700">Reconsider</button>
-                                        <button onclick="archiveArticle('ART-2025-006')" class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50">Archive</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Pagination -->
-                    <div class="mt-8 flex justify-center">
-                        <nav class="flex items-center space-x-2">
-                            <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-500 rounded-md">Previous</button>
-                            <button class="px-3 py-1 text-sm bg-primary text-white rounded-md">1</button>
-                            <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">2</button>
-                            <button class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">Next</button>
-                        </nav>
-                    </div>
-                </div>
-            </main>
+              </div>
+            </div>
+          </div>
         </div>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="flex-1 flex flex-col overflow-hidden">
+        <!-- Top Header -->
+        <header class="bg-white shadow-sm border-b lg:hidden">
+          <div class="flex items-center justify-between px-4 py-3">
+            <button
+              id="openSidebar"
+              class="p-2 rounded-md text-gray-400 hover:text-gray-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </button>
+            <h1 class="text-xl font-bold text-primary">News Approvals</h1>
+            <div class="w-10"></div>
+            <!-- Spacer -->
+          </div>
+        </header>
+
+        <!-- Content Area -->
+        <main class="flex-1 overflow-y-auto">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <!-- Header -->
+            <div class="mb-8">
+              <h1 class="text-3xl font-bold text-gray-900">
+                News Article Management
+              </h1>
+              <p class="text-gray-600">
+                Review, approve, and manage news articles submitted by staff
+                members
+              </p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                  <div class="flex-shrink-0">
+                    <div
+                      class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center"
+                    >
+                      <svg
+                        class="w-5 h-5 text-yellow-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-600">
+                      Pending Review
+                    </p>
+                    <p class="text-2xl font-semibold text-gray-900">5</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                  <div class="flex-shrink-0">
+                    <div
+                      class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center"
+                    >
+                      <svg
+                        class="w-5 h-5 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-600">Approved</p>
+                    <p class="text-2xl font-semibold text-gray-900">3</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                  <div class="flex-shrink-0">
+                    <div
+                      class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center"
+                    >
+                      <svg
+                        class="w-5 h-5 text-blue-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 616 0z"
+                        ></path>
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-600">Published</p>
+                    <p class="text-2xl font-semibold text-gray-900">18</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex items-center">
+                  <div class="flex-shrink-0">
+                    <div
+                      class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center"
+                    >
+                      <svg
+                        class="w-5 h-5 text-red-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-sm font-medium text-gray-600">Rejected</p>
+                    <p class="text-2xl font-semibold text-gray-900">2</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="mb-6">
+              <div class="relative">
+                <input
+                  type="text"
+                  id="newsSearch"
+                  placeholder="Search news by title, author, or category..."
+                  class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                />
+                <svg
+                  class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="mb-8">
+              <div class="border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8">
+                  <button
+                    onclick="filterNews('pending')"
+                    class="news-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium"
+                  >
+                    Pending Approval (5)
+                  </button>
+                  <button
+                    onclick="filterNews('approved')"
+                    class="news-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+                  >
+                    Approved (3)
+                  </button>
+                  <button
+                    onclick="filterNews('published')"
+                    class="news-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+                  >
+                    Published (18)
+                  </button>
+                  <button
+                    onclick="filterNews('rejected')"
+                    class="news-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+                  >
+                    Rejected (2)
+                  </button>
+                </nav>
+              </div>
+            </div>
+
+            <!-- News Articles List -->
+            <div id="newsContainer" class="space-y-6">
+              <!-- Pending Approval Tab Content -->
+              <div id="pending-news" class="tab-content">
+                <!-- Partnership Success Story - Pending -->
+                <div
+                  onclick="viewArticle('ART-2025-001', 'pending')"
+                  class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500 cursor-pointer hover:shadow-md transition-shadow"
+                >
+                  <div class="flex justify-between items-start">
+                    <div class="flex-1">
+                      <div class="flex items-center mb-3">
+                        <span
+                          class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
+                          >Pending Approval</span
+                        >
+                        <span
+                          class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full text-xs mr-3"
+                          >Partnership Success</span
+                        >
+                        <span class="text-sm text-gray-500"
+                          >Submitted 3 hours ago</span
+                        >
+                      </div>
+                      <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                        Great Dasmarinas Bay Clean-up Drive: A Community Success
+                        Story
+                      </h3>
+                      <div class="flex items-center text-sm text-gray-600 mb-4">
+                        <div class="flex items-center mr-6">
+                          <svg
+                            class="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                            ></path>
+                          </svg>
+                          By: Communications Staff
+                        </div>
+                        <div class="flex items-center mr-6">
+                          <svg
+                            class="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2M7 4h10M7 4v16a2 2 0 002 2h6a2 2 0 002-2V4M11 6v2M11 10v2"
+                            ></path>
+                          </svg>
+                          Category: Community Partnership
+                        </div>
+                      </div>
+                      <p class="text-gray-600 mb-4">
+                        The recent coastal clean-up partnership between
+                        PCU-DASMA and Clean Seas Alliance exceeded all
+                        expectations, with 450 volunteers collecting 3.2 tons of
+                        waste and cleaning 1.8km of coastline...
+                      </p>
+                      <div class="flex flex-wrap gap-2">
+                        <span
+                          class="px-2 py-1 bg-emerald-100 text-emerald-800 text-xs rounded"
+                          >Community Partnership</span
+                        >
+                        <span
+                          class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                          >Environmental</span
+                        >
+                        <span
+                          class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                          >Success Story</span
+                        >
+                      </div>
+                    </div>
+                    <div
+                      class="ml-6 flex flex-col space-y-2"
+                      onclick="event.stopPropagation()"
+                    >
+                      <button
+                        onclick="quickApprove('ART-2025-001')"
+                        class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
+                      >
+                        Quick Approve
+                      </button>
+                      <button
+                        onclick="quickReject('ART-2025-001')"
+                        class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700"
+                      >
+                        Quick Reject
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- University Event Article - Pending -->
+                <div
+                  onclick="viewArticle('ART-2025-002', 'pending')"
+                  class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500 cursor-pointer hover:shadow-md transition-shadow"
+                >
+                  <div class="flex justify-between items-start">
+                    <div class="flex-1">
+                      <div class="flex items-center mb-3">
+                        <span
+                          class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
+                          >Pending Approval</span
+                        >
+                        <span
+                          class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                          >University Update</span
+                        >
+                        <span class="text-sm text-gray-500"
+                          >Submitted 2 hours ago</span
+                        >
+                      </div>
+                      <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                        New Research Laboratory Opens in IT Department
+                      </h3>
+                      <div class="flex items-center text-sm text-gray-600 mb-4">
+                        <div class="flex items-center mr-6">
+                          <svg
+                            class="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                            ></path>
+                          </svg>
+                          By: Maria Garcia
+                        </div>
+                        <div class="flex items-center mr-6">
+                          <svg
+                            class="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2M7 4h10M7 4v16a2 2 0 002 2h6a2 2 0 002-2V4M11 6v2M11 10v2"
+                            ></path>
+                          </svg>
+                          Category: University Update
+                        </div>
+                      </div>
+                      <p class="text-gray-600 mb-4">
+                        The IT Department proudly announces the opening of a new
+                        state-of-the-art research laboratory equipped with the
+                        latest technology for artificial intelligence and
+                        machine learning research...
+                      </p>
+                      <div class="flex flex-wrap gap-2">
+                        <span
+                          class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                          >Research</span
+                        >
+                        <span
+                          class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                          >Technology</span
+                        >
+                        <span
+                          class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                          >IT Department</span
+                        >
+                      </div>
+                    </div>
+                    <div
+                      class="ml-6 flex flex-col space-y-2"
+                      onclick="event.stopPropagation()"
+                    >
+                      <button
+                        onclick="quickApprove('ART-2025-002')"
+                        class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
+                      >
+                        Quick Approve
+                      </button>
+                      <button
+                        onclick="quickReject('ART-2025-002')"
+                        class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700"
+                      >
+                        Quick Reject
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Alumni Success Story - Pending -->
+                <div
+                  onclick="viewArticle('ART-2025-003', 'pending')"
+                  class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500 cursor-pointer hover:shadow-md transition-shadow"
+                >
+                  <div class="flex justify-between items-start">
+                    <div class="flex-1">
+                      <div class="flex items-center mb-3">
+                        <span
+                          class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
+                          >Pending Approval</span
+                        >
+                        <span
+                          class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
+                          >Alumni Success</span
+                        >
+                        <span class="text-sm text-gray-500"
+                          >Submitted 1 day ago</span
+                        >
+                      </div>
+                      <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                        PCU-DASMA Graduate Wins International Innovation Award
+                      </h3>
+                      <div class="flex items-center text-sm text-gray-600 mb-4">
+                        <div class="flex items-center mr-6">
+                          <svg
+                            class="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                            ></path>
+                          </svg>
+                          By: Carlos Rodriguez
+                        </div>
+                        <div class="flex items-center mr-6">
+                          <svg
+                            class="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2M7 4h10M7 4v16a2 2 0 002 2h6a2 2 0 002-2V4M11 6v2M11 10v2"
+                            ></path>
+                          </svg>
+                          Category: Alumni Success
+                        </div>
+                      </div>
+                      <p class="text-gray-600 mb-4">
+                        Anna Marie Santos, a 2023 BSIT graduate from PCU-DASMA,
+                        has been awarded the prestigious International Young
+                        Innovator Award for her groundbreaking mobile
+                        application...
+                      </p>
+                      <div class="flex flex-wrap gap-2">
+                        <span
+                          class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                          >Alumni</span
+                        >
+                        <span
+                          class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                          >Innovation</span
+                        >
+                        <span
+                          class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                          >Awards</span
+                        >
+                      </div>
+                    </div>
+                    <div
+                      class="ml-6 flex flex-col space-y-2"
+                      onclick="event.stopPropagation()"
+                    >
+                      <button
+                        onclick="quickApprove('ART-2025-003')"
+                        class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
+                      >
+                        Quick Approve
+                      </button>
+                      <button
+                        onclick="quickReject('ART-2025-003')"
+                        class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700"
+                      >
+                        Quick Reject
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Approved Tab Content -->
+              <div id="approved-news" class="tab-content hidden">
+                <div
+                  onclick="viewArticle('ART-2025-004', 'approved')"
+                  class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500 cursor-pointer hover:shadow-md transition-shadow"
+                >
+                  <div class="flex justify-between items-start">
+                    <div class="flex-1">
+                      <div class="flex items-center mb-3">
+                        <span
+                          class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
+                          >Approved</span
+                        >
+                        <span
+                          class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3"
+                          >Partnership Success</span
+                        >
+                        <span class="text-sm text-gray-500"
+                          >Approved 2 hours ago • Ready to publish</span
+                        >
+                      </div>
+                      <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                        Back-to-School Supplies Drive: Supporting 750 Students
+                      </h3>
+                      <div class="flex items-center text-sm text-gray-600 mb-4">
+                        <div class="flex items-center mr-6">
+                          <svg
+                            class="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                            ></path>
+                          </svg>
+                          By: Communications Staff
+                        </div>
+                        <div class="flex items-center mr-6">
+                          <svg
+                            class="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            ></path>
+                          </svg>
+                          Status: Ready for Publishing
+                        </div>
+                      </div>
+                      <p class="text-gray-600 mb-4">
+                        The recent back-to-school supplies drive partnership
+                        successfully distributed school supplies to 750 students
+                        across 12 partner schools in remote barangays, valued at
+                        ₱420,000...
+                      </p>
+                      <div class="flex flex-wrap gap-2">
+                        <span
+                          class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded"
+                          >Partnership</span
+                        >
+                        <span
+                          class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded"
+                          >Education</span
+                        >
+                        <span
+                          class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                          >Success Story</span
+                        >
+                      </div>
+                    </div>
+                    <div
+                      class="ml-6 flex flex-col space-y-2"
+                      onclick="event.stopPropagation()"
+                    >
+                      <button
+                        onclick="publishNews('ART-2025-004')"
+                        class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700"
+                      >
+                        Publish Now
+                      </button>
+                      <button
+                        onclick="schedulePublish('ART-2025-004')"
+                        class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-md hover:bg-indigo-700"
+                      >
+                        Schedule
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Published Tab Content -->
+              <div id="published-news" class="tab-content hidden">
+                <div
+                  onclick="viewArticle('ART-2025-005', 'published')"
+                  class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500 cursor-pointer hover:shadow-md transition-shadow"
+                >
+                  <div class="flex justify-between items-start">
+                    <div class="flex-1">
+                      <div class="flex items-center mb-3">
+                        <span
+                          class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
+                          >Published</span
+                        >
+                        <span
+                          class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3"
+                          >Featured</span
+                        >
+                        <span class="text-sm text-gray-500"
+                          >Published 3 days ago</span
+                        >
+                      </div>
+                      <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                        PCU-DASMA Connect Reaches 1,000+ Alumni Members
+                      </h3>
+                      <div class="flex items-center text-sm text-gray-600 mb-4">
+                        <div class="flex items-center mr-6">
+                          <svg
+                            class="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M15 12a3 3 0 11-6 0 3 3 0 616 0z"
+                            ></path>
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                            ></path>
+                          </svg>
+                          1,234 views
+                        </div>
+                        <div class="flex items-center mr-6">
+                          <svg
+                            class="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                            ></path>
+                          </svg>
+                          45 comments
+                        </div>
+                        <div class="flex items-center">
+                          <svg
+                            class="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                            ></path>
+                          </svg>
+                          89 likes
+                        </div>
+                      </div>
+                      <p class="text-gray-600 mb-4">
+                        We're excited to announce that PCU-DASMA Connect has
+                        successfully onboarded over 1,000 alumni members,
+                        creating the largest digital alumni network in the
+                        university's history...
+                      </p>
+                      <div class="flex flex-wrap gap-2">
+                        <span
+                          class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                          >University Update</span
+                        >
+                        <span
+                          class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                          >Alumni</span
+                        >
+                        <span
+                          class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                          >Platform News</span
+                        >
+                      </div>
+                    </div>
+                    <div
+                      class="ml-6 flex flex-col space-y-2"
+                      onclick="event.stopPropagation()"
+                    >
+                      <button
+                        onclick="viewLive('ART-2025-005')"
+                        class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700"
+                      >
+                        View Live
+                      </button>
+                      <button
+                        onclick="editArticle('ART-2025-005')"
+                        class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
+                      >
+                        Edit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Rejected Tab Content -->
+              <div id="rejected-news" class="tab-content hidden">
+                <div
+                  onclick="viewArticle('ART-2025-006', 'rejected')"
+                  class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-red-500 cursor-pointer hover:shadow-md transition-shadow"
+                >
+                  <div class="flex justify-between items-start">
+                    <div class="flex-1">
+                      <div class="flex items-center mb-3">
+                        <span
+                          class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
+                          >Rejected</span
+                        >
+                        <span
+                          class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
+                          >University Update</span
+                        >
+                        <span class="text-sm text-gray-500"
+                          >Rejected 1 day ago</span
+                        >
+                      </div>
+                      <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                        Draft Article with Incomplete Information
+                      </h3>
+                      <div class="flex items-center text-sm text-gray-600 mb-4">
+                        <div class="flex items-center mr-6">
+                          <svg
+                            class="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                            ></path>
+                          </svg>
+                          By: Staff Writer
+                        </div>
+                        <div class="flex items-center mr-6">
+                          <svg
+                            class="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M6 18L18 6M6 6l12 12"
+                            ></path>
+                          </svg>
+                          Reason: Incomplete content and missing sources
+                        </div>
+                      </div>
+                      <p class="text-gray-600 mb-4">
+                        This article was submitted with incomplete information
+                        and requires additional research and fact-checking
+                        before publication...
+                      </p>
+                      <div class="bg-red-50 p-3 rounded-lg mb-4">
+                        <h4 class="font-medium text-red-900 mb-1">
+                          Rejection Feedback:
+                        </h4>
+                        <p class="text-sm text-red-700">
+                          Article needs more detailed information, proper
+                          citations, and verification of facts mentioned. Please
+                          revise and resubmit with complete content.
+                        </p>
+                      </div>
+                      <div class="flex flex-wrap gap-2">
+                        <span
+                          class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded"
+                          >Rejected</span
+                        >
+                        <span
+                          class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded"
+                          >Incomplete</span
+                        >
+                      </div>
+                    </div>
+                    <div
+                      class="ml-6 flex flex-col space-y-2"
+                      onclick="event.stopPropagation()"
+                    >
+                      <button
+                        onclick="reconsiderArticle('ART-2025-006')"
+                        class="px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700"
+                      >
+                        Reconsider
+                      </button>
+                      <button
+                        onclick="archiveArticle('ART-2025-006')"
+                        class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
+                      >
+                        Archive
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-8 flex justify-center">
+              <nav class="flex items-center space-x-2">
+                <button
+                  class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-500 rounded-md"
+                >
+                  Previous
+                </button>
+                <button
+                  class="px-3 py-1 text-sm bg-primary text-white rounded-md"
+                >
+                  1
+                </button>
+                <button
+                  class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+                >
+                  2
+                </button>
+                <button
+                  class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+                >
+                  Next
+                </button>
+              </nav>
+            </div>
+          </div>
+        </main>
+      </div>
     </div>
 
     <!-- Overlay for mobile -->
-    <div id="sidebarOverlay" class="fixed inset-0 bg-gray-600 bg-opacity-50 z-40 lg:hidden hidden"></div>
+    <div
+      id="sidebarOverlay"
+      class="fixed inset-0 bg-gray-600 bg-opacity-50 z-40 lg:hidden hidden"
+    ></div>
 
     <script>
-        // Navigation function to route to appropriate view page
-        function viewArticle(articleId, status) {
-            const statusPageMap = {
-                pending: 'view-article-pending.html',
-                approved: 'view-article-approved.html',
-                published: 'view-article-published.html',
-                rejected: 'view-article-rejected.html'
-            };
-            
-            const page = statusPageMap[status];
-            if (page) {
-                window.location.href = `${page}?id=${articleId}&status=${status}`;
-            }
+      // Navigation function to route to appropriate view page
+      function viewArticle(articleId, status) {
+        const statusPageMap = {
+          pending: "view-article-pending.html",
+          approved: "view-article-approved.html",
+          published: "view-article-published.html",
+          rejected: "view-article-rejected.html",
+        };
+
+        const page = statusPageMap[status];
+        if (page) {
+          window.location.href = `${page}?id=${articleId}&status=${status}`;
         }
+      }
 
-        // Sidebar toggle functionality
-        const sidebar = document.getElementById('sidebar');
-        const openSidebar = document.getElementById('openSidebar');
-        const closeSidebar = document.getElementById('closeSidebar');
-        const sidebarOverlay = document.getElementById('sidebarOverlay');
+      // Sidebar toggle functionality
+      const sidebar = document.getElementById("sidebar");
+      const openSidebar = document.getElementById("openSidebar");
+      const closeSidebar = document.getElementById("closeSidebar");
+      const sidebarOverlay = document.getElementById("sidebarOverlay");
 
-        function showSidebar() {
-            sidebar.classList.remove('-translate-x-full');
-            sidebarOverlay.classList.remove('hidden');
+      function showSidebar() {
+        sidebar.classList.remove("-translate-x-full");
+        sidebarOverlay.classList.remove("hidden");
+      }
+
+      function hideSidebar() {
+        sidebar.classList.add("-translate-x-full");
+        sidebarOverlay.classList.add("hidden");
+      }
+
+      openSidebar?.addEventListener("click", showSidebar);
+      closeSidebar?.addEventListener("click", hideSidebar);
+      sidebarOverlay?.addEventListener("click", hideSidebar);
+
+      // Dropdown functionality
+      function toggleDropdown(dropdownId) {
+        const menu = document.getElementById(dropdownId + "-menu");
+        const arrow = document.getElementById(dropdownId + "-arrow");
+
+        if (menu.classList.contains("hidden")) {
+          menu.classList.remove("hidden");
+          arrow.classList.add("rotate-180");
+        } else {
+          menu.classList.add("hidden");
+          arrow.classList.remove("rotate-180");
         }
+      }
 
-        function hideSidebar() {
-            sidebar.classList.add('-translate-x-full');
-            sidebarOverlay.classList.add('hidden');
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+      }
+
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
         }
+      }
 
-        openSidebar?.addEventListener('click', showSidebar);
-        closeSidebar?.addEventListener('click', hideSidebar);
-        sidebarOverlay?.addEventListener('click', hideSidebar);
-
-        // Dropdown functionality
-        function toggleDropdown(dropdownId) {
-            const menu = document.getElementById(dropdownId + '-menu');
-            const arrow = document.getElementById(dropdownId + '-arrow');
-            
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-                arrow.classList.add('rotate-180');
-            } else {
-                menu.classList.add('hidden');
-                arrow.classList.remove('rotate-180');
-            }
-        }
-
-        function toggleUserMenu() {
-            const menu = document.getElementById('userMenu');
-            menu.classList.toggle('hidden');
-        }
-
-        function logout() {
-            if (confirm('Are you sure you want to logout?')) {
-                window.location.href = '../login.html';
-            }
-        }
-
-        // Tab filtering functionality
-        function filterNews(status) {
-            document.querySelectorAll('.news-filter').forEach(filter => {
-                filter.classList.remove('active', 'border-primary', 'text-primary');
-                filter.classList.add('border-transparent', 'text-gray-500');
-            });
-
-            event.target.classList.add('active', 'border-primary', 'text-primary');
-            event.target.classList.remove('border-transparent', 'text-gray-500');
-
-            // Hide all tab contents
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.add('hidden');
-            });
-
-            // Show selected tab content
-            const statusMap = {
-                'pending': 'pending-news',
-                'approved': 'approved-news',
-                'published': 'published-news',
-                'rejected': 'rejected-news'
-            };
-
-            const targetId = statusMap[status];
-            if (targetId) {
-                document.getElementById(targetId).classList.remove('hidden');
-            }
-        }
-
-        // Quick action functions
-        function quickApprove(articleId) {
-            if (confirm('Are you sure you want to approve and publish this article?')) {
-                alert(`Article ${articleId} has been approved and published!`);
-                location.reload();
-            }
-        }
-
-        function quickReject(articleId) {
-            const reason = prompt('Please provide a reason for rejection:');
-            if (reason && reason.trim()) {
-                if (confirm('Are you sure you want to reject this article?')) {
-                    alert(`Article ${articleId} has been rejected. Reason: ${reason}`);
-                    location.reload();
-                }
-            }
-        }
-
-        function publishNews(articleId) {
-            if (confirm('Publish this approved article immediately?')) {
-                alert(`Article ${articleId} has been published!`);
-                location.reload();
-            }
-        }
-
-        function schedulePublish(articleId) {
-            const dateTime = prompt('Enter publish date and time (YYYY-MM-DD HH:MM):');
-            if (dateTime && dateTime.trim()) {
-                alert(`Article ${articleId} scheduled for publication on ${dateTime}`);
-                location.reload();
-            }
-        }
-
-        function viewLive(articleId) {
-            window.open(`/news/article/${articleId}`, '_blank');
-        }
-
-        function editArticle(articleId) {
-            window.location.href = `../staff/create-news.html?edit=${articleId}`;
-        }
-
-        function reconsiderArticle(articleId) {
-            if (confirm('Reconsider this rejected article for approval?')) {
-                alert(`Article ${articleId} moved back to pending approval.`);
-                location.reload();
-            }
-        }
-
-        function archiveArticle(articleId) {
-            if (confirm('Archive this article?')) {
-                alert(`Article ${articleId} has been archived.`);
-                location.reload();
-            }
-        }
-
-        // Close user menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const userMenu = document.getElementById('userMenu');
-            const button = event.target.closest('button');
-            
-            if (!button || button.onclick !== toggleUserMenu) {
-                userMenu.classList.add('hidden');
-            }
+      // Tab filtering functionality
+      function filterNews(status) {
+        document.querySelectorAll(".news-filter").forEach((filter) => {
+          filter.classList.remove("active", "border-primary", "text-primary");
+          filter.classList.add("border-transparent", "text-gray-500");
         });
 
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', function() {
-            // Keep approvals dropdown open since we're on a sub-page
-            const approvalsMenu = document.getElementById('approvals-menu');
-            const approvalsArrow = document.getElementById('approvals-arrow');
-            if (approvalsMenu && approvalsArrow) {
-                approvalsMenu.classList.remove('hidden');
-                approvalsArrow.classList.add('rotate-180');
-            }
+        event.target.classList.add("active", "border-primary", "text-primary");
+        event.target.classList.remove("border-transparent", "text-gray-500");
+
+        // Hide all tab contents
+        document.querySelectorAll(".tab-content").forEach((content) => {
+          content.classList.add("hidden");
         });
+
+        // Show selected tab content
+        const statusMap = {
+          pending: "pending-news",
+          approved: "approved-news",
+          published: "published-news",
+          rejected: "rejected-news",
+        };
+
+        const targetId = statusMap[status];
+        if (targetId) {
+          document.getElementById(targetId).classList.remove("hidden");
+        }
+      }
+
+      // Quick action functions
+      function quickApprove(articleId) {
+        if (
+          confirm("Are you sure you want to approve and publish this article?")
+        ) {
+          alert(`Article ${articleId} has been approved and published!`);
+          location.reload();
+        }
+      }
+
+      function quickReject(articleId) {
+        const reason = prompt("Please provide a reason for rejection:");
+        if (reason && reason.trim()) {
+          if (confirm("Are you sure you want to reject this article?")) {
+            alert(`Article ${articleId} has been rejected. Reason: ${reason}`);
+            location.reload();
+          }
+        }
+      }
+
+      function publishNews(articleId) {
+        if (confirm("Publish this approved article immediately?")) {
+          alert(`Article ${articleId} has been published!`);
+          location.reload();
+        }
+      }
+
+      function schedulePublish(articleId) {
+        const dateTime = prompt(
+          "Enter publish date and time (YYYY-MM-DD HH:MM):"
+        );
+        if (dateTime && dateTime.trim()) {
+          alert(
+            `Article ${articleId} scheduled for publication on ${dateTime}`
+          );
+          location.reload();
+        }
+      }
+
+      function viewLive(articleId) {
+        window.open(`/news/article/${articleId}`, "_blank");
+      }
+
+      function editArticle(articleId) {
+        window.location.href = `../staff/create-news.html?edit=${articleId}`;
+      }
+
+      function reconsiderArticle(articleId) {
+        if (confirm("Reconsider this rejected article for approval?")) {
+          alert(`Article ${articleId} moved back to pending approval.`);
+          location.reload();
+        }
+      }
+
+      function archiveArticle(articleId) {
+        if (confirm("Archive this article?")) {
+          alert(`Article ${articleId} has been archived.`);
+          location.reload();
+        }
+      }
+
+      // Close user menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const userMenu = document.getElementById("userMenu");
+        const button = event.target.closest("button");
+
+        if (!button || button.onclick !== toggleUserMenu) {
+          userMenu.classList.add("hidden");
+        }
+      });
+
+      // Initialize page
+      document.addEventListener("DOMContentLoaded", function () {
+        // Keep approvals dropdown open since we're on a sub-page
+        const approvalsMenu = document.getElementById("approvals-menu");
+        const approvalsArrow = document.getElementById("approvals-arrow");
+        if (approvalsMenu && approvalsArrow) {
+          approvalsMenu.classList.remove("hidden");
+          approvalsArrow.classList.add("rotate-180");
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
