@@ -1,1927 +1,1323 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Post New Event - PCU-DASMA Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1E40AF',
-                        secondary: '#3B82F6',
-                        accent: '#F59E0B'
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-gray-50">
+  </head>
+  <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class="bg-white shadow-sm border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
-                    <div class="ml-8 flex items-center space-x-2 text-sm text-gray-500">
-                        <span>Staff Portal</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                        <span>Event Management</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                        <span class="text-primary font-medium">Create New Event</span>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <div class="relative">
-                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
-                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
-                        </button>
-                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                            <div class="py-1">
-                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Staff Profile</a>
-                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <a href="../index.html" class="text-xl font-bold text-primary"
+              >PCU-DASMA Connect</a
+            >
+            <div class="ml-8 flex items-center space-x-2 text-sm text-gray-500">
+              <span>Staff Portal</span>
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+              <span>Event Management</span>
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+              <span class="text-primary font-medium">Create New Event</span>
             </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="relative">
+              <button
+                onclick="toggleUserMenu()"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                <img
+                  class="h-8 w-8 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </button>
+              <div
+                id="userMenu"
+                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+              >
+                <div class="py-1">
+                  <a
+                    href="profile.html"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Staff Profile</a
+                  >
+                  <a
+                    href="#"
+                    onclick="logout()"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Logout</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </nav>
 
     <!-- Main Content -->
     <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <!-- Header -->
-        <div class="mb-8">
-            <div class="flex items-center mb-4">
-                <a href="events.html" class="text-gray-400 hover:text-gray-600 mr-4">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                    </svg>
-                </a>
-                <h1 class="text-3xl font-bold text-gray-900">Create New Event</h1>
-            </div>
-            <p class="text-gray-600">Create events from approved partnerships or university-organized events for admin review</p>
+      <!-- Header -->
+      <div class="mb-8">
+        <div class="flex items-center mb-4">
+          <a href="events.html" class="text-gray-400 hover:text-gray-600 mr-4">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"
+              ></path>
+            </svg>
+          </a>
+          <h1 class="text-3xl font-bold text-gray-900">Create New Event</h1>
         </div>
+        <p class="text-gray-600">
+          Create university-organized events for admin review
+        </p>
+      </div>
 
-        <!-- Event Source Selection -->
-        <div class="bg-white shadow-sm rounded-lg mb-6">
+      <!-- Form Container -->
+      <div class="bg-white shadow-sm rounded-lg">
+        <form id="eventForm" class="divide-y divide-gray-200">
+          <!-- University Event Form -->
+          <div id="university_event_form">
+            <!-- Basic Information -->
             <div class="px-6 py-6">
-                <h2 class="text-lg font-medium text-gray-900 mb-4">Select Event Source</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- From Approved Partnership -->
-                    <div>
-                        <label class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
-                            <input type="radio" name="event_source" value="partnership" class="sr-only" onchange="toggleEventSource()" checked />
-                            <div class="flex-1">
-                                <div class="flex items-center">
-                                    <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
-                                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 614 0z"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h3 class="text-sm font-medium text-gray-900">From Approved Partnership</h3>
-                                        <p class="text-sm text-gray-500">Create event from partner proposal</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event-source-radio">
-                                <div class="w-4 h-4 bg-primary rounded-full flex items-center justify-center">
-                                    <div class="w-2 h-2 bg-white rounded-full"></div>
-                                </div>
-                            </div>
-                        </label>
-                    </div>
-                    <!-- University Event -->
-                    <div>
-                        <label class="relative flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
-                            <input type="radio" name="event_source" value="university" class="sr-only" onchange="toggleEventSource()" />
-                            <div class="flex-1">
-                                <div class="flex items-center">
-                                    <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
-                                        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h3 class="text-sm font-medium text-gray-900">University Event</h3>
-                                        <p class="text-sm text-gray-500">Create university-organized event</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="event-source-radio hidden">
-                                <div class="w-4 h-4 bg-primary rounded-full flex items-center justify-center">
-                                    <div class="w-2 h-2 bg-white rounded-full"></div>
-                                </div>
-                            </div>
-                        </label>
-                    </div>
+              <h2 class="text-lg font-medium text-gray-900 mb-4">
+                Event Information
+              </h2>
+              <div class="grid grid-cols-1 gap-6">
+                <!-- Event Title -->
+                <div>
+                  <label
+                    for="uni_event_title"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Event Title <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="uni_event_title"
+                    name="uni_event_title"
+                    required
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                    placeholder="Enter event title..."
+                  />
                 </div>
+
+                <!-- Event Description -->
+                <div>
+                  <label
+                    for="uni_event_description"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Event Description <span class="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    id="uni_event_description"
+                    name="uni_event_description"
+                    rows="4"
+                    required
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                    placeholder="Provide a detailed description of the event..."
+                  ></textarea>
+                </div>
+
+                <!-- Event Format -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      for="uni_event_format"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Event Format <span class="text-red-500">*</span>
+                    </label>
+                    <select
+                      id="uni_event_format"
+                      name="uni_event_format"
+                      required
+                      onchange="toggleUniLocationFields()"
+                      class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                    >
+                      <option value="">Select Format</option>
+                      <option value="in_person">In-Person</option>
+                      <option value="virtual">Virtual/Online</option>
+                      <option value="hybrid">Hybrid</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
 
-        <!-- Form Container -->
-        <div class="bg-white shadow-sm rounded-lg">
-            <form id="eventForm" class="divide-y divide-gray-200">
-                <!-- Partnership Selection (Default Section) -->
-                <div id="partnership_selection" class="px-6 py-6">
-                    <h2 class="text-lg font-medium text-gray-900 mb-4">Select Approved Partnership</h2>
-                   
-                    <!-- Partnership Search and Filter -->
-                    <div class="mb-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label for="partnership_search" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Search Partnership
-                                </label>
-                                <input type="text" id="partnership_search" name="partnership_search"
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                    placeholder="Search by title or partner name..." onkeyup="filterPartnerships()">
-                            </div>
-                           
-                            <div>
-                                <label for="partnership_type_filter" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Filter by Type
-                                </label>
-                                <select id="partnership_type_filter" name="partnership_type_filter" onchange="filterPartnerships()"
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                    <option value="">All Types</option>
-                                    <option value="training_program">Training Programs</option>
-                                    <option value="workshop_series">Workshop Series</option>
-                                    <option value="community_event">Community Events</option>
-                                    <option value="scholarship_program">Scholarship Programs</option>
-                                    <option value="internship_program">Internship Programs</option>
-                                    <option value="research_collaboration">Research Projects</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Partnership Selection List -->
-                    <div class="space-y-4" id="partnership_list">
-                        <!-- Partnership Option 1 -->
-                        <div class="partnership-item border border-gray-200 rounded-lg p-4" data-type="workshop_series" data-title="Digital Marketing Mastery Workshop Series">
-                            <label class="flex items-start cursor-pointer">
-                                <input type="radio" name="selected_partnership" value="partnership_1" class="mt-1 mr-4" onchange="loadPartnershipDetails(1)">
-                                <div class="flex-1">
-                                    <div class="flex items-center mb-2">
-                                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-2">Workshop Series</span>
-                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Approved</span>
-                                    </div>
-                                    <h3 class="text-lg font-medium text-gray-900 mb-2">Digital Marketing Mastery Workshop Series</h3>
-                                    <p class="text-sm text-gray-600 mb-2">by DigitalBridge Marketing Solutions</p>
-                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs text-gray-500">
-                                        <div>Duration: 4 weeks</div>
-                                        <div>Expected: 80 students</div>
-                                        <div>Format: Hybrid</div>
-                                        <div>Budget: ₱75,000</div>
-                                    </div>
-                                </div>
-                            </label>
-                        </div>
-                        <!-- Partnership Option 2 -->
-                        <div class="partnership-item border border-gray-200 rounded-lg p-4" data-type="scholarship_program" data-title="Future Engineers Scholarship Program">
-                            <label class="flex items-start cursor-pointer">
-                                <input type="radio" name="selected_partnership" value="partnership_2" class="mt-1 mr-4" onchange="loadPartnershipDetails(2)">
-                                <div class="flex-1">
-                                    <div class="flex items-center mb-2">
-                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-2">Scholarship Program</span>
-                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Approved</span>
-                                    </div>
-                                    <h3 class="text-lg font-medium text-gray-900 mb-2">Future Engineers Scholarship Program</h3>
-                                    <p class="text-sm text-gray-600 mb-2">by National Engineering Foundation</p>
-                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs text-gray-500">
-                                        <div>Recipients: 15 students</div>
-                                        <div>Amount: ₱50,000 each</div>
-                                        <div>Duration: 1 year</div>
-                                        <div>Total: ₱750,000</div>
-                                    </div>
-                                </div>
-                            </label>
-                        </div>
-                        <!-- Partnership Option 3 -->
-                        <div class="partnership-item border border-gray-200 rounded-lg p-4" data-type="training_program" data-title="Industry 4.0 & IoT Training Program">
-                            <label class="flex items-start cursor-pointer">
-                                <input type="radio" name="selected_partnership" value="partnership_3" class="mt-1 mr-4" onchange="loadPartnershipDetails(3)">
-                                <div class="flex-1">
-                                    <div class="flex items-center mb-2">
-                                        <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs mr-2">Training Program</span>
-                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Approved</span>
-                                    </div>
-                                    <h3 class="text-lg font-medium text-gray-900 mb-2">Industry 4.0 & IoT Training Program</h3>
-                                    <p class="text-sm text-gray-600 mb-2">by TechnoForward Industries Inc.</p>
-                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs text-gray-500">
-                                        <div>Duration: 8 weeks</div>
-                                        <div>Expected: 60 students</div>
-                                        <div>Format: Hybrid</div>
-                                        <div>Investment: ₱250,000</div>
-                                    </div>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                    <div id="no_partnerships" class="hidden text-center py-8 text-gray-500">
-                        <svg class="w-12 h-12 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                        <p>No partnerships found matching your search criteria.</p>
-                    </div>
+            <!-- Date & Time -->
+            <div class="px-6 py-6">
+              <h2 class="text-lg font-medium text-gray-900 mb-4">
+                Date & Time
+              </h2>
+              <div class="grid grid-cols-1 gap-6">
+                <!-- Event Date -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      for="uni_event_date"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Event Date <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="date"
+                      id="uni_event_date"
+                      name="uni_event_date"
+                      required
+                      class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                    />
+                  </div>
+                  <div class="flex items-center">
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="uni_multi_day"
+                        name="uni_multi_day"
+                        onchange="toggleUniEndDate()"
+                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span class="ml-2 text-sm text-gray-700"
+                        >Multi-day event</span
+                      >
+                    </label>
+                  </div>
                 </div>
 
-                <!-- University Event Form -->
-                <div id="university_event_form" class="hidden">
-                    <!-- Basic Information -->
-                    <div class="px-6 py-6">
-                        <h2 class="text-lg font-medium text-gray-900 mb-4">Event Information</h2>
-                        <div class="grid grid-cols-1 gap-6">
-                            <!-- Event Title -->
-                            <div>
-                                <label for="uni_event_title" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Event Title <span class="text-red-500">*</span>
-                                </label>
-                                <input type="text" id="uni_event_title" name="uni_event_title" required
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                    placeholder="Enter event title...">
-                            </div>
-
-                            <!-- Event Description -->
-                            <div>
-                                <label for="uni_event_description" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Event Description <span class="text-red-500">*</span>
-                                </label>
-                                <textarea id="uni_event_description" name="uni_event_description" rows="4" required
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                    placeholder="Provide a detailed description of the event..."></textarea>
-                            </div>
-
-                            <!-- Event Category and Format -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="uni_event_category" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Event Category <span class="text-red-500">*</span>
-                                    </label>
-                                    <select id="uni_event_category" name="uni_event_category" required
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                        <option value="">Select Category</option>
-                                        <option value="academic">Academic</option>
-                                        <option value="career">Career Development</option>
-                                        <option value="networking">Networking</option>
-                                        <option value="workshop">Workshop/Seminar</option>
-                                        <option value="training">Training Program</option>
-                                        <option value="social">Social Event</option>
-                                        <option value="alumni">Alumni Event</option>
-                                        <option value="competition">Competition</option>
-                                        <option value="cultural">Cultural Event</option>
-                                        <option value="sports">Sports & Recreation</option>
-                                        <option value="community_service">Community Service</option>
-                                        <option value="research">Research & Innovation</option>
-                                        <option value="orientation">Orientation</option>
-                                        <option value="graduation">Graduation & Ceremonies</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="uni_event_format" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Event Format <span class="text-red-500">*</span>
-                                    </label>
-                                    <select id="uni_event_format" name="uni_event_format" required onchange="toggleUniLocationFields()"
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                        <option value="">Select Format</option>
-                                        <option value="in_person">In-Person</option>
-                                        <option value="virtual">Virtual/Online</option>
-                                        <option value="hybrid">Hybrid</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Organizing Department -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="organizing_department" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Organizing Department <span class="text-red-500">*</span>
-                                    </label>
-                                    <select id="organizing_department" name="organizing_department" required
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                        <option value="">Select Department</option>
-                                        <option value="alumni_relations">Alumni Relations Office</option>
-                                        <option value="student_affairs">Student Affairs Office</option>
-                                        <option value="academic_affairs">Academic Affairs Office</option>
-                                        <option value="admissions">Admissions Office</option>
-                                        <option value="registrar">Registrar's Office</option>
-                                        <option value="career_services">Career Services Office</option>
-                                        <option value="guidance">Guidance & Counseling Office</option>
-                                        <option value="library">University Library</option>
-                                        <option value="research_development">Research & Development Office</option>
-                                        <option value="international_affairs">International Affairs Office</option>
-                                        <option value="marketing_communications">Marketing & Communications</option>
-                                        <option value="college_of_arts_sciences">College of Arts and Sciences</option>
-                                        <option value="college_of_business">College of Business and Accountancy</option>
-                                        <option value="college_of_criminal_justice">College of Criminal Justice</option>
-                                        <option value="college_of_engineering">College of Engineering and Technology</option>
-                                        <option value="college_of_education">College of Education</option>
-                                        <option value="college_of_informatics">College of Informatics</option>
-                                        <option value="college_of_hospitality">College of Hospitality and Tourism Management</option>
-                                        <option value="college_of_nursing">College of Nursing and Health Sciences</option>
-                                        <option value="college_of_social_work">College of Social Work</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="event_priority" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Event Priority
-                                    </label>
-                                    <select id="event_priority" name="event_priority"
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                        <option value="normal">Normal</option>
-                                        <option value="high">High Priority</option>
-                                        <option value="urgent">Urgent</option>
-                                        <option value="featured">Featured Event</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Date & Time -->
-                    <div class="px-6 py-6">
-                        <h2 class="text-lg font-medium text-gray-900 mb-4">Date & Time</h2>
-                        <div class="grid grid-cols-1 gap-6">
-                            <!-- Event Date -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="uni_event_date" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Event Date <span class="text-red-500">*</span>
-                                    </label>
-                                    <input type="date" id="uni_event_date" name="uni_event_date" required
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                </div>
-                                <div class="flex items-center">
-                                    <label class="flex items-center">
-                                        <input type="checkbox" id="uni_multi_day" name="uni_multi_day" onchange="toggleUniEndDate()" class="rounded border-gray-300 text-primary focus:ring-primary">
-                                        <span class="ml-2 text-sm text-gray-700">Multi-day event</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- End Date (Hidden by default) -->
-                            <div id="uni_end_date_field" class="hidden">
-                                <label for="uni_end_date" class="block text-sm font-medium text-gray-700 mb-1">
-                                    End Date
-                                </label>
-                                <input type="date" id="uni_end_date" name="uni_end_date"
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary md:w-1/2">
-                            </div>
-
-                            <!-- Time -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="uni_start_time" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Start Time <span class="text-red-500">*</span>
-                                    </label>
-                                    <input type="time" id="uni_start_time" name="uni_start_time" required
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                </div>
-                                <div>
-                                    <label for="uni_end_time" class="block text-sm font-medium text-gray-700 mb-1">
-                                        End Time <span class="text-red-500">*</span>
-                                    </label>
-                                    <input type="time" id="uni_end_time" name="uni_end_time" required
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Location -->
-                    <div class="px-6 py-6">
-                        <h2 class="text-lg font-medium text-gray-900 mb-4">Location & Venue</h2>
-                        <div class="grid grid-cols-1 gap-6">
-                            <!-- In-Person Location -->
-                            <div id="uni_in_person_location">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label for="uni_venue_name" class="block text-sm font-medium text-gray-700 mb-1">
-                                            Venue Name <span class="text-red-500">*</span>
-                                        </label>
-                                        <input type="text" id="uni_venue_name" name="uni_venue_name" required
-                                            class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                            placeholder="e.g., PCU-DASMA Auditorium">
-                                    </div>
-                                    <div>
-                                        <label for="uni_venue_capacity" class="block text-sm font-medium text-gray-700 mb-1">
-                                            Venue Capacity <span class="text-red-500">*</span>
-                                        </label>
-                                        <input type="number" id="uni_venue_capacity" name="uni_venue_capacity" min="1" required
-                                            class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                            placeholder="Maximum number of attendees">
-                                    </div>
-                                </div>
-                                <div class="mt-6">
-                                    <label for="uni_venue_address" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Venue Address
-                                    </label>
-                                    <textarea id="uni_venue_address" name="uni_venue_address" rows="3"
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                        placeholder="Complete address of the venue..."></textarea>
-                                </div>
-                            </div>
-
-                            <!-- Virtual Location -->
-                            <div id="uni_virtual_location" class="hidden">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label for="uni_platform" class="block text-sm font-medium text-gray-700 mb-1">
-                                            Platform <span class="text-red-500">*</span>
-                                        </label>
-                                        <select id="uni_platform" name="uni_platform"
-                                            class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                            <option value="">Select Platform</option>
-                                            <option value="zoom">Zoom</option>
-                                            <option value="teams">Microsoft Teams</option>
-                                            <option value="meet">Google Meet</option>
-                                            <option value="webex">Webex</option>
-                                            <option value="facebook_live">Facebook Live</option>
-                                            <option value="youtube_live">YouTube Live</option>
-                                            <option value="other">Other</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label for="uni_virtual_capacity" class="block text-sm font-medium text-gray-700 mb-1">
-                                            Virtual Capacity
-                                        </label>
-                                        <input type="number" id="uni_virtual_capacity" name="uni_virtual_capacity" min="1"
-                                            class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                            placeholder="Maximum number of virtual attendees">
-                                    </div>
-                                </div>
-                                <div class="mt-6">
-                                    <label for="uni_meeting_link" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Meeting Link/URL
-                                    </label>
-                                    <input type="url" id="uni_meeting_link" name="uni_meeting_link"
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                        placeholder="https://zoom.us/j/... or meeting details">
-                                    <p class="text-xs text-gray-500 mt-1">This will be shared with registered participants</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Registration Settings -->
-                    <div class="px-6 py-6">
-                        <h2 class="text-lg font-medium text-gray-900 mb-4">Registration Settings</h2>
-                        <div class="grid grid-cols-1 gap-6">
-                            <!-- Registration Options -->
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <div>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" id="uni_registration_required" name="uni_registration_required" checked onchange="toggleUniRegistrationFields()" class="rounded border-gray-300 text-primary focus:ring-primary">
-                                        <span class="ml-2 text-sm text-gray-700">Registration Required</span>
-                                    </label>
-                                </div>
-                                <div>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" id="uni_approval_required" name="uni_approval_required" class="rounded border-gray-300 text-primary focus:ring-primary">
-                                        <span class="ml-2 text-sm text-gray-700">Manual Approval Required</span>
-                                    </label>
-                                </div>
-                                <div>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" id="uni_payment_required" name="uni_payment_required" onchange="toggleUniPaymentFields()" class="rounded border-gray-300 text-primary focus:ring-primary">
-                                        <span class="ml-2 text-sm text-gray-700">Payment/Fee Required</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- Payment Fields (Hidden by default) -->
-                            <div id="uni_payment_fields" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="uni_registration_fee" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Registration Fee <span class="text-red-500">*</span>
-                                    </label>
-                                    <div class="relative">
-                                        <span class="absolute left-3 top-2 text-gray-500">₱</span>
-                                        <input type="number" id="uni_registration_fee" name="uni_registration_fee"
-                                            class="block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                            placeholder="0.00">
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="uni_payment_instructions" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Payment Instructions
-                                    </label>
-                                    <textarea id="uni_payment_instructions" name="uni_payment_instructions" rows="3"
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                        placeholder="How should participants pay? (e.g., cash at office, bank transfer, etc.)"></textarea>
-                                </div>
-                            </div>
-
-                            <!-- Registration Details -->
-                            <div id="uni_registration_fields" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="uni_registration_deadline" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Registration Deadline
-                                    </label>
-                                    <input type="date" id="uni_registration_deadline" name="uni_registration_deadline"
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                </div>
-                                <div>
-                                    <label for="uni_max_attendees" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Maximum Attendees
-                                    </label>
-                                    <input type="number" id="uni_max_attendees" name="uni_max_attendees" min="1"
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                        placeholder="Leave blank for unlimited">
-                                </div>
-                            </div>
-
-                            <!-- Enhanced Target Audience Selection for University Events -->
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-3">Target Audience <span class="text-red-500">*</span></label>
-                                <div class="grid grid-cols-1 gap-2 mt-2">
-                                    <label class="flex items-center">
-                                        <input type="radio" name="uni_targetaudience" value="allstudents" 
-                                               class="border-gray-300 text-primary focus:ring-primary" 
-                                               onchange="toggleUniDepartmentSelection()">
-                                        <span class="ml-2 text-sm text-gray-700">All Students</span>
-                                    </label>
-                                    
-                                    <label class="flex items-center">
-                                        <input type="radio" name="uni_targetaudience" value="specificyearlevels" 
-                                               class="border-gray-300 text-primary focus:ring-primary" 
-                                               onchange="toggleUniDepartmentSelection()">
-                                        <span class="ml-2 text-sm text-gray-700">Specific Year Levels</span>
-                                    </label>
-                                    
-                                    <label class="flex items-center">
-                                        <input type="radio" name="uni_targetaudience" value="alumni" 
-                                               class="border-gray-300 text-primary focus:ring-primary" 
-                                               onchange="toggleUniDepartmentSelection()">
-                                        <span class="ml-2 text-sm text-gray-700">Alumni</span>
-                                    </label>
-                                    
-                                    <label class="flex items-center">
-                                        <input type="radio" name="uni_targetaudience" value="facultystaff" 
-                                               class="border-gray-300 text-primary focus:ring-primary" 
-                                               onchange="toggleUniDepartmentSelection()">
-                                        <span class="ml-2 text-sm text-gray-700">Faculty/Staff</span>
-                                    </label>
-                                    
-                                    <label class="flex items-center">
-                                        <input type="radio" name="uni_targetaudience" value="openforall" 
-                                               class="border-gray-300 text-primary focus:ring-primary" 
-                                               onchange="toggleUniDepartmentSelection()">
-                                        <span class="ml-2 text-sm text-gray-700">Open for All</span>
-                                    </label>
-                                </div>
-
-                                <!-- Department Selection for University Events (Hidden by default) -->
-                                <div id="uni_departmentselection" class="hidden mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                                    <div class="flex justify-between items-center mb-3">
-                                        <label class="block text-sm font-medium text-gray-700">Select Departments</label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" id="uni_selectalldepartments" onchange="toggleUniAllDepartments()" 
-                                                   class="rounded border-gray-300 text-primary focus:ring-primary">
-                                            <span class="ml-2 text-sm text-gray-700">Select All</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="grid grid-cols-1 gap-2 ml-4">
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="uni_departments" value="collegeofartsandsciences" 
-                                                   class="uni-department-checkbox rounded border-gray-300 text-primary focus:ring-primary" 
-                                                   onchange="updateUniSelectAllState()">
-                                            <span class="ml-2 text-sm text-gray-700">College of Arts and Sciences</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="uni_departments" value="collegeofbusinessandaccountancy" 
-                                                   class="uni-department-checkbox rounded border-gray-300 text-primary focus:ring-primary" 
-                                                   onchange="updateUniSelectAllState()">
-                                            <span class="ml-2 text-sm text-gray-700">College of Business and Accountancy</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="uni_departments" value="collegeofcriminaljustice" 
-                                                   class="uni-department-checkbox rounded border-gray-300 text-primary focus:ring-primary" 
-                                                   onchange="updateUniSelectAllState()">
-                                            <span class="ml-2 text-sm text-gray-700">College of Criminal Justice</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="uni_departments" value="collegeofengineeringandtechnology" 
-                                                   class="uni-department-checkbox rounded border-gray-300 text-primary focus:ring-primary" 
-                                                   onchange="updateUniSelectAllState()">
-                                            <span class="ml-2 text-sm text-gray-700">College of Engineering and Technology</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="uni_departments" value="collegeofeducation" 
-                                                   class="uni-department-checkbox rounded border-gray-300 text-primary focus:ring-primary" 
-                                                   onchange="updateUniSelectAllState()">
-                                            <span class="ml-2 text-sm text-gray-700">College of Education</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="uni_departments" value="collegeofinformatics" 
-                                                   class="uni-department-checkbox rounded border-gray-300 text-primary focus:ring-primary" 
-                                                   onchange="updateUniSelectAllState()">
-                                            <span class="ml-2 text-sm text-gray-700">College of Informatics</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="uni_departments" value="collegeofhospitalityandtourismmanagement" 
-                                                   class="uni-department-checkbox rounded border-gray-300 text-primary focus:ring-primary" 
-                                                   onchange="updateUniSelectAllState()">
-                                            <span class="ml-2 text-sm text-gray-700">College of Hospitality and Tourism Management</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="uni_departments" value="collegeofnursingandhealthsciences" 
-                                                   class="uni-department-checkbox rounded border-gray-300 text-primary focus:ring-primary" 
-                                                   onchange="updateUniSelectAllState()">
-                                            <span class="ml-2 text-sm text-gray-700">College of Nursing and Health Sciences</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="uni_departments" value="collegeofsocialwork" 
-                                                   class="uni-department-checkbox rounded border-gray-300 text-primary focus:ring-primary" 
-                                                   onchange="updateUniSelectAllState()">
-                                            <span class="ml-2 text-sm text-gray-700">College of Social Work</span>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <!-- Year Level Selection for University Events (Hidden by default) -->
-                                <div id="uni_yearlevelselection" class="hidden mt-4 p-4 bg-purple-50 border border-purple-200 rounded-lg">
-                                    <label class="block text-sm font-medium text-gray-700 mb-3">Select Year Levels</label>
-                                    <div class="grid grid-cols-2 gap-2">
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="uni_yearlevels" value="1styear" 
-                                                   class="rounded border-gray-300 text-primary focus:ring-primary">
-                                            <span class="ml-2 text-sm text-gray-700">1st Year</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="uni_yearlevels" value="2ndyear" 
-                                                   class="rounded border-gray-300 text-primary focus:ring-primary">
-                                            <span class="ml-2 text-sm text-gray-700">2nd Year</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="uni_yearlevels" value="3rdyear" 
-                                                   class="rounded border-gray-300 text-primary focus:ring-primary">
-                                            <span class="ml-2 text-sm text-gray-700">3rd Year</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="uni_yearlevels" value="4thyear" 
-                                                   class="rounded border-gray-300 text-primary focus:ring-primary">
-                                            <span class="ml-2 text-sm text-gray-700">4th Year</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Additional Information -->
-                    <div class="px-6 py-6">
-                        <h2 class="text-lg font-medium text-gray-900 mb-4">Additional Information</h2>
-                        <div class="grid grid-cols-1 gap-6">
-                            <!-- Event Tags -->
-                            <div>
-                                <label for="uni_event_tags" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Event Tags
-                                </label>
-                                <input type="text" id="uni_event_tags" name="uni_event_tags"
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                    placeholder="e.g., orientation, graduation, workshop, seminar (separate with commas)">
-                                <p class="text-xs text-gray-500 mt-1">Tags help users find your event more easily</p>
-                            </div>
-
-                            <!-- Contact Information -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="uni_contact_person" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Contact Person <span class="text-red-500">*</span>
-                                    </label>
-                                    <input type="text" id="uni_contact_person" name="uni_contact_person" required
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                        placeholder="Staff member name">
-                                </div>
-                                <div>
-                                    <label for="uni_contact_email" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Contact Email <span class="text-red-500">*</span>
-                                    </label>
-                                    <input type="email" id="uni_contact_email" name="uni_contact_email" required
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                        placeholder="staff@pcu.edu.ph">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="uni_contact_phone" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Contact Phone
-                                </label>
-                                <input type="tel" id="uni_contact_phone" name="uni_contact_phone"
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary md:w-1/2"
-                                    placeholder="+639 XXX XXX XXX">
-                            </div>
-
-                            <!-- Special Instructions -->
-                            <div>
-                                <label for="uni_special_instructions" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Registration Instructions
-                                </label>
-                                <textarea id="uni_special_instructions" name="uni_special_instructions" rows="3"
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                    placeholder="Special instructions for registrants (requirements, what to bring, dress code, etc.)"></textarea>
-                            </div>
-
-                            <!-- Event Image Upload -->
-                            <div>
-                                <label for="uni_event_image" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Event Banner/Image (Optional)
-                                </label>
-                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                                    <div class="space-y-1 text-center">
-                                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
-                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                        <div class="flex text-sm text-gray-600">
-                                            <label for="uni_event_image" class="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary">
-                                                <span>Upload a file</span>
-                                                <input id="uni_event_image" name="uni_event_image" type="file" class="sr-only" accept="image/*">
-                                            </label>
-                                            <p class="pl-1">or drag and drop</p>
-                                        </div>
-                                        <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- End Date (Hidden by default) -->
+                <div id="uni_end_date_field" class="hidden">
+                  <label
+                    for="uni_end_date"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    End Date
+                  </label>
+                  <input
+                    type="date"
+                    id="uni_end_date"
+                    name="uni_end_date"
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary md:w-1/2"
+                  />
                 </div>
 
-                <!-- Partnership Event Details Form -->
-                <div id="partnership_event_details_form" class="hidden">
-                    <!-- Partnership Summary -->
-                    <div id="partnership_summary" class="px-6 py-6 bg-blue-50 border-b">
-                        <h2 class="text-lg font-medium text-gray-900 mb-4">Selected Partnership</h2>
-                        <div id="partnership_summary_content">
-                            <!-- Dynamic content will be loaded here -->
-                        </div>
+                <!-- Time -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      for="uni_start_time"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Start Time <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="time"
+                      id="uni_start_time"
+                      name="uni_start_time"
+                      required
+                      class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="uni_end_time"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      End Time <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="time"
+                      id="uni_end_time"
+                      name="uni_end_time"
+                      required
+                      class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Location -->
+            <div class="px-6 py-6">
+              <h2 class="text-lg font-medium text-gray-900 mb-4">
+                Location & Venue
+              </h2>
+              <div class="grid grid-cols-1 gap-6">
+                <!-- In-Person Location -->
+                <div id="uni_in_person_location">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label
+                        for="uni_venue_name"
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Venue Name <span class="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="uni_venue_name"
+                        name="uni_venue_name"
+                        required
+                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                        placeholder="e.g., PCU-DASMA Auditorium"
+                      />
                     </div>
-
-                    <!-- Event Posting Details -->
-                    <div class="px-6 py-6">
-                        <h2 class="text-lg font-medium text-gray-900 mb-4">Event Posting Details</h2>
-                        <div class="grid grid-cols-1 gap-6">
-                            <!-- Event Title -->
-                            <div>
-                                <label for="event_title" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Event Title <span class="text-red-500">*</span>
-                                </label>
-                                <input type="text" id="event_title" name="event_title" required readonly
-                                    class="block w-full px-3 py-2 border border-gray-300 bg-gray-50 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                    placeholder="Will be auto-filled from partnership">
-                            </div>
-
-                            <!-- Event Description -->
-                            <div>
-                                <label for="event_description" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Event Description <span class="text-red-500">*</span>
-                                </label>
-                                <textarea id="event_description" name="event_description" rows="4" required readonly
-                                    class="block w-full px-3 py-2 border border-gray-300 bg-gray-50 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                    placeholder="Will be auto-filled from partnership proposal"></textarea>
-                            </div>
-
-                            <!-- Event Category and Format -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="event_category" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Event Category <span class="text-red-500">*</span>
-                                    </label>
-                                    <select id="event_category" name="event_category" required
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                        <option value="">Select Category</option>
-                                        <option value="academic">Academic</option>
-                                        <option value="career">Career Development</option>
-                                        <option value="networking">Networking</option>
-                                        <option value="workshop">Workshop/Seminar</option>
-                                        <option value="training">Training Program</option>
-                                        <option value="social">Social Event</option>
-                                        <option value="alumni">Alumni Event</option>
-                                        <option value="competition">Competition</option>
-                                        <option value="cultural">Cultural Event</option>
-                                        <option value="sports">Sports & Recreation</option>
-                                        <option value="community_service">Community Service</option>
-                                        <option value="research">Research & Innovation</option>
-                                        <option value="orientation">Orientation</option>
-                                        <option value="graduation">Graduation & Ceremonies</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="event_format" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Event Format <span class="text-red-500">*</span>
-                                    </label>
-                                    <select id="event_format" name="event_format" required onchange="toggleLocationFields()"
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                        <option value="">Select Format</option>
-                                        <option value="in_person">In-Person</option>
-                                        <option value="virtual">Virtual/Online</option>
-                                        <option value="hybrid">Hybrid</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                    <div>
+                      <label
+                        for="uni_venue_capacity"
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Venue Capacity <span class="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="number"
+                        id="uni_venue_capacity"
+                        name="uni_venue_capacity"
+                        min="1"
+                        required
+                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                        placeholder="Maximum number of attendees"
+                      />
                     </div>
-
-                    <!-- Event Schedule -->
-                    <div class="px-6 py-6">
-                        <h2 class="text-lg font-medium text-gray-900 mb-4">Event Schedule</h2>
-                        <div class="grid grid-cols-1 gap-6">
-                            <!-- Event Date -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="event_date" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Event Start Date <span class="text-red-500">*</span>
-                                    </label>
-                                    <input type="date" id="event_date" name="event_date" required
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                </div>
-                                <div>
-                                    <label for="end_date" class="block text-sm font-medium text-gray-700 mb-1">
-                                        End Date (if multi-day)
-                                    </label>
-                                    <input type="date" id="end_date" name="end_date"
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                </div>
-                            </div>
-
-                            <!-- Time -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="start_time" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Start Time <span class="text-red-500">*</span>
-                                    </label>
-                                    <input type="time" id="start_time" name="start_time" required
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                </div>
-                                <div>
-                                    <label for="end_time" class="block text-sm font-medium text-gray-700 mb-1">
-                                        End Time <span class="text-red-500">*</span>
-                                    </label>
-                                    <input type="time" id="end_time" name="end_time" required
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                </div>
-                            </div>
-
-                            <!-- Schedule Details -->
-                            <div>
-                                <label for="schedule_details" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Schedule Details
-                                </label>
-                                <textarea id="schedule_details" name="schedule_details" rows="3"
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                    placeholder="e.g., Daily sessions from 9:00 AM - 5:00 PM for 4 weeks"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Location & Venue -->
-                    <div class="px-6 py-6">
-                        <h2 class="text-lg font-medium text-gray-900 mb-4">Location & Venue</h2>
-                        <div class="grid grid-cols-1 gap-6">
-                            <div id="in_person_location">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label for="venue_name" class="block text-sm font-medium text-gray-700 mb-1">
-                                            Venue Name <span class="text-red-500">*</span>
-                                        </label>
-                                        <input type="text" id="venue_name" name="venue_name" required
-                                            class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                            placeholder="e.g., PCU-DASMA Auditorium">
-                                    </div>
-                                    <div>
-                                        <label for="venue_capacity" class="block text-sm font-medium text-gray-700 mb-1">
-                                            Maximum Attendees <span class="text-red-500">*</span>
-                                        </label>
-                                        <input type="number" id="venue_capacity" name="venue_capacity" min="1" required readonly
-                                            class="block w-full px-3 py-2 border border-gray-300 bg-gray-50 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                            placeholder="Auto-filled from partnership">
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="venue_address" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Venue Address
-                                    </label>
-                                    <textarea id="venue_address" name="venue_address" rows="3"
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                        placeholder="Complete address of the venue..."></textarea>
-                                </div>
-                            </div>
-
-                            <!-- Virtual Meeting Details (if applicable) -->
-                            <div id="virtual_details" class="hidden">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label for="meeting_platform" class="block text-sm font-medium text-gray-700 mb-1">
-                                            Platform <span class="text-red-500">*</span>
-                                        </label>
-                                        <select id="meeting_platform" name="meeting_platform"
-                                            class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                            <option value="">Select Platform</option>
-                                            <option value="zoom">Zoom</option>
-                                            <option value="teams">Microsoft Teams</option>
-                                            <option value="meet">Google Meet</option>
-                                            <option value="webex">Webex</option>
-                                            <option value="facebook_live">Facebook Live</option>
-                                            <option value="youtube_live">YouTube Live</option>
-                                            <option value="other">Other</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label for="virtual_capacity" class="block text-sm font-medium text-gray-700 mb-1">
-                                            Virtual Capacity
-                                        </label>
-                                        <input type="number" id="virtual_capacity" name="virtual_capacity" min="1"
-                                            class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                            placeholder="Maximum number of virtual attendees">
-                                    </div>
-                                </div>
-                                <div class="mt-6">
-                                    <label for="meeting_link" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Meeting Link/URL
-                                    </label>
-                                    <input type="url" id="meeting_link" name="meeting_link"
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                        placeholder="https://zoom.us/j/...">
-                                    <p class="text-xs text-gray-500 mt-1">This will be shared with registered participants</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Registration Settings -->
-                    <div class="px-6 py-6">
-                        <h2 class="text-lg font-medium text-gray-900 mb-4">Registration Settings</h2>
-                        <div class="grid grid-cols-1 gap-6">
-                            <!-- Registration Requirements -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" id="registration_required" name="registration_required" checked disabled class="rounded border-gray-300 text-primary focus:ring-primary">
-                                        <span class="ml-2 text-sm text-gray-700">Registration Required (Always On)</span>
-                                    </label>
-                                </div>
-                                <div>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" id="approval_required" name="approval_required" class="rounded border-gray-300 text-primary focus:ring-primary">
-                                        <span class="ml-2 text-sm text-gray-700">Manual Approval Required</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- Registration Deadline -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="registration_deadline" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Registration Deadline <span class="text-red-500">*</span>
-                                    </label>
-                                    <input type="date" id="registration_deadline" name="registration_deadline" required
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                </div>
-                                <div>
-                                    <label for="waitlist_enabled" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Waitlist Options
-                                    </label>
-                                    <label class="flex items-center mt-2">
-                                        <input type="checkbox" id="waitlist_enabled" name="waitlist_enabled" class="rounded border-gray-300 text-primary focus:ring-primary">
-                                        <span class="ml-2 text-sm text-gray-700">Enable waitlist when full</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- Enhanced Target Audience Selection for Partnership Events -->
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-3">Target Audience <span class="text-red-500">*</span></label>
-                                <div class="grid grid-cols-1 gap-2 mt-2">
-                                    <label class="flex items-center">
-                                        <input type="radio" name="targetaudience" value="allstudents" 
-                                               class="border-gray-300 text-primary focus:ring-primary" 
-                                               onchange="toggleDepartmentSelection()">
-                                        <span class="ml-2 text-sm text-gray-700">All Students</span>
-                                    </label>
-                                    
-                                    <label class="flex items-center">
-                                        <input type="radio" name="targetaudience" value="specificyearlevels" 
-                                               class="border-gray-300 text-primary focus:ring-primary" 
-                                               onchange="toggleDepartmentSelection()">
-                                        <span class="ml-2 text-sm text-gray-700">Specific Year Levels</span>
-                                    </label>
-                                    
-                                    <label class="flex items-center">
-                                        <input type="radio" name="targetaudience" value="alumni" 
-                                               class="border-gray-300 text-primary focus:ring-primary" 
-                                               onchange="toggleDepartmentSelection()">
-                                        <span class="ml-2 text-sm text-gray-700">Alumni</span>
-                                    </label>
-                                    
-                                    <label class="flex items-center">
-                                        <input type="radio" name="targetaudience" value="facultystaff" 
-                                               class="border-gray-300 text-primary focus:ring-primary" 
-                                               onchange="toggleDepartmentSelection()">
-                                        <span class="ml-2 text-sm text-gray-700">Faculty/Staff</span>
-                                    </label>
-                                    
-                                    <label class="flex items-center">
-                                        <input type="radio" name="targetaudience" value="openforall" 
-                                               class="border-gray-300 text-primary focus:ring-primary" 
-                                               onchange="toggleDepartmentSelection()">
-                                        <span class="ml-2 text-sm text-gray-700">Open for All</span>
-                                    </label>
-                                </div>
-
-                                <!-- Department Selection for Partnership Events (Hidden by default) -->
-                                <div id="departmentselection" class="hidden mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                                    <div class="flex justify-between items-center mb-3">
-                                        <label class="block text-sm font-medium text-gray-700">Select Departments</label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" id="selectalldepartments" onchange="toggleAllDepartments()" 
-                                                   class="rounded border-gray-300 text-primary focus:ring-primary">
-                                            <span class="ml-2 text-sm text-gray-700">Select All</span>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="grid grid-cols-1 gap-2 ml-4">
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="departments" value="collegeofartsandsciences" 
-                                                   class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary" 
-                                                   onchange="updateSelectAllState()">
-                                            <span class="ml-2 text-sm text-gray-700">College of Arts and Sciences</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="departments" value="collegeofbusinessandaccountancy" 
-                                                   class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary" 
-                                                   onchange="updateSelectAllState()">
-                                            <span class="ml-2 text-sm text-gray-700">College of Business and Accountancy</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="departments" value="collegeofcriminaljustice" 
-                                                   class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary" 
-                                                   onchange="updateSelectAllState()">
-                                            <span class="ml-2 text-sm text-gray-700">College of Criminal Justice</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="departments" value="collegeofengineeringandtechnology" 
-                                                   class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary" 
-                                                   onchange="updateSelectAllState()">
-                                            <span class="ml-2 text-sm text-gray-700">College of Engineering and Technology</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="departments" value="collegeofeducation" 
-                                                   class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary" 
-                                                   onchange="updateSelectAllState()">
-                                            <span class="ml-2 text-sm text-gray-700">College of Education</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="departments" value="collegeofinformatics" 
-                                                   class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary" 
-                                                   onchange="updateSelectAllState()">
-                                            <span class="ml-2 text-sm text-gray-700">College of Informatics</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="departments" value="collegeofhospitalityandtourismmanagement" 
-                                                   class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary" 
-                                                   onchange="updateSelectAllState()">
-                                            <span class="ml-2 text-sm text-gray-700">College of Hospitality and Tourism Management</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="departments" value="collegeofnursingandhealthsciences" 
-                                                   class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary" 
-                                                   onchange="updateSelectAllState()">
-                                            <span class="ml-2 text-sm text-gray-700">College of Nursing and Health Sciences</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="departments" value="collegeofsocialwork" 
-                                                   class="department-checkbox rounded border-gray-300 text-primary focus:ring-primary" 
-                                                   onchange="updateSelectAllState()">
-                                            <span class="ml-2 text-sm text-gray-700">College of Social Work</span>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <!-- Year Level Selection for Partnership Events (Hidden by default) -->
-                                <div id="yearlevelselection" class="hidden mt-4 p-4 bg-purple-50 border border-purple-200 rounded-lg">
-                                    <label class="block text-sm font-medium text-gray-700 mb-3">Select Year Levels</label>
-                                    <div class="grid grid-cols-2 gap-2">
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="yearlevels" value="1styear" 
-                                                   class="rounded border-gray-300 text-primary focus:ring-primary">
-                                            <span class="ml-2 text-sm text-gray-700">1st Year</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="yearlevels" value="2ndyear" 
-                                                   class="rounded border-gray-300 text-primary focus:ring-primary">
-                                            <span class="ml-2 text-sm text-gray-700">2nd Year</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="yearlevels" value="3rdyear" 
-                                                   class="rounded border-gray-300 text-primary focus:ring-primary">
-                                            <span class="ml-2 text-sm text-gray-700">3rd Year</span>
-                                        </label>
-                                        
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="yearlevels" value="4thyear" 
-                                                   class="rounded border-gray-300 text-primary focus:ring-primary">
-                                            <span class="ml-2 text-sm text-gray-700">4th Year</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Additional Information -->
-                    <div class="px-6 py-6">
-                        <h2 class="text-lg font-medium text-gray-900 mb-4">Additional Information</h2>
-                        <div class="grid grid-cols-1 gap-6">
-                            <!-- Event Tags -->
-                            <div>
-                                <label for="event_tags" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Event Tags
-                                </label>
-                                <input type="text" id="event_tags" name="event_tags"
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                    placeholder="Tags help users find your event (separate with commas)">
-                            </div>
-
-                            <!-- Contact Information -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="contact_person" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Contact Person <span class="text-red-500">*</span>
-                                    </label>
-                                    <input type="text" id="contact_person" name="contact_person" required
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                        placeholder="Staff member name">
-                                </div>
-                                <div>
-                                    <label for="contact_email" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Contact Email <span class="text-red-500">*</span>
-                                    </label>
-                                    <input type="email" id="contact_email" name="contact_email" required
-                                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                        placeholder="staff@pcu.edu.ph">
-                                </div>
-                            </div>
-
-                            <!-- Special Instructions -->
-                            <div>
-                                <label for="special_instructions" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Registration Instructions
-                                </label>
-                                <textarea id="special_instructions" name="special_instructions" rows="3"
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                    placeholder="Special instructions for registrants (requirements, what to bring, etc.)"></textarea>
-                            </div>
-
-                            <!-- Event Image Upload -->
-                            <div>
-                                <label for="event_image" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Event Banner/Image (Optional)
-                                </label>
-                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                                    <div class="space-y-1 text-center">
-                                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
-                                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                        <div class="flex text-sm text-gray-600">
-                                            <label for="event_image" class="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary">
-                                                <span>Upload a file</span>
-                                                <input id="event_image" name="event_image" type="file" class="sr-only" accept="image/*">
-                                            </label>
-                                            <p class="pl-1">or drag and drop</p>
-                                        </div>
-                                        <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="uni_venue_address"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Venue Address
+                    </label>
+                    <textarea
+                      id="uni_venue_address"
+                      name="uni_venue_address"
+                      rows="3"
+                      class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                      placeholder="Complete address of the venue..."
+                    ></textarea>
+                  </div>
                 </div>
 
-                <!-- Action Buttons -->
-                <div class="px-6 py-6 bg-gray-50">
-                    <div class="flex justify-between">
-                        <button type="button" onclick="saveDraft()" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 font-medium">
-                            Save as Draft
-                        </button>
-                        <div class="flex space-x-3">
-                            <button type="button" onclick="previewEvent()" id="preview_btn" class="px-6 py-2 border border-primary text-primary rounded-md hover:bg-blue-50 font-medium">
-                                Preview Event
-                            </button>
-                            <button type="submit" id="submit_btn" class="px-6 py-2 bg-primary text-white rounded-md hover:bg-blue-700 font-medium">
-                                Submit for Review
-                            </button>
-                        </div>
+                <!-- Virtual Location -->
+                <div id="uni_virtual_location" class="hidden">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label
+                        for="uni_platform"
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Platform <span class="text-red-500">*</span>
+                      </label>
+                      <select
+                        id="uni_platform"
+                        name="uni_platform"
+                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                      >
+                        <option value="">Select Platform</option>
+                        <option value="zoom">Zoom</option>
+                        <option value="teams">Microsoft Teams</option>
+                        <option value="meet">Google Meet</option>
+                        <option value="webex">Webex</option>
+                        <option value="facebook_live">Facebook Live</option>
+                        <option value="youtube_live">YouTube Live</option>
+                        <option value="other">Other</option>
+                      </select>
                     </div>
+                    <div>
+                      <label
+                        for="uni_virtual_capacity"
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Virtual Capacity
+                      </label>
+                      <input
+                        type="number"
+                        id="uni_virtual_capacity"
+                        name="uni_virtual_capacity"
+                        min="1"
+                        class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                        placeholder="Maximum number of virtual attendees"
+                      />
+                    </div>
+                  </div>
+                  <div class="mt-6">
+                    <label
+                      for="uni_meeting_link"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Meeting Link/URL
+                    </label>
+                    <input
+                      type="url"
+                      id="uni_meeting_link"
+                      name="uni_meeting_link"
+                      class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                      placeholder="https://zoom.us/j/... or meeting details"
+                    />
+                    <p class="text-xs text-gray-500 mt-1">
+                      This will be shared with registered participants
+                    </p>
+                  </div>
                 </div>
-            </form>
-        </div>
+              </div>
+            </div>
+
+            <!-- Registration Settings -->
+            <div class="px-6 py-6">
+              <h2 class="text-lg font-medium text-gray-900 mb-4">
+                Registration Settings
+              </h2>
+              <div class="grid grid-cols-1 gap-6">
+                <!-- Registration Options -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="uni_registration_required"
+                        name="uni_registration_required"
+                        checked
+                        onchange="toggleUniRegistrationFields()"
+                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span class="ml-2 text-sm text-gray-700"
+                        >Registration Required</span
+                      >
+                    </label>
+                  </div>
+                  <div>
+                    <label class="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="uni_walk_in_allowed"
+                        name="uni_walk_in_allowed"
+                        class="rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span class="ml-2 text-sm text-gray-700"
+                        >Allow Walk-In Registration</span
+                      >
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Registration Details -->
+                <div
+                  id="uni_registration_fields"
+                  class="grid grid-cols-1 md:grid-cols-2 gap-6"
+                >
+                  <div>
+                    <label
+                      for="uni_registration_deadline"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Registration Deadline
+                    </label>
+                    <input
+                      type="date"
+                      id="uni_registration_deadline"
+                      name="uni_registration_deadline"
+                      class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="uni_max_attendees"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Maximum Attendees
+                    </label>
+                    <input
+                      type="number"
+                      id="uni_max_attendees"
+                      name="uni_max_attendees"
+                      min="1"
+                      class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                      placeholder="Leave blank for unlimited"
+                    />
+                  </div>
+                </div>
+
+                <!-- Enhanced Target Audience Selection for University Events -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-3"
+                    >Target Audience <span class="text-red-500">*</span></label
+                  >
+                  <div class="grid grid-cols-1 gap-2 mt-2">
+                    <label class="flex items-center">
+                      <input
+                        type="radio"
+                        name="uni_targetaudience"
+                        value="allstudents"
+                        class="border-gray-300 text-primary focus:ring-primary"
+                        onchange="toggleUniDepartmentSelection()"
+                      />
+                      <span class="ml-2 text-sm text-gray-700"
+                        >All Students</span
+                      >
+                    </label>
+
+                    <label class="flex items-center">
+                      <input
+                        type="radio"
+                        name="uni_targetaudience"
+                        value="specificyearlevels"
+                        class="border-gray-300 text-primary focus:ring-primary"
+                        onchange="toggleUniDepartmentSelection()"
+                      />
+                      <span class="ml-2 text-sm text-gray-700"
+                        >Specific Year Levels</span
+                      >
+                    </label>
+
+                    <label class="flex items-center">
+                      <input
+                        type="radio"
+                        name="uni_targetaudience"
+                        value="alumni"
+                        class="border-gray-300 text-primary focus:ring-primary"
+                        onchange="toggleUniDepartmentSelection()"
+                      />
+                      <span class="ml-2 text-sm text-gray-700">Alumni</span>
+                    </label>
+
+                    <label class="flex items-center">
+                      <input
+                        type="radio"
+                        name="uni_targetaudience"
+                        value="openforall"
+                        class="border-gray-300 text-primary focus:ring-primary"
+                        onchange="toggleUniDepartmentSelection()"
+                      />
+                      <span class="ml-2 text-sm text-gray-700"
+                        >Open for All</span
+                      >
+                    </label>
+                  </div>
+
+                  <!-- Department Selection for University Events (Hidden by default) -->
+                  <div
+                    id="uni_departmentselection"
+                    class="hidden mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg"
+                  >
+                    <div class="flex justify-between items-center mb-3">
+                      <label class="block text-sm font-medium text-gray-700"
+                        >Select Departments</label
+                      >
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          id="uni_selectalldepartments"
+                          onchange="toggleUniAllDepartments()"
+                          class="rounded border-gray-300 text-primary focus:ring-primary"
+                        />
+                        <span class="ml-2 text-sm text-gray-700"
+                          >Select All</span
+                        >
+                      </label>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-2 ml-4">
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="uni_departments"
+                          value="collegeofartsandsciences"
+                          class="uni-department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="updateUniSelectAllState()"
+                        />
+                        <span class="ml-2 text-sm text-gray-700"
+                          >College of Arts and Sciences</span
+                        >
+                      </label>
+
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="uni_departments"
+                          value="collegeofbusinessandaccountancy"
+                          class="uni-department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="updateUniSelectAllState()"
+                        />
+                        <span class="ml-2 text-sm text-gray-700"
+                          >College of Business and Accountancy</span
+                        >
+                      </label>
+
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="uni_departments"
+                          value="collegeofcriminaljustice"
+                          class="uni-department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="updateUniSelectAllState()"
+                        />
+                        <span class="ml-2 text-sm text-gray-700"
+                          >College of Criminal Justice</span
+                        >
+                      </label>
+
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="uni_departments"
+                          value="collegeofengineeringandtechnology"
+                          class="uni-department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="updateUniSelectAllState()"
+                        />
+                        <span class="ml-2 text-sm text-gray-700"
+                          >College of Engineering and Technology</span
+                        >
+                      </label>
+
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="uni_departments"
+                          value="collegeofeducation"
+                          class="uni-department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="updateUniSelectAllState()"
+                        />
+                        <span class="ml-2 text-sm text-gray-700"
+                          >College of Education</span
+                        >
+                      </label>
+
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="uni_departments"
+                          value="collegeofinformatics"
+                          class="uni-department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="updateUniSelectAllState()"
+                        />
+                        <span class="ml-2 text-sm text-gray-700"
+                          >College of Informatics</span
+                        >
+                      </label>
+
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="uni_departments"
+                          value="collegeofhospitalityandtourismmanagement"
+                          class="uni-department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="updateUniSelectAllState()"
+                        />
+                        <span class="ml-2 text-sm text-gray-700"
+                          >College of Hospitality and Tourism Management</span
+                        >
+                      </label>
+
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="uni_departments"
+                          value="collegeofnursingandhealthsciences"
+                          class="uni-department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="updateUniSelectAllState()"
+                        />
+                        <span class="ml-2 text-sm text-gray-700"
+                          >College of Nursing and Health Sciences</span
+                        >
+                      </label>
+
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="uni_departments"
+                          value="collegeofsocialwork"
+                          class="uni-department-checkbox rounded border-gray-300 text-primary focus:ring-primary"
+                          onchange="updateUniSelectAllState()"
+                        />
+                        <span class="ml-2 text-sm text-gray-700"
+                          >College of Social Work</span
+                        >
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Year Level Selection for University Events (Hidden by default) -->
+                  <div
+                    id="uni_yearlevelselection"
+                    class="hidden mt-4 p-4 bg-purple-50 border border-purple-200 rounded-lg"
+                  >
+                    <label class="block text-sm font-medium text-gray-700 mb-3"
+                      >Select Year Levels</label
+                    >
+                    <div class="grid grid-cols-2 gap-2">
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="uni_yearlevels"
+                          value="1styear"
+                          class="rounded border-gray-300 text-primary focus:ring-primary"
+                        />
+                        <span class="ml-2 text-sm text-gray-700">1st Year</span>
+                      </label>
+
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="uni_yearlevels"
+                          value="2ndyear"
+                          class="rounded border-gray-300 text-primary focus:ring-primary"
+                        />
+                        <span class="ml-2 text-sm text-gray-700">2nd Year</span>
+                      </label>
+
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="uni_yearlevels"
+                          value="3rdyear"
+                          class="rounded border-gray-300 text-primary focus:ring-primary"
+                        />
+                        <span class="ml-2 text-sm text-gray-700">3rd Year</span>
+                      </label>
+
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          name="uni_yearlevels"
+                          value="4thyear"
+                          class="rounded border-gray-300 text-primary focus:ring-primary"
+                        />
+                        <span class="ml-2 text-sm text-gray-700">4th Year</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional Information -->
+            <div class="px-6 py-6">
+              <h2 class="text-lg font-medium text-gray-900 mb-4">
+                Additional Information
+              </h2>
+              <div class="grid grid-cols-1 gap-6">
+                <!-- Event Tags -->
+                <div>
+                  <label
+                    for="uni_event_tags"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Event Tags
+                  </label>
+                  <input
+                    type="text"
+                    id="uni_event_tags"
+                    name="uni_event_tags"
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                    placeholder="e.g., orientation, graduation, workshop, seminar (separate with commas)"
+                  />
+                  <p class="text-xs text-gray-500 mt-1">
+                    Tags help users find your event more easily
+                  </p>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      for="uni_contact_person"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Contact Person <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="uni_contact_person"
+                      name="uni_contact_person"
+                      required
+                      class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                      placeholder="Staff member name"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="uni_contact_email"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Contact Email <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="uni_contact_email"
+                      name="uni_contact_email"
+                      required
+                      class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                      placeholder="staff@pcu.edu.ph"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    for="uni_contact_phone"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Contact Phone
+                  </label>
+                  <input
+                    type="tel"
+                    id="uni_contact_phone"
+                    name="uni_contact_phone"
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary md:w-1/2"
+                    placeholder="+639 XXX XXX XXX"
+                  />
+                </div>
+
+                <!-- Special Instructions -->
+                <div>
+                  <label
+                    for="uni_special_instructions"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Registration Instructions
+                  </label>
+                  <textarea
+                    id="uni_special_instructions"
+                    name="uni_special_instructions"
+                    rows="3"
+                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                    placeholder="Special instructions for registrants (requirements, what to bring, dress code, etc.)"
+                  ></textarea>
+                </div>
+
+                <!-- Event Image Upload -->
+                <div>
+                  <label
+                    for="uni_event_image"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Event Banner/Image (Optional)
+                  </label>
+                  <div
+                    class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md"
+                  >
+                    <div class="space-y-1 text-center">
+                      <svg
+                        class="mx-auto h-12 w-12 text-gray-400"
+                        stroke="currentColor"
+                        fill="none"
+                        viewBox="0 0 48 48"
+                      >
+                        <path
+                          d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                      <div class="flex text-sm text-gray-600">
+                        <label
+                          for="uni_event_image"
+                          class="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary"
+                        >
+                          <span>Upload a file</span>
+                          <input
+                            id="uni_event_image"
+                            name="uni_event_image"
+                            type="file"
+                            class="sr-only"
+                            accept="image/*"
+                          />
+                        </label>
+                        <p class="pl-1">or drag and drop</p>
+                      </div>
+                      <p class="text-xs text-gray-500">
+                        PNG, JPG, GIF up to 10MB
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="px-6 py-6 bg-gray-50">
+            <div class="flex justify-between">
+              <button
+                type="button"
+                onclick="saveDraft()"
+                class="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 font-medium"
+              >
+                Save as Draft
+              </button>
+              <div class="flex space-x-3">
+                <button
+                  type="button"
+                  onclick="previewEvent()"
+                  id="preview_btn"
+                  class="px-6 py-2 border border-primary text-primary rounded-md hover:bg-blue-50 font-medium"
+                >
+                  Preview Event
+                </button>
+                <button
+                  type="submit"
+                  id="submit_btn"
+                  class="px-6 py-2 bg-primary text-white rounded-md hover:bg-blue-700 font-medium"
+                >
+                  Submit for Review
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
 
     <!-- Preview Modal -->
     <div id="previewModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
-            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-            <div class="relative bg-white rounded-lg max-w-4xl w-full shadow-xl">
-                <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-                    <h3 class="text-xl font-semibold text-gray-900">Event Submission Preview</h3>
-                    <button onclick="closePreviewModal()" class="text-gray-400 hover:text-gray-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="p-6 max-h-96 overflow-y-auto">
-                    <div id="previewContent">
-                        <!-- Preview content will be loaded here -->
-                    </div>
-                </div>
-                <div class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3">
-                    <button onclick="closePreviewModal()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">
-                        Edit Event
-                    </button>
-                    <button onclick="submitFromPreview()" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700">
-                        Submit for Review
-                    </button>
-                </div>
+      <div
+        class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center"
+      >
+        <div
+          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+        ></div>
+        <div class="relative bg-white rounded-lg max-w-4xl w-full shadow-xl">
+          <div
+            class="px-6 py-4 border-b border-gray-200 flex justify-between items-center"
+          >
+            <h3 class="text-xl font-semibold text-gray-900">
+              Event Submission Preview
+            </h3>
+            <button
+              onclick="closePreviewModal()"
+              class="text-gray-400 hover:text-gray-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div class="p-6 max-h-96 overflow-y-auto">
+            <div id="previewContent">
+              <!-- Preview content will be loaded here -->
             </div>
+          </div>
+          <div
+            class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3"
+          >
+            <button
+              onclick="closePreviewModal()"
+              class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+            >
+              Edit Event
+            </button>
+            <button
+              onclick="submitFromPreview()"
+              class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700"
+            >
+              Submit for Review
+            </button>
+          </div>
         </div>
+      </div>
     </div>
 
     <script>
-        let selectedPartnership = null;
-        let currentEventSource = 'partnership';
-        let eventImageURL = null;
-       
-        // Partnership data (in real app, this would come from API)
-        const partnerships = {
-            1: {
-                title: "Digital Marketing Mastery Workshop Series",
-                partner: "DigitalBridge Marketing Solutions",
-                type: "Workshop Series",
-                description: "A comprehensive 4-week workshop series covering modern digital marketing strategies including social media marketing, content creation, SEO, and analytics. Participants will gain hands-on experience with industry-standard tools and develop real marketing campaigns.",
-                category: "career",
-                duration: "4 weeks",
-                expectedParticipants: 80,
-                format: "hybrid",
-                targetAudience: ["students", "alumni"],
-                budget: "₱75,000"
-            },
-            2: {
-                title: "Future Engineers Scholarship Program",
-                partner: "National Engineering Foundation",
-                type: "Scholarship Program",
-                description: "A merit-based scholarship program providing financial support to outstanding engineering students. Recipients will receive full tuition coverage, mentorship opportunities, and guaranteed internship placements with leading engineering firms.",
-                category: "academic",
-                duration: "1 year",
-                expectedParticipants: 15,
-                format: "in_person",
-                targetAudience: ["students"],
-                budget: "₱750,000"
-            },
-            3: {
-                title: "Industry 4.0 & IoT Training Program",
-                partner: "TechnoForward Industries Inc.",
-                type: "Training Program",
-                description: "Intensive 8-week training program on Industry 4.0 technologies and IoT applications. Includes hands-on lab work, real-world projects, and industry certifications. Equipment and laboratory setup provided by partner.",
-                category: "technical",
-                duration: "8 weeks",
-                expectedParticipants: 60,
-                format: "hybrid",
-                targetAudience: ["students", "faculty"],
-                budget: "₱250,000"
-            }
-        };
+      let eventImageURL = null;
 
-        const categoryLabels = {
-            'academic': 'Academic',
-            'career': 'Career Development',
-            'networking': 'Networking',
-            'workshop': 'Workshop/Seminar',
-            'training': 'Training Program',
-            'social': 'Social Event',
-            'alumni': 'Alumni Event',
-            'competition': 'Competition',
-            'cultural': 'Cultural Event',
-            'sports': 'Sports & Recreation',
-            'community_service': 'Community Service',
-            'research': 'Research & Innovation',
-            'orientation': 'Orientation',
-            'graduation': 'Graduation & Ceremonies',
-            'technical': 'Technical Training'
-        };
+      const formatLabels = {
+        in_person: "In-Person",
+        virtual: "Virtual/Online",
+        hybrid: "Hybrid",
+      };
 
-        const formatLabels = {
-            'in_person': 'In-Person',
-            'virtual': 'Virtual/Online',
-            'hybrid': 'Hybrid'
-        };
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+      }
 
-        function toggleUserMenu() {
-            const menu = document.getElementById('userMenu');
-            menu.classList.toggle('hidden');
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
+        }
+      }
+
+      function toggleUniLocationFields() {
+        const eventFormat = document.getElementById("uni_event_format").value;
+        const inPersonLocation = document.getElementById(
+          "uni_in_person_location"
+        );
+        const virtualLocation = document.getElementById("uni_virtual_location");
+        const uniVenueName = document.getElementById("uni_venue_name");
+        const uniVenueCapacity = document.getElementById("uni_venue_capacity");
+        const uniPlatform = document.getElementById("uni_platform");
+
+        if (eventFormat === "virtual") {
+          inPersonLocation.classList.add("hidden");
+          virtualLocation.classList.remove("hidden");
+          uniVenueName.required = false;
+          uniVenueCapacity.required = false;
+          uniPlatform.required = true;
+        } else if (eventFormat === "in_person") {
+          inPersonLocation.classList.remove("hidden");
+          virtualLocation.classList.add("hidden");
+          uniVenueName.required = true;
+          uniVenueCapacity.required = true;
+          uniPlatform.required = false;
+        } else if (eventFormat === "hybrid") {
+          inPersonLocation.classList.remove("hidden");
+          virtualLocation.classList.remove("hidden");
+          uniVenueName.required = true;
+          uniVenueCapacity.required = true;
+          uniPlatform.required = true;
+        } else {
+          inPersonLocation.classList.remove("hidden");
+          virtualLocation.classList.add("hidden");
+          uniVenueName.required = true;
+          uniVenueCapacity.required = true;
+          uniPlatform.required = false;
+        }
+      }
+
+      function toggleUniEndDate() {
+        const multiDay = document.getElementById("uni_multi_day");
+        const endDateField = document.getElementById("uni_end_date_field");
+
+        if (multiDay.checked) {
+          endDateField.classList.remove("hidden");
+          document.getElementById("uni_end_date").required = true;
+        } else {
+          endDateField.classList.add("hidden");
+          document.getElementById("uni_end_date").required = false;
+        }
+      }
+
+      function toggleUniRegistrationFields() {
+        const registrationRequired = document.getElementById(
+          "uni_registration_required"
+        );
+        const registrationFields = document.getElementById(
+          "uni_registration_fields"
+        );
+
+        if (registrationRequired.checked) {
+          registrationFields.classList.remove("hidden");
+        } else {
+          registrationFields.classList.add("hidden");
+        }
+      }
+
+      // University Event Target audience selection functions
+      function toggleUniDepartmentSelection() {
+        const selectedAudience = document.querySelector(
+          'input[name="uni_targetaudience"]:checked'
+        )?.value;
+        const departmentSelection = document.getElementById(
+          "uni_departmentselection"
+        );
+        const yearLevelSelection = document.getElementById(
+          "uni_yearlevelselection"
+        );
+
+        if (
+          selectedAudience === "allstudents" ||
+          selectedAudience === "specificyearlevels"
+        ) {
+          departmentSelection.classList.remove("hidden");
+          updateUniDepartmentValidation(true);
+
+          if (selectedAudience === "specificyearlevels") {
+            yearLevelSelection.classList.remove("hidden");
+          } else {
+            yearLevelSelection.classList.add("hidden");
+          }
+        } else {
+          departmentSelection.classList.add("hidden");
+          yearLevelSelection.classList.add("hidden");
+          updateUniDepartmentValidation(false);
+        }
+      }
+
+      function toggleUniAllDepartments() {
+        const selectAll = document.getElementById("uni_selectalldepartments");
+        const departmentCheckboxes = document.querySelectorAll(
+          ".uni-department-checkbox"
+        );
+
+        departmentCheckboxes.forEach((checkbox) => {
+          checkbox.checked = selectAll.checked;
+        });
+      }
+
+      function updateUniSelectAllState() {
+        const departmentCheckboxes = document.querySelectorAll(
+          ".uni-department-checkbox"
+        );
+        const selectAll = document.getElementById("uni_selectalldepartments");
+        const checkedCount = document.querySelectorAll(
+          ".uni-department-checkbox:checked"
+        ).length;
+
+        selectAll.checked = checkedCount === departmentCheckboxes.length;
+        selectAll.indeterminate =
+          checkedCount > 0 && checkedCount < departmentCheckboxes.length;
+      }
+
+      function updateUniDepartmentValidation(required) {
+        const departmentCheckboxes = document.querySelectorAll(
+          ".uni-department-checkbox"
+        );
+        departmentCheckboxes.forEach((checkbox) => {
+          checkbox.required = required;
+        });
+      }
+
+      function saveDraft() {
+        if (
+          confirm("Save this event as draft? You can continue editing later.")
+        ) {
+          alert(
+            "Event saved as draft successfully! You can find it in your events list."
+          );
+          window.location.href = "events.html";
+        }
+      }
+
+      function previewEvent() {
+        let title,
+          description,
+          formatValue,
+          eventDate,
+          endDateValue,
+          startTime,
+          endTime,
+          venueName,
+          maxAttendees;
+        let imageHtml = eventImageURL
+          ? `<img src="${eventImageURL}" alt="Event Banner" class="w-full h-64 object-cover rounded-lg mb-4">`
+          : "";
+        let dateDisplay = "";
+
+        title = document.getElementById("uni_event_title").value;
+        description = document.getElementById("uni_event_description").value;
+        formatValue = document.getElementById("uni_event_format").value;
+        eventDate = document.getElementById("uni_event_date").value;
+        const multiDay = document.getElementById("uni_multi_day").checked;
+        endDateValue = document.getElementById("uni_end_date").value;
+        startTime = document.getElementById("uni_start_time").value;
+        endTime = document.getElementById("uni_end_time").value;
+        venueName = document.getElementById("uni_venue_name").value;
+        maxAttendees =
+          document.getElementById("uni_max_attendees").value || "Unlimited";
+
+        if (
+          !title ||
+          !description ||
+          !formatValue ||
+          !eventDate ||
+          !startTime ||
+          !endTime
+        ) {
+          alert("Please fill in all required fields before previewing.");
+          return;
         }
 
-        function logout() {
-            if (confirm('Are you sure you want to logout?')) {
-                window.location.href = '../login.html';
-            }
+        if (formatValue !== "virtual" && !venueName) {
+          alert("Please provide venue name for in-person or hybrid events.");
+          return;
         }
 
-        function toggleEventSource() {
-            const selectedSource = document.querySelector('input[name="event_source"]:checked').value;
-            currentEventSource = selectedSource;
-           
-            const partnershipSelection = document.getElementById('partnership_selection');
-            const universityEventForm = document.getElementById('university_event_form');
-            const partnershipEventDetailsForm = document.getElementById('partnership_event_details_form');
-           
-            // Update radio button visual states
-            document.querySelectorAll('input[name="event_source"]').forEach((radio) => {
-                const label = radio.closest('label');
-                const radioIcon = label.querySelector('.event-source-radio');
-               
-                if (radio.checked) {
-                    label.classList.add('border-primary', 'bg-blue-50');
-                    radioIcon.classList.remove('hidden');
-                } else {
-                    label.classList.remove('border-primary', 'bg-blue-50');
-                    radioIcon.classList.add('hidden');
-                }
-            });
-
-            // Reset forms
-            partnershipSelection.classList.add('hidden');
-            universityEventForm.classList.add('hidden');
-            partnershipEventDetailsForm.classList.add('hidden');
-
-            if (selectedSource === 'partnership') {
-                partnershipSelection.classList.remove('hidden');
-            } else if (selectedSource === 'university') {
-                universityEventForm.classList.remove('hidden');
-                document.getElementById('preview_btn').classList.remove('hidden');
-                document.getElementById('submit_btn').classList.remove('hidden');
-            }
+        // Check target audience selection for university events
+        const targetAudience = document.querySelector(
+          'input[name="uni_targetaudience"]:checked'
+        );
+        if (!targetAudience) {
+          alert("Please select a target audience.");
+          return;
         }
 
-        function filterPartnerships() {
-            const searchTerm = document.getElementById('partnership_search').value.toLowerCase();
-            const typeFilter = document.getElementById('partnership_type_filter').value;
-            const partnershipItems = document.querySelectorAll('.partnership-item');
-            let visibleCount = 0;
-
-            partnershipItems.forEach(item => {
-                const title = item.dataset.title.toLowerCase();
-                const type = item.dataset.type;
-               
-                const matchesSearch = title.includes(searchTerm);
-                const matchesType = !typeFilter || type === typeFilter;
-
-                if (matchesSearch && matchesType) {
-                    item.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-
-            document.getElementById('no_partnerships').classList.toggle('hidden', visibleCount > 0);
+        if (
+          targetAudience.value === "allstudents" ||
+          targetAudience.value === "specificyearlevels"
+        ) {
+          const selectedDepartments = document.querySelectorAll(
+            'input[name="uni_departments"]:checked'
+          );
+          if (selectedDepartments.length === 0) {
+            alert(
+              "Please select at least one department for the target audience."
+            );
+            return;
+          }
         }
 
-        function loadPartnershipDetails(partnershipId) {
-            selectedPartnership = partnerships[partnershipId];
-           
-            if (!selectedPartnership) return;
+        dateDisplay = new Date(eventDate).toLocaleDateString();
+        if (multiDay && endDateValue) {
+          dateDisplay += ` - ${new Date(endDateValue).toLocaleDateString()}`;
+        }
 
-            // Show partnership event details form
-            document.getElementById('partnership_event_details_form').classList.remove('hidden');
-            document.getElementById('preview_btn').classList.remove('hidden');
-            document.getElementById('submit_btn').classList.remove('hidden');
-
-            // Update partnership summary
-            const summaryContent = `
-                <div class="flex items-center mb-2">
-                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-2">${selectedPartnership.type}</span>
-                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Approved Partnership</span>
-                </div>
-                <h3 class="text-lg font-medium text-gray-900 mb-1">${selectedPartnership.title}</h3>
-                <p class="text-sm text-gray-600 mb-3">Partner: ${selectedPartnership.partner}</p>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                    <div><span class="font-medium">Duration:</span> ${selectedPartnership.duration}</div>
-                    <div><span class="font-medium">Expected:</span> ${selectedPartnership.expectedParticipants} participants</div>
-                    <div><span class="font-medium">Budget:</span> ${selectedPartnership.budget}</div>
-                    <div><span class="font-medium">Format:</span> ${formatLabels[selectedPartnership.format] || selectedPartnership.format}</div>
+        const previewContent = `
+                <div class="space-y-6">
+                    ${imageHtml}
+                    <div>
+                        <div class="flex items-center mb-2">
+                            <span class="px-2 py-1 rounded-full text-xs mr-2 bg-blue-100 text-blue-800">${
+                              formatLabels[formatValue] || formatValue
+                            }</span>
+                            <span class="px-2 py-1 rounded-full text-xs mr-2 bg-orange-100 text-orange-800">University Event</span>
+                            <span class="px-2 py-1 rounded-full text-xs mr-2 bg-yellow-100 text-yellow-800">Pending Admin Review</span>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">${title}</h2>
+                        <p class="text-lg text-gray-600 mb-2">Organized by PCU-DASMA</p>
+                        <p class="text-gray-600 mb-4">${dateDisplay} • ${startTime} - ${endTime}</p>
+                        <p class="text-gray-600 mb-4"><strong>Venue:</strong> ${
+                          venueName || "Virtual Event"
+                        }</p>
+                    </div>
+                   
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">About This Event</h3>
+                        <p class="text-gray-700 whitespace-pre-wrap">${description}</p>
+                    </div>
+                   
+                    <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                        <h3 class="font-semibold text-gray-900 mb-2">Submission Status</h3>
+                        <p class="text-sm text-gray-700">• This event will be submitted for administrator review</p>
+                        <p class="text-sm text-gray-700">• Once approved, it will be published for student registration</p>
+                        <p class="text-sm text-gray-700">• Maximum attendees: ${maxAttendees}</p>
+                    </div>
                 </div>
             `;
-            document.getElementById('partnership_summary_content').innerHTML = summaryContent;
+        document.getElementById("previewContent").innerHTML = previewContent;
 
-            // Auto-fill form fields
-            document.getElementById('event_title').value = selectedPartnership.title;
-            document.getElementById('event_description').value = selectedPartnership.description;
-            document.getElementById('event_category').value = selectedPartnership.category;
-            document.getElementById('event_format').value = selectedPartnership.format;
-            document.getElementById('venue_capacity').value = selectedPartnership.expectedParticipants;
+        document.getElementById("previewModal").classList.remove("hidden");
+      }
 
-            // Set target audience based on partnership - check first matching option
-            if (selectedPartnership.targetAudience.includes('students')) {
-                document.querySelector('input[name="targetaudience"][value="allstudents"]').checked = true;
-                toggleDepartmentSelection();
-            } else if (selectedPartnership.targetAudience.includes('alumni')) {
-                document.querySelector('input[name="targetaudience"][value="alumni"]').checked = true;
-                toggleDepartmentSelection();
-            } else if (selectedPartnership.targetAudience.includes('faculty')) {
-                document.querySelector('input[name="targetaudience"][value="facultystaff"]').checked = true;
-                toggleDepartmentSelection();
-            } else {
-                document.querySelector('input[name="targetaudience"][value="openforall"]').checked = true;
-                toggleDepartmentSelection();
-            }
+      function closePreviewModal() {
+        document.getElementById("previewModal").classList.add("hidden");
+      }
 
-            // Toggle location fields
-            toggleLocationFields();
+      function submitFromPreview() {
+        closePreviewModal();
+        submitEvent();
+      }
 
-            // Scroll to event details
-            document.getElementById('partnership_event_details_form').scrollIntoView({ behavior: 'smooth' });
+      function submitEvent() {
+        const eventTitle = document.getElementById("uni_event_title").value;
+
+        if (
+          confirm(
+            `Submit "${eventTitle}" university event for administrator review? You won't be able to make changes until the review is complete.`
+          )
+        ) {
+          alert(
+            `Event "${eventTitle}" submitted successfully! It has been sent to administrators for review. You will receive an email notification once it has been reviewed.`
+          );
+          window.location.href = "events.html";
         }
+      }
 
-        function toggleLocationFields() {
-            const eventFormat = document.getElementById('event_format').value;
-            const inPerson = document.getElementById('in_person_location');
-            const virtual = document.getElementById('virtual_details');
-            const venueName = document.getElementById('venue_name');
-            const venueCapacity = document.getElementById('venue_capacity');
-            const meetingPlatform = document.getElementById('meeting_platform');
+      // Form submission handler
+      document
+        .getElementById("eventForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          submitEvent();
+        });
 
-            if (eventFormat === 'virtual') {
-                inPerson.classList.add('hidden');
-                virtual.classList.remove('hidden');
-                venueName.required = false;
-                venueCapacity.required = false;
-                meetingPlatform.required = true;
-            } else if (eventFormat === 'in_person') {
-                inPerson.classList.remove('hidden');
-                virtual.classList.add('hidden');
-                venueName.required = true;
-                venueCapacity.required = true;
-                meetingPlatform.required = false;
-            } else if (eventFormat === 'hybrid') {
-                inPerson.classList.remove('hidden');
-                virtual.classList.remove('hidden');
-                venueName.required = true;
-                venueCapacity.required = true;
-                meetingPlatform.required = true;
-            } else {
-                inPerson.classList.remove('hidden');
-                virtual.classList.add('hidden');
-                venueName.required = true;
-                venueCapacity.required = true;
-                meetingPlatform.required = false;
-            }
-        }
-
-        function toggleUniLocationFields() {
-            const eventFormat = document.getElementById('uni_event_format').value;
-            const inPersonLocation = document.getElementById('uni_in_person_location');
-            const virtualLocation = document.getElementById('uni_virtual_location');
-            const uniVenueName = document.getElementById('uni_venue_name');
-            const uniVenueCapacity = document.getElementById('uni_venue_capacity');
-            const uniPlatform = document.getElementById('uni_platform');
-
-            if (eventFormat === 'virtual') {
-                inPersonLocation.classList.add('hidden');
-                virtualLocation.classList.remove('hidden');
-                uniVenueName.required = false;
-                uniVenueCapacity.required = false;
-                uniPlatform.required = true;
-            } else if (eventFormat === 'in_person') {
-                inPersonLocation.classList.remove('hidden');
-                virtualLocation.classList.add('hidden');
-                uniVenueName.required = true;
-                uniVenueCapacity.required = true;
-                uniPlatform.required = false;
-            } else if (eventFormat === 'hybrid') {
-                inPersonLocation.classList.remove('hidden');
-                virtualLocation.classList.remove('hidden');
-                uniVenueName.required = true;
-                uniVenueCapacity.required = true;
-                uniPlatform.required = true;
-            } else {
-                inPersonLocation.classList.remove('hidden');
-                virtualLocation.classList.add('hidden');
-                uniVenueName.required = true;
-                uniVenueCapacity.required = true;
-                uniPlatform.required = false;
-            }
-        }
-
-        function toggleUniEndDate() {
-            const multiDay = document.getElementById('uni_multi_day');
-            const endDateField = document.getElementById('uni_end_date_field');
-
-            if (multiDay.checked) {
-                endDateField.classList.remove('hidden');
-                document.getElementById('uni_end_date').required = true;
-            } else {
-                endDateField.classList.add('hidden');
-                document.getElementById('uni_end_date').required = false;
-            }
-        }
-
-        function toggleUniRegistrationFields() {
-            const registrationRequired = document.getElementById('uni_registration_required');
-            const registrationFields = document.getElementById('uni_registration_fields');
-
-            if (registrationRequired.checked) {
-                registrationFields.classList.remove('hidden');
-            } else {
-                registrationFields.classList.add('hidden');
-            }
-        }
-
-        function toggleUniPaymentFields() {
-            const paymentRequired = document.getElementById('uni_payment_required');
-            const paymentFields = document.getElementById('uni_payment_fields');
-
-            if (paymentRequired.checked) {
-                paymentFields.classList.remove('hidden');
-                document.getElementById('uni_registration_fee').required = true;
-            } else {
-                paymentFields.classList.add('hidden');
-                document.getElementById('uni_registration_fee').required = false;
-            }
-        }
-
-        // Partnership Event Target audience selection functions
-        function toggleDepartmentSelection() {
-            const selectedAudience = document.querySelector('input[name="targetaudience"]:checked')?.value;
-            const departmentSelection = document.getElementById('departmentselection');
-            const yearLevelSelection = document.getElementById('yearlevelselection');
-            
-            if (selectedAudience === 'allstudents' || selectedAudience === 'specificyearlevels') {
-                departmentSelection.classList.remove('hidden');
-                updateDepartmentValidation(true);
-                
-                if (selectedAudience === 'specificyearlevels') {
-                    yearLevelSelection.classList.remove('hidden');
-                } else {
-                    yearLevelSelection.classList.add('hidden');
-                }
-            } else {
-                departmentSelection.classList.add('hidden');
-                yearLevelSelection.classList.add('hidden');
-                updateDepartmentValidation(false);
-            }
-        }
-
-        function toggleAllDepartments() {
-            const selectAll = document.getElementById('selectalldepartments');
-            const departmentCheckboxes = document.querySelectorAll('.department-checkbox');
-            
-            departmentCheckboxes.forEach(checkbox => {
-                checkbox.checked = selectAll.checked;
-            });
-        }
-
-        function updateSelectAllState() {
-            const departmentCheckboxes = document.querySelectorAll('.department-checkbox');
-            const selectAll = document.getElementById('selectalldepartments');
-            const checkedCount = document.querySelectorAll('.department-checkbox:checked').length;
-            
-            selectAll.checked = checkedCount === departmentCheckboxes.length;
-            selectAll.indeterminate = checkedCount > 0 && checkedCount < departmentCheckboxes.length;
-        }
-
-        function updateDepartmentValidation(required) {
-            const departmentCheckboxes = document.querySelectorAll('.department-checkbox');
-            departmentCheckboxes.forEach(checkbox => {
-                checkbox.required = required;
-            });
-        }
-
-        // University Event Target audience selection functions
-        function toggleUniDepartmentSelection() {
-            const selectedAudience = document.querySelector('input[name="uni_targetaudience"]:checked')?.value;
-            const departmentSelection = document.getElementById('uni_departmentselection');
-            const yearLevelSelection = document.getElementById('uni_yearlevelselection');
-            
-            if (selectedAudience === 'allstudents' || selectedAudience === 'specificyearlevels') {
-                departmentSelection.classList.remove('hidden');
-                updateUniDepartmentValidation(true);
-                
-                if (selectedAudience === 'specificyearlevels') {
-                    yearLevelSelection.classList.remove('hidden');
-                } else {
-                    yearLevelSelection.classList.add('hidden');
-                }
-            } else {
-                departmentSelection.classList.add('hidden');
-                yearLevelSelection.classList.add('hidden');
-                updateUniDepartmentValidation(false);
-            }
-        }
-
-        function toggleUniAllDepartments() {
-            const selectAll = document.getElementById('uni_selectalldepartments');
-            const departmentCheckboxes = document.querySelectorAll('.uni-department-checkbox');
-            
-            departmentCheckboxes.forEach(checkbox => {
-                checkbox.checked = selectAll.checked;
-            });
-        }
-
-        function updateUniSelectAllState() {
-            const departmentCheckboxes = document.querySelectorAll('.uni-department-checkbox');
-            const selectAll = document.getElementById('uni_selectalldepartments');
-            const checkedCount = document.querySelectorAll('.uni-department-checkbox:checked').length;
-            
-            selectAll.checked = checkedCount === departmentCheckboxes.length;
-            selectAll.indeterminate = checkedCount > 0 && checkedCount < departmentCheckboxes.length;
-        }
-
-        function updateUniDepartmentValidation(required) {
-            const departmentCheckboxes = document.querySelectorAll('.uni-department-checkbox');
-            departmentCheckboxes.forEach(checkbox => {
-                checkbox.required = required;
-            });
-        }
-
-        function saveDraft() {
-            if (confirm('Save this event as draft? You can continue editing later.')) {
-                alert('Event saved as draft successfully! You can find it in your events list.');
-                window.location.href = 'events.html';
-            }
-        }
-
-        function previewEvent() {
-            let title, description, categoryValue, formatValue, eventDate, endDateValue, startTime, endTime, venueName, maxAttendees, organizer, partner = '';
-            let imageHtml = eventImageURL ? `<img src="${eventImageURL}" alt="Event Banner" class="w-full h-64 object-cover rounded-lg mb-4">` : '';
-            let dateDisplay = '';
-           
-            if (currentEventSource === 'partnership') {
-                if (!selectedPartnership) {
-                    alert('Please select a partnership first.');
-                    return;
-                }
-
-                title = document.getElementById('event_title').value;
-                description = document.getElementById('event_description').value;
-                categoryValue = document.getElementById('event_category').value;
-                formatValue = document.getElementById('event_format').value;
-                eventDate = document.getElementById('event_date').value;
-                endDateValue = document.getElementById('end_date').value;
-                startTime = document.getElementById('start_time').value;
-                endTime = document.getElementById('end_time').value;
-                venueName = document.getElementById('venue_name').value;
-                maxAttendees = document.getElementById('venue_capacity').value;
-                partner = selectedPartnership.partner;
-
-                if (!title || !description || !categoryValue || !formatValue || !eventDate || !startTime || !endTime) {
-                    alert('Please fill in all required fields before previewing.');
-                    return;
-                }
-
-                if (formatValue !== 'virtual' && !venueName) {
-                    alert('Please provide venue name for in-person or hybrid events.');
-                    return;
-                }
-
-                // Check target audience selection for partnerships
-                const targetAudience = document.querySelector('input[name="targetaudience"]:checked');
-                if (!targetAudience) {
-                    alert('Please select a target audience.');
-                    return;
-                }
-
-                if (targetAudience.value === 'allstudents' || targetAudience.value === 'specificyearlevels') {
-                    const selectedDepartments = document.querySelectorAll('input[name="departments"]:checked');
-                    if (selectedDepartments.length === 0) {
-                        alert('Please select at least one department for the target audience.');
-                        return;
-                    }
-                }
-
-                dateDisplay = new Date(eventDate).toLocaleDateString();
-                if (endDateValue) {
-                    dateDisplay += ` - ${new Date(endDateValue).toLocaleDateString()}`;
-                }
-
-                const previewContent = `
-                    <div class="space-y-6">
-                        ${imageHtml}
-                        <div>
-                            <div class="flex items-center mb-2">
-                                <span class="px-2 py-1 rounded-full text-xs mr-2 bg-purple-100 text-purple-800">${categoryLabels[categoryValue] || categoryValue}</span>
-                                <span class="px-2 py-1 rounded-full text-xs mr-2 bg-green-100 text-green-800">${formatLabels[formatValue] || formatValue}</span>
-                                <span class="px-2 py-1 rounded-full text-xs mr-2 bg-blue-100 text-blue-800">Partnership Event</span>
-                                <span class="px-2 py-1 rounded-full text-xs mr-2 bg-yellow-100 text-yellow-800">Pending Admin Review</span>
-                            </div>
-                            <h2 class="text-2xl font-bold text-gray-900 mb-2">${title}</h2>
-                            <p class="text-lg text-gray-600 mb-2">Partnership with ${partner}</p>
-                            <p class="text-gray-600 mb-4">${dateDisplay} • ${startTime} - ${endTime}</p>
-                            <p class="text-gray-600 mb-4"><strong>Venue:</strong> ${venueName || 'Virtual Event'}</p>
-                        </div>
-                       
-                        <div>
-                            <h3 class="font-semibold text-gray-900 mb-2">About This Event</h3>
-                            <p class="text-gray-700 whitespace-pre-wrap">${description}</p>
-                        </div>
-                       
-                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                            <h3 class="font-semibold text-gray-900 mb-2">Submission Status</h3>
-                            <p class="text-sm text-gray-700">• This event will be submitted for administrator review</p>
-                            <p class="text-sm text-gray-700">• Once approved, it will be published for student registration</p>
-                            <p class="text-sm text-gray-700">• Maximum attendees: ${maxAttendees}</p>
-                            <p class="text-sm text-gray-700">• Partnership event with ${partner}</p>
-                        </div>
-                    </div>
-                `;
-                document.getElementById('previewContent').innerHTML = previewContent;
-            } else {
-                // University event preview
-                title = document.getElementById('uni_event_title').value;
-                description = document.getElementById('uni_event_description').value;
-                categoryValue = document.getElementById('uni_event_category').value;
-                formatValue = document.getElementById('uni_event_format').value;
-                eventDate = document.getElementById('uni_event_date').value;
-                const multiDay = document.getElementById('uni_multi_day').checked;
-                endDateValue = document.getElementById('uni_end_date').value;
-                startTime = document.getElementById('uni_start_time').value;
-                endTime = document.getElementById('uni_end_time').value;
-                venueName = document.getElementById('uni_venue_name').value;
-                const organizingDept = document.getElementById('organizing_department').value.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                maxAttendees = document.getElementById('uni_max_attendees').value || 'Unlimited';
-
-                if (!title || !description || !categoryValue || !formatValue || !eventDate || !startTime || !endTime) {
-                    alert('Please fill in all required fields before previewing.');
-                    return;
-                }
-
-                if (formatValue !== 'virtual' && !venueName) {
-                    alert('Please provide venue name for in-person or hybrid events.');
-                    return;
-                }
-
-                // Check target audience selection for university events
-                const targetAudience = document.querySelector('input[name="uni_targetaudience"]:checked');
-                if (!targetAudience) {
-                    alert('Please select a target audience.');
-                    return;
-                }
-
-                if (targetAudience.value === 'allstudents' || targetAudience.value === 'specificyearlevels') {
-                    const selectedDepartments = document.querySelectorAll('input[name="uni_departments"]:checked');
-                    if (selectedDepartments.length === 0) {
-                        alert('Please select at least one department for the target audience.');
-                        return;
-                    }
-                }
-
-                dateDisplay = new Date(eventDate).toLocaleDateString();
-                if (multiDay && endDateValue) {
-                    dateDisplay += ` - ${new Date(endDateValue).toLocaleDateString()}`;
-                }
-
-                const previewContent = `
-                    <div class="space-y-6">
-                        ${imageHtml}
-                        <div>
-                            <div class="flex items-center mb-2">
-                                <span class="px-2 py-1 rounded-full text-xs mr-2 bg-green-100 text-green-800">${categoryLabels[categoryValue] || categoryValue}</span>
-                                <span class="px-2 py-1 rounded-full text-xs mr-2 bg-blue-100 text-blue-800">${formatLabels[formatValue] || formatValue}</span>
-                                <span class="px-2 py-1 rounded-full text-xs mr-2 bg-orange-100 text-orange-800">University Event</span>
-                                <span class="px-2 py-1 rounded-full text-xs mr-2 bg-yellow-100 text-yellow-800">Pending Admin Review</span>
-                            </div>
-                            <h2 class="text-2xl font-bold text-gray-900 mb-2">${title}</h2>
-                            <p class="text-lg text-gray-600 mb-2">Organized by PCU-DASMA - ${organizingDept}</p>
-                            <p class="text-gray-600 mb-4">${dateDisplay} • ${startTime} - ${endTime}</p>
-                            <p class="text-gray-600 mb-4"><strong>Venue:</strong> ${venueName || 'Virtual Event'}</p>
-                        </div>
-                       
-                        <div>
-                            <h3 class="font-semibold text-gray-900 mb-2">About This Event</h3>
-                            <p class="text-gray-700 whitespace-pre-wrap">${description}</p>
-                        </div>
-                       
-                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                            <h3 class="font-semibold text-gray-900 mb-2">Submission Status</h3>
-                            <p class="text-sm text-gray-700">• This event will be submitted for administrator review</p>
-                            <p class="text-sm text-gray-700">• Once approved, it will be published for student registration</p>
-                            <p class="text-sm text-gray-700">• Maximum attendees: ${maxAttendees}</p>
-                            <p class="text-sm text-gray-700">• University-organized event managed by ${organizingDept}</p>
-                        </div>
-                    </div>
-                `;
-                document.getElementById('previewContent').innerHTML = previewContent;
-            }
-
-            document.getElementById('previewModal').classList.remove('hidden');
-        }
-
-        function closePreviewModal() {
-            document.getElementById('previewModal').classList.add('hidden');
-        }
-
-        function submitFromPreview() {
+      // Close modals when clicking outside
+      document
+        .getElementById("previewModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) {
             closePreviewModal();
-            submitEvent();
+          }
+        });
+
+      // Close user menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const menu = document.getElementById("userMenu");
+        const button = event.target.closest("button");
+
+        if (!button || !button.onclick.toString().includes("toggleUserMenu")) {
+          menu.classList.add("hidden");
+        }
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        if (document.getElementById("uni_event_image")) {
+          document
+            .getElementById("uni_event_image")
+            .addEventListener("change", function (e) {
+              if (e.target.files[0]) {
+                eventImageURL = URL.createObjectURL(e.target.files[0]);
+              }
+            });
         }
 
-        function submitEvent() {
-            const eventType = currentEventSource === 'partnership' ? 'partnership' : 'university';
-            const eventTitle = currentEventSource === 'partnership' ? 
-                document.getElementById('event_title').value : 
-                document.getElementById('uni_event_title').value;
-
-            if (confirm(`Submit "${eventTitle}" ${eventType} event for administrator review? You won't be able to make changes until the review is complete.`)) {
-                alert(`Event "${eventTitle}" submitted successfully! It has been sent to administrators for review. You will receive an email notification once it has been reviewed.`);
-                window.location.href = 'events.html';
-            }
-        }
-
-        // Form submission handler
-        document.getElementById('eventForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            submitEvent();
-        });
-
-        // Close modals when clicking outside
-        document.getElementById('previewModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closePreviewModal();
-            }
-        });
-
-        // Close user menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('userMenu');
-            const button = event.target.closest('button');
-           
-            if (!button || !button.onclick.toString().includes('toggleUserMenu')) {
-                menu.classList.add('hidden');
-            }
-        });
-
-        // Image upload handlers
-        document.addEventListener('DOMContentLoaded', function() {
-            if (document.getElementById('event_image')) {
-                document.getElementById('event_image').addEventListener('change', function(e) {
-                    if (e.target.files[0]) {
-                        eventImageURL = URL.createObjectURL(e.target.files[0]);
-                    }
-                });
-            }
-
-            if (document.getElementById('uni_event_image')) {
-                document.getElementById('uni_event_image').addEventListener('change', function(e) {
-                    if (e.target.files[0]) {
-                        eventImageURL = URL.createObjectURL(e.target.files[0]);
-                    }
-                });
-            }
-
-            // Set minimum date to today
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('event_date')?.setAttribute('min', today);
-            document.getElementById('end_date')?.setAttribute('min', today);
-            document.getElementById('registration_deadline')?.setAttribute('min', today);
-            document.getElementById('uni_event_date')?.setAttribute('min', today);
-            document.getElementById('uni_end_date')?.setAttribute('min', today);
-            document.getElementById('uni_registration_deadline')?.setAttribute('min', today);
-
-            // Initialize event source toggle
-            toggleEventSource();
-        });
+        // Set minimum date to today
+        const today = new Date().toISOString().split("T")[0];
+        document.getElementById("uni_event_date")?.setAttribute("min", today);
+        document.getElementById("uni_end_date")?.setAttribute("min", today);
+        document
+          .getElementById("uni_registration_deadline")
+          ?.setAttribute("min", today);
+      });
     </script>
-</body>
+  </body>
 </html>

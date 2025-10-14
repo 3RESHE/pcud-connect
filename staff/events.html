@@ -141,9 +141,7 @@
             <div class="mt-2 text-sm text-blue-700">
               <p>
                 As a staff member, you can create event proposals that will be
-                reviewed by administrators. Events can be partnership-based
-                (from approved partnerships) or university-organized events.
-                Once submitted, administrators will review, approve, or request
+                reviewed by administrators. Once submitted, administrators will review, approve, or request
                 changes to your events.
               </p>
             </div>
@@ -203,7 +201,7 @@
               </div>
             </div>
             <div class="ml-4">
-              <p class="text-sm font-medium text-gray-600">Approved</p>
+              <p class="text-sm font-medium text-gray-600">Published</p>
               <p class="text-2xl font-semibold text-gray-900">7</p>
             </div>
           </div>
@@ -241,10 +239,10 @@
           <div class="flex items-center">
             <div class="flex-shrink-0">
               <div
-                class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center"
+                class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center"
               >
                 <svg
-                  class="w-5 h-5 text-purple-600"
+                  class="w-5 h-5 text-red-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -253,16 +251,14 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 614 0z"
+                    d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
                   ></path>
                 </svg>
               </div>
             </div>
             <div class="ml-4">
-              <p class="text-sm font-medium text-gray-600">
-                Partnership Events
-              </p>
-              <p class="text-2xl font-semibold text-gray-900">8</p>
+              <p class="text-sm font-medium text-gray-600">Rejected</p>
+              <p class="text-2xl font-semibold text-gray-900">2</p>
             </div>
           </div>
         </div>
@@ -319,28 +315,6 @@
                 <option value="rejected">Rejected</option>
                 <option value="completed">Completed</option>
               </select>
-
-              <select
-                id="typeFilter"
-                class="block px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-primary focus:border-primary"
-              >
-                <option value="">All Types</option>
-                <option value="partnership">Partnership Events</option>
-                <option value="university">University Events</option>
-              </select>
-
-              <select
-                id="categoryFilter"
-                class="block px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-primary focus:border-primary"
-              >
-                <option value="">All Categories</option>
-                <option value="academic">Academic</option>
-                <option value="career">Career Development</option>
-                <option value="networking">Networking</option>
-                <option value="workshop">Workshop</option>
-                <option value="social">Social Event</option>
-                <option value="alumni">Alumni Event</option>
-              </select>
             </div>
           </div>
         </div>
@@ -349,36 +323,54 @@
       <!-- Filter Tabs -->
       <div class="mb-8">
         <div class="border-b border-gray-200">
-          <nav class="-mb-px flex space-x-8">
+          <nav class="-mb-px flex space-x-8 overflow-x-auto">
             <button
               onclick="filterEvents('all')"
-              class="event-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium"
+              class="event-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium whitespace-nowrap"
             >
               All My Events (12)
             </button>
             <button
               onclick="filterEvents('draft')"
-              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium whitespace-nowrap"
             >
               Drafts (2)
             </button>
             <button
               onclick="filterEvents('under_review')"
-              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium whitespace-nowrap"
             >
               Under Review (3)
             </button>
             <button
-              onclick="filterEvents('approved')"
-              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+              onclick="filterEvents('changes_requested')"
+              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium whitespace-nowrap"
             >
-              Approved (7)
+              Changes Requested (1)
             </button>
             <button
-              onclick="filterEvents('partnership')"
-              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+              onclick="filterEvents('approved')"
+              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium whitespace-nowrap"
             >
-              Partnership Events (8)
+              Approved (1)
+            </button>
+            <button
+              onclick="filterEvents('published')"
+              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium whitespace-nowrap"
+            >
+              Published (3)
+            </button>
+            <button
+              onclick="filterEvents('rejected')"
+              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium whitespace-nowrap"
+            >
+              Rejected (1)
+            </button>
+            <button
+              onclick="filterEvents('completed')"
+              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium whitespace-nowrap"
+            >
+              Completed (1)
             </button>
           </nav>
         </div>
@@ -386,26 +378,19 @@
 
       <!-- Events List -->
       <div class="space-y-6" id="eventsList">
-        <!-- Draft Event -->
+        <!-- Draft Event Example -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-gray-400"
+          class="event-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-gray-400"
+          data-status="draft"
         >
           <div class="flex justify-between items-start mb-4">
             <div class="flex-1">
               <div class="flex items-center mb-3">
                 <span
-                  class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
-                  >Workshop Series</span
-                >
-                <span
                   class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
                   >Draft</span
                 >
-                <span
-                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Partnership Event</span
-                >
-                <span class="text-sm text-gray-500">Created Nov 1, 2025</span>
+                <span class="text-sm text-gray-500">Created October 10, 2025</span>
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
                 Advanced Web Development Bootcamp
@@ -413,31 +398,7 @@
               <p class="text-gray-600 mb-4">
                 Comprehensive 6-week bootcamp covering modern web development
                 technologies including React, Node.js, and cloud deployment.
-                Partnership with TechCorp Solutions for practical training and
-                job placement.
               </p>
-              <!-- Partnership Information -->
-              <div class="bg-blue-50 p-3 rounded-lg mb-4">
-                <div class="flex items-center text-sm">
-                  <svg
-                    class="w-4 h-4 text-blue-600 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 614 0z"
-                    ></path>
-                  </svg>
-                  <span class="text-blue-700">
-                    <strong>Partner:</strong> TechCorp Solutions •
-                    <em>Complete bootcamp program with job placement</em>
-                  </span>
-                </div>
-              </div>
               <div
                 class="bg-yellow-50 p-3 rounded-lg mb-4 border border-yellow-200"
               >
@@ -505,27 +466,20 @@
           </div>
         </div>
 
-        <!-- Under Review Event -->
+        <!-- Under Review Event Example -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500"
+          class="event-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500"
+          data-status="under_review"
         >
           <div class="flex justify-between items-start mb-4">
             <div class="flex-1">
               <div class="flex items-center mb-3">
                 <span
-                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
-                  >Career Fair</span
-                >
-                <span
                   class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3"
                   >Under Admin Review</span
                 >
-                <span
-                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Partnership Event</span
-                >
                 <span class="text-sm text-gray-500"
-                  >Submitted Oct 28, 2025</span
+                  >Submitted October 12, 2025</span
                 >
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
@@ -536,28 +490,6 @@
                 Virtual networking sessions, company presentations, and
                 one-on-one interviews. Currently pending administrator approval.
               </p>
-              <!-- Partnership Information -->
-              <div class="bg-green-50 p-3 rounded-lg mb-4">
-                <div class="flex items-center text-sm">
-                  <svg
-                    class="w-4 h-4 text-green-600 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 614 0z"
-                    ></path>
-                  </svg>
-                  <span class="text-green-700">
-                    <strong>Co-Organizer:</strong> InnovateHub Philippines •
-                    <em>Platform, company recruitment, and logistics</em>
-                  </span>
-                </div>
-              </div>
               <div
                 class="bg-yellow-50 p-3 rounded-lg mb-4 border border-yellow-200"
               >
@@ -577,7 +509,7 @@
                   </svg>
                   <span class="text-yellow-800 text-sm">
                     <strong>Review Status:</strong> Event submitted for
-                    administrator approval. Expected review completion by Nov 2,
+                    administrator approval. Expected review completion by October 19,
                     2025.
                   </span>
                 </div>
@@ -598,12 +530,12 @@
               </div>
             </div>
             <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
-              <button
-                onclick="viewEvent(2)"
-                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+              <a
+                href="view-pending-event-details.html"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700 text-center"
               >
                 View Submission
-              </button>
+              </a>
               <button
                 onclick="viewReviewStatus(2)"
                 class="px-4 py-2 border border-yellow-300 text-yellow-700 text-sm rounded-md hover:bg-yellow-50"
@@ -620,27 +552,20 @@
           </div>
         </div>
 
-        <!-- Changes Requested Event -->
+        <!-- Changes Requested Event Example -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-orange-500"
+          class="event-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-orange-500"
+          data-status="changes_requested"
         >
           <div class="flex justify-between items-start mb-4">
             <div class="flex-1">
               <div class="flex items-center mb-3">
                 <span
-                  class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
-                  >Workshop</span
-                >
-                <span
                   class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3"
                   >Changes Requested</span
                 >
-                <span
-                  class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >University Event</span
-                >
                 <span class="text-sm text-gray-500"
-                  >Admin Review: Oct 30, 2025</span
+                  >Admin Review: October 13, 2025</span
                 >
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
@@ -650,7 +575,7 @@
                 Interactive workshop series focused on developing leadership
                 skills among students. Covers communication, team management,
                 and project leadership. Administrator requested modifications to
-                schedule and budget.
+                schedule and venue.
               </p>
               <div
                 class="bg-orange-50 p-3 rounded-lg mb-4 border border-orange-200"
@@ -673,11 +598,10 @@
                     <strong>Admin Feedback:</strong><br />
                     • Schedule conflicts with mid-term exams - please reschedule
                     to December<br />
-                    • Budget for materials exceeds department allocation -
-                    reduce by 20%<br />
                     • Need additional details on facilitator credentials<br />
+                    • Venue capacity issue - adjust or find larger venue<br />
                     <em
-                      >Please address these concerns and resubmit by Nov 5,
+                      >Please address these concerns and resubmit by October 20,
                       2025.</em
                     >
                   </div>
@@ -685,20 +609,26 @@
               </div>
               <div class="flex flex-wrap gap-2">
                 <span
-                  class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded"
+                  class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded"
                   >Leadership</span
                 >
                 <span
-                  class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded"
+                  class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded"
                   >Student Development</span
                 >
                 <span
-                  class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded"
+                  class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded"
                   >Soft Skills</span
                 >
               </div>
             </div>
             <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+              <a
+                href="view-event-request.html"
+                class="px-4 py-2 bg-orange-600 text-white text-sm rounded-md hover:bg-orange-700 text-center"
+              >
+                View Details
+              </a>
               <button
                 onclick="addressFeedback(3)"
                 class="px-4 py-2 bg-orange-600 text-white text-sm rounded-md hover:bg-orange-700"
@@ -721,59 +651,26 @@
           </div>
         </div>
 
-        <!-- Approved and Published Event -->
+        <!-- Approved Event Example -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500"
+          class="event-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-400"
+          data-status="approved"
         >
           <div class="flex justify-between items-start mb-4">
             <div class="flex-1">
               <div class="flex items-center mb-3">
                 <span
-                  class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
-                  >Workshop Series</span
-                >
-                <span
                   class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Published</span
+                  >Approved</span
                 >
-                <span
-                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Partnership Event</span
-                >
-                <span class="text-sm text-gray-500"
-                  >Published Oct 25, 2025</span
-                >
+                <span class="text-sm text-gray-500">Approved October 11, 2025</span>
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
                 Digital Marketing Mastery Workshop Series
               </h3>
               <p class="text-gray-600 mb-4">
-                Successfully approved and published! 4-week workshop series
-                covering modern digital marketing strategies. Currently
-                accepting registrations with 73/80 participants confirmed.
+                Successfully approved! 4-week workshop series covering modern digital marketing strategies.
               </p>
-              <!-- Partnership Information -->
-              <div class="bg-purple-50 p-3 rounded-lg mb-4">
-                <div class="flex items-center text-sm">
-                  <svg
-                    class="w-4 h-4 text-purple-600 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 614 0z"
-                    ></path>
-                  </svg>
-                  <span class="text-purple-700">
-                    <strong>Partner:</strong> DigitalBridge Marketing Solutions
-                    • <em>Expert speakers, materials, and certification</em>
-                  </span>
-                </div>
-              </div>
               <div
                 class="bg-green-50 p-3 rounded-lg mb-4 border border-green-200"
               >
@@ -792,70 +689,141 @@
                     ></path>
                   </svg>
                   <span class="text-green-800 text-sm">
-                    <strong>Event Status:</strong> Successfully published and
-                    accepting registrations. 73 confirmed participants, 12
-                    pending approval.
+                    <strong>Event Status:</strong> Approved and ready to publish. No registrations yet.
                   </span>
                 </div>
               </div>
               <div class="flex flex-wrap gap-2">
                 <span
-                  class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded"
+                  class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
                   >Marketing</span
                 >
                 <span
-                  class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded"
+                  class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
                   >Professional Development</span
                 >
                 <span
-                  class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded"
+                  class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
                   >Certificate Program</span
                 >
               </div>
             </div>
             <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
               <a
-                href="event-details.html?id=4"
+                href="view-approved-event-details.html"
                 class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700 text-center"
               >
-                Manage Event
+                View Details
               </a>
               <button
-                onclick="viewRegistrations(4)"
-                class="px-4 py-2 border border-green-300 text-green-700 text-sm rounded-md hover:bg-green-50"
+                onclick="publishEvent(4)"
+                class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
               >
-                View Registrations (85)
-              </button>
-              <button
-                onclick="sendUpdates(4)"
-                class="px-4 py-2 border border-blue-300 text-blue-700 text-sm rounded-md hover:bg-blue-50"
-              >
-                Send Updates
+                Publish Event
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Rejected Event -->
+        <!-- Published Event Example -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-red-500 opacity-90"
+          class="event-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500"
+          data-status="published"
         >
           <div class="flex justify-between items-start mb-4">
             <div class="flex-1">
               <div class="flex items-center mb-3">
                 <span
-                  class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
-                  >Social Event</span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Published</span
                 >
+                <span class="text-sm text-gray-500">Published October 9, 2025</span>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                AI in Education Seminar
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Seminar on integrating AI tools in educational practices. Includes hands-on sessions with AI teaching assistants.
+              </p>
+              <div
+                class="bg-blue-50 p-3 rounded-lg mb-4 border border-blue-200"
+              >
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-blue-600 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  <span class="text-blue-800 text-sm">
+                    <strong>Event Status:</strong> Published and accepting registrations. 45 confirmed, 5 pending.
+                  </span>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >AI</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >Education</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >Technology</span
+                >
+              </div>
+            </div>
+            <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+              <a
+                href="view-published-event-details.html"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700 text-center"
+              >
+                View Details
+              </a>
+              <button
+                onclick="viewRegistrations(5)"
+                class="px-4 py-2 border border-green-300 text-green-700 text-sm rounded-md hover:bg-green-50"
+              >
+                View Registrations (50)
+              </button>
+              <button
+                onclick="sendUpdates(5)"
+                class="px-4 py-2 border border-blue-300 text-blue-700 text-sm rounded-md hover:bg-blue-50"
+              >
+                Send Updates
+              </button>
+              <button
+                onclick="unpublishEvent(5)"
+                class="px-4 py-2 border border-red-300 text-red-700 text-sm rounded-md hover:bg-red-50"
+              >
+                Unpublish
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rejected Event Example -->
+        <div
+          class="event-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-red-500"
+          data-status="rejected"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-3">
                 <span
                   class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs mr-3"
                   >Rejected</span
                 >
-                <span
-                  class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >University Event</span
-                >
-                <span class="text-sm text-gray-500">Rejected Oct 20, 2025</span>
+                <span class="text-sm text-gray-500">Rejected October 8, 2025</span>
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
                 International Food Festival
@@ -863,10 +831,11 @@
               <p class="text-gray-600 mb-4">
                 Proposed multi-cultural food festival featuring international
                 cuisines from student communities. Unfortunately rejected due to
-                budget constraints and scheduling conflicts with existing
-                events.
+                logistical concerns and scheduling conflicts.
               </p>
-              <div class="bg-red-50 p-3 rounded-lg mb-4 border border-red-200">
+              <div
+                class="bg-red-50 p-3 rounded-lg mb-4 border border-red-200"
+              >
                 <div class="flex items-start">
                   <svg
                     class="w-4 h-4 text-red-600 mr-2 mt-0.5 flex-shrink-0"
@@ -883,11 +852,10 @@
                   </svg>
                   <div class="text-red-800 text-sm">
                     <strong>Rejection Reason:</strong><br />
-                    • Budget exceeds available funds for social events this
-                    semester<br />
                     • Scheduling conflict with Homecoming Week activities<br />
                     • Insufficient lead time for vendor coordination and
                     permits<br />
+                    • Lack of detailed safety and sanitation protocols<br />
                     <em
                       >Consider resubmitting for next semester with adjusted
                       scope and timeline.</em
@@ -911,65 +879,49 @@
               </div>
             </div>
             <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
-              <button
-                onclick="viewRejectionDetails(5)"
-                class="px-4 py-2 border border-red-300 text-red-700 text-sm rounded-md hover:bg-red-50"
+              <a
+                href="view-rejected-event-details.html"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700 text-center"
               >
-                View Rejection Details
-              </button>
+                View Details
+              </a>
               <button
-                onclick="reviseAndResubmit(5)"
+                onclick="reviseAndResubmit(6)"
                 class="px-4 py-2 border border-blue-300 text-blue-700 text-sm rounded-md hover:bg-blue-50"
               >
                 Create Revised Version
-              </button>
-              <button
-                onclick="archiveEvent(5)"
-                class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
-              >
-                Archive Event
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Completed Event -->
+        <!-- Completed Event Example -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-400 opacity-95"
+          class="event-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-indigo-500"
+          data-status="completed"
         >
           <div class="flex justify-between items-start mb-4">
             <div class="flex-1">
               <div class="flex items-center mb-3">
                 <span
-                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
-                  >Alumni Event</span
-                >
-                <span
-                  class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
+                  class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs mr-3"
                   >Completed</span
                 >
-                <span
-                  class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >University Event</span
-                >
-                <span class="text-sm text-gray-500"
-                  >Completed Oct 15, 2025</span
-                >
+                <span class="text-sm text-gray-500">Completed September 30, 2025</span>
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
                 PCU-DASMA Alumni Networking Night
               </h3>
               <p class="text-gray-600 mb-4">
-                Successfully completed alumni networking event that I organized.
-                Great turnout with 85 alumni attendees from various graduation
+                Successfully completed alumni networking event. Great turnout with 85 alumni attendees from various graduation
                 years. Excellent feedback and requests for similar events.
               </p>
               <div
-                class="bg-blue-50 p-3 rounded-lg mb-4 border border-blue-200"
+                class="bg-indigo-50 p-3 rounded-lg mb-4 border border-indigo-200"
               >
-                <div class="flex items-center text-sm text-blue-700">
+                <div class="flex items-center">
                   <svg
-                    class="w-4 h-4 text-blue-600 mr-2"
+                    class="w-4 h-4 text-indigo-600 mr-2"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -981,46 +933,46 @@
                       d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                     ></path>
                   </svg>
-                  <span
-                    ><strong>Event Completed Successfully:</strong> 85 attendees
-                    • 4.6/5 rating • Positive feedback received</span
-                  >
+                  <span class="text-indigo-800 text-sm">
+                    <strong>Event Completed Successfully:</strong> 85 attendees
+                    • 4.6/5 rating • Positive feedback received
+                  </span>
                 </div>
               </div>
               <div class="flex flex-wrap gap-2">
                 <span
-                  class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded"
+                  class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded"
                   >Alumni</span
                 >
                 <span
-                  class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded"
+                  class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded"
                   >Networking</span
                 >
                 <span
-                  class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded"
+                  class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded"
                   >Professional</span
                 >
                 <span
-                  class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded"
+                  class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded"
                   >Successful</span
                 >
               </div>
             </div>
             <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
               <button
-                onclick="viewEventReport(6)"
-                class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700"
+                onclick="viewEventReport(7)"
+                class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-md hover:bg-indigo-700"
               >
                 View Event Report
               </button>
               <button
-                onclick="downloadFeedback(6)"
+                onclick="downloadFeedback(7)"
                 class="px-4 py-2 border border-green-300 text-green-700 text-sm rounded-md hover:bg-green-50"
               >
                 Download Feedback
               </button>
               <button
-                onclick="createSimilarEvent(6)"
+                onclick="createSimilarEvent(7)"
                 class="px-4 py-2 border border-blue-300 text-blue-700 text-sm rounded-md hover:bg-blue-50"
               >
                 Create Similar Event
@@ -1030,7 +982,7 @@
         </div>
       </div>
 
-      <!-- Load More / Pagination -->
+      <!-- Pagination -->
       <div class="mt-8 flex justify-center">
         <nav class="flex items-center space-x-2">
           <button
@@ -1077,7 +1029,14 @@
         event.target.classList.add("active", "border-primary", "text-primary");
         event.target.classList.remove("border-transparent", "text-gray-500");
 
-        console.log("Filtering events by:", status);
+        // Filter cards
+        document.querySelectorAll(".event-card").forEach((card) => {
+          if (status === "all" || card.dataset.status === status) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
       }
 
       // Draft event actions
@@ -1112,10 +1071,6 @@
       }
 
       // Under review event actions
-      function viewEvent(eventId) {
-        window.location.href = `event-details.html?id=${eventId}`;
-      }
-
       function viewReviewStatus(eventId) {
         alert(`Checking review status for event #${eventId}...`);
       }
@@ -1152,37 +1107,37 @@
       }
 
       // Approved event actions
+      function publishEvent(eventId) {
+        if (
+          confirm("Publish this approved event? It will become visible to students.")
+        ) {
+          alert(`Event #${eventId} published successfully!`);
+          location.reload();
+        }
+      }
+
+      // Published event actions
       function viewRegistrations(eventId) {
-        window.location.href = `event-details.html?id=${eventId}&tab=registrations`;
+        alert(`Opening registrations for event #${eventId}...`);
       }
 
       function sendUpdates(eventId) {
         alert(`Opening communication center for event #${eventId}...`);
       }
 
-      // Rejected event actions
-      function viewRejectionDetails(eventId) {
-        alert(
-          `Opening detailed rejection information for event #${eventId}...`
-        );
-      }
-
-      function reviseAndResubmit(eventId) {
+      function unpublishEvent(eventId) {
         if (
-          confirm("Create a new version of this event based on admin feedback?")
+          confirm("Unpublish this event? It will no longer be visible to students.")
         ) {
-          window.location.href = `new-event.html?revise=${eventId}`;
+          alert(`Event #${eventId} unpublished successfully.`);
+          location.reload();
         }
       }
 
-      function archiveEvent(eventId) {
-        if (
-          confirm(
-            "Archive this event? It will be moved to your archived events."
-          )
-        ) {
-          alert(`Event #${eventId} archived successfully.`);
-          location.reload();
+      // Rejected event actions
+      function reviseAndResubmit(eventId) {
+        if (confirm("Create a new version of this event based on admin feedback?")) {
+          window.location.href = `new-event.html?revise=${eventId}`;
         }
       }
 
@@ -1201,20 +1156,28 @@
         }
       }
 
-      // Search functionality
+      // Search functionality (basic example, can be expanded)
       document
         .getElementById("searchEvents")
         .addEventListener("input", function (e) {
           const searchTerm = e.target.value.toLowerCase();
-          console.log("Searching for:", searchTerm);
+          document.querySelectorAll(".event-card").forEach((card) => {
+            const title = card.querySelector("h3").textContent.toLowerCase();
+            const description = card.querySelector("p").textContent.toLowerCase();
+            if (title.includes(searchTerm) || description.includes(searchTerm)) {
+              card.style.display = "block";
+            } else {
+              card.style.display = "none";
+            }
+          });
         });
 
-      // Filter functionality
+      // Status filter dropdown
       document
         .getElementById("statusFilter")
         .addEventListener("change", function (e) {
           const status = e.target.value;
-          console.log("Filtering by status:", status);
+          filterEvents(status || "all");
         });
 
       // Close user menu when clicking outside
@@ -1226,6 +1189,9 @@
           menu.classList.add("hidden");
         }
       });
+
+      // Initial filter
+      filterEvents("all");
     </script>
   </body>
 </html>
