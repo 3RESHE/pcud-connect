@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create News Article - PCU-DASMA Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
+            <div class="hidden md:ml-10 md:flex md:space-x-8">
+              <a href="dashboard.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
+              <a href="events.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Events</a>
+              <a href="news.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">News</a>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="relative">
+              <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+                <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile" />
+              </button>
+              <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                <div class="py-1">
+                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Staff Profile</a>
+                  <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-5xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center">
+          <a href="news.html" class="text-gray-400 hover:text-gray-600 mr-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </a>
+          <div>
+            <h1 class="text-3xl font-bold text-gray-900">Create News Article</h1>
+            <p class="text-gray-600">Compose and publish news articles about completed partnerships and university events</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-3">
+          <button onclick="saveDraft()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Save Draft</button>
+          <button onclick="previewArticle()" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">Preview</button>
+        </div>
+      </div>
+
+      <!-- Article Type Selection -->
+      <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+        <h2 class="text-lg font-semibold text-gray-900 mb-4">Article Type</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50" onclick="selectArticleType('partnership')">
+            <input type="radio" name="articleType" value="partnership" id="partnership" class="text-primary focus:ring-primary">
+            <label for="partnership" class="ml-3 cursor-pointer">
+              <div class="text-sm font-medium text-gray-900">Partnership Success Story</div>
+              <div class="text-sm text-gray-500">Share completed community partnership achievements</div>
+            </label>
+          </div>
+          <div class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50" onclick="selectArticleType('university')">
+            <input type="radio" name="articleType" value="university" id="university" class="text-primary focus:ring-primary">
+            <label for="university" class="ml-3 cursor-pointer">
+              <div class="text-sm font-medium text-gray-900">University Event</div>
+              <div class="text-sm text-gray-500">Announce or report on university events and activities</div>
+            </label>
+          </div>
+          <div class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50" onclick="selectArticleType('general')">
+            <input type="radio" name="articleType" value="general" id="general" class="text-primary focus:ring-primary">
+            <label for="general" class="ml-3 cursor-pointer">
+              <div class="text-sm font-medium text-gray-900">General News</div>
+              <div class="text-sm text-gray-500">General university news and announcements</div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Partnership Template (Hidden by default) -->
+      <div id="partnershipTemplate" class="hidden bg-blue-50 rounded-lg p-6 mb-8">
+        <h3 class="text-lg font-semibold text-blue-900 mb-4">Partnership Success Story Template</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-blue-800 mb-2">Select Completed Partnership</label>
+            <select id="partnershipSelect" class="w-full px-3 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+              <option value="">Choose a partnership...</option>
+              <option value="GBC-2025-013">Great Dasmarinas Bay Clean-up Drive</option>
+              <option value="BSS-2025-014">Back-to-School Supplies Drive 2025</option>
+              <option value="CMS-2025-015">Community Medical Mission</option>
+              <option value="TPC-2025-016">Tree Planting Campaign</option>
+              <option value="YSW-2025-017">Youth Skills Workshop</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-blue-800 mb-2">Partnership Impact Data</label>
+            <button onclick="loadPartnershipData()" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Load Partnership Details</button>
+          </div>
+        </div>
+        <div class="mt-4">
+          <p class="text-sm text-blue-700">Select a completed partnership to automatically populate article content with impact data, photos, and key metrics.</p>
+        </div>
+      </div>
+
+      <!-- Article Form -->
+      <form onsubmit="handleSubmitArticle(event)" class="space-y-8">
+        <div class="bg-white rounded-lg shadow-sm p-6">
+          <div class="space-y-6">
+            <!-- Title and Basic Info -->
+            <div class="grid grid-cols-1 gap-6">
+              <div>
+                <label for="newsTitle" class="block text-sm font-medium text-gray-700 mb-1">Article Title *</label>
+                <input type="text" id="newsTitle" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary text-lg" placeholder="Enter your article title..." />
+                <p class="text-sm text-gray-500 mt-1">Keep it concise and engaging (recommended: under 100 characters)</p>
+              </div>
+            </div>
+
+            <!-- Category and Author Row -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label for="newsCategory" class="block text-sm font-medium text-gray-700 mb-1">Category *</label>
+                <select id="newsCategory" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
+                  <option value="">Select Category</option>
+                  <option value="partnership">Community Partnership</option>
+                  <option value="university">University Update</option>
+                  <option value="alumni">Alumni Success</option>
+                  <option value="research">Research</option>
+                  <option value="event">Event Announcement</option>
+                  <option value="academic">Academic News</option>
+                  <option value="achievement">Achievement</option>
+                </select>
+              </div>
+              <div>
+                <label for="newsAuthor" class="block text-sm font-medium text-gray-700 mb-1">Author</label>
+                <input type="text" id="newsAuthor" value="Communications Staff" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary" />
+              </div>
+              <div>
+                <label for="publishDate" class="block text-sm font-medium text-gray-700 mb-1">Publish Date</label>
+                <input type="date" id="publishDate" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary" />
+                <p class="text-sm text-gray-500 mt-1">Leave empty to publish immediately</p>
+              </div>
+            </div>
+
+            <!-- Summary -->
+            <div>
+              <label for="newsSummary" class="block text-sm font-medium text-gray-700 mb-1">Article Summary *</label>
+              <textarea id="newsSummary" rows="3" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary" placeholder="Brief summary that will appear in the article preview and social media shares..."></textarea>
+              <p class="text-sm text-gray-500 mt-1">This summary will be used for previews and social media sharing (recommended: 150-200 characters)</p>
+            </div>
+
+            <!-- Featured Image Upload -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Featured Image</label>
+              <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md hover:border-gray-400">
+                <div class="space-y-1 text-center">
+                  <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <div class="flex text-sm text-gray-600">
+                    <label for="featuredImage" class="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary">
+                      <span>Upload a file</span>
+                      <input id="featuredImage" name="featuredImage" type="file" accept="image/*" class="sr-only" onchange="handleImageUpload(event)" />
+                    </label>
+                    <p class="pl-1">or drag and drop</p>
+                  </div>
+                  <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                </div>
+              </div>
+              <div id="imagePreview" class="hidden mt-4">
+                <img id="previewImg" class="h-48 w-full object-cover rounded-md" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Editor -->
+        <div class="bg-white rounded-lg shadow-sm p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-4">Article Content</h2>
+          
+          <!-- Editor Toolbar -->
+          <div class="border border-gray-300 rounded-t-md p-2 bg-gray-50">
+            <div class="flex items-center space-x-1">
+              <button type="button" onclick="formatText('bold')" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded" title="Bold">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M6 4v12h4.5a3.5 3.5 0 001.409-6.706A3 3 0 0010.5 4H6zM8 6h2.5a1 1 0 110 2H8V6zm0 4h3.5a1.5 1.5 0 110 3H8v-3z"></path>
+                </svg>
+              </button>
+              <button type="button" onclick="formatText('italic')" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded" title="Italic">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M8.5 4a.5.5 0 01.5.5V6h2a.5.5 0 010 1h-.5l-1.5 6H11a.5.5 0 010 1H9a.5.5 0 01-.5-.5V12H6a.5.5 0 010-1h.5l1.5-6H6a.5.5 0 010-1h2V4.5a.5.5 0 01.5-.5z"></path>
+                </svg>
+              </button>
+              <div class="w-px h-6 bg-gray-300"></div>
+              <button type="button" onclick="insertHeading()" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded" title="Heading">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M3 4a1 1 0 011-1h2a1 1 0 011 1v4h6V4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1v-4H7v4a1 1 0 01-1 1H4a1 1 0 01-1-1V4z"></path>
+                </svg>
+              </button>
+              <button type="button" onclick="insertList()" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded" title="Bullet List">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M3 4a1 1 0 000 2h14a1 1 0 100-2H3zM3 8a1 1 0 000 2h14a1 1 0 100-2H3zM3 12a1 1 0 100 2h14a1 1 0 100-2H3z"></path>
+                </svg>
+              </button>
+              <button type="button" onclick="insertQuote()" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded" title="Quote">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M8 8a3 3 0 100-6 3 3 0 000 6zm2-3a2 2 0 11-4 0 2 2 0 014 0zm4 8a5 5 0 11-10 0h10z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Content Textarea -->
+          <textarea id="newsContent" rows="12" required class="w-full px-3 py-3 border-l border-r border-b border-gray-300 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary resize-none" placeholder="Write your full article content here...
+
+For partnership success stories, include:
+• Event overview and objectives
+• Key achievements and metrics
+• Community impact and feedback
+• Photos and testimonials
+• Partnership collaboration details
+• Future implications or next steps
+
+For university events, include:
+• Event purpose and significance
+• Key participants and speakers
+• Highlights and outcomes
+• Student/community involvement
+• Photos and quotes
+• Upcoming related activities"></textarea>
+          
+          <div class="mt-2 flex justify-between text-sm text-gray-500">
+            <span>Use the toolbar above to format your content</span>
+            <span id="wordCount">0 words</span>
+          </div>
+        </div>
+
+        <!-- Additional Options -->
+        <div class="bg-white rounded-lg shadow-sm p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-4">Additional Options</h2>
+          
+          <div class="space-y-4">
+            <!-- Tags -->
+            <div>
+              <label for="newsTags" class="block text-sm font-medium text-gray-700 mb-1">Tags</label>
+              <input type="text" id="newsTags" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary" placeholder="e.g., partnership, community, environment, success (separate with commas)" />
+              <p class="text-sm text-gray-500 mt-1">Tags help categorize and make your article discoverable</p>
+            </div>
+
+            <!-- Settings Row -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="flex items-center">
+                <input type="checkbox" id="featuredNews" class="text-primary focus:ring-primary border-gray-300 rounded" />
+                <label for="featuredNews" class="ml-2 text-sm text-gray-700">Make this a featured article</label>
+              </div>
+              <div class="flex items-center">
+                <input type="checkbox" id="allowComments" checked class="text-primary focus:ring-primary border-gray-300 rounded" />
+                <label for="allowComments" class="ml-2 text-sm text-gray-700">Allow comments</label>
+              </div>
+              <div class="flex items-center">
+                <input type="checkbox" id="sendNotification" class="text-primary focus:ring-primary border-gray-300 rounded" />
+                <label for="sendNotification" class="ml-2 text-sm text-gray-700">Send notification to subscribers</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex justify-between items-center">
+          <a href="news.html" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Cancel</a>
+          <div class="space-x-3">
+            <button type="submit" name="action" value="draft" class="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">Save as Draft</button>
+            <button type="submit" name="action" value="publish" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-blue-700">Publish Article</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+      }
+
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
+        }
+      }
+
+      function selectArticleType(type) {
+        // Show/hide partnership template
+        const template = document.getElementById("partnershipTemplate");
+        if (type === 'partnership') {
+          template.classList.remove("hidden");
+        } else {
+          template.classList.add("hidden");
+        }
+
+        // Update category dropdown based on type
+        const categorySelect = document.getElementById("newsCategory");
+        if (type === 'partnership') {
+          categorySelect.value = 'partnership';
+        } else if (type === 'university') {
+          categorySelect.value = 'university';
+        }
+      }
+
+      function loadPartnershipData() {
+        const partnershipSelect = document.getElementById("partnershipSelect");
+        const selectedPartnership = partnershipSelect.value;
+        
+        if (!selectedPartnership) {
+          alert("Please select a partnership first.");
+          return;
+        }
+
+        // Simulate loading partnership data
+        const partnershipData = {
+          'GBC-2025-013': {
+            title: 'Great Dasmarinas Bay Clean-up Drive: A Community Success Story',
+            summary: 'The recent coastal clean-up partnership between PCU-DASMA and Clean Seas Alliance exceeded all expectations, with 450 volunteers collecting 3.2 tons of waste and cleaning 1.8km of coastline.',
+            content: `The Great Dasmarinas Bay Clean-up Drive concluded on October 5, 2025, marking one of the most successful community partnership initiatives in PCU-DASMA's history.
+
+## Outstanding Results
+
+The partnership with Clean Seas Alliance delivered exceptional results:
+
+• **450 community volunteers** participated (exceeding the 300 target by 50%)
+• **3.2 tons of waste** removed from the coastline
+• **1.8 kilometers** of shoreline cleaned and restored
+• **98% recycling rate** achieved through proper waste segregation
+• **85 PCU-DASMA students** volunteered, gaining valuable community service experience
+
+## Community Impact
+
+The clean-up drive has created lasting positive impact on the local environment and community awareness:
+
+**Environmental Benefits:**
+- 75% reduction in visible marine debris along the cleaned coastline
+- 12 sea turtle nesting sites protected and cleared
+- Improved water quality measurements in surrounding areas
+
+**Community Engagement:**
+- 8 local barangays actively participated
+- 95% volunteer satisfaction rate
+- Featured coverage in 3 local media outlets
+- Social media reach of over 50,000 people
+
+## Partnership Success
+
+The collaboration between PCU-DASMA and Clean Seas Alliance demonstrated the power of community partnerships. The organization provided professional equipment, waste processing facilities, and expert coordination, while PCU-DASMA contributed enthusiastic student volunteers and venue support.
+
+"This partnership has been incredibly rewarding," said Jennifer Aquino, Environmental Coordinator at Clean Seas Alliance. "The dedication of PCU-DASMA students and the strong community response made this initiative truly special."
+
+## Looking Forward
+
+The success of this partnership has paved the way for future environmental collaborations. Plans are already underway for a quarterly coastal monitoring program and an annual tree-planting initiative in partnership with local environmental groups.
+
+This achievement reinforces PCU-DASMA's commitment to community engagement and environmental stewardship, demonstrating how university-community partnerships can create meaningful, lasting impact.`,
+            tags: 'community partnership, environmental, clean-up, success story, volunteers, sustainability'
+          }
+        };
+
+        const data = partnershipData[selectedPartnership];
+        if (data) {
+          document.getElementById("newsTitle").value = data.title;
+          document.getElementById("newsSummary").value = data.summary;
+          document.getElementById("newsContent").value = data.content;
+          document.getElementById("newsTags").value = data.tags;
+          updateWordCount();
+          alert("Partnership data loaded successfully!");
+        }
+      }
+
+      function handleImageUpload(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const preview = document.getElementById("imagePreview");
+            const img = document.getElementById("previewImg");
+            img.src = e.target.result;
+            preview.classList.remove("hidden");
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+
+      function formatText(command) {
+        const textarea = document.getElementById("newsContent");
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const selectedText = textarea.value.substring(start, end);
+        let replacement = selectedText;
+
+        switch(command) {
+          case 'bold':
+            replacement = `**${selectedText}**`;
+            break;
+          case 'italic':
+            replacement = `*${selectedText}*`;
+            break;
+        }
+
+        textarea.setRangeText(replacement, start, end);
+        textarea.focus();
+        textarea.setSelectionRange(start + replacement.length, start + replacement.length);
+      }
+
+      function insertHeading() {
+        const textarea = document.getElementById("newsContent");
+        const start = textarea.selectionStart;
+        textarea.setRangeText("## Heading\n\n", start, start);
+        textarea.focus();
+        textarea.setSelectionRange(start + 3, start + 10);
+      }
+
+      function insertList() {
+        const textarea = document.getElementById("newsContent");
+        const start = textarea.selectionStart;
+        const listText = "• Item 1\n• Item 2\n• Item 3\n\n";
+        textarea.setRangeText(listText, start, start);
+        textarea.focus();
+        textarea.setSelectionRange(start + 2, start + 8);
+      }
+
+      function insertQuote() {
+        const textarea = document.getElementById("newsContent");
+        const start = textarea.selectionStart;
+        textarea.setRangeText("> Quote text\n\n", start, start);
+        textarea.focus();
+        textarea.setSelectionRange(start + 2, start + 12);
+      }
+
+      function updateWordCount() {
+        const content = document.getElementById("newsContent").value;
+        const words = content.trim().split(/\s+/).filter(word => word.length > 0).length;
+        document.getElementById("wordCount").textContent = `${words} words`;
+      }
+
+      function saveDraft() {
+        if (confirm("Save this article as a draft?")) {
+          alert("Article saved as draft!");
+        }
+      }
+
+      function previewArticle() {
+        const title = document.getElementById("newsTitle").value;
+        if (!title.trim()) {
+          alert("Please enter a title to preview the article.");
+          return;
+        }
+        alert("Opening article preview...");
+      }
+
+      function handleSubmitArticle(e) {
+        e.preventDefault();
+        const action = e.submitter.value;
+        const title = document.getElementById("newsTitle").value;
+        
+        if (!title.trim()) {
+          alert("Please enter a title for the article.");
+          return;
+        }
+
+        if (confirm(`${action === "draft" ? "Save this article as a draft" : "Publish this article now"}?`)) {
+          alert(`Article "${title}" ${action === "draft" ? "saved as draft" : "published"} successfully!`);
+          window.location.href = "news.html";
+        }
+      }
+
+      // Auto-update word count
+      document.getElementById("newsContent").addEventListener("input", updateWordCount);
+
+      // Check for edit parameter
+      window.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const editId = urlParams.get('edit');
+        if (editId) {
+          // Load existing article data for editing
+          console.log(`Loading article ${editId} for editing...`);
+        }
+      });
+
+      // Close user menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const userMenu = document.getElementById("userMenu");
+        const button = event.target.closest('button[onclick="toggleUserMenu()"]');
+
+        if (!button && !userMenu.contains(event.target)) {
+          userMenu.classList.add("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>
