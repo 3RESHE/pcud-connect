@@ -67,12 +67,12 @@
         </div>
 
         <!-- Statistics Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm text-gray-500 mb-1">Total Registrations</p>
-                        <p class="text-3xl font-bold text-gray-900">53</p>
+                        <p class="text-3xl font-bold text-gray-900">48</p>
                     </div>
                     <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                         <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -90,19 +90,6 @@
                     <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                         <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm text-gray-500 mb-1">Pending</p>
-                        <p class="text-3xl font-bold text-yellow-600">5</p>
-                    </div>
-                    <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                        <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
                 </div>
@@ -137,7 +124,6 @@
                     <select id="statusFilter" onchange="filterByStatus()" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
                         <option value="all">All Status</option>
                         <option value="confirmed">Confirmed</option>
-                        <option value="pending">Pending</option>
                         <option value="cancelled">Cancelled</option>
                     </select>
                     <button onclick="exportToCSV()" class="px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 flex items-center">
@@ -146,11 +132,11 @@
                         </svg>
                         Export CSV
                     </button>
-                    <button onclick="sendBulkNotification()" class="px-4 py-2 bg-primary text-white rounded-lg font-medium hover:bg-blue-700 flex items-center">
+                    <button onclick="openNotificationModal()" class="px-4 py-2 bg-primary text-white rounded-lg font-medium hover:bg-blue-700 flex items-center">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                         </svg>
-                        Send Notification
+                        Send Email
                     </button>
                 </div>
             </div>
@@ -165,7 +151,8 @@
                             <th class="px-6 py-4 text-left">
                                 <input type="checkbox" id="selectAll" onclick="toggleSelectAll()" class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
                             </th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Student Info</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Participant Info</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">User Type</th>
                             <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Department</th>
                             <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Year Level</th>
                             <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Registration Date</th>
@@ -174,7 +161,7 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
-                        <!-- Row 1 -->
+                        <!-- Row 1 - Student -->
                         <tr class="hover:bg-gray-50 registration-row" data-status="confirmed">
                             <td class="px-6 py-4">
                                 <input type="checkbox" class="row-checkbox w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
@@ -190,6 +177,9 @@
                                         <p class="text-xs text-gray-400">juan.delacruz@pcu.edu.ph</p>
                                     </div>
                                 </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Student</span>
                             </td>
                             <td class="px-6 py-4 text-sm text-gray-900">College of Informatics</td>
                             <td class="px-6 py-4 text-sm text-gray-900">4th Year</td>
@@ -219,7 +209,7 @@
                             </td>
                         </tr>
 
-                        <!-- Row 2 -->
+                        <!-- Row 2 - Student -->
                         <tr class="hover:bg-gray-50 registration-row" data-status="confirmed">
                             <td class="px-6 py-4">
                                 <input type="checkbox" class="row-checkbox w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
@@ -235,6 +225,9 @@
                                         <p class="text-xs text-gray-400">maria.santos@pcu.edu.ph</p>
                                     </div>
                                 </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Student</span>
                             </td>
                             <td class="px-6 py-4 text-sm text-gray-900">College of Engineering & Technology</td>
                             <td class="px-6 py-4 text-sm text-gray-900">3rd Year</td>
@@ -264,8 +257,8 @@
                             </td>
                         </tr>
 
-                        <!-- Row 3 -->
-                        <tr class="hover:bg-gray-50 registration-row" data-status="pending">
+                        <!-- Row 3 - Alumni -->
+                        <tr class="hover:bg-gray-50 registration-row" data-status="confirmed">
                             <td class="px-6 py-4">
                                 <input type="checkbox" class="row-checkbox w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
                             </td>
@@ -276,31 +269,34 @@
                                     </div>
                                     <div>
                                         <p class="font-semibold text-gray-900">Jose Reyes</p>
-                                        <p class="text-sm text-gray-500">2021-12347</p>
+                                        <p class="text-sm text-gray-500">2018-54321</p>
                                         <p class="text-xs text-gray-400">jose.reyes@pcu.edu.ph</p>
                                     </div>
                                 </div>
                             </td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-medium rounded-full">Alumni</span>
+                            </td>
                             <td class="px-6 py-4 text-sm text-gray-900">College of Informatics</td>
-                            <td class="px-6 py-4 text-sm text-gray-900">4th Year</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">-</td>
                             <td class="px-6 py-4 text-sm text-gray-500">Oct 15, 2025 2:45 PM</td>
                             <td class="px-6 py-4">
-                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">Pending</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Confirmed</span>
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex items-center gap-2">
-                                    <button onclick="approveRegistration(3)" class="text-green-600 hover:text-green-800" title="Approve">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                        </svg>
-                                    </button>
                                     <button onclick="viewDetails(3)" class="text-blue-600 hover:text-blue-800" title="View Details">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                                         </svg>
                                     </button>
-                                    <button onclick="cancelRegistration(3)" class="text-red-600 hover:text-red-800" title="Reject">
+                                    <button onclick="sendEmail(3)" class="text-gray-600 hover:text-gray-800" title="Send Email">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </button>
+                                    <button onclick="cancelRegistration(3)" class="text-red-600 hover:text-red-800" title="Cancel Registration">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                         </svg>
@@ -309,7 +305,7 @@
                             </td>
                         </tr>
 
-                        <!-- Row 4 -->
+                        <!-- Row 4 - Cancelled Student -->
                         <tr class="hover:bg-gray-50 registration-row" data-status="cancelled">
                             <td class="px-6 py-4">
                                 <input type="checkbox" class="row-checkbox w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
@@ -326,6 +322,9 @@
                                     </div>
                                 </div>
                             </td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Student</span>
+                            </td>
                             <td class="px-6 py-4 text-sm text-gray-900">College of Informatics</td>
                             <td class="px-6 py-4 text-sm text-gray-900">3rd Year</td>
                             <td class="px-6 py-4 text-sm text-gray-500">Oct 14, 2025 3:20 PM</td>
@@ -340,16 +339,11 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                                         </svg>
                                     </button>
-                                    <button onclick="restoreRegistration(4)" class="text-green-600 hover:text-green-800" title="Restore">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                                        </svg>
-                                    </button>
                                 </div>
                             </td>
                         </tr>
 
-                        <!-- Row 5 -->
+                        <!-- Row 5 - Student -->
                         <tr class="hover:bg-gray-50 registration-row" data-status="confirmed">
                             <td class="px-6 py-4">
                                 <input type="checkbox" class="row-checkbox w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
@@ -365,6 +359,9 @@
                                         <p class="text-xs text-gray-400">pedro.ramos@pcu.edu.ph</p>
                                     </div>
                                 </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Student</span>
                             </td>
                             <td class="px-6 py-4 text-sm text-gray-900">College of Engineering & Technology</td>
                             <td class="px-6 py-4 text-sm text-gray-900">4th Year</td>
@@ -393,6 +390,246 @@
                                 </div>
                             </td>
                         </tr>
+
+                        <!-- Row 6 - Alumni -->
+                        <tr class="hover:bg-gray-50 registration-row" data-status="confirmed">
+                            <td class="px-6 py-4">
+                                <input type="checkbox" class="row-checkbox w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-pink-600 font-semibold text-sm">LG</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900">Luis Garcia</p>
+                                        <p class="text-sm text-gray-500">2017-98765</p>
+                                        <p class="text-xs text-gray-400">luis.garcia@pcu.edu.ph</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-medium rounded-full">Alumni</span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-900">College of Business</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">-</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Oct 15, 2025 10:22 AM</td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Confirmed</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-2">
+                                    <button onclick="viewDetails(6)" class="text-blue-600 hover:text-blue-800" title="View Details">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                    </button>
+                                    <button onclick="sendEmail(6)" class="text-gray-600 hover:text-gray-800" title="Send Email">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </button>
+                                    <button onclick="cancelRegistration(6)" class="text-red-600 hover:text-red-800" title="Cancel Registration">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 7 - Student -->
+                        <tr class="hover:bg-gray-50 registration-row" data-status="confirmed">
+                            <td class="px-6 py-4">
+                                <input type="checkbox" class="row-checkbox w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-teal-600 font-semibold text-sm">CB</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900">Catherine Bautista</p>
+                                        <p class="text-sm text-gray-500">2022-11111</p>
+                                        <p class="text-xs text-gray-400">catherine.bautista@pcu.edu.ph</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Student</span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-900">College of Arts & Sciences</td>
+                            <td class="px-6 py-4 text-sm text-gray-900">2nd Year</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Oct 15, 2025 1:15 PM</td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Confirmed</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-2">
+                                    <button onclick="viewDetails(7)" class="text-blue-600 hover:text-blue-800" title="View Details">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                    </button>
+                                    <button onclick="sendEmail(7)" class="text-gray-600 hover:text-gray-800" title="Send Email">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </button>
+                                    <button onclick="cancelRegistration(7)" class="text-red-600 hover:text-red-800" title="Cancel Registration">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 8 - Student -->
+                        <tr class="hover:bg-gray-50 registration-row" data-status="confirmed">
+                            <td class="px-6 py-4">
+                                <input type="checkbox" class="row-checkbox w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-orange-600 font-semibold text-sm">RM</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900">Roberto Mendoza</p>
+                                        <p class="text-sm text-gray-500">2021-22222</p>
+                                        <p class="text-xs text-gray-400">roberto.mendoza@pcu.edu.ph</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Student</span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-900">College of Informatics</td>
+                            <td class="px-6 py-4 text-sm text-gray-900">3rd Year</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Oct 16, 2025 8:05 AM</td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Confirmed</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-2">
+                                    <button onclick="viewDetails(8)" class="text-blue-600 hover:text-blue-800" title="View Details">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                    </button>
+                                    <button onclick="sendEmail(8)" class="text-gray-600 hover:text-gray-800" title="Send Email">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </button>
+                                    <button onclick="cancelRegistration(8)" class="text-red-600 hover:text-red-800" title="Cancel Registration">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 9 - Alumni -->
+                        <tr class="hover:bg-gray-50 registration-row" data-status="confirmed">
+                            <td class="px-6 py-4">
+                                <input type="checkbox" class="row-checkbox w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-cyan-100 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-cyan-600 font-semibold text-sm">DL</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900">Diana Lopez</p>
+                                        <p class="text-sm text-gray-500">2016-77777</p>
+                                        <p class="text-xs text-gray-400">diana.lopez@pcu.edu.ph</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-medium rounded-full">Alumni</span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-900">College of Engineering & Technology</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">-</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Oct 16, 2025 11:30 AM</td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Confirmed</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-2">
+                                    <button onclick="viewDetails(9)" class="text-blue-600 hover:text-blue-800" title="View Details">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                    </button>
+                                    <button onclick="sendEmail(9)" class="text-gray-600 hover:text-gray-800" title="Send Email">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </button>
+                                    <button onclick="cancelRegistration(9)" class="text-red-600 hover:text-red-800" title="Cancel Registration">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 10 - Student -->
+                        <tr class="hover:bg-gray-50 registration-row" data-status="confirmed">
+                            <td class="px-6 py-4">
+                                <input type="checkbox" class="row-checkbox w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-lime-100 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-lime-600 font-semibold text-sm">EV</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900">Emmanuel Villanueva</p>
+                                        <p class="text-sm text-gray-500">2022-33333</p>
+                                        <p class="text-xs text-gray-400">emmanuel.villanueva@pcu.edu.ph</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Student</span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-900">College of Business</td>
+                            <td class="px-6 py-4 text-sm text-gray-900">1st Year</td>
+                            <td class="px-6 py-4 text-sm text-gray-500">Oct 16, 2025 3:45 PM</td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Confirmed</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-2">
+                                    <button onclick="viewDetails(10)" class="text-blue-600 hover:text-blue-800" title="View Details">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                    </button>
+                                    <button onclick="sendEmail(10)" class="text-gray-600 hover:text-gray-800" title="Send Email">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </button>
+                                    <button onclick="cancelRegistration(10)" class="text-red-600 hover:text-red-800" title="Cancel Registration">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -401,7 +638,7 @@
             <div class="bg-gray-50 px-6 py-4 border-t border-gray-200">
                 <div class="flex items-center justify-between">
                     <div class="text-sm text-gray-700">
-                        Showing <span class="font-semibold">1</span> to <span class="font-semibold">5</span> of <span class="font-semibold">53</span> registrations
+                        Showing <span class="font-semibold">1</span> to <span class="font-semibold">10</span> of <span class="font-semibold">48</span> registrations
                     </div>
                     <div class="flex gap-2">
                         <button class="px-3 py-1 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed" disabled>Previous</button>
@@ -411,6 +648,41 @@
                         <button class="px-3 py-1 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-100">Next</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div id="notificationModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-xl max-w-2xl w-full">
+            <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center rounded-t-xl">
+                <h2 class="text-xl font-bold text-gray-900">Send Email</h2>
+                <button onclick="closeNotificationModal()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <form id="notificationForm" class="space-y-4" onsubmit="submitNotificationForm(event)">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Recipients</label>
+                        <textarea id="recipientsField" readonly rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 focus:ring-2 focus:ring-primary"></textarea>
+                        <p class="text-xs text-gray-500 mt-1">The email addresses of selected participants.</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
+                        <input id="subjectField" type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter subject">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                        <textarea id="messageField" rows="6" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Type your message here..."></textarea>
+                    </div>
+                    <div class="flex justify-end gap-3 pt-4">
+                        <button type="button" onclick="closeNotificationModal()" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Cancel</button>
+                        <button type="submit" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-blue-700">Send</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -447,6 +719,10 @@
                             <p class="font-medium text-gray-900">+63 912 345 6789</p>
                         </div>
                         <div>
+                            <p class="text-sm text-gray-500">User Type</p>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Student</span>
+                        </div>
+                        <div>
                             <p class="text-sm text-gray-500">Department</p>
                             <p class="font-medium text-gray-900">College of Informatics</p>
                         </div>
@@ -461,6 +737,10 @@
                         <div>
                             <p class="text-sm text-gray-500">Status</p>
                             <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Confirmed</span>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Verified Via</p>
+                            <p class="font-medium text-gray-900">OTP (One-Time Password)</p>
                         </div>
                     </div>
                     <div>
@@ -533,7 +813,7 @@
         }
 
         function sendEmail(id) {
-            alert('Email notification sent to student.');
+            alert('Email notification sent to participant.');
         }
 
         function cancelRegistration(id) {
@@ -543,33 +823,37 @@
             }
         }
 
-        function approveRegistration(id) {
-            if (confirm('Approve this registration?')) {
-                alert('Registration approved successfully.');
-                location.reload();
-            }
-        }
-
-        function restoreRegistration(id) {
-            if (confirm('Restore this cancelled registration?')) {
-                alert('Registration restored successfully.');
-                location.reload();
-            }
-        }
-
         function exportToCSV() {
             alert('Exporting registrations to CSV file...');
         }
 
-        function sendBulkNotification() {
-            const checkedBoxes = document.querySelectorAll('.row-checkbox:checked');
+        function openNotificationModal() {
+            const checkedBoxes = Array.from(document.querySelectorAll('.row-checkbox:checked'));
             if (checkedBoxes.length === 0) {
-                alert('Please select at least one registration to send notification.');
+                alert('Please select at least one registration to Send Email.');
                 return;
             }
-            if (confirm(`Send notification to ${checkedBoxes.length} selected participant(s)?`)) {
-                alert('Notifications sent successfully.');
-            }
+            
+            const emails = checkedBoxes.map(cb => {
+                const row = cb.closest('tr');
+                return row.querySelector('td:nth-child(2) p.text-xs').textContent;
+            });
+
+            document.getElementById('recipientsField').value = emails.join(', ');
+            document.getElementById('notificationModal').classList.remove('hidden');
+        }
+
+        function closeNotificationModal() {
+            document.getElementById('notificationModal').classList.add('hidden');
+            document.getElementById('notificationForm').reset();
+        }
+
+        function submitNotificationForm(e) {
+            e.preventDefault();
+            const recipients = document.getElementById('recipientsField').value;
+            const subject = document.getElementById('subjectField').value;
+            alert(`Notification sent successfully!\n\nRecipients: ${recipients}\nSubject: ${subject}`);
+            closeNotificationModal();
         }
 
         // Close user menu when clicking outside
@@ -581,7 +865,13 @@
             }
         });
 
-        // Close modal when clicking outside
+        // Close modals when clicking outside
+        document.getElementById('notificationModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeNotificationModal();
+            }
+        });
+
         document.getElementById('detailsModal').addEventListener('click', function(event) {
             if (event.target === this) {
                 closeDetailsModal();
