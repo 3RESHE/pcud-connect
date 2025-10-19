@@ -529,6 +529,7 @@
                     id="department"
                     name="department"
                     required
+                    onchange="toggleDepartmentField()"
                     class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
                   >
                     <option value="">Select Department</option>
@@ -565,6 +566,23 @@
                     <option value="student">Student/Fresh Graduate</option>
                   </select>
                 </div>
+              </div>
+
+              <!-- Custom Department Field (for "Other" option) -->
+              <div id="custom_department" class="hidden">
+                <label
+                  for="custom_department_input"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Specify Department <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="custom_department_input"
+                  name="custom_department"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="e.g., Research, Legal, etc."
+                />
               </div>
 
               <div>
@@ -642,7 +660,19 @@
             <h2 class="text-lg font-medium text-gray-900 mb-4">
               <span id="compensation_title">Compensation</span>
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div id="unpaid_internship_field" class="hidden mb-6">
+              <label class="flex items-center">
+                <input
+                  type="checkbox"
+                  id="unpaid_internship"
+                  name="unpaid_internship"
+                  class="rounded border-gray-300 text-primary focus:ring-primary"
+                  onchange="toggleAllowanceFields()"
+                />
+                <span class="ml-2 text-sm text-gray-700">No Allowance (Unpaid Internship)</span>
+              </label>
+            </div>
+            <div id="compensation_fields" class="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
                 <label
                   for="salary_min"
@@ -657,6 +687,7 @@
                     type="number"
                     id="salary_min"
                     name="salary_min"
+                    min="0"
                     required
                     class="block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
                     placeholder="30000"
@@ -682,6 +713,7 @@
                     type="number"
                     id="salary_max"
                     name="salary_max"
+                    min="0"
                     required
                     class="block w-full pl-8 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
                     placeholder="50000"
@@ -887,114 +919,18 @@
             </h2>
             <div class="grid grid-cols-1 gap-6">
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-3"
-                  >Benefits Offered</label
-                >
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  <label class="flex items-center">
-                    <input
-                      type="checkbox"
-                      name="benefits[]"
-                      value="health_insurance"
-                      class="rounded border-gray-300 text-primary focus:ring-primary"
-                    />
-                    <span class="ml-2 text-sm text-gray-700"
-                      >Health Insurance</span
-                    >
-                  </label>
-                  <label class="flex items-center">
-                    <input
-                      type="checkbox"
-                      name="benefits[]"
-                      value="dental_insurance"
-                      class="rounded border-gray-300 text-primary focus:ring-primary"
-                    />
-                    <span class="ml-2 text-sm text-gray-700"
-                      >Dental Insurance</span
-                    >
-                  </label>
-                  <label class="flex items-center">
-                    <input
-                      type="checkbox"
-                      name="benefits[]"
-                      value="retirement_plan"
-                      class="rounded border-gray-300 text-primary focus:ring-primary"
-                    />
-                    <span class="ml-2 text-sm text-gray-700"
-                      >Retirement Plan</span
-                    >
-                  </label>
-                  <label class="flex items-center">
-                    <input
-                      type="checkbox"
-                      name="benefits[]"
-                      value="paid_leave"
-                      class="rounded border-gray-300 text-primary focus:ring-primary"
-                    />
-                    <span class="ml-2 text-sm text-gray-700"
-                      >Paid Time Off</span
-                    >
-                  </label>
-                  <label class="flex items-center">
-                    <input
-                      type="checkbox"
-                      name="benefits[]"
-                      value="flexible_hours"
-                      class="rounded border-gray-300 text-primary focus:ring-primary"
-                    />
-                    <span class="ml-2 text-sm text-gray-700"
-                      >Flexible Hours</span
-                    >
-                  </label>
-                  <label class="flex items-center">
-                    <input
-                      type="checkbox"
-                      name="benefits[]"
-                      value="professional_development"
-                      class="rounded border-gray-300 text-primary focus:ring-primary"
-                    />
-                    <span class="ml-2 text-sm text-gray-700"
-                      >Professional Development</span
-                    >
-                  </label>
-                  <label class="flex items-center">
-                    <input
-                      type="checkbox"
-                      name="benefits[]"
-                      value="transportation"
-                      class="rounded border-gray-300 text-primary focus:ring-primary"
-                    />
-                    <span class="ml-2 text-sm text-gray-700"
-                      >Transportation Allowance</span
-                    >
-                  </label>
-                  <label class="flex items-center">
-                    <input
-                      type="checkbox"
-                      name="benefits[]"
-                      value="meal_allowance"
-                      class="rounded border-gray-300 text-primary focus:ring-primary"
-                    />
-                    <span class="ml-2 text-sm text-gray-700"
-                      >Meal Allowance</span
-                    >
-                  </label>
-                </div>
-              </div>
-
-              <div>
                 <label
-                  for="additional_benefits"
+                  for="benefits"
                   class="block text-sm font-medium text-gray-700 mb-1"
                 >
-                  Additional Benefits or Perks
+                  Benefits & Perks
                 </label>
                 <textarea
-                  id="additional_benefits"
-                  name="additional_benefits"
+                  id="benefits"
+                  name="benefits"
                   rows="3"
                   class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                  placeholder="Describe any other benefits, perks, or unique aspects of working with your organization..."
+                  placeholder="List all benefits and perks, such as health insurance, paid time off, flexible hours, etc. Separate them with commas or new lines."
                 ></textarea>
               </div>
             </div>
@@ -1139,6 +1075,7 @@
         const customJobType = document.getElementById("custom_job_type");
         const customTypeInput = document.getElementById("custom_type");
         const durationMonths = document.getElementById("duration_months");
+        const unpaidField = document.getElementById("unpaid_internship_field");
 
         // Update labels based on job type
         if (selectedType === "internship") {
@@ -1154,6 +1091,7 @@
             "Maximum Allowance";
 
           internshipDuration.classList.remove("hidden");
+          unpaidField.classList.remove("hidden");
           experienceField.classList.add("hidden");
           customJobType.classList.add("hidden");
           customTypeInput.removeAttribute("required");
@@ -1161,6 +1099,7 @@
 
           // Set default pay period for internships
           document.getElementById("salary_period").value = "monthly";
+          toggleAllowanceFields(); // Call to handle unpaid checkbox state
         } else if (selectedType === "parttime") {
           document.getElementById("job_title_label").textContent = "Job Title";
           document.getElementById("job_description_label").textContent =
@@ -1173,6 +1112,7 @@
             "Maximum Salary";
 
           internshipDuration.classList.add("hidden");
+          unpaidField.classList.add("hidden");
           experienceField.classList.remove("hidden");
           customJobType.classList.add("hidden");
           customTypeInput.removeAttribute("required");
@@ -1192,6 +1132,7 @@
             "Maximum Salary";
 
           internshipDuration.classList.add("hidden");
+          unpaidField.classList.add("hidden");
           experienceField.classList.remove("hidden");
           customJobType.classList.add("hidden");
           customTypeInput.removeAttribute("required");
@@ -1212,6 +1153,7 @@
             "Maximum Pay";
 
           internshipDuration.classList.add("hidden");
+          unpaidField.classList.add("hidden");
           experienceField.classList.remove("hidden");
           customJobType.classList.remove("hidden");
           customTypeInput.setAttribute("required", "required");
@@ -1236,6 +1178,20 @@
         });
       }
 
+      function toggleDepartmentField() {
+        const selectedDepartment = document.getElementById("department").value;
+        const customDepartment = document.getElementById("custom_department");
+        const customDepartmentInput = document.getElementById("custom_department_input");
+
+        if (selectedDepartment === "other") {
+          customDepartment.classList.remove("hidden");
+          customDepartmentInput.setAttribute("required", "required");
+        } else {
+          customDepartment.classList.add("hidden");
+          customDepartmentInput.removeAttribute("required");
+        }
+      }
+
       function toggleLocationField() {
         const workSetup = document.getElementById("work_setup").value;
         const locationField = document.getElementById("location_field");
@@ -1247,6 +1203,28 @@
         } else {
           locationField.classList.remove("hidden");
           locationInput.setAttribute("required", "required");
+        }
+      }
+
+      function toggleAllowanceFields() {
+        const unpaidCheckbox = document.getElementById("unpaid_internship");
+        const compensationFields = document.getElementById("compensation_fields");
+        const salaryMin = document.getElementById("salary_min");
+        const salaryMax = document.getElementById("salary_max");
+        const salaryPeriod = document.getElementById("salary_period");
+
+        if (unpaidCheckbox.checked) {
+          compensationFields.classList.add("hidden");
+          salaryMin.removeAttribute("required");
+          salaryMax.removeAttribute("required");
+          salaryPeriod.removeAttribute("required");
+          salaryMin.value = 0;
+          salaryMax.value = 0;
+        } else {
+          compensationFields.classList.remove("hidden");
+          salaryMin.setAttribute("required", "required");
+          salaryMax.setAttribute("required", "required");
+          salaryPeriod.setAttribute("required", "required");
         }
       }
 
@@ -1265,6 +1243,8 @@
         const customType = formData.get("custom_type");
         const jobTitle = formData.get("job_title");
         const department = formData.get("department");
+        const customDepartment = formData.get("custom_department");
+        const effectiveDepartment = department === "other" ? customDepartment : department;
         const location = formData.get("location");
         const workSetup = formData.get("work_setup");
         const salaryMin = formData.get("salary_min");
@@ -1272,6 +1252,8 @@
         const salaryPeriod = formData.get("salary_period");
         const jobDescription = formData.get("job_description");
         const skills = formData.get("skills");
+        const unpaidInternship = formData.get("unpaid_internship");
+        const benefits = formData.get("benefits");
 
         if (!jobType || !jobTitle) {
           alert("Please fill in the required fields before previewing.");
@@ -1280,6 +1262,7 @@
 
         let typeLabel = "";
         let compensationLabel = "";
+        let compensationDisplay = "";
 
         switch (jobType) {
           case "fulltime":
@@ -1293,11 +1276,22 @@
           case "internship":
             typeLabel = "Internship";
             compensationLabel = "Allowance";
+            if (unpaidInternship) {
+              compensationDisplay = "<p class='text-lg font-semibold text-gray-600'>Unpaid Internship</p>";
+            }
             break;
           case "other":
             typeLabel = customType || "Other Position";
             compensationLabel = "Compensation";
             break;
+        }
+
+        if (!unpaidInternship && salaryMin && salaryMax) {
+          compensationDisplay = `<p class="text-lg font-semibold text-green-600">₱${parseInt(
+            salaryMin
+          ).toLocaleString()} - ₱${parseInt(
+            salaryMax
+          ).toLocaleString()} ${salaryPeriod}</p>`;
         }
 
         const previewContent = `
@@ -1314,7 +1308,7 @@
                                 : "bg-blue-100 text-blue-800"
                             }">${typeLabel}</span>
                             <span class="text-sm text-gray-500">${
-                              department || "Department not specified"
+                              effectiveDepartment || "Department not specified"
                             }</span>
                         </div>
                         <h2 class="text-2xl font-bold text-gray-900 mb-2">${
@@ -1330,15 +1324,7 @@
                             ? "Remote"
                             : "Location not specified"
                         }</p>
-                        ${
-                          salaryMin && salaryMax
-                            ? `<p class="text-lg font-semibold text-green-600">₱${parseInt(
-                                salaryMin
-                              ).toLocaleString()} - ₱${parseInt(
-                                salaryMax
-                              ).toLocaleString()} ${salaryPeriod}</p>`
-                            : ""
-                        }
+                        ${compensationDisplay}
                     </div>
                     
                     ${
@@ -1360,6 +1346,17 @@
                     <div>
                         <h3 class="font-semibold text-gray-900 mb-2">Required Skills</h3>
                         <p class="text-gray-700 whitespace-pre-wrap">${skills}</p>
+                    </div>
+                    `
+                        : ""
+                    }
+                    
+                    ${
+                      benefits
+                        ? `
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">Benefits & Perks</h3>
+                        <p class="text-gray-700 whitespace-pre-wrap">${benefits}</p>
                     </div>
                     `
                         : ""
@@ -1395,6 +1392,8 @@
           const jobType = formData.get("job_type");
           const customType = formData.get("custom_type");
           const jobTitle = formData.get("job_title");
+          const department = formData.get("department");
+          const customDepartment = formData.get("custom_department");
 
           if (!jobType) {
             alert("Please select a job type.");
@@ -1403,6 +1402,11 @@
 
           if (jobType === "other" && !customType) {
             alert("Please specify the job type for 'Other' category.");
+            return;
+          }
+
+          if (department === "other" && !customDepartment) {
+            alert("Please specify the department for 'Other' option.");
             return;
           }
 
