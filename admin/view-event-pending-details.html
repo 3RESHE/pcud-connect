@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pending Event Details - PCU-DASMA Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+              highlight: "#10B981",
+              danger: "#EF4444",
+            },
+            fontFamily: {
+              sans: ["Inter", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50 font-sans min-h-screen">
+    <div class="flex h-screen overflow-hidden">
+      <!-- Sidebar -->
+      <aside
+        id="sidebar"
+        class="bg-white w-64 min-h-screen shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 fixed z-50 overflow-y-auto"
+      >
+        <div class="flex flex-col h-full">
+          <!-- Logo -->
+          <div
+            class="flex items-center justify-between p-4 border-b border-gray-200"
+          >
+            <a href="../index.html" class="text-xl font-bold text-primary"
+              >PCU-DASMA Connect</a
+            >
+            <button
+              id="closeSidebar"
+              class="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Navigation -->
+          <nav class="flex-1 px-4 py-6 space-y-2">
+            <!-- Dashboard -->
+            <a
+              href="dashboard.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m8 5 4-4 4 4"
+                ></path>
+              </svg>
+              Dashboard
+            </a>
+
+            <!-- Users -->
+            <a
+              href="users.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-1a4 4 0 0 0-4-4h-1M9 20H4v-1a4 4 0 0 1 4-4h1m8-6a4 4 0 1 1-8 0 4 4 0 0 1 8 0zm-6 6h4"
+                />
+              </svg>
+              Users
+            </a>
+
+            <!-- Approvals Dropdown -->
+            <div class="space-y-1">
+              <button
+                onclick="toggleDropdown('approvals')"
+                class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg focus:outline-none"
+              >
+                <div class="flex items-center">
+                  <svg
+                    class="w-5 h-5 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  Approvals
+                </div>
+                <svg
+                  id="approvals-arrow"
+                  class="w-4 h-4 transform transition-transform duration-200 rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div id="approvals-menu" class="ml-4 space-y-1 hidden">
+                <a
+                  href="approve-jobs.html"
+                  class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"
+                    ></path>
+                  </svg>
+                  Job Post Approvals
+                  <span
+                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
+                    >3</span
+                  >
+                </a>
+                <a
+                  href="approve-news.html"
+                  class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+                    ></path>
+                  </svg>
+                  News Approvals
+                  <span
+                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
+                    >2</span
+                  >
+                </a>
+                <a
+                  href="approve-events.html"
+                  class="flex items-center px-4 py-2 text-sm text-primary font-medium bg-blue-50 rounded-lg"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                  Event Approvals
+                  <span
+                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
+                    >4</span
+                  >
+                </a>
+              </div>
+            </div>
+
+            <!-- Partnerships -->
+            <a
+              href="approve-partnerships.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 515.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+              </svg>
+              Partnerships
+              <span
+                class="ml-auto bg-yellow-100 text-yellow-800 text-xs px-2 py-0.5 rounded-full"
+                >2</span
+              >
+            </a>
+
+            <!-- Divider -->
+            <div class="border-t border-gray-200 my-4"></div>
+
+            <!-- Settings -->
+            <a
+              href="settings.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                ></path>
+              </svg>
+              Settings
+            </a>
+          </nav>
+
+          <!-- User Profile -->
+          <div class="border-t border-gray-200 p-4 mt-auto">
+            <div class="flex items-center">
+              <img
+                class="h-8 w-8 rounded-full"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                alt="Profile"
+              />
+              <div class="ml-3 flex-1">
+                <p class="text-sm font-medium text-gray-700">Admin User</p>
+                <p class="text-xs text-gray-500">admin@pcu.edu.ph</p>
+              </div>
+              <div class="relative">
+                <button
+                  onclick="toggleUserMenu()"
+                  class="p-2 rounded-md text-gray-400 hover:text-gray-600"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                    ></path>
+                  </svg>
+                </button>
+                <div
+                  id="userMenu"
+                  class="hidden origin-bottom-right absolute bottom-0 right-0 mb-12 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50"
+                >
+                  <div class="py-1">
+                    <a
+                      href="#"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >Admin Profile</a
+                    >
+                    <a
+                      href="#"
+                      onclick="logout()"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >Logout</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="flex-1 flex flex-col overflow-hidden">
+        <!-- Top Header (Mobile) -->
+        <header class="bg-white shadow-sm border-b lg:hidden sticky top-0 z-40">
+          <div class="flex items-center justify-between px-4 py-3">
+            <button
+              id="openSidebar"
+              class="p-2 rounded-md text-gray-400 hover:text-gray-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </button>
+            <h1 class="text-xl font-bold text-primary">
+              Pending Event Details
+            </h1>
+            <div class="w-10"></div>
+          </div>
+        </header>
+
+        <!-- Content Area -->
+        <main class="flex-1 overflow-y-auto">
+          <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="mb-8">
+              <div class="flex items-center mb-4">
+                <a
+                  href="approve-events.html"
+                  class="text-gray-400 hover:text-gray-600 mr-4"
+                >
+                  <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 19l-7-7 7-7"
+                    ></path>
+                  </svg>
+                </a>
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between w-full">
+                  <div>
+                    <h1 class="text-2xl sm:text-3xl font-bold text-primary">Event #EV-2025-005</h1>
+                    <p class="text-gray-600 mt-1">Advanced Web Development Bootcamp</p>
+                  </div>
+                  <div class="flex items-center space-x-2 mt-2 sm:mt-0">
+                    <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">Pending Review</span>
+                    <span class="text-sm text-gray-500">Submitted on October 13, 2025</span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-wrap items-center gap-2 text-sm">
+                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-xs font-medium">In-Person</span>
+                <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-medium">Multi-day Event</span>
+                <span class="text-gray-500">by Prof. Carlos Martinez</span>
+              </div>
+            </div>
+
+            <!-- Pending Status Alert -->
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-8">
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-yellow-600 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+                <div class="flex-1 min-w-0">
+                  <h4 class="font-semibold text-yellow-800">Pending Review</h4>
+                  <p class="text-sm text-yellow-700">This event is awaiting admin approval. Review the details below and take appropriate action.</p>
+                </div>
+                <div class="ml-4 flex-shrink-0">
+                  <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Action Required</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Two-Column Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+              <!-- Main Content -->
+              <div class="lg:col-span-2 space-y-6">
+                <!-- Event Overview -->
+                <div class="bg-white shadow rounded-lg p-4 sm:p-6">
+                  <h2 class="text-xl font-semibold text-gray-900 mb-4">Event Overview</h2>
+                  <div class="space-y-6">
+                    <div>
+                      <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Description</h3>
+                      <p class="text-gray-700 leading-relaxed">
+                        Comprehensive 6-week bootcamp covering modern web development technologies including React, Node.js, and cloud deployment. Designed to prepare students for industry-level development roles.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Event Tags</h3>
+                      <div class="flex flex-wrap items-center gap-2">
+                        <span class="bg-accent text-white px-2 py-1 rounded-full text-sm font-medium">web development</span>
+                        <span class="bg-accent text-white px-2 py-1 rounded-full text-sm font-medium">bootcamp</span>
+                        <span class="bg-accent text-white px-2 py-1 rounded-full text-sm font-medium">react</span>
+                        <span class="bg-accent text-white px-2 py-1 rounded-full text-sm font-medium">node.js</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Date & Time -->
+                <div class="bg-white shadow rounded-lg p-4 sm:p-6">
+                  <h2 class="text-xl font-semibold text-gray-900 mb-4">Date & Time</h2>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Event Dates</h3>
+                      <p class="text-lg font-medium text-gray-900">December 15 - 31, 2025</p>
+                      <p class="text-sm text-gray-600">Multi-day event</p>
+                    </div>
+                    <div>
+                      <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Daily Schedule</h3>
+                      <p class="text-lg font-medium text-gray-900">9:00 AM - 5:00 PM</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Location & Venue -->
+                <div class="bg-white shadow rounded-lg p-4 sm:p-6">
+                  <h2 class="text-xl font-semibold text-gray-900 mb-4">Location & Venue</h2>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Venue</h3>
+                      <div class="space-y-2">
+                        <p class="text-gray-900 font-medium">IT Laboratory 1 & 2</p>
+                        <p class="text-sm text-gray-600">PCU-DASMA Campus, Dasmariñas, Cavite</p>
+                      </div>
+                    </div>
+                    <div>
+                      <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Capacity</h3>
+                      <div class="flex items-center justify-between">
+                        <span class="text-gray-900">30 attendees</span>
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Limited</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Registration Settings -->
+                <div class="bg-white shadow rounded-lg p-4 sm:p-6">
+                  <h2 class="text-xl font-semibold text-gray-900 mb-4">Registration Settings</h2>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Requirements</h3>
+                      <div class="space-y-3">
+                        <div class="flex items-center">
+                          <svg class="w-4 h-4 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                          </svg>
+                          <span>Registration Required</span>
+                        </div>
+                        <div class="flex items-center">
+                          <svg class="w-4 h-4 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                          </svg>
+                          <span>No Walk-ins Allowed</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Limits</h3>
+                      <div class="space-y-3">
+                        <div class="flex justify-between">
+                          <span>Deadline</span>
+                          <span class="font-medium">December 1, 2025</span>
+                        </div>
+                        <div class="flex justify-between">
+                          <span>Max Attendees</span>
+                          <span class="font-medium">30</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-4">
+                    <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Target Audience</h3>
+                    <p class="text-gray-700">Specific Year Levels (3rd Year, 4th Year) in College of Informatics</p>
+                  </div>
+                </div>
+
+                <!-- Event Banner -->
+                <div class="bg-white shadow rounded-lg p-4 sm:p-6">
+                  <h2 class="text-xl font-semibold text-gray-900 mb-4">Event Banner</h2>
+                  <img
+                    src="placeholder-image-url.jpg"
+                    alt="Event Banner"
+                    class="w-full h-48 sm:h-64 object-cover rounded-lg border border-gray-200"
+                  />
+                </div>
+              </div>
+
+              <!-- Sidebar Panel -->
+              <div class="space-y-6">
+                <!-- Contact Information -->
+                <div class="bg-white shadow rounded-lg p-4 sm:p-6">
+                  <h2 class="text-lg font-semibold text-gray-900 mb-4">Submitter Contact</h2>
+                  <div class="space-y-3">
+                    <div>
+                      <p class="text-sm font-medium text-gray-900">Prof. Carlos Martinez</p>
+                      <p class="text-xs text-gray-500">Event Coordinator</p>
+                    </div>
+                    <div>
+                      <p class="text-xs text-gray-500">Email</p>
+                      <p class="text-sm text-gray-900">
+                        <a href="mailto:carlos.martinez@pcu.edu.ph" class="text-primary hover:underline break-all">carlos.martinez@pcu.edu.ph</a>
+                      </p>
+                    </div>
+                    <div>
+                      <p class="text-xs text-gray-500">Phone</p>
+                      <p class="text-sm text-gray-900">+63 912 345 6789</p>
+                    </div>
+                    <div>
+                      <p class="text-xs text-gray-500">Submitted</p>
+                      <p class="text-sm text-gray-900">October 13, 2025</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Registration Instructions -->
+                <div class="bg-white shadow rounded-lg p-4 sm:p-6">
+                  <h2 class="text-lg font-semibold text-gray-900 mb-4">Special Instructions</h2>
+                  <p class="text-sm text-gray-700">
+                    Students must bring their laptops and have basic programming knowledge.
+                  </p>
+                </div>
+
+                <!-- Actions -->
+                <div class="bg-white shadow rounded-lg p-4 sm:p-6 sticky top-6">
+                  <h2 class="text-lg font-semibold text-gray-900 mb-4">Review Actions</h2>
+                  <div class="space-y-3">
+                    <button
+                      onclick="approveAndPublishEvent(1)"
+                      class="w-full px-4 py-2 bg-highlight text-white text-sm rounded-md hover:bg-green-600 font-medium"
+                    >
+                      Approve & Publish
+                    </button>
+                    <button
+                      onclick="requestEventChanges(1)"
+                      class="w-full px-4 py-2 bg-accent text-white text-sm rounded-md hover:bg-yellow-600 font-medium"
+                    >
+                      Request Changes
+                    </button>
+                    <button
+                      onclick="rejectEvent(1)"
+                      class="w-full px-4 py-2 bg-danger text-white text-sm rounded-md hover:bg-red-600 font-medium"
+                    >
+                      Reject
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Overlay for mobile -->
+    <div
+      id="sidebarOverlay"
+      class="fixed inset-0 bg-gray-600 bg-opacity-50 z-40 lg:hidden hidden"
+    ></div>
+
+    <!-- Feedback Modal -->
+    <div id="feedbackModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
+      <div
+        class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center"
+      >
+        <div
+          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+        ></div>
+
+        <div class="relative bg-white rounded-lg max-w-2xl w-full shadow-xl">
+          <div
+            class="px-6 py-4 border-b border-gray-200 flex justify-between items-center"
+          >
+            <h3 class="text-xl font-semibold text-gray-900">
+              Provide Event Feedback
+            </h3>
+            <button
+              onclick="closeFeedbackModal()"
+              class="text-gray-400 hover:text-gray-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="p-6">
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Feedback Category</label
+                >
+                <select
+                  id="feedbackCategory"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                >
+                  <option>Request Changes</option>
+                  <option>Request Additional Information</option>
+                  <option>Scheduling Concerns</option>
+                  <option>Venue/Resource Conflicts</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Detailed Feedback</label
+                >
+                <textarea
+                  id="feedbackText"
+                  rows="6"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                  placeholder="Provide specific feedback and suggestions for the staff member..."
+                ></textarea>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Response Deadline</label
+                >
+                <input
+                  type="date"
+                  id="responseDeadline"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                />
+              </div>
+            </div>
+            <div class="mt-6 flex justify-end space-x-3">
+              <button
+                onclick="closeFeedbackModal()"
+                class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+              >
+                Cancel
+              </button>
+              <button
+                onclick="sendFeedback()"
+                class="px-4 py-2 bg-accent text-white rounded-md hover:bg-yellow-600"
+              >
+                Send Feedback
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Sidebar toggle functionality
+      const sidebar = document.getElementById("sidebar");
+      const openSidebar = document.getElementById("openSidebar");
+      const closeSidebar = document.getElementById("closeSidebar");
+      const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+      function showSidebar() {
+        sidebar.classList.remove("-translate-x-full");
+        sidebarOverlay.classList.remove("hidden");
+        document.body.style.overflow = 'hidden';
+      }
+
+      function hideSidebar() {
+        sidebar.classList.add("-translate-x-full");
+        sidebarOverlay.classList.add("hidden");
+        document.body.style.overflow = '';
+      }
+
+      openSidebar?.addEventListener("click", showSidebar);
+      closeSidebar?.addEventListener("click", hideSidebar);
+      sidebarOverlay?.addEventListener("click", hideSidebar);
+
+      // Close sidebar when clicking outside on mobile
+      document.addEventListener('click', function(event) {
+        if (window.innerWidth < 1024 && !sidebar.classList.contains('-translate-x-full') && 
+            !sidebar.contains(event.target) && !openSidebar?.contains(event.target)) {
+          hideSidebar();
+        }
+      });
+
+      // Dropdown functionality
+      function toggleDropdown(dropdownId) {
+        const menu = document.getElementById(dropdownId + "-menu");
+        const arrow = document.getElementById(dropdownId + "-arrow");
+
+        if (menu && arrow) {
+          menu.classList.toggle("hidden");
+          arrow.classList.toggle("rotate-180");
+        }
+      }
+
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        if (menu) {
+          menu.classList.toggle("hidden");
+        }
+      }
+
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
+        }
+      }
+
+      function approveAndPublishEvent(eventId) {
+        if (
+          confirm(
+            "Are you sure you want to approve and publish this event? It will become immediately visible to users for registration."
+          )
+        ) {
+          alert(
+            `Event #${eventId} has been approved and published successfully! Email notification sent to staff member.`
+          );
+          window.location.href = "approve-events.html";
+        }
+      }
+
+      function requestEventChanges(eventId) {
+        document.getElementById("feedbackModal").classList.remove("hidden");
+        window.currentEventId = eventId;
+      }
+
+      function closeFeedbackModal() {
+        document.getElementById("feedbackModal").classList.add("hidden");
+        document.getElementById("feedbackText").value = "";
+        document.getElementById("responseDeadline").value = "";
+      }
+
+      function sendFeedback() {
+        const category = document.getElementById("feedbackCategory").value;
+        const text = document.getElementById("feedbackText").value;
+        const deadline = document.getElementById("responseDeadline").value;
+
+        if (!text.trim()) {
+          alert("Please provide detailed feedback.");
+          return;
+        }
+
+        alert(
+          `Feedback sent for event #${window.currentEventId}!\nCategory: ${category}\nDeadline: ${deadline}\n\nStaff member will receive notification and can revise their submission.`
+        );
+        closeFeedbackModal();
+        window.location.href = "approve-events.html";
+      }
+
+      function rejectEvent(eventId) {
+        const reason = prompt(
+          "Please provide a detailed reason for rejection:"
+        );
+        if (reason && reason.trim()) {
+          if (
+            confirm(
+              `Reject event #${eventId}? Staff member will be notified with your reason.`
+            )
+          ) {
+            alert(
+              `Event #${eventId} has been rejected.\nReason: ${reason}\n\nRejection notice sent to staff member.`
+            );
+            window.location.href = "approve-events.html";
+          }
+        }
+      }
+
+      // Close modal when clicking outside
+      document
+        .getElementById("feedbackModal")
+        ?.addEventListener("click", function (e) {
+          if (e.target === this) {
+            closeFeedbackModal();
+          }
+        });
+
+      // Close user menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const menu = document.getElementById("userMenu");
+        const button = event.target.closest("button[onclick='toggleUserMenu()']");
+
+        if (menu && !button) {
+          menu.classList.add("hidden");
+        }
+      });
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", function () {
+        // Keep approvals dropdown open
+        const approvalsMenu = document.getElementById("approvals-menu");
+        const approvalsArrow = document.getElementById("approvals-arrow");
+        if (approvalsMenu && approvalsArrow) {
+          approvalsMenu.classList.remove("hidden");
+          approvalsArrow.classList.add("rotate-180");
+        }
+
+        // Set default deadline
+        const deadline = document.getElementById("responseDeadline");
+        if (deadline) {
+          const date = new Date();
+          date.setDate(date.getDate() + 7);
+          deadline.value = date.toISOString().split("T")[0];
+        }
+
+        // Ensure proper scrolling
+        if (window.innerWidth >= 1024) {
+          document.body.style.overflow = 'unset';
+        }
+      });
+
+      // Handle window resize
+      window.addEventListener('resize', function() {
+        if (window.innerWidth >= 1024) {
+          hideSidebar();
+          document.body.style.overflow = 'unset';
+        }
+      });
+    </script>
+  </body>
+</html>
