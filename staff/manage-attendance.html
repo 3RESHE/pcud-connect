@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Attendance - PCU-DASMA Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E40AF',
+                        secondary: '#3B82F6',
+                        accent: '#F59E0B',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 font-sans min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="staff-dashboard.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
+                        <a href="events.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">Events</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'%3E%3C/svg%3E" alt="Profile">
+                        </button>
+                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                            <div class="py-1">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Staff Profile</a>
+                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <!-- Back Button -->
+        <div class="mb-6">
+            <a href="view-ongoing-event-details.html" class="inline-flex items-center text-sm text-gray-600 hover:text-primary">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Event Details
+            </a>
+        </div>
+
+        <!-- Page Header -->
+        <div class="mb-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2 flex items-center">
+                        Manage Attendance
+                        <span class="ml-3 px-3 py-1 bg-orange-100 text-orange-800 text-sm font-medium rounded-full animate-pulse">Event Live</span>
+                    </h1>
+                    <p class="text-gray-600">AI in Education Seminar - November 5, 2025 • 9:00 AM - 12:00 PM</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
+            <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500 mb-1">Pre-Registered</p>
+                        <p class="text-3xl font-bold text-gray-900" id="preRegisteredCount">82</p>
+                    </div>
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500 mb-1">Checked In</p>
+                        <p class="text-3xl font-bold text-green-600" id="checkedInCount">45</p>
+                    </div>
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500 mb-1">Not Yet Checked</p>
+                        <p class="text-3xl font-bold text-gray-600" id="notCheckedCount">37</p>
+                    </div>
+                    <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500 mb-1">Walk-ins</p>
+                        <p class="text-3xl font-bold text-purple-600" id="walkinCount">8</p>
+                    </div>
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500 mb-1">Total Present</p>
+                        <p class="text-3xl font-bold text-orange-600" id="totalPresentCount">53</p>
+                    </div>
+                    <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Bar -->
+        <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 mb-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div class="flex-1">
+                    <div class="relative">
+                        <input type="text" id="searchInput" onkeyup="searchAttendance()" placeholder="Search by name, student ID, email, or department..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <svg class="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <select id="attendanceFilter" onchange="filterByAttendance()" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <option value="all">All Participants</option>
+                        <option value="checked-in">Checked In</option>
+                        <option value="not-checked">Not Yet Checked</option>
+                        <option value="walk-in">Walk-ins Only</option>
+                    </select>
+                    <button onclick="addWalkin()" class="px-4 py-2 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                        </svg>
+                        Add Walk-in
+                    </button>
+                    <button onclick="exportAttendance()" class="px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Export
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Attendance Table -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full" id="attendanceTable">
+                    <thead class="bg-gray-50 border-b border-gray-200">
+                        <tr>
+                            <th class="px-6 py-4 text-left">
+                                <input type="checkbox" id="selectAll" onclick="toggleSelectAll()" class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                            </th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Participant Info</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Department</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Year Level</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Type</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Attendance Status</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Check-in Time</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <!-- Row 1 - Checked In -->
+                        <tr class="hover:bg-gray-50 attendance-row" data-status="checked-in">
+                            <td class="px-6 py-4">
+                                <input type="checkbox" class="row-checkbox w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-blue-600 font-semibold text-sm">JD</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900">Juan Dela Cruz</p>
+                                        <p class="text-sm text-gray-500">2021-12345</p>
+                                        <p class="text-xs text-gray-400">juan.delacruz@pcu.edu.ph</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-900">College of Informatics</td>
+                            <td class="px-6 py-4 text-sm text-gray-900">4th Year</td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Pre-Registered</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <button onclick="toggleAttendance(this, 1)" class="px-4 py-2 bg-green-100 text-green-800 rounded-lg font-medium hover:bg-green-200 flex items-center attendance-btn" data-status="checked-in">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    Checked In
+                                </button>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-500">10:15 AM</td>
+                            <td class="px-6 py-4">
+                                <button onclick="viewParticipantDetails(1)" class="text-blue-600 hover:text-blue-800" title="View Details">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Row 2 - Not Checked -->
+                        <tr class="hover:bg-gray-50 attendance-row" data-status="not-checked">
+                            <td class="px-6 py-4">
+                                <input type="checkbox" class="row-checkbox w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-purple-600 font-semibold text-sm">MS</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900">Maria Santos</p>
+                                        <p class="text-sm text-gray-500">2021-12346</p>
+                                        <p class="text-xs text-gray-400">maria.santos@pcu.edu.ph</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-900">College of Engineering & Technology</td>
+                            <td class="px-6 py-4 text-sm text-gray-900">3rd Year</td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Pre-Registered</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <button onclick="toggleAttendance(this, 2)" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 flex items-center attendance-btn" data-status="not-checked">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    Mark Present
+                                </button>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-400">-</td>
+                            <td class="px-6 py-4">
+                                <button onclick="viewParticipantDetails(2)" class="text-blue-600 hover:text-blue-800" title="View Details">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Row 3 - Walk-in Checked In -->
+                        <tr class="hover:bg-gray-50 attendance-row" data-status="walk-in">
+                            <td class="px-6 py-4">
+                                <input type="checkbox" class="row-checkbox w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-green-600 font-semibold text-sm">JR</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900">Jose Reyes</p>
+                                        <p class="text-sm text-gray-500">2022-54321</p>
+                                        <p class="text-xs text-gray-400">jose.reyes@pcu.edu.ph</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-900">College of Informatics</td>
+                            <td class="px-6 py-4 text-sm text-gray-900">3rd Year</td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">Walk-in</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <button onclick="toggleAttendance(this, 3)" class="px-4 py-2 bg-green-100 text-green-800 rounded-lg font-medium hover:bg-green-200 flex items-center attendance-btn" data-status="checked-in">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    Checked In
+                                </button>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-500">10:30 AM</td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-2">
+                                    <button onclick="viewParticipantDetails(3)" class="text-blue-600 hover:text-blue-800" title="View Details">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                    </button>
+                                    <button onclick="removeWalkin(3)" class="text-red-600 hover:text-red-800" title="Remove Walk-in">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Row 4 - Not Checked -->
+                        <tr class="hover:bg-gray-50 attendance-row" data-status="not-checked">
+                            <td class="px-6 py-4">
+                                <input type="checkbox" class="row-checkbox w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-red-600 font-semibold text-sm">AC</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900">Anna Cruz</p>
+                                        <p class="text-sm text-gray-500">2021-12348</p>
+                                        <p class="text-xs text-gray-400">anna.cruz@pcu.edu.ph</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-900">College of Informatics</td>
+                            <td class="px-6 py-4 text-sm text-gray-900">3rd Year</td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Pre-Registered</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <button onclick="toggleAttendance(this, 4)" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 flex items-center attendance-btn" data-status="not-checked">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    Mark Present
+                                </button>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-400">-</td>
+                            <td class="px-6 py-4">
+                                <button onclick="viewParticipantDetails(4)" class="text-blue-600 hover:text-blue-800" title="View Details">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Row 5 - Checked In -->
+                        <tr class="hover:bg-gray-50 attendance-row" data-status="checked-in">
+                            <td class="px-6 py-4">
+                                <input type="checkbox" class="row-checkbox w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-indigo-600 font-semibold text-sm">PR</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-gray-900">Pedro Ramos</p>
+                                        <p class="text-sm text-gray-500">2021-12349</p>
+                                        <p class="text-xs text-gray-400">pedro.ramos@pcu.edu.ph</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-900">College of Engineering & Technology</td>
+                            <td class="px-6 py-4 text-sm text-gray-900">4th Year</td>
+                            <td class="px-6 py-4">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Pre-Registered</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <button onclick="toggleAttendance(this, 5)" class="px-4 py-2 bg-green-100 text-green-800 rounded-lg font-medium hover:bg-green-200 flex items-center attendance-btn" data-status="checked-in">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    Checked In
+                                </button>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-500">9:45 AM</td>
+                            <td class="px-6 py-4">
+                                <button onclick="viewParticipantDetails(5)" class="text-blue-600 hover:text-blue-800" title="View Details">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="bg-gray-50 px-6 py-4 border-t border-gray-200">
+                <div class="flex items-center justify-between">
+                    <div class="text-sm text-gray-700">
+                        Showing <span class="font-semibold">1</span> to <span class="font-semibold">5</span> of <span class="font-semibold">90</span> participants
+                    </div>
+                    <div class="flex gap-2">
+                        <button class="px-3 py-1 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed" disabled>Previous</button>
+                        <button class="px-3 py-1 bg-primary text-white rounded-lg text-sm">1</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-100">2</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-100">3</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-100">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Walk-in Modal -->
+    <div id="walkinModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+                <h2 class="text-xl font-bold text-gray-900">Add Walk-in Participant</h2>
+                <button onclick="closeWalkinModal()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <form id="walkinForm" class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                            <input type="text" id="walkinName" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Juan Dela Cruz">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Student ID *</label>
+                            <input type="text" id="walkinStudentId" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="2021-12345">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                            <input type="email" id="walkinEmail" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="student@pcu.edu.ph">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone (Optional)</label>
+                            <input type="tel" id="walkinPhone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="+63 912 345 6789">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Department *</label>
+                            <select id="walkinDepartment" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="">Select Department</option>
+                                <option value="College of Informatics">College of Informatics</option>
+                                <option value="College of Engineering & Technology">College of Engineering & Technology</option>
+                                <option value="College of Business">College of Business</option>
+                                <option value="College of Arts & Sciences">College of Arts & Sciences</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Year Level *</label>
+                            <select id="walkinYearLevel" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="">Select Year Level</option>
+                                <option value="1st Year">1st Year</option>
+                                <option value="2nd Year">2nd Year</option>
+                                <option value="3rd Year">3rd Year</option>
+                                <option value="4th Year">4th Year</option>
+                            </select>
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Notes (Optional)</label>
+                            <textarea id="walkinNotes" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Any special requirements or notes..."></textarea>
+                        </div>
+                    </div>
+                    <div class="flex justify-end gap-3 pt-4">
+                        <button type="button" onclick="closeWalkinModal()" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Cancel</button>
+                        <button type="submit" class="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">Add & Check In</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Participant Details Modal -->
+    <div id="detailsModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+                <h2 class="text-xl font-bold text-gray-900">Participant Details</h2>
+                <button onclick="closeDetailsModal()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="space-y-6">
+                    <div class="flex items-center">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-blue-600 font-bold text-xl">JD</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Juan Dela Cruz</h3>
+                            <p class="text-gray-600">Student ID: 2021-12345</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-sm text-gray-500">Email</p>
+                            <p class="font-medium text-gray-900">juan.delacruz@pcu.edu.ph</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Phone</p>
+                            <p class="font-medium text-gray-900">+63 912 345 6789</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Department</p>
+                            <p class="font-medium text-gray-900">College of Informatics</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Year Level</p>
+                            <p class="font-medium text-gray-900">4th Year</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Registration Type</p>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Pre-Registered</span>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Attendance Status</p>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Checked In</span>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Check-in Time</p>
+                            <p class="font-medium text-gray-900">10:15 AM</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Registration Date</p>
+                            <p class="font-medium text-gray-900">October 14, 2025</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-end">
+                    <button onclick="closeDetailsModal()" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleUserMenu() {
+            const menu = document.getElementById('userMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '../login.html';
+            }
+        }
+
+        function toggleSelectAll() {
+            const selectAll = document.getElementById('selectAll');
+            const checkboxes = document.querySelectorAll('.row-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = selectAll.checked;
+            });
+        }
+
+        function searchAttendance() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('.attendance-row');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(input)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function filterByAttendance() {
+            const filter = document.getElementById('attendanceFilter').value;
+            const rows = document.querySelectorAll('.attendance-row');
+            
+            rows.forEach(row => {
+                const status = row.getAttribute('data-status');
+                if (filter === 'all' || status === filter) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function toggleAttendance(button, id) {
+            const currentStatus = button.getAttribute('data-status');
+            const row = button.closest('tr');
+            const timeCell = row.cells[6]; // Check-in time column
+            
+            if (currentStatus === 'not-checked') {
+                // Mark as checked in
+                button.setAttribute('data-status', 'checked-in');
+                button.className = 'px-4 py-2 bg-green-100 text-green-800 rounded-lg font-medium hover:bg-green-200 flex items-center attendance-btn';
+                button.innerHTML = `
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    Checked In
+                `;
+                
+                // Set check-in time
+                const now = new Date();
+                timeCell.textContent = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+                timeCell.className = 'px-6 py-4 text-sm text-gray-500';
+                
+                row.setAttribute('data-status', 'checked-in');
+                
+                // Update counts
+                updateCounts();
+                
+                alert(`Participant checked in successfully at ${timeCell.textContent}`);
+            } else {
+                // Undo check-in
+                if (confirm('Undo check-in for this participant?')) {
+                    button.setAttribute('data-status', 'not-checked');
+                    button.className = 'px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 flex items-center attendance-btn';
+                    button.innerHTML = `
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Mark Present
+                    `;
+                    
+                    timeCell.textContent = '-';
+                    timeCell.className = 'px-6 py-4 text-sm text-gray-400';
+                    
+                    row.setAttribute('data-status', 'not-checked');
+                    
+                    // Update counts
+                    updateCounts();
+                }
+            }
+        }
+
+        function updateCounts() {
+            const rows = document.querySelectorAll('.attendance-row');
+            let checkedIn = 0;
+            let notChecked = 0;
+            let walkins = 0;
+            
+            rows.forEach(row => {
+                const status = row.getAttribute('data-status');
+                const type = row.querySelector('td:nth-child(5) span').textContent;
+                
+                if (status === 'checked-in') {
+                    checkedIn++;
+                }
+                if (status === 'not-checked') {
+                    notChecked++;
+                }
+                if (type === 'Walk-in') {
+                    walkins++;
+                }
+            });
+            
+            document.getElementById('checkedInCount').textContent = checkedIn;
+            document.getElementById('notCheckedCount').textContent = notChecked;
+            document.getElementById('walkinCount').textContent = walkins;
+            document.getElementById('totalPresentCount').textContent = checkedIn;
+        }
+
+        function addWalkin() {
+            document.getElementById('walkinModal').classList.remove('hidden');
+        }
+
+        function closeWalkinModal() {
+            document.getElementById('walkinModal').classList.add('hidden');
+            document.getElementById('walkinForm').reset();
+        }
+
+        function viewParticipantDetails(id) {
+            document.getElementById('detailsModal').classList.remove('hidden');
+        }
+
+        function closeDetailsModal() {
+            document.getElementById('detailsModal').classList.add('hidden');
+        }
+
+        function removeWalkin(id) {
+            if (confirm('Remove this walk-in participant from the attendance list?')) {
+                alert('Walk-in participant removed successfully.');
+                updateCounts();
+            }
+        }
+
+        function exportAttendance() {
+            alert('Exporting current attendance...\nFile: attendance-ai-seminar-live-nov2025.xlsx\n\nIncluding:\n- All checked-in participants\n- Walk-in details\n- Check-in timestamps');
+        }
+
+        // Handle walk-in form submission
+        document.getElementById('walkinForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('walkinName').value;
+            const studentId = document.getElementById('walkinStudentId').value;
+            
+            alert(`Walk-in participant added successfully!\n\nName: ${name}\nStudent ID: ${studentId}\n\nParticipant has been automatically checked in.`);
+            
+            closeWalkinModal();
+            updateCounts();
+        });
+
+        // Close modals when clicking outside
+        document.getElementById('walkinModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeWalkinModal();
+            }
+        });
+
+        document.getElementById('detailsModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeDetailsModal();
+            }
+        });
+
+        // Close user menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('userMenu');
+            const button = event.target.closest('button');
+            if (!button || button.onclick !== toggleUserMenu) {
+                menu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

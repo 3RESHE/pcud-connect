@@ -360,6 +360,7 @@
                       <select
                         id="uni_platform"
                         name="uni_platform"
+                        onchange="toggleCustomPlatform()"
                         class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
                       >
                         <option value="">Select Platform</option>
@@ -388,6 +389,21 @@
                         placeholder="Maximum number of virtual attendees"
                       />
                     </div>
+                  </div>
+                  <div id="uni_custom_platform_field" class="hidden mt-4">
+                    <label
+                      for="uni_custom_platform"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Custom Platform <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="uni_custom_platform"
+                      name="uni_custom_platform"
+                      class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                      placeholder="Specify the custom platform"
+                    />
                   </div>
                   <div class="mt-6">
                     <label
@@ -550,7 +566,7 @@
                   >
                     <div class="flex justify-between items-center mb-3">
                       <label class="block text-sm font-medium text-gray-700"
-                        >Select Departments</label
+                        >Select Departments <span class="text-red-500">*</span></label
                       >
                       <label class="flex items-center">
                         <input
@@ -691,7 +707,7 @@
                     class="hidden mt-4 p-4 bg-purple-50 border border-purple-200 rounded-lg"
                   >
                     <label class="block text-sm font-medium text-gray-700 mb-3"
-                      >Select Year Levels</label
+                      >Select Year Levels <span class="text-red-500">*</span></label
                     >
                     <div class="grid grid-cols-2 gap-2">
                       <label class="flex items-center">
@@ -699,7 +715,7 @@
                           type="checkbox"
                           name="uni_yearlevels"
                           value="1styear"
-                          class="rounded border-gray-300 text-primary focus:ring-primary"
+                          class="uni-yearlevel-checkbox rounded border-gray-300 text-primary focus:ring-primary"
                         />
                         <span class="ml-2 text-sm text-gray-700">1st Year</span>
                       </label>
@@ -709,7 +725,7 @@
                           type="checkbox"
                           name="uni_yearlevels"
                           value="2ndyear"
-                          class="rounded border-gray-300 text-primary focus:ring-primary"
+                          class="uni-yearlevel-checkbox rounded border-gray-300 text-primary focus:ring-primary"
                         />
                         <span class="ml-2 text-sm text-gray-700">2nd Year</span>
                       </label>
@@ -719,7 +735,7 @@
                           type="checkbox"
                           name="uni_yearlevels"
                           value="3rdyear"
-                          class="rounded border-gray-300 text-primary focus:ring-primary"
+                          class="uni-yearlevel-checkbox rounded border-gray-300 text-primary focus:ring-primary"
                         />
                         <span class="ml-2 text-sm text-gray-700">3rd Year</span>
                       </label>
@@ -729,7 +745,7 @@
                           type="checkbox"
                           name="uni_yearlevels"
                           value="4thyear"
-                          class="rounded border-gray-300 text-primary focus:ring-primary"
+                          class="uni-yearlevel-checkbox rounded border-gray-300 text-primary focus:ring-primary"
                         />
                         <span class="ml-2 text-sm text-gray-700">4th Year</span>
                       </label>
@@ -986,6 +1002,13 @@
         hybrid: "Hybrid",
       };
 
+      const audienceLabels = {
+        allstudents: "All Students",
+        specificyearlevels: "Specific Year Levels",
+        alumni: "Alumni",
+        openforall: "Open for All",
+      };
+
       function toggleUserMenu() {
         const menu = document.getElementById("userMenu");
         menu.classList.toggle("hidden");
@@ -1032,6 +1055,22 @@
           uniVenueCapacity.required = true;
           uniPlatform.required = false;
         }
+
+        toggleCustomPlatform();
+      }
+
+      function toggleCustomPlatform() {
+        const platform = document.getElementById("uni_platform").value;
+        const customField = document.getElementById("uni_custom_platform_field");
+        const customInput = document.getElementById("uni_custom_platform");
+
+        if (platform === "other") {
+          customField.classList.remove("hidden");
+          customInput.required = true;
+        } else {
+          customField.classList.add("hidden");
+          customInput.required = false;
+        }
       }
 
       function toggleUniEndDate() {
@@ -1073,6 +1112,9 @@
         const yearLevelSelection = document.getElementById(
           "uni_yearlevelselection"
         );
+        const yearLevelCheckboxes = document.querySelectorAll(
+          ".uni-yearlevel-checkbox"
+        );
 
         if (
           selectedAudience === "allstudents" ||
@@ -1083,13 +1125,16 @@
 
           if (selectedAudience === "specificyearlevels") {
             yearLevelSelection.classList.remove("hidden");
+            yearLevelCheckboxes.forEach((cb) => (cb.required = true));
           } else {
             yearLevelSelection.classList.add("hidden");
+            yearLevelCheckboxes.forEach((cb) => (cb.required = false));
           }
         } else {
           departmentSelection.classList.add("hidden");
           yearLevelSelection.classList.add("hidden");
           updateUniDepartmentValidation(false);
+          yearLevelCheckboxes.forEach((cb) => (cb.required = false));
         }
       }
 
@@ -1139,32 +1184,24 @@
       }
 
       function previewEvent() {
-        let title,
-          description,
-          formatValue,
-          eventDate,
-          endDateValue,
-          startTime,
-          endTime,
-          venueName,
-          maxAttendees;
-        let imageHtml = eventImageURL
-          ? `<img src="${eventImageURL}" alt="Event Banner" class="w-full h-64 object-cover rounded-lg mb-4">`
-          : "";
-        let dateDisplay = "";
-
-        title = document.getElementById("uni_event_title").value;
-        description = document.getElementById("uni_event_description").value;
-        formatValue = document.getElementById("uni_event_format").value;
-        eventDate = document.getElementById("uni_event_date").value;
+        const title = document.getElementById("uni_event_title").value;
+        const description = document.getElementById("uni_event_description").value;
+        const formatValue = document.getElementById("uni_event_format").value;
+        const eventDate = document.getElementById("uni_event_date").value;
         const multiDay = document.getElementById("uni_multi_day").checked;
-        endDateValue = document.getElementById("uni_end_date").value;
-        startTime = document.getElementById("uni_start_time").value;
-        endTime = document.getElementById("uni_end_time").value;
-        venueName = document.getElementById("uni_venue_name").value;
-        maxAttendees =
+        const endDateValue = document.getElementById("uni_end_date").value;
+        const startTime = document.getElementById("uni_start_time").value;
+        const endTime = document.getElementById("uni_end_time").value;
+        const venueName = document.getElementById("uni_venue_name").value;
+        const maxAttendees =
           document.getElementById("uni_max_attendees").value || "Unlimited";
+        const registrationRequired = document.getElementById("uni_registration_required").checked;
+        const registrationDeadline = document.getElementById("uni_registration_deadline").value;
+        const platform = document.getElementById("uni_platform").value;
+        const customPlatform = document.getElementById("uni_custom_platform")?.value || "";
+        const platformDisplay = platform === "other" ? customPlatform : platform;
 
+        // Basic required fields check
         if (
           !title ||
           !description ||
@@ -1182,7 +1219,17 @@
           return;
         }
 
-        // Check target audience selection for university events
+        if ((formatValue === "virtual" || formatValue === "hybrid") && !platform) {
+          alert("Please select a platform for virtual or hybrid events.");
+          return;
+        }
+
+        if (platform === "other" && !customPlatform) {
+          alert("Please specify the custom platform.");
+          return;
+        }
+
+        // Target audience validation
         const targetAudience = document.querySelector(
           'input[name="uni_targetaudience"]:checked'
         );
@@ -1191,9 +1238,10 @@
           return;
         }
 
+        const selectedAudience = targetAudience.value;
         if (
-          targetAudience.value === "allstudents" ||
-          targetAudience.value === "specificyearlevels"
+          selectedAudience === "allstudents" ||
+          selectedAudience === "specificyearlevels"
         ) {
           const selectedDepartments = document.querySelectorAll(
             'input[name="uni_departments"]:checked'
@@ -1206,9 +1254,51 @@
           }
         }
 
-        dateDisplay = new Date(eventDate).toLocaleDateString();
+        if (selectedAudience === "specificyearlevels") {
+          const selectedYearLevels = document.querySelectorAll(
+            'input[name="uni_yearlevels"]:checked'
+          );
+          if (selectedYearLevels.length === 0) {
+            alert(
+              "Please select at least one year level for specific year levels audience."
+            );
+            return;
+          }
+        }
+
+        // Optional: Check registration deadline logic
+        if (registrationRequired && registrationDeadline && new Date(registrationDeadline) >= new Date(eventDate)) {
+          alert("Warning: Registration deadline should be before the event date.");
+          // Not blocking, just alerting
+        }
+
+        // Build preview content
+        let imageHtml = eventImageURL
+          ? `<img src="${eventImageURL}" alt="Event Banner" class="w-full h-64 object-cover rounded-lg mb-4">`
+          : "";
+        let dateDisplay = new Date(eventDate).toLocaleDateString();
         if (multiDay && endDateValue) {
           dateDisplay += ` - ${new Date(endDateValue).toLocaleDateString()}`;
+        }
+
+        // Gather target audience details
+        let audienceHtml = `<h3 class="font-semibold text-gray-900 mb-2">Target Audience</h3><p class="text-gray-700">${audienceLabels[selectedAudience] || selectedAudience}</p>`;
+        if (
+          selectedAudience === "allstudents" ||
+          selectedAudience === "specificyearlevels"
+        ) {
+          const selectedDepartments = Array.from(document.querySelectorAll('input[name="uni_departments"]:checked')).map(cb => cb.value.replace(/collegeof/g, "College of ").replace(/and/g, " and "));
+          audienceHtml += `<ul class="list-disc ml-5 text-gray-700"><li>${selectedDepartments.join("</li><li>")}</li></ul>`;
+        }
+        if (selectedAudience === "specificyearlevels") {
+          const selectedYearLevels = Array.from(document.querySelectorAll('input[name="uni_yearlevels"]:checked')).map(cb => cb.value.replace(/year/g, " Year"));
+          audienceHtml += `<ul class="list-disc ml-5 text-gray-700"><li>${selectedYearLevels.join("</li><li>")}</li></ul>`;
+        }
+
+        // Platform in venue if virtual/hybrid
+        let venueDisplay = venueName || "Virtual Event";
+        if (formatValue === "virtual" || formatValue === "hybrid") {
+          venueDisplay += ` (Platform: ${platformDisplay || platform})`;
         }
 
         const previewContent = `
@@ -1225,14 +1315,16 @@
                         <h2 class="text-2xl font-bold text-gray-900 mb-2">${title}</h2>
                         <p class="text-lg text-gray-600 mb-2">Organized by PCU-DASMA</p>
                         <p class="text-gray-600 mb-4">${dateDisplay} • ${startTime} - ${endTime}</p>
-                        <p class="text-gray-600 mb-4"><strong>Venue:</strong> ${
-                          venueName || "Virtual Event"
-                        }</p>
+                        <p class="text-gray-600 mb-4"><strong>Venue:</strong> ${venueDisplay}</p>
                     </div>
                    
                     <div>
                         <h3 class="font-semibold text-gray-900 mb-2">About This Event</h3>
                         <p class="text-gray-700 whitespace-pre-wrap">${description}</p>
+                    </div>
+
+                    <div>
+                        ${audienceHtml}
                     </div>
                    
                     <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">

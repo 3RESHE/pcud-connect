@@ -1,77 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pending Event - PCU-DASMA Connect</title>
-    <!-- Use compiled Tailwind CSS in production for better performance -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pending Event Details - PCU-DASMA Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: "#1E40AF",
-                        secondary: "#3B82F6",
-                        accent: "#F59E0B",
-                    },
-                },
-            },
-        };
+                        primary: '#1E40AF',
+                        secondary: '#3B82F6',
+                        accent: '#F59E0B',
+                    }
+                }
+            }
+        }
     </script>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gradient-to-br from-gray-50 to-gray-100 font-sans min-h-screen">
     <!-- Navigation -->
-    <nav class="bg-white shadow-sm border-b">
+    <nav class="bg-white shadow-sm border-b sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
-                    <button
-                        id="mobileMenuButton"
-                        class="md:hidden ml-4 focus:outline-none focus:ring-2 focus:ring-primary"
-                        aria-label="Toggle navigation menu"
-                        aria-expanded="false"
-                        onclick="toggleMobileMenu()"
-                    >
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
-                    </button>
-                    <div
-                        id="mobileMenu"
-                        class="hidden md:flex md:ml-10 md:space-x-8 flex-col md:flex-row absolute md:static top-16 left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none p-4 md:p-0"
-                    >
-                        <a href="dashboard.html" class="text-gray-700 hover:text-primary px-1 py-2 text-sm font-medium transition-colors duration-200">Dashboard</a>
-                        <a href="view-pending-event-details.html" class="text-primary border-b-2 border-primary px-1 py-2 text-sm font-medium transition-colors duration-200">Event Approvals</a>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="dashboard.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
+                        <a href="events.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">Events</a>
                     </div>
                 </div>
                 <div class="flex items-center space-x-4">
                     <div class="relative">
-                        <button
-                            id="userMenuButton"
-                            onclick="toggleUserMenu()"
-                            class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
-                            aria-label="Toggle user menu"
-                            aria-expanded="false"
-                            aria-haspopup="true"
-                        >
-                            <img
-                                class="h-8 w-8 rounded-full"
-                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
-                                alt="User profile"
-                            />
+                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'%3E%3C/svg%3E" alt="Profile">
                         </button>
-                        <div
-                            id="userMenu"
-                            class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-                            role="menu"
-                            aria-labelledby="userMenuButton"
-                            tabindex="-1"
-                        >
+                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                             <div class="py-1">
-                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Admin Profile</a>
-                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Logout</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Staff Profile</a>
+                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
                             </div>
                         </div>
                     </div>
@@ -81,521 +49,369 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <!-- Header -->
-        <div class="mb-8">
-            <div class="flex items-center mb-4">
-                <a href="events.html" class="text-gray-400 hover:text-gray-600 mr-4 transition-colors duration-200" aria-label="Back to event approvals">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <title>Back</title>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                    </svg>
-                </a>
-                <div class="flex items-center space-x-4">
-                    <div>
-                        <h1 class="text-3xl font-bold text-gray-900">Pending Event</h1>
-                        <p class="text-gray-600">Review pending event submission</p>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">Pending</span>
-                        <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">Community Event</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pending Status Alert -->
-        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-8">
-            <div class="flex items-start">
-                <svg class="w-5 h-5 text-yellow-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <title>Pending review</title>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <!-- Back Button -->
+        <div class="mb-6">
+            <a href="events.html" class="inline-flex items-center text-sm text-gray-600 hover:text-primary">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
-                <div>
-                    <h4 class="font-semibold text-yellow-800">Awaiting Admin Review</h4>
-                    <p class="text-sm text-yellow-700">This event was submitted on October 12, 2025, at 8:30 PM and is pending administrative approval. Please review the content and take appropriate action.</p>
-                </div>
-            </div>
+                Back to My Events
+            </a>
         </div>
 
-        <!-- Event Overview -->
-        <div class="bg-white shadow rounded-lg mb-8">
-            <div class="px-6 py-5 border-b border-gray-200">
-                <h2 class="text-xl font-semibold text-gray-900">Great Dasmarinas Bay Clean-up Drive</h2>
-                <div class="mt-2 flex items-center text-sm text-gray-600 space-x-6">
-                    <div class="flex items-center">
-                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <title>Organizer</title>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                        </svg>
-                        By: Clean Seas Alliance
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <title>Submission date</title>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                        </svg>
-                        Submitted: October 12, 2025 - 8:30 PM
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <title>Category</title>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2M7 4h10M7 4v16a2 2 0 002 2h6a2 2 0 002-2V4M11 6v2M11 10v2"></path>
-                        </svg>
-                        Category: Environmental Event
-                    </div>
+        <!-- Alert Banner -->
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 rounded-r-lg">
+            <div class="flex items-start">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
                 </div>
-            </div>
-
-            <div class="px-6 py-5">
-                <div class="mb-6">
-                    <h3 class="text-lg font-medium text-gray-900 mb-3">Event Summary</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        The coastal clean-up event aims to gather volunteers for cleaning 2km of shoreline, promoting environmental awareness and community partnership.
+                <div class="ml-3 flex-1">
+                    <h3 class="text-sm font-medium text-yellow-800">Event Submitted for Review</h3>
+                    <p class="mt-2 text-sm text-yellow-700">
+                        This event was submitted on October 12, 2025 and is currently under administrator review. Expected review completion by October 19, 2025.
                     </p>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                    <div>
-                        <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Event Date</h3>
-                        <p class="mt-1 text-lg text-gray-900">October 20, 2025</p>
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Location</h3>
-                        <p class="mt-1 text-lg text-gray-900">Dasmarinas Bay</p>
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Expected Attendees</h3>
-                        <p class="mt-1 text-lg text-gray-900">300</p>
-                    </div>
-                </div>
-
-                <div class="mb-6">
-                    <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Tags</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-2 py-1 bg-emerald-100 text-emerald-800 text-xs rounded">Environmental</span>
-                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Clean-up</span>
-                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Community</span>
-                        <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">Partnership</span>
-                    </div>
-                </div>
             </div>
         </div>
 
-        <!-- Submission History -->
-        <div class="bg-white shadow rounded-lg p-6 mb-8">
-            <h2 class="text-xl font-semibold text-gray-900 mb-4">Submission History</h2>
-            <div class="space-y-4">
-                <div>
-                    <p class="text-sm font-medium text-gray-900">October 12, 2025 - 8:30 PM</p>
-                    <p class="text-sm text-gray-600"><strong>Initial Submission:</strong> Event submitted for review by Clean Seas Alliance.</p>
+        <!-- Event Banner -->
+        <div class="relative bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl overflow-hidden mb-8 shadow-lg border-l-4 border-yellow-500">
+            <div class="absolute inset-0 bg-black opacity-20"></div>
+            <div class="relative px-8 py-16 text-center">
+                <div class="flex justify-center mb-4 space-x-2">
+                    <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">Under Review</span>
+                    <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Virtual</span>
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">Registration Required</span>
                 </div>
+                <h1 class="text-4xl font-bold text-white mb-4">Virtual Tech Career Fair 2025</h1>
+                <p class="text-blue-100 text-lg max-w-3xl mx-auto">
+                    Connect students and alumni with 40+ leading tech companies. Virtual networking sessions, company presentations, and one-on-one interviews.
+                </p>
             </div>
         </div>
 
-        <!-- Two-column Layout -->
+        <!-- Action Buttons -->
+        <div class="mb-8 flex justify-end">
+            <div class="flex space-x-3">
+                <button onclick="withdrawSubmission()" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                    Withdraw Submission
+                </button>
+                <button onclick="checkReviewStatus()" class="px-6 py-2 bg-yellow-600 text-white rounded-lg font-medium hover:bg-yellow-700 flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Check Review Status
+                </button>
+            </div>
+        </div>
+
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Main Content -->
-            <div class="lg:col-span-2 space-y-8">
-                <!-- Event Content -->
-                <div class="bg-white shadow rounded-lg p-6">
-                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Event Details</h2>
-                    <div class="prose max-w-none">
-                        <p class="text-gray-700 mb-4">
-                            The Great Dasmarinas Bay Clean-up Drive is a community event organized in partnership with Clean Seas Alliance to promote environmental stewardship.
-                        </p>
-
-                        <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">Event Objectives</h3>
-                        <p class="text-gray-700 mb-4">
-                            This initiative aims to achieve the following key objectives:
-                        </p>
-                        <ul class="list-disc list-inside text-gray-700 mb-4 space-y-1">
-                            <li>Clean 2km of coastline</li>
-                            <li>Collect and properly dispose of marine waste</li>
-                            <li>Raise awareness about environmental conservation</li>
-                            <li>Foster community partnerships</li>
-                            <li>Engage PCU-DASMA students in service learning</li>
-                        </ul>
-
-                        <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">Schedule</h3>
-                        <p class="text-gray-700 mb-4">
-                            The event will follow this timeline:
-                        </p>
-                        <ul class="list-disc list-inside text-gray-700 mb-4 space-y-1">
-                            <li>8:00 AM - Registration and briefing</li>
-                            <li>9:00 AM - Clean-up activities</li>
-                            <li>12:00 PM - Lunch break</li>
-                            <li>1:00 PM - Educational workshop</li>
-                            <li>3:00 PM - Closing and recognition</li>
-                        </ul>
-
-                        <blockquote class="border-l-4 border-emerald-500 pl-4 italic text-gray-700 mb-4">
-                            "This event is a great opportunity for our students to contribute to environmental protection while building community connections."
-                            <cite class="block text-sm text-gray-600 mt-1">— Event Organizer, Clean Seas Alliance</cite>
-                        </blockquote>
-
-                        <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">Preparation and Requirements</h3>
-                        <p class="text-gray-700 mb-4">
-                            Volunteers are requested to bring sun protection, water bottles, and comfortable clothing. All cleaning materials will be provided on-site.
-                        </p>
-
-                        <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">Expected Impact</h3>
-                        <p class="text-gray-700">
-                            The event is expected to remove several tons of waste from the bay area, educate participants on marine conservation, and strengthen university-community partnerships for future initiatives.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Content Analysis -->
-                <div class="bg-white shadow rounded-lg p-6">
-                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Content Analysis</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Main Content Column -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Event Overview -->
+                <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Event Overview
+                    </h2>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
                         <div>
-                            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Content Quality</h3>
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm text-gray-700">Description Clarity</span>
-                                    <span class="text-sm font-medium text-green-600">Excellent</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm text-gray-700">Schedule Detail</span>
-                                    <span class="text-sm font-medium text-green-600">Good</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm text-gray-700">Fact Verification</span>
-                                    <span class="text-sm font-medium text-green-600">Verified</span>
-                                </div>
-                            </div>
+                            <p class="text-sm text-gray-500">Department</p>
+                            <p class="font-medium text-gray-900">College of Informatics</p>
                         </div>
                         <div>
-                            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Editorial Review</h3>
-                            <div class="space-y-2">
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm text-gray-700">Structure</span>
-                                    <span class="text-sm font-medium text-green-600">Well-organized</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm text-gray-700">Sources</span>
-                                    <span class="text-sm font-medium text-green-600">Cited</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm text-gray-700">Images</span>
-                                    <span class="text-sm font-medium text-green-600">High Quality</span>
-                                </div>
-                            </div>
+                            <p class="text-sm text-gray-500">Submitted Date</p>
+                            <p class="font-medium text-gray-900">October 12, 2025</p>
+                        </div>
+                        <div class="col-span-2">
+                            <p class="text-sm text-gray-500">Event Coordinator</p>
+                            <p class="font-medium text-gray-900">Prof. Maria Santos</p>
                         </div>
                     </div>
-
-                    <div class="mt-6">
-                        <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Editorial Notes</h3>
-                        <div class="bg-green-50 p-4 rounded-lg">
-                            <p class="text-sm text-green-800">
-                                <strong>Recommended for Approval:</strong> This event submission demonstrates excellent planning with clear objectives, proper structure, and compelling community impact. The partnership details align with university values and provide valuable engagement opportunities.
-                            </p>
-                        </div>
+                    <div class="border-t pt-4">
+                        <h3 class="font-semibold text-gray-900 mb-2">Description</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Connect students and alumni with 40+ leading tech companies for a comprehensive virtual career fair experience. The event features virtual networking sessions, company presentations, technical workshops, and one-on-one interview opportunities. Participating companies include major tech firms across software development, cybersecurity, data science, and IT consulting sectors.
+                        </p>
                     </div>
-                </div>
-            </div>
-
-            <!-- Sidebar -->
-            <div class="space-y-6">
-                <!-- Review Actions -->
-                <div class="bg-white shadow rounded-lg p-6">
-                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Review Actions</h2>
-                    <div class="space-y-3">
-                        <button
-                            onclick="approveEvent()"
-                            class="w-full px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
-                        >
-                            Approve & Publish
-                        </button>
-                        <button
-                            onclick="approveOnly()"
-                            class="w-full px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        >
-                            Approve (Don't Publish)
-                        </button>
-                        <button
-                            onclick="requestChanges()"
-                            class="w-full px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                        >
-                            Request Changes
-                        </button>
-                        <button
-                            onclick="rejectEvent()"
-                            class="w-full px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
-                        >
-                            Reject Event
-                        </button>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">#career-development</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">#tech-industry</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">#virtual-event</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">#networking</span>
                     </div>
                 </div>
 
                 <!-- Review Timeline -->
-                <div class="bg-white shadow rounded-lg p-6">
-                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Review Timeline</h2>
-                    <div class="space-y-3">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 w-3 h-3 bg-green-400 rounded-full"></div>
-                            <div class="ml-3">
-                                <p class="text-sm font-medium text-gray-900">Event Submitted</p>
-                                <p class="text-xs text-gray-500">October 12, 2025 - 8:30 PM</p>
+                <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Review Timeline
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <p class="font-semibold text-gray-900">Event Submitted</p>
+                                <p class="text-sm text-gray-500">October 12, 2025 at 9:30 AM</p>
+                                <p class="text-sm text-gray-600 mt-1">Event proposal submitted to administrators for review.</p>
                             </div>
                         </div>
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 w-3 h-3 bg-yellow-400 rounded-full"></div>
-                            <div class="ml-3">
-                                <p class="text-sm font-medium text-gray-900">Pending Admin Review</p>
-                                <p class="text-xs text-gray-500">Current status</p>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center animate-pulse">
+                                    <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <p class="font-semibold text-gray-900">Under Review</p>
+                                <p class="text-sm text-gray-500">In Progress</p>
+                                <p class="text-sm text-gray-600 mt-1">Administrator is currently reviewing your event proposal. Expected completion by October 19, 2025.</p>
                             </div>
                         </div>
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 w-3 h-3 bg-gray-300 rounded-full"></div>
-                            <div class="ml-3">
-                                <p class="text-sm text-gray-500">Awaiting Decision</p>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <p class="font-semibold text-gray-400">Decision Pending</p>
+                                <p class="text-sm text-gray-400">Waiting for administrator decision</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Submission Details -->
-                <div class="bg-white shadow rounded-lg p-6">
-                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Submission Details</h2>
-                    <div class="space-y-3">
-                        <div>
-                            <p class="text-sm font-medium text-gray-900">Submitted By</p>
-                            <p class="text-sm text-gray-600">Clean Seas Alliance</p>
-                            <p class="text-xs text-gray-500">contact@cleanseas.org</p>
+                <!-- Event Schedule -->
+                <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        Event Schedule
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 bg-blue-50 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                <span class="text-sm font-medium text-gray-700">Event Date</span>
+                            </div>
+                            <p class="text-lg font-semibold text-gray-900">November 15, 2025</p>
                         </div>
-                        <div>
-                            <p class="text-sm font-medium text-gray-900">Event Type</p>
-                            <p class="text-sm text-gray-600">Community Clean-up</p>
+                        <div class="p-4 bg-blue-50 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span class="text-sm font-medium text-gray-700">Time</span>
+                            </div>
+                            <p class="text-lg font-semibold text-gray-900">9:00 AM - 5:00 PM</p>
                         </div>
-                        <div>
-                            <p class="text-sm font-medium text-gray-900">Priority Level</p>
-                            <p class="text-sm text-gray-600">High</p>
+                        <div class="p-4 bg-yellow-50 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <svg class="w-5 h-5 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span class="text-sm font-medium text-gray-700">Registration Deadline</span>
+                            </div>
+                            <p class="text-lg font-semibold text-gray-900">November 10, 2025</p>
                         </div>
-                        <div>
-                            <p class="text-sm font-medium text-gray-900">Notifications</p>
-                            <p class="text-sm text-gray-600">Send to subscribers: Yes</p>
+                        <div class="p-4 bg-green-50 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <svg class="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                                <span class="text-sm font-medium text-gray-700">Attendee Capacity</span>
+                            </div>
+                            <p class="text-lg font-semibold text-gray-900">500 participants</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Content Statistics -->
-                <div class="bg-white shadow rounded-lg p-6">
-                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Content Statistics</h2>
+                <!-- Online Platform Details -->
+                <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                        </svg>
+                        Online Platform Details
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Platform</p>
+                            <p class="font-semibold text-gray-900">Zoom Webinar</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Virtual Capacity</p>
+                            <p class="font-semibold text-gray-900">500 participants</p>
+                        </div>
+                        <div class="col-span-2">
+                            <p class="text-sm text-gray-500 mb-1">Meeting Link</p>
+                            <p class="text-blue-600 font-medium break-all">https://zoom.us/j/techcareer2025</p>
+                            <p class="text-xs text-gray-500 mt-1">Link will be sent to registered participants</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Target Audience -->
+                <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        Target Audience
+                    </h2>
                     <div class="space-y-3">
-                        <div class="flex justify-between">
-                            <span class="text-sm text-gray-600">Expected Attendees</span>
-                            <span class="text-sm font-medium text-gray-900">300</span>
+                        <div class="p-3 bg-blue-50 rounded-lg">
+                            <p class="font-semibold text-gray-900">Audience Type</p>
+                            <p class="text-gray-700">All Students & Alumni</p>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="text-sm text-gray-600">Duration</span>
-                            <span class="text-sm font-medium text-gray-900">6 hours</span>
+                        <div class="p-3 bg-blue-50 rounded-lg">
+                            <p class="font-semibold text-gray-900 mb-2">Departments</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-white text-gray-700 text-sm rounded-full border">College of Informatics</span>
+                                <span class="px-3 py-1 bg-white text-gray-700 text-sm rounded-full border">College of Engineering & Technology</span>
+                                <span class="px-3 py-1 bg-white text-gray-700 text-sm rounded-full border">College of Business</span>
+                            </div>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="text-sm text-gray-600">Images</span>
-                            <span class="text-sm font-medium text-gray-900">1 featured</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-sm text-gray-600">Tags</span>
-                            <span class="text-sm font-medium text-gray-900">4</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-sm text-gray-600">External Links</span>
-                            <span class="text-sm font-medium text-gray-900">0</span>
+                        <div class="p-3 bg-blue-50 rounded-lg">
+                            <p class="font-semibold text-gray-900 mb-2">Year Levels</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-white text-gray-700 text-sm rounded-full border">3rd Year</span>
+                                <span class="px-3 py-1 bg-white text-gray-700 text-sm rounded-full border">4th Year</span>
+                                <span class="px-3 py-1 bg-white text-gray-700 text-sm rounded-full border">Alumni</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Feedback Modal (Hidden by default) -->
-    <div
-        id="feedbackModal"
-        class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50"
-        role="dialog"
-        aria-labelledby="modalTitle"
-        aria-modal="true"
-    >
-        <div class="bg-white rounded-lg p-6 w-full max-w-md">
-            <h3 id="modalTitle" class="text-lg font-semibold text-gray-900 mb-4">Provide Feedback</h3>
-            <textarea
-                id="feedbackInput"
-                class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                rows="4"
-                placeholder="Enter detailed feedback for changes or rejection reason"
-            ></textarea>
-            <div class="mt-4 flex justify-end space-x-3">
-                <button
-                    onclick="closeFeedbackModal()"
-                    class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
-                >
-                    Cancel
-                </button>
-                <button
-                    id="submitFeedback"
-                    class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary"
-                >
-                    Submit
-                </button>
+            <!-- Sidebar Column -->
+            <div class="space-y-6">
+                <!-- Event Stats -->
+                <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-4">Event Status</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-700">Review Status</span>
+                                <svg class="w-5 h-5 text-yellow-600 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <p class="text-lg font-bold text-yellow-800">Under Review</p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="text-sm text-gray-500 mb-1">Registration</p>
+                            <p class="font-semibold text-gray-900">Not Yet Open</p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="text-sm text-gray-500 mb-1">Current Registrations</p>
+                            <p class="font-semibold text-gray-900">0 participants</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                        Contact Person
+                    </h3>
+                    <div class="space-y-3">
+                        <div>
+                            <p class="text-sm text-gray-500">Name</p>
+                            <p class="font-medium text-gray-900">Prof. Maria Santos</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Email</p>
+                            <a href="mailto:m.santos@pcu-dasma.edu.ph" class="text-blue-600 hover:underline">m.santos@pcu-dasma.edu.ph</a>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Phone</p>
+                            <a href="tel:+639123456789" class="text-blue-600 hover:underline">+63 912 345 6789</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-4">Additional Information</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="p-3 bg-blue-50 rounded-lg">
+                            <p class="font-medium text-gray-900">Special Instructions</p>
+                            <p class="text-gray-700 mt-1">
+                                Participants should prepare their updated resumes and be ready for potential on-the-spot interviews. Business casual attire recommended.
+                            </p>
+                        </div>
+                        <div class="p-3 bg-green-50 rounded-lg">
+                            <p class="font-medium text-gray-900">Registration Required</p>
+                            <p class="text-gray-700 mt-1">Yes - Pre-registration required for participant tracking</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Simulated event data (replace with API call in production)
-        const eventData = {
-            id: null,
-            title: "Great Dasmarinas Bay Clean-up Drive",
-            organizer: "Clean Seas Alliance",
-            submitted: "October 12, 2025 - 8:30 PM",
-            category: "Environmental Event",
-            summary:
-                "The coastal clean-up event aims to gather volunteers for cleaning 2km of shoreline, promoting environmental awareness and community partnership.",
-            date: "October 20, 2025",
-            location: "Dasmarinas Bay",
-            attendees: 300,
-            tags: ["Environmental", "Clean-up", "Community", "Partnership"],
-            history: [
-                {
-                    date: "October 12, 2025 - 8:30 PM",
-                    action: "Initial Submission",
-                    details: "Event submitted for review by Clean Seas Alliance.",
-                },
-            ],
-        };
-
-        // Toggle mobile menu
-        function toggleMobileMenu() {
-            const menu = document.getElementById("mobileMenu");
-            const button = document.getElementById("mobileMenuButton");
-            const isOpen = !menu.classList.contains("hidden");
-            menu.classList.toggle("hidden");
-            button.setAttribute("aria-expanded", !isOpen);
-        }
-
-        // Toggle user menu
         function toggleUserMenu() {
-            const menu = document.getElementById("userMenu");
-            const button = document.getElementById("userMenuButton");
-            const isOpen = !menu.classList.contains("hidden");
-            menu.classList.toggle("hidden");
-            button.setAttribute("aria-expanded", !isOpen);
-            if (!isOpen) menu.focus();
+            const menu = document.getElementById('userMenu');
+            menu.classList.toggle('hidden');
         }
 
-        // Handle keyboard navigation for user menu
-        document.getElementById("userMenuButton").addEventListener("keydown", (event) => {
-            if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                toggleUserMenu();
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '../login.html';
             }
-        });
+        }
+
+        function withdrawSubmission() {
+            if (confirm('Are you sure you want to withdraw this event from review? It will return to draft status.')) {
+                alert('Event withdrawn from review successfully. Returning to draft status.');
+                window.location.href = 'events.html';
+            }
+        }
+
+        function checkReviewStatus() {
+            alert('Review Status:\n\n' +
+                  'Submitted: October 12, 2025 at 9:30 AM\n' +
+                  'Current Status: Under Administrator Review\n' +
+                  'Expected Completion: October 19, 2025\n\n' +
+                  'You will be notified via email once the review is complete.');
+        }
 
         // Close user menu when clicking outside
-        document.addEventListener("click", (event) => {
-            const userMenu = document.getElementById("userMenu");
-            const button = document.getElementById("userMenuButton");
-            if (!button.contains(event.target) && !userMenu.contains(event.target)) {
-                userMenu.classList.add("hidden");
-                button.setAttribute("aria-expanded", "false");
-            }
-        });
-
-        // Logout function
-        function logout() {
-            if (confirm("Are you sure you want to logout?")) {
-                window.location.href = "../login.html";
-            }
-        }
-
-        // Feedback modal handling
-        let currentAction = null;
-        function openFeedbackModal(action) {
-            currentAction = action;
-            const modal = document.getElementById("feedbackModal");
-            const submitButton = document.getElementById("submitFeedback");
-            submitButton.onclick = () =>
-                submitFeedback(action === "requestChanges" ? "Changes Requested" : "Event Rejected");
-            modal.classList.remove("hidden");
-            document.getElementById("feedbackInput").focus();
-        }
-
-        function closeFeedbackModal() {
-            document.getElementById("feedbackModal").classList.add("hidden");
-            document.getElementById("feedbackInput").value = "";
-            currentAction = null;
-        }
-
-        function submitFeedback(actionText) {
-            const feedback = document.getElementById("feedbackInput").value.trim();
-            if (!feedback) {
-                alert("Please provide feedback before submitting.");
-                return;
-            }
-            alert(`${actionText}.\n\nFeedback: "${feedback}"\n\nThe organizer will be notified via email.`);
-            closeFeedbackModal();
-            window.location.href = "view-pending-event-details.html";
-        }
-
-        // Review action functions
-        function approveEvent() {
-            if (confirm("Approve this event and publish it immediately?")) {
-                // In production, make an API call to approve and publish the event
-                alert(
-                    "Event approved and published successfully!\n\nThe event is now live on the website and subscribers have been notified."
-                );
-                window.location.href = "view-pending-event-details.html";
-            }
-        }
-
-        function approveOnly() {
-            if (
-                confirm(
-                    "Approve this event without publishing? You can publish it later from the approved events section."
-                )
-            ) {
-                // In production, make an API call to approve the event
-                alert(
-                    "Event approved successfully!\n\nThe event is ready for publishing and moved to the 'Approved' section."
-                );
-                window.location.href = "view-pending-event-details.html";
-            }
-        }
-
-        function requestChanges() {
-            openFeedbackModal("requestChanges");
-        }
-
-        function rejectEvent() {
-            openFeedbackModal("rejectEvent");
-        }
-
-        // Load dynamic event data
-        window.addEventListener("DOMContentLoaded", () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const eventId = urlParams.get("id");
-            const status = urlParams.get("status");
-
-            if (eventId && status) {
-                console.log(`Loading event ${eventId} with status ${status}`);
-                // In production, fetch event data from an API, e.g.:
-                // fetch(`/api/events/${eventId}`)
-                //   .then(response => response.json())
-                //   .then(data => {
-                //     // Update DOM with event data
-                //     document.querySelector('h2.text-xl.font-semibold').textContent = data.title;
-                //     // ... update other fields
-                //   })
-                //   .catch(error => {
-                //     console.error('Error loading event:', error);
-                //     alert('Failed to load event data. Please try again.');
-                //   });
-            } else {
-                console.warn("Missing event ID or status in URL parameters.");
-                // Optionally, redirect to event list or show an error
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('userMenu');
+            const button = event.target.closest('button');
+            if (!button || button.onclick !== toggleUserMenu) {
+                menu.classList.add('hidden');
             }
         });
     </script>
