@@ -1,279 +1,1686 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PCU-DASMA Connect - Digital Platform for External Affairs, Partnerships and Alumni</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      PCU-DASMA Connect - Digital Platform for External Affairs, Partnerships
+      and Alumni
+    </title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1E40AF',
-                        secondary: '#3B82F6',
-                        accent: '#F59E0B'
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-gray-50">
+  </head>
+  <body class="bg-gray-50">
     <!-- Header -->
-    <header class="bg-white shadow-sm border-b">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <h1 class="text-xl font-bold text-primary">PCU-DASMA Connect</h1>
-                    </div>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#features" class="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Features</a>
-                        <a href="#about" class="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">About</a>
-                        <a href="login.html" class="bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700">Login</a>
-                    </div>
-                </div>
-                <div class="md:hidden">
-                    <button type="button" class="text-gray-700 hover:text-primary" onclick="toggleMobileMenu()">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
+    <header class="bg-white shadow-sm border-b sticky top-0 z-50">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <h1 class="text-xl font-bold text-primary">PCU-DASMA Connect</h1>
             </div>
-        </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#features" class="block text-gray-700 hover:text-primary px-3 py-2 rounded-md text-base font-medium">Features</a>
-                <a href="#about" class="block text-gray-700 hover:text-primary px-3 py-2 rounded-md text-base font-medium">About</a>
-                <a href="login.html" class="block bg-primary text-white px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700">Login</a>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-4">
+              <a
+                href="#features"
+                class="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Features</a
+              >
+              <a
+                href="#about"
+                class="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >About</a
+              >
+              <a
+                href="login.html"
+                class="bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors"
+                >Login</a
+              >
             </div>
+          </div>
+          <div class="md:hidden">
+            <button
+              type="button"
+              class="text-gray-700 hover:text-primary"
+              onclick="toggleMobileMenu()"
+            >
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
+      </nav>
+      <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <a
+            href="#features"
+            class="block text-gray-700 hover:text-primary px-3 py-2 rounded-md text-base font-medium"
+            >Features</a
+          >
+          <a
+            href="#about"
+            class="block text-gray-700 hover:text-primary px-3 py-2 rounded-md text-base font-medium"
+            >About</a
+          >
+          <a
+            href="login.html"
+            class="block bg-primary text-white px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700"
+            >Login</a
+          >
+        </div>
+      </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-primary to-secondary text-white py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                PCU-DASMA Connect
-            </h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-                Digital Platform for External Affairs, Partnerships and Alumni
-            </p>
-            <p class="text-lg mb-10 max-w-2xl mx-auto opacity-90">
-                Connecting Philippine Christian University - Dasmariñas alumni with job opportunities, partnerships, and university updates through a centralized digital platform.
-            </p>
-            <div class="space-x-4">
-                <a href="login.html" class="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">Get Started</a>
-                <a href="#features" class="border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition-colors">Learn More</a>
-            </div>
+    <section
+      class="bg-gradient-to-r from-primary to-secondary text-white py-20"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">PCU-DASMA Connect</h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+          Digital Platform for External Affairs, Partnerships and Alumni
+        </p>
+        <p class="text-lg mb-10 max-w-2xl mx-auto opacity-90">
+          Your gateway to job opportunities, university events, latest news, and
+          meaningful partnerships with Philippine Christian University -
+          Dasmariñas.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="login.html"
+            class="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+            >Get Started</a
+          >
+          <a
+            href="#features"
+            class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition-colors"
+            >Learn More</a
+          >
         </div>
+      </div>
+    </section>
+
+    <!-- Featured Events Section -->
+    <section id="featured-events" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Featured Events
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Discover upcoming university events, alumni gatherings, and
+            professional development opportunities.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Event 1: PCU-DASMA Alumni Homecoming 2025 -->
+          <div
+            class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+            onclick="window.location.href='login.html'"
+          >
+            <img
+              src="https://via.placeholder.com/400x200"
+              alt="Alumni Homecoming 2025"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <div class="flex items-center mb-2">
+                <span
+                  class="inline-block bg-blue-100 text-blue-600 text-xs font-semibold px-2 py-1 rounded mr-2"
+                  >Alumni Event</span
+                >
+                <span
+                  class="inline-block bg-orange-100 text-orange-600 text-xs font-semibold px-2 py-1 rounded"
+                  >Staff-Created</span
+                >
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                PCU-DASMA Alumni Homecoming 2025
+              </h3>
+              <p class="text-sm text-gray-600 mb-4">
+                Reconnect with classmates and faculty at our grand alumni
+                gathering, featuring campus tours, networking, and a gala
+                dinner.
+              </p>
+              <div class="flex items-center text-sm text-gray-500 mb-2">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                <span>October 15, 2025</span>
+              </div>
+              <div class="flex items-center text-sm text-gray-500">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                </svg>
+                <span>PCU-DASMA Campus</span>
+              </div>
+            </div>
+          </div>
+          <!-- Event 2: Alumni Networking Night -->
+          <div
+            class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+            onclick="window.location.href='login.html'"
+          >
+            <img
+              src="https://via.placeholder.com/400x200"
+              alt="Alumni Networking Night"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <div class="flex items-center mb-2">
+                <span
+                  class="inline-block bg-purple-100 text-purple-600 text-xs font-semibold px-2 py-1 rounded mr-2"
+                  >Alumni Only</span
+                >
+                <span
+                  class="inline-block bg-blue-100 text-blue-600 text-xs font-semibold px-2 py-1 rounded"
+                  >In-Person</span
+                >
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                Alumni Networking Night
+              </h3>
+              <p class="text-sm text-gray-600 mb-4">
+                An evening of networking and professional development for
+                alumni, featuring guest speakers and industry connections.
+              </p>
+              <div class="flex items-center text-sm text-gray-500 mb-2">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                <span>November 20, 2025</span>
+              </div>
+              <div class="flex items-center text-sm text-gray-500">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                </svg>
+                <span>Alumni Center</span>
+              </div>
+            </div>
+          </div>
+          <!-- Event 3: Student Leadership Development Workshop -->
+          <div
+            class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+            onclick="window.location.href='login.html'"
+          >
+            <img
+              src="https://via.placeholder.com/400x200"
+              alt="Student Leadership Workshop"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <div class="flex items-center mb-2">
+                <span
+                  class="inline-block bg-blue-100 text-blue-600 text-xs font-semibold px-2 py-1 rounded mr-2"
+                  >Student Only</span
+                >
+                <span
+                  class="inline-block bg-green-100 text-green-600 text-xs font-semibold px-2 py-1 rounded"
+                  >Registered</span
+                >
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                Student Leadership Development Workshop
+              </h3>
+              <p class="text-sm text-gray-600 mb-4">
+                Interactive workshop series for students focusing on leadership
+                skills, communication, and team management.
+              </p>
+              <div class="flex items-center text-sm text-gray-500 mb-2">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                <span>December 10, 2025</span>
+              </div>
+              <div class="flex items-center text-sm text-gray-500">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                </svg>
+                <span>Main Hall</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Jobs Section -->
+    <section id="featured-jobs" class="py-20 bg-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Featured Jobs
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Explore exciting career opportunities from our trusted partners.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Job 1 -->
+          <div
+            class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition-shadow duration-300 border-l-4 border-accent"
+          >
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Software Engineer
+            </h3>
+            <p class="text-sm font-medium text-gray-700 mb-1">TechCorp</p>
+            <div class="flex items-center text-sm text-gray-500 mb-2">
+              <svg
+                class="w-4 h-4 mr-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"
+                ></path>
+              </svg>
+              <span>Manila, Philippines</span>
+            </div>
+            <div class="flex items-center text-sm text-gray-500 mb-4">
+              <svg
+                class="w-4 h-4 mr-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <span>₱50,000 - ₱70,000/month</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-4">
+              Develop innovative software solutions for a leading tech company.
+            </p>
+            <a
+              href="login.html"
+              class="bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors w-full block text-center"
+              >Apply Now</a
+            >
+          </div>
+          <!-- Job 2 -->
+          <div
+            class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition-shadow duration-300"
+          >
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Marketing Specialist
+            </h3>
+            <p class="text-sm font-medium text-gray-700 mb-1">GrowEasy Inc.</p>
+            <div class="flex items-center text-sm text-gray-500 mb-2">
+              <svg
+                class="w-4 h-4 mr-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"
+                ></path>
+              </svg>
+              <span>Dasmariñas, Cavite</span>
+            </div>
+            <div class="flex items-center text-sm text-gray-500 mb-4">
+              <svg
+                class="w-4 h-4 mr-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <span>₱30,000 - ₱45,000/month</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-4">
+              Create and execute marketing campaigns to drive brand growth.
+            </p>
+            <a
+              href="login.html"
+              class="bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors w-full block text-center"
+              >Apply Now</a
+            >
+          </div>
+          <!-- Job 3 -->
+          <div
+            class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition-shadow duration-300"
+          >
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">
+              Data Analyst Intern
+            </h3>
+            <p class="text-sm font-medium text-gray-700 mb-1">DataWorks</p>
+            <div class="flex items-center text-sm text-gray-500 mb-2">
+              <svg
+                class="w-4 h-4 mr-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"
+                ></path>
+              </svg>
+              <span>Remote</span>
+            </div>
+            <div class="flex items-center text-sm text-gray-500 mb-4">
+              <svg
+                class="w-4 h-4 mr-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <span>₱15,000/month</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-4">
+              Analyze data to support business decisions in a dynamic internship
+              role.
+            </p>
+            <a
+              href="login.html"
+              class="bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors w-full block text-center"
+              >Apply Now</a
+            >
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Featured News Section -->
+    <section id="featured-news" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Featured News
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Stay updated with the latest university news, alumni achievements,
+            and partnership highlights.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- News Article 1 -->
+          <div
+            class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+            onclick="viewNews('1')"
+          >
+            <img
+              src="https://via.placeholder.com/400x200"
+              alt="Alumni Homecoming 2025"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <span
+                class="inline-block bg-purple-100 text-purple-600 text-xs font-semibold px-2 py-1 rounded mb-2"
+                >University Update</span
+              >
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                Alumni Homecoming 2025 Announced
+              </h3>
+              <p class="text-sm text-gray-600 mb-4">
+                Join us for the grand alumni homecoming on December 15, 2025,
+                featuring networking events and celebrations.
+              </p>
+              <div class="flex items-center text-sm text-gray-500">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                <span>October 10, 2025</span>
+              </div>
+            </div>
+          </div>
+          <!-- News Article 2 -->
+          <div
+            class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+            onclick="viewNews('2')"
+          >
+            <img
+              src="https://via.placeholder.com/400x200"
+              alt="New Partnership"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <span
+                class="inline-block bg-blue-100 text-blue-600 text-xs font-semibold px-2 py-1 rounded mb-2"
+                >Partnership</span
+              >
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                PCU-DASMA Partners with TechCorp
+              </h3>
+              <p class="text-sm text-gray-600 mb-4">
+                A new collaboration with TechCorp to provide internship
+                opportunities for students.
+              </p>
+              <div class="flex items-center text-sm text-gray-500">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                <span>October 5, 2025</span>
+              </div>
+            </div>
+          </div>
+          <!-- News Article 3 -->
+          <div
+            class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+            onclick="viewNews('3')"
+          >
+            <img
+              src="https://via.placeholder.com/400x200"
+              alt="Alumni Success"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <span
+                class="inline-block bg-green-100 text-green-600 text-xs font-semibold px-2 py-1 rounded mb-2"
+                >Alumni Success</span
+              >
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                Alumnus Wins National Award
+              </h3>
+              <p class="text-sm text-gray-600 mb-4">
+                Jane Doe, class of 2015, receives national recognition for her
+                contributions to education.
+              </p>
+              <div class="flex items-center text-sm text-gray-500">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                <span>September 28, 2025</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Features Section -->
     <section id="features" class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Platform Features</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Comprehensive tools designed to enhance alumni engagement and streamline partnership management.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Alumni Management -->
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Alumni Directory</h3>
-                    <p class="text-gray-600">Comprehensive alumni database with profile management and networking capabilities for enhanced engagement.</p>
-                </div>
-
-                <!-- Job Posting -->
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Job Opportunities</h3>
-                    <p class="text-gray-600">Verified job postings from external partners with admin approval workflow to ensure quality opportunities.</p>
-                </div>
-
-                <!-- Partnership Management -->
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 bg-accent rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Partnership Portal</h3>
-                    <p class="text-gray-600">Streamlined collaboration management for external partners and institutional relationships.</p>
-                </div>
-
-                <!-- Event Management -->
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Event Coordination</h3>
-                    <p class="text-gray-600">Organize and manage alumni events, university announcements, and partnership activities.</p>
-                </div>
-
-                <!-- Admin Dashboard -->
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Analytics Dashboard</h3>
-                    <p class="text-gray-600">Comprehensive admin tools for monitoring engagement, approving content, and tracking platform metrics.</p>
-                </div>
-
-                <!-- Security & Privacy -->
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                    <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Secure Platform</h3>
-                    <p class="text-gray-600">Data Privacy Act compliant with secure authentication and role-based access control.</p>
-                </div>
-            </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            What We Offer
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Comprehensive digital tools connecting alumni, partners, and
+            students with career opportunities, campus events, university news,
+            and partnership initiatives.
+          </p>
         </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Job Opportunities -->
+          <div
+            class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+          >
+            <div
+              class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-7 h-7 text-blue-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m8 0h-8m8 0v12a2 2 0 01-2 2H8a2 2 0 01-2-2V6"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">
+              Job Opportunities
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Browse and post verified job listings from partner companies and
+              organizations. Apply directly through the platform with
+              admin-approved listings.
+            </p>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Verified job listings
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Direct application system
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Application tracking
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Partner job posting
+              </li>
+            </ul>
+          </div>
+
+          <!-- Events Management -->
+          <div
+            class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+          >
+            <div
+              class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-7 h-7 text-green-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">
+              Campus Events
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Stay updated with alumni homecomings, career fairs, seminars, and
+              university celebrations. Register and RSVP for events directly.
+            </p>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Event calendar
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                RSVP management
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Event notifications
+              </li>
+            </ul>
+          </div>
+
+          <!-- News & Updates -->
+          <div
+            class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+          >
+            <div
+              class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-7 h-7 text-purple-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">
+              News & Updates
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Read the latest university updates, alumni success stories,
+              partnership achievements, and campus announcements in one place.
+            </p>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                University updates
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Alumni success stories
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Partnership highlights
+              </li>
+            </ul>
+          </div>
+
+          <!-- Partnership Portal -->
+          <div
+            class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+          >
+            <div
+              class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-7 h-7 text-orange-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">
+              Partnership Management
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Streamlined portal for submitting partnership requests, managing
+              external collaborations, and coordinating joint programs with
+              organizations.
+            </p>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Partnership request submission
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Collaboration tools
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Activity reporting
+              </li>
+            </ul>
+          </div>
+
+          <!-- Alumni Directory -->
+          <div
+            class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+          >
+            <div
+              class="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-7 h-7 text-indigo-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">
+              Alumni Profiles
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Comprehensive alumni database with profile management. Update your
+              information, track your career progress, and stay connected with
+              PCU-DASMA.
+            </p>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Profile management
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Career tracking
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Directory access
+              </li>
+            </ul>
+          </div>
+
+          <!-- Admin Dashboard -->
+          <div
+            class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+          >
+            <div
+              class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-7 h-7 text-red-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">
+              Secure Administration
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Comprehensive admin tools for content approval, user management,
+              and platform analytics. Data Privacy Act compliant with role-based
+              access control.
+            </p>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Content moderation
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                User management
+              </li>
+              <li class="flex items-center">
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Analytics dashboard
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- User Types Section -->
+    <section class="bg-gray-100 py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Who Can Use PCU-DASMA Connect?
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Four distinct portals tailored to different user needs.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Alumni Portal -->
+          <div
+            class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow"
+          >
+            <div
+              class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <svg
+                class="w-8 h-8 text-blue-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">
+              Alumni
+            </h3>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Browse and apply to job postings
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Register for events and reunions
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Read university news and updates
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Update personal profile
+              </li>
+            </ul>
+          </div>
+
+          <!-- Admin Portal -->
+          <div
+            class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow border-2 border-primary"
+          >
+            <div
+              class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <svg
+                class="w-8 h-8 text-primary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">
+              Admin
+            </h3>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Approve jobs, events, and news
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Manage alumni and partner accounts
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Review partnership requests
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                View analytics and reports
+              </li>
+            </ul>
+          </div>
+
+          <!-- Staff Portal -->
+          <div
+            class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow"
+          >
+            <div
+              class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <svg
+                class="w-8 h-8 text-green-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">
+              Staff
+            </h3>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Create and submit news articles
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Organize events and activities
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Coordinate partnerships
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Manage content submissions
+              </li>
+            </ul>
+          </div>
+
+          <!-- Partners Portal -->
+          <div
+            class="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-shadow"
+          >
+            <div
+              class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <svg
+                class="w-8 h-8 text-orange-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">
+              Partners
+            </h3>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Post job opportunities
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Submit partnership requests
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Collaborate on events and projects
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="bg-white py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">About PCU-DASMA Connect</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                    A comprehensive digital platform designed to strengthen relationships between Philippine Christian University - Dasmariñas, its alumni, and external partners.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Our Mission</h3>
-                    <p class="text-gray-600 mb-6">
-                        PCU-DASMA Connect serves as a centralized platform that enables real-time updates, professional networking, event coordination, and collaboration between the university and its external partners.
-                    </p>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            Enhanced alumni engagement and networking
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            Streamlined partnership management
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            Verified job opportunities for alumni
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            Real-time university updates and events
-                        </li>
-                    </ul>
-                </div>
-                <div class="bg-gray-100 p-8 rounded-lg">
-                    <h4 class="text-xl font-semibold text-gray-900 mb-4">Platform Statistics</h4>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-primary mb-2">3</div>
-                            <div class="text-gray-600">User Types</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-secondary mb-2">6</div>
-                            <div class="text-gray-600">Core Features</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-accent mb-2">24/7</div>
-                            <div class="text-gray-600">Availability</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-green-600 mb-2">100%</div>
-                            <div class="text-gray-600">Secure</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            About PCU-DASMA Connect
+          </h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            A comprehensive digital platform designed to strengthen the
+            relationship between Philippine Christian University - Dasmariñas,
+            its alumni, partners, and students.
+          </p>
         </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Our Mission</h3>
+            <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+              PCU-DASMA Connect serves as the central hub for alumni engagement,
+              career opportunities, university updates, and partnership
+              coordination. We bridge the gap between the university, its
+              graduates, and external partners while fostering meaningful
+              collaborations.
+            </p>
+            <ul class="space-y-4 text-gray-600">
+              <li class="flex items-start">
+                <svg
+                  class="w-6 h-6 text-green-500 mr-3 mt-1 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="text-lg"
+                  >Connect alumni and students with verified job opportunities
+                  from partner organizations</span
+                >
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-6 h-6 text-green-500 mr-3 mt-1 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="text-lg"
+                  >Keep alumni informed about campus events, reunions, and
+                  celebrations</span
+                >
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-6 h-6 text-green-500 mr-3 mt-1 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="text-lg"
+                  >Share university updates, alumni achievements, and
+                  partnership success stories</span
+                >
+              </li>
+              <li class="flex items-start">
+                <svg
+                  class="w-6 h-6 text-green-500 mr-3 mt-1 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="text-lg"
+                  >Streamline partnership management and external
+                  collaborations</span
+                >
+              </li>
+            </ul>
+          </div>
+          <div
+            class="bg-gradient-to-br from-primary to-secondary p-8 rounded-2xl text-white shadow-xl"
+          >
+            <h4 class="text-2xl font-semibold mb-6">Platform Highlights</h4>
+            <div class="grid grid-cols-2 gap-6">
+              <div
+                class="text-center bg-white bg-opacity-10 p-6 rounded-lg backdrop-blur-sm"
+              >
+                <div class="text-4xl font-bold mb-2">1,000+</div>
+                <div class="text-sm opacity-90">Alumni Members</div>
+              </div>
+              <div
+                class="text-center bg-white bg-opacity-10 p-6 rounded-lg backdrop-blur-sm"
+              >
+                <div class="text-4xl font-bold mb-2">12+</div>
+                <div class="text-sm opacity-90">Job Postings</div>
+              </div>
+              <div
+                class="text-center bg-white bg-opacity-10 p-6 rounded-lg backdrop-blur-sm"
+              >
+                <div class="text-4xl font-bold mb-2">5+</div>
+                <div class="text-sm opacity-90">Upcoming Events</div>
+              </div>
+              <div
+                class="text-center bg-white bg-opacity-10 p-6 rounded-lg backdrop-blur-sm"
+              >
+                <div class="text-4xl font-bold mb-2">8+</div>
+                <div class="text-sm opacity-90">News Articles</div>
+              </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-white border-opacity-20">
+              <p class="text-center text-sm opacity-90">
+                Data Privacy Act Compliant • Secure • Available 24/7
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section
+      class="bg-gradient-to-r from-primary to-secondary text-white py-16"
+    >
+      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          Ready to Get Started?
+        </h2>
+        <p class="text-lg mb-8 opacity-90">
+          Join the PCU-DASMA Connect community today and stay connected with
+          your alma mater.
+        </p>
+        <a
+          href="login.html"
+          class="inline-block bg-white text-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg"
+        >
+          Login Now
+        </a>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">PCU-DASMA Connect</h3>
-                    <p class="text-gray-400">
-                        Digital Platform for External Affairs, Partnerships and Alumni at Philippine Christian University - Dasmariñas.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="login.html" class="hover:text-white transition-colors">Login</a></li>
-                        <li><a href="register.html" class="hover:text-white transition-colors">Register</a></li>
-                        <li><a href="#features" class="hover:text-white transition-colors">Features</a></li>
-                        <li><a href="#about" class="hover:text-white transition-colors">About</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Contact Information</h4>
-                    <div class="text-gray-400 space-y-2">
-                        <p>Philippine Christian University - Dasmariñas</p>
-                        <p>Dasmariñas City, Cavite, Philippines</p>
-                        <p>Office of External Affairs</p>
-                    </div>
-                </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">PCU-DASMA Connect</h3>
+            <p class="text-gray-400">
+              Digital Platform for External Affairs, Partnerships and Alumni at
+              Philippine Christian University - Dasmariñas.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="login.html" class="hover:text-white transition-colors"
+                  >Login</a
+                >
+              </li>
+              <li>
+                <a href="#features" class="hover:text-white transition-colors"
+                  >Features</a
+                >
+              </li>
+              <li>
+                <a href="#about" class="hover:text-white transition-colors"
+                  >About</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Contact Information</h4>
+            <div class="text-gray-400 space-y-2">
+              <p>Philippine Christian University - Dasmariñas</p>
+              <p>Dasmariñas City, Cavite, Philippines</p>
+              <p>Office of External Affairs</p>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2025 PCU-DASMA Connect. All rights reserved.</p>
-            </div>
+          </div>
         </div>
+        <div
+          class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400"
+        >
+          <p>&copy; 2025 PCU-DASMA Connect. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
     <script>
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        }
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById("mobile-menu");
+        mobileMenu.classList.toggle("hidden");
+      }
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+      function viewNews(articleId) {
+        // Placeholder for redirecting to news details page
+        window.location.href = `login.html`;
+      }
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
             });
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById("mobile-menu");
+            if (!mobileMenu.classList.contains("hidden")) {
+              mobileMenu.classList.add("hidden");
+            }
+          }
         });
+      });
     </script>
-</body>
+  </body>
 </html>
