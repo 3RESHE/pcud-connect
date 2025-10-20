@@ -61,65 +61,11 @@
           </a>
           <div>
             <h1 class="text-3xl font-bold text-gray-900">Create News Article</h1>
-            <p class="text-gray-600">Compose and publish news articles about completed partnerships and university events</p>
+            <p class="text-gray-600">Compose and submit news articles for admin review</p>
           </div>
         </div>
         <div class="flex items-center space-x-3">
-          <button onclick="saveDraft()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Save Draft</button>
           <button onclick="previewArticle()" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">Preview</button>
-        </div>
-      </div>
-
-      <!-- Article Type Selection -->
-      <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
-        <h2 class="text-lg font-semibold text-gray-900 mb-4">Article Type</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50" onclick="selectArticleType('partnership')">
-            <input type="radio" name="articleType" value="partnership" id="partnership" class="text-primary focus:ring-primary">
-            <label for="partnership" class="ml-3 cursor-pointer">
-              <div class="text-sm font-medium text-gray-900">Partnership Success Story</div>
-              <div class="text-sm text-gray-500">Share completed community partnership achievements</div>
-            </label>
-          </div>
-          <div class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50" onclick="selectArticleType('university')">
-            <input type="radio" name="articleType" value="university" id="university" class="text-primary focus:ring-primary">
-            <label for="university" class="ml-3 cursor-pointer">
-              <div class="text-sm font-medium text-gray-900">University Event</div>
-              <div class="text-sm text-gray-500">Announce or report on university events and activities</div>
-            </label>
-          </div>
-          <div class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50" onclick="selectArticleType('general')">
-            <input type="radio" name="articleType" value="general" id="general" class="text-primary focus:ring-primary">
-            <label for="general" class="ml-3 cursor-pointer">
-              <div class="text-sm font-medium text-gray-900">General News</div>
-              <div class="text-sm text-gray-500">General university news and announcements</div>
-            </label>
-          </div>
-        </div>
-      </div>
-
-      <!-- Partnership Template (Hidden by default) -->
-      <div id="partnershipTemplate" class="hidden bg-blue-50 rounded-lg p-6 mb-8">
-        <h3 class="text-lg font-semibold text-blue-900 mb-4">Partnership Success Story Template</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium text-blue-800 mb-2">Select Completed Partnership</label>
-            <select id="partnershipSelect" class="w-full px-3 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
-              <option value="">Choose a partnership...</option>
-              <option value="GBC-2025-013">Great Dasmarinas Bay Clean-up Drive</option>
-              <option value="BSS-2025-014">Back-to-School Supplies Drive 2025</option>
-              <option value="CMS-2025-015">Community Medical Mission</option>
-              <option value="TPC-2025-016">Tree Planting Campaign</option>
-              <option value="YSW-2025-017">Youth Skills Workshop</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-blue-800 mb-2">Partnership Impact Data</label>
-            <button onclick="loadPartnershipData()" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Load Partnership Details</button>
-          </div>
-        </div>
-        <div class="mt-4">
-          <p class="text-sm text-blue-700">Select a completed partnership to automatically populate article content with impact data, photos, and key metrics.</p>
         </div>
       </div>
 
@@ -136,19 +82,17 @@
               </div>
             </div>
 
-            <!-- Category and Author Row -->
+            <!-- Category, Author, and Dates Row -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <label for="newsCategory" class="block text-sm font-medium text-gray-700 mb-1">Category *</label>
                 <select id="newsCategory" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
                   <option value="">Select Category</option>
-                  <option value="partnership">Community Partnership</option>
                   <option value="university">University Update</option>
                   <option value="alumni">Alumni Success</option>
-                  <option value="research">Research</option>
-                  <option value="event">Event Announcement</option>
-                  <option value="academic">Academic News</option>
-                  <option value="achievement">Achievement</option>
+                  <option value="event">Event News</option>
+                  <option value="partnership">Partnership Success</option>
+                  <option value="general">General News</option>
                 </select>
               </div>
               <div>
@@ -156,9 +100,21 @@
                 <input type="text" id="newsAuthor" value="Communications Staff" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary" />
               </div>
               <div>
+                <label for="eventDate" class="block text-sm font-medium text-gray-700 mb-1">Event Date *</label>
+                <input type="date" id="eventDate" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary" />
+                <p class="text-sm text-gray-500 mt-1">Date the event took place or will take place</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
                 <label for="publishDate" class="block text-sm font-medium text-gray-700 mb-1">Publish Date</label>
-                <input type="date" id="publishDate" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary" />
-                <p class="text-sm text-gray-500 mt-1">Leave empty to publish immediately</p>
+                <input type="date" id="publishDate" readonly class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed" />
+                <p class="text-sm text-gray-500 mt-1">Set by admin upon approval</p>
+              </div>
+              <div>
+                <label for="partnershipWith" class="block text-sm font-medium text-gray-700 mb-1">Partnership With</label>
+                <input type="text" id="partnershipWith" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary" placeholder="e.g., Clean Seas Alliance, Local Barangay" />
+                <p class="text-sm text-gray-500 mt-1">Specify partner organizations or individuals</p>
               </div>
             </div>
 
@@ -233,21 +189,21 @@
           <!-- Content Textarea -->
           <textarea id="newsContent" rows="12" required class="w-full px-3 py-3 border-l border-r border-b border-gray-300 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary resize-none" placeholder="Write your full article content here...
 
-For partnership success stories, include:
-• Event overview and objectives
-• Key achievements and metrics
-• Community impact and feedback
-• Photos and testimonials
-• Partnership collaboration details
-• Future implications or next steps
-
-For university events, include:
+For event news, include:
 • Event purpose and significance
 • Key participants and speakers
 • Highlights and outcomes
 • Student/community involvement
 • Photos and quotes
-• Upcoming related activities"></textarea>
+• Upcoming related activities
+
+For partnership success, include:
+• Partnership overview and objectives
+• Key achievements and metrics
+• Community impact and feedback
+• Photos and testimonials
+• Collaboration details
+• Future implications or next steps"></textarea>
           
           <div class="mt-2 flex justify-between text-sm text-gray-500">
             <span>Use the toolbar above to format your content</span>
@@ -262,25 +218,9 @@ For university events, include:
           <div class="space-y-4">
             <!-- Tags -->
             <div>
-              <label for="newsTags" class="block text-sm font-medium text-gray-700 mb-1">Tags</label>
-              <input type="text" id="newsTags" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary" placeholder="e.g., partnership, community, environment, success (separate with commas)" />
+              <label for="newsTags" class="block text-sm font-medium text-gray-700 mb-1">Tags *</label>
+              <input type="text" id="newsTags" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary" placeholder="e.g., university, event, community, partnership (separate with commas)" />
               <p class="text-sm text-gray-500 mt-1">Tags help categorize and make your article discoverable</p>
-            </div>
-
-            <!-- Settings Row -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div class="flex items-center">
-                <input type="checkbox" id="featuredNews" class="text-primary focus:ring-primary border-gray-300 rounded" />
-                <label for="featuredNews" class="ml-2 text-sm text-gray-700">Make this a featured article</label>
-              </div>
-              <div class="flex items-center">
-                <input type="checkbox" id="allowComments" checked class="text-primary focus:ring-primary border-gray-300 rounded" />
-                <label for="allowComments" class="ml-2 text-sm text-gray-700">Allow comments</label>
-              </div>
-              <div class="flex items-center">
-                <input type="checkbox" id="sendNotification" class="text-primary focus:ring-primary border-gray-300 rounded" />
-                <label for="sendNotification" class="ml-2 text-sm text-gray-700">Send notification to subscribers</label>
-              </div>
             </div>
           </div>
         </div>
@@ -289,11 +229,65 @@ For university events, include:
         <div class="flex justify-between items-center">
           <a href="news.html" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Cancel</a>
           <div class="space-x-3">
-            <button type="submit" name="action" value="draft" class="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">Save as Draft</button>
-            <button type="submit" name="action" value="publish" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-blue-700">Publish Article</button>
+            <button type="submit" name="action" value="submit" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-blue-700">Submit for Review</button>
           </div>
         </div>
       </form>
+    </div>
+
+    <!-- Preview Modal -->
+    <div id="previewModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg shadow-lg max-w-3xl w-full mx-4 max-h-[80vh] overflow-y-auto">
+        <div class="p-6">
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold text-gray-900">Article Preview</h2>
+            <button onclick="closePreviewModal()" class="text-gray-500 hover:text-gray-700">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <div id="previewContent" class="space-y-4">
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900">Title</h3>
+              <p id="previewTitle" class="text-gray-700"></p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900">Category</h3>
+              <p id="previewCategory" class="text-gray-700"></p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900">Summary</h3>
+              <p id="previewSummary" class="text-gray-700"></p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900">Content</h3>
+              <div id="previewContentBody" class="text-gray-700 prose"></div>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900">Tags</h3>
+              <p id="previewTags" class="text-gray-700"></p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900">Partnership With</h3>
+              <p id="previewPartnership" class="text-gray-700"></p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900">Event Date</h3>
+              <p id="previewEventDate" class="text-gray-700"></p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900">Featured Image</h3>
+              <div id="previewImageContainer" class="mt-2">
+                <img id="previewModalImg" class="h-48 w-full object-cover rounded-md" />
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 flex justify-end space-x-3">
+            <button onclick="closePreviewModal()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
@@ -305,91 +299,6 @@ For university events, include:
       function logout() {
         if (confirm("Are you sure you want to logout?")) {
           window.location.href = "../login.html";
-        }
-      }
-
-      function selectArticleType(type) {
-        // Show/hide partnership template
-        const template = document.getElementById("partnershipTemplate");
-        if (type === 'partnership') {
-          template.classList.remove("hidden");
-        } else {
-          template.classList.add("hidden");
-        }
-
-        // Update category dropdown based on type
-        const categorySelect = document.getElementById("newsCategory");
-        if (type === 'partnership') {
-          categorySelect.value = 'partnership';
-        } else if (type === 'university') {
-          categorySelect.value = 'university';
-        }
-      }
-
-      function loadPartnershipData() {
-        const partnershipSelect = document.getElementById("partnershipSelect");
-        const selectedPartnership = partnershipSelect.value;
-        
-        if (!selectedPartnership) {
-          alert("Please select a partnership first.");
-          return;
-        }
-
-        // Simulate loading partnership data
-        const partnershipData = {
-          'GBC-2025-013': {
-            title: 'Great Dasmarinas Bay Clean-up Drive: A Community Success Story',
-            summary: 'The recent coastal clean-up partnership between PCU-DASMA and Clean Seas Alliance exceeded all expectations, with 450 volunteers collecting 3.2 tons of waste and cleaning 1.8km of coastline.',
-            content: `The Great Dasmarinas Bay Clean-up Drive concluded on October 5, 2025, marking one of the most successful community partnership initiatives in PCU-DASMA's history.
-
-## Outstanding Results
-
-The partnership with Clean Seas Alliance delivered exceptional results:
-
-• **450 community volunteers** participated (exceeding the 300 target by 50%)
-• **3.2 tons of waste** removed from the coastline
-• **1.8 kilometers** of shoreline cleaned and restored
-• **98% recycling rate** achieved through proper waste segregation
-• **85 PCU-DASMA students** volunteered, gaining valuable community service experience
-
-## Community Impact
-
-The clean-up drive has created lasting positive impact on the local environment and community awareness:
-
-**Environmental Benefits:**
-- 75% reduction in visible marine debris along the cleaned coastline
-- 12 sea turtle nesting sites protected and cleared
-- Improved water quality measurements in surrounding areas
-
-**Community Engagement:**
-- 8 local barangays actively participated
-- 95% volunteer satisfaction rate
-- Featured coverage in 3 local media outlets
-- Social media reach of over 50,000 people
-
-## Partnership Success
-
-The collaboration between PCU-DASMA and Clean Seas Alliance demonstrated the power of community partnerships. The organization provided professional equipment, waste processing facilities, and expert coordination, while PCU-DASMA contributed enthusiastic student volunteers and venue support.
-
-"This partnership has been incredibly rewarding," said Jennifer Aquino, Environmental Coordinator at Clean Seas Alliance. "The dedication of PCU-DASMA students and the strong community response made this initiative truly special."
-
-## Looking Forward
-
-The success of this partnership has paved the way for future environmental collaborations. Plans are already underway for a quarterly coastal monitoring program and an annual tree-planting initiative in partnership with local environmental groups.
-
-This achievement reinforces PCU-DASMA's commitment to community engagement and environmental stewardship, demonstrating how university-community partnerships can create meaningful, lasting impact.`,
-            tags: 'community partnership, environmental, clean-up, success story, volunteers, sustainability'
-          }
-        };
-
-        const data = partnershipData[selectedPartnership];
-        if (data) {
-          document.getElementById("newsTitle").value = data.title;
-          document.getElementById("newsSummary").value = data.summary;
-          document.getElementById("newsContent").value = data.content;
-          document.getElementById("newsTags").value = data.tags;
-          updateWordCount();
-          alert("Partnership data loaded successfully!");
         }
       }
 
@@ -459,33 +368,61 @@ This achievement reinforces PCU-DASMA's commitment to community engagement and e
         document.getElementById("wordCount").textContent = `${words} words`;
       }
 
-      function saveDraft() {
-        if (confirm("Save this article as a draft?")) {
-          alert("Article saved as draft!");
-        }
-      }
-
       function previewArticle() {
         const title = document.getElementById("newsTitle").value;
-        if (!title.trim()) {
-          alert("Please enter a title to preview the article.");
+        const category = document.getElementById("newsCategory").options[document.getElementById("newsCategory").selectedIndex].text;
+        const summary = document.getElementById("newsSummary").value;
+        const content = document.getElementById("newsContent").value;
+        const tags = document.getElementById("newsTags").value;
+        const partnership = document.getElementById("partnershipWith").value;
+        const eventDate = document.getElementById("eventDate").value;
+
+        if (!title.trim() || !category || !summary.trim() || !content.trim() || !tags.trim() || !eventDate) {
+          alert("Please fill in all required fields (Title, Category, Summary, Content, Tags, Event Date) to preview the article.");
           return;
         }
-        alert("Opening article preview...");
+
+        document.getElementById("previewTitle").textContent = title;
+        document.getElementById("previewCategory").textContent = category;
+        document.getElementById("previewSummary").textContent = summary;
+        document.getElementById("previewContentBody").innerHTML = content.replace(/\n/g, "<br>").replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>").replace(/\*(.*?)\*/g, "<em>$1</em>").replace(/^## (.*)$/gm, "<h2>$1</h2>").replace(/^• (.*)$/gm, "<li>$1</li>").replace(/^> (.*)$/gm, "<blockquote>$1</blockquote>");
+        document.getElementById("previewTags").textContent = tags || "None";
+        document.getElementById("previewPartnership").textContent = partnership || "None";
+        document.getElementById("previewEventDate").textContent = eventDate;
+
+        const previewImg = document.getElementById("previewModalImg");
+        const formImg = document.getElementById("previewImg");
+        const previewImgContainer = document.getElementById("previewImageContainer");
+        if (formImg.src && !formImg.src.includes("data:image/svg+xml")) {
+          previewImg.src = formImg.src;
+          previewImgContainer.classList.remove("hidden");
+        } else {
+          previewImgContainer.classList.add("hidden");
+        }
+
+        document.getElementById("previewModal").classList.remove("hidden");
+      }
+
+      function closePreviewModal() {
+        document.getElementById("previewModal").classList.add("hidden");
       }
 
       function handleSubmitArticle(e) {
         e.preventDefault();
-        const action = e.submitter.value;
         const title = document.getElementById("newsTitle").value;
+        const tags = document.getElementById("newsTags").value;
+        const category = document.getElementById("newsCategory").value;
+        const summary = document.getElementById("newsSummary").value;
+        const content = document.getElementById("newsContent").value;
+        const eventDate = document.getElementById("eventDate").value;
         
-        if (!title.trim()) {
-          alert("Please enter a title for the article.");
+        if (!title.trim() || !category || !summary.trim() || !content.trim() || !tags.trim() || !eventDate) {
+          alert("Please fill in all required fields (Title, Category, Summary, Content, Tags, Event Date).");
           return;
         }
 
-        if (confirm(`${action === "draft" ? "Save this article as a draft" : "Publish this article now"}?`)) {
-          alert(`Article "${title}" ${action === "draft" ? "saved as draft" : "published"} successfully!`);
+        if (confirm("Submit this article for admin review?")) {
+          alert(`Article "${title}" submitted for review successfully!`);
           window.location.href = "news.html";
         }
       }
