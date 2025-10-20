@@ -25,26 +25,68 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="flex items-center">
-            <a href="approve-news.html" class="text-gray-400 hover:text-gray-600 mr-4">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            <a
+              href="approve-news.html"
+              class="text-gray-400 hover:text-gray-600 mr-4"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                ></path>
               </svg>
             </a>
-            <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
+            <a href="../index.html" class="text-xl font-bold text-primary"
+              >PCU-DASMA Connect</a
+            >
             <div class="hidden md:ml-10 md:flex md:space-x-8">
-              <a href="dashboard.html" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Dashboard</a>
-              <a href="approve-news.html" class="text-primary border-b-2 border-primary px-3 py-2 text-sm font-medium">News Approvals</a>
+              <a
+                href="dashboard.html"
+                class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium"
+                >Dashboard</a
+              >
+              <a
+                href="approve-news.html"
+                class="text-primary border-b-2 border-primary px-3 py-2 text-sm font-medium"
+                >News Approvals</a
+              >
             </div>
           </div>
           <div class="flex items-center space-x-4">
             <div class="relative">
-              <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
-                <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile" />
+              <button
+                onclick="toggleUserMenu()"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                <img
+                  class="h-8 w-8 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
               </button>
-              <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+              <div
+                id="userMenu"
+                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+              >
                 <div class="py-1">
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Profile</a>
-                  <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                  <a
+                    href="#"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Admin Profile</a
+                  >
+                  <a
+                    href="#"
+                    onclick="logout()"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Logout</a
+                  >
                 </div>
               </div>
             </div>
@@ -59,10 +101,17 @@
       <div class="mb-8">
         <div class="flex items-center justify-between">
           <div>
-            <h1 class="text-3xl font-bold text-gray-900 mb-2">Review News Article</h1>
-            <p class="text-gray-600">Review and approve or reject this pending news article submission</p>
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">
+              Review News Article
+            </h1>
+            <p class="text-gray-600">
+              Review and approve or reject this pending news article submission
+            </p>
           </div>
-          <span class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-semibold">Pending Approval</span>
+          <span
+            class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-semibold"
+            >Pending Approval</span
+          >
         </div>
       </div>
 
@@ -78,46 +127,93 @@
                   Great Dasmarinas Bay Clean-up Drive: A Community Success Story
                 </h2>
                 <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-xs font-medium">Partnership Success</span>
-                  <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs">Environmental</span>
-                  <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs">Community</span>
+                  <span
+                    class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-xs font-medium"
+                    >Partnership Success</span
+                  >
+                  <span
+                    class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs"
+                    >Environmental</span
+                  >
+                  <span
+                    class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs"
+                    >Community</span
+                  >
                 </div>
               </div>
             </div>
-            
+
             <div class="border-t border-gray-200 pt-4">
-              <h3 class="text-sm font-semibold text-gray-700 mb-2">Article Summary</h3>
+              <h3 class="text-sm font-semibold text-gray-700 mb-2">
+                Article Summary
+              </h3>
               <p class="text-gray-600 leading-relaxed">
-                The recent coastal clean-up partnership between PCU-DASMA and Clean Seas Alliance exceeded all expectations, with 450 volunteers collecting 3.2 tons of waste and cleaning 1.8km of coastline. This successful initiative demonstrates the power of university-community collaboration.
+                The recent coastal clean-up partnership between PCU-DASMA and
+                Clean Seas Alliance exceeded all expectations, with 450
+                volunteers collecting 3.2 tons of waste and cleaning 1.8km of
+                coastline. This successful initiative demonstrates the power of
+                university-community collaboration.
               </p>
             </div>
           </div>
 
           <!-- Featured Image Card -->
           <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Featured Image</h3>
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              Featured Image
+            </h3>
             <div class="rounded-lg overflow-hidden bg-gray-100">
-              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23e5e7eb' width='800' height='400'/%3E%3Ctext x='50%25' y='50%25' font-size='18' text-anchor='middle' fill='%236b7280'%3EFeatured Image Preview%3C/text%3E%3C/svg%3E" alt="Featured Image" class="w-full h-64 object-cover" />
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23e5e7eb' width='800' height='400'/%3E%3Ctext x='50%25' y='50%25' font-size='18' text-anchor='middle' fill='%236b7280'%3EFeatured Image Preview%3C/text%3E%3C/svg%3E"
+                alt="Featured Image"
+                class="w-full h-64 object-cover"
+              />
             </div>
           </div>
 
           <!-- Full Article Content Card -->
           <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Full Article Content</h3>
-            <div class="prose max-w-none text-gray-700 leading-relaxed space-y-4">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              Full Article Content
+            </h3>
+            <div
+              class="prose max-w-none text-gray-700 leading-relaxed space-y-4"
+            >
               <p>
-                Last Saturday marked a significant milestone in environmental conservation as PCU-DASMA partnered with Clean Seas Alliance for a comprehensive coastal clean-up initiative at Dasmarinas Bay. The event brought together 450 volunteers, including students, faculty, staff, and community members, all united by a common goal: to restore and protect our coastal ecosystem.
+                Last Saturday marked a significant milestone in environmental
+                conservation as PCU-DASMA partnered with Clean Seas Alliance for
+                a comprehensive coastal clean-up initiative at Dasmarinas Bay.
+                The event brought together 450 volunteers, including students,
+                faculty, staff, and community members, all united by a common
+                goal: to restore and protect our coastal ecosystem.
               </p>
-              <h4 class="text-lg font-semibold text-gray-900 mt-6 mb-3">Impressive Results</h4>
+              <h4 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                Impressive Results
+              </h4>
               <p>
-                The initiative resulted in remarkable achievements: 3.2 tons of waste collected, 1.8 kilometers of coastline cleaned, and over 15 different types of recyclable materials sorted and properly disposed of. These numbers reflect not just the scale of the environmental challenge we face, but also the tremendous impact of coordinated community action.
+                The initiative resulted in remarkable achievements: 3.2 tons of
+                waste collected, 1.8 kilometers of coastline cleaned, and over
+                15 different types of recyclable materials sorted and properly
+                disposed of. These numbers reflect not just the scale of the
+                environmental challenge we face, but also the tremendous impact
+                of coordinated community action.
               </p>
-              <h4 class="text-lg font-semibold text-gray-900 mt-6 mb-3">Community Impact</h4>
+              <h4 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                Community Impact
+              </h4>
               <p>
-                "This partnership exemplifies what we can achieve when educational institutions and environmental organizations work hand-in-hand," said Dr. Maria Santos, PCU-DASMA's Environmental Studies Department Head. "Our students gained hands-on experience in environmental conservation while making a tangible difference in our community."
+                "This partnership exemplifies what we can achieve when
+                educational institutions and environmental organizations work
+                hand-in-hand," said Dr. Maria Santos, PCU-DASMA's Environmental
+                Studies Department Head. "Our students gained hands-on
+                experience in environmental conservation while making a tangible
+                difference in our community."
               </p>
               <p>
-                The event also included educational workshops on marine conservation, waste segregation, and sustainable practices, ensuring that participants left not only with cleaner beaches but also with knowledge to drive long-term change.
+                The event also included educational workshops on marine
+                conservation, waste segregation, and sustainable practices,
+                ensuring that participants left not only with cleaner beaches
+                but also with knowledge to drive long-term change.
               </p>
             </div>
           </div>
@@ -127,89 +223,104 @@
         <div class="lg:col-span-1 space-y-6">
           <!-- Article Details Card -->
           <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Article Details</h3>
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              Article Details
+            </h3>
             <div class="space-y-4">
               <div>
                 <label class="text-sm font-medium text-gray-500">Author</label>
                 <p class="text-gray-900">Communications Staff</p>
               </div>
               <div>
-                <label class="text-sm font-medium text-gray-500">Category</label>
+                <label class="text-sm font-medium text-gray-500"
+                  >Category</label
+                >
                 <p class="text-gray-900">Partnership Success</p>
               </div>
               <div>
-                <label class="text-sm font-medium text-gray-500">Event Date</label>
+                <label class="text-sm font-medium text-gray-500"
+                  >Event Date</label
+                >
                 <p class="text-gray-900">October 15, 2025</p>
               </div>
               <div>
-                <label class="text-sm font-medium text-gray-500">Submitted On</label>
+                <label class="text-sm font-medium text-gray-500"
+                  >Submitted On</label
+                >
                 <p class="text-gray-900">October 20, 2025 - 7:00 AM</p>
               </div>
               <div>
-                <label class="text-sm font-medium text-gray-500">Partnership With</label>
+                <label class="text-sm font-medium text-gray-500"
+                  >Partnership With</label
+                >
                 <p class="text-gray-900">Clean Seas Alliance, Local Barangay</p>
-              </div>
-              <div>
-                <label class="text-sm font-medium text-gray-500">Article ID</label>
-                <p class="text-gray-900 font-mono text-sm">ART-2025-001</p>
               </div>
             </div>
           </div>
 
           <!-- Review Timeline Card -->
           <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Review Timeline</h3>
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              Review Timeline
+            </h3>
             <div class="space-y-4">
               <!-- Timeline Item 1 -->
               <div class="flex gap-3">
                 <div class="flex flex-col items-center">
-                  <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
-                    <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  <div
+                    class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-green-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      ></path>
                     </svg>
                   </div>
                   <div class="w-0.5 h-full bg-gray-200"></div>
                 </div>
                 <div class="flex-1 pb-6">
-                  <p class="text-sm font-medium text-gray-900">Article Submitted</p>
+                  <p class="text-sm font-medium text-gray-900">
+                    Article Submitted
+                  </p>
                   <p class="text-xs text-gray-500">Oct 20, 2025 - 7:00 AM</p>
-                  <p class="text-sm text-gray-600 mt-1">By Communications Staff</p>
+                  <p class="text-sm text-gray-600 mt-1">
+                    By Communications Staff
+                  </p>
                 </div>
               </div>
 
               <!-- Timeline Item 2 -->
               <div class="flex gap-3">
                 <div class="flex flex-col items-center">
-                  <div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center">
-                    <svg class="w-4 h-4 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                  <div
+                    class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-yellow-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                        clip-rule="evenodd"
+                      ></path>
                     </svg>
                   </div>
                 </div>
                 <div class="flex-1">
-                  <p class="text-sm font-medium text-gray-900">Pending Review</p>
+                  <p class="text-sm font-medium text-gray-900">
+                    Pending Review
+                  </p>
                   <p class="text-xs text-gray-500">Awaiting admin approval</p>
                   <p class="text-sm text-gray-600 mt-1">Current Status</p>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Quick Stats Card -->
-          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-sm p-6 border border-blue-100">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Estimated Impact</h3>
-            <div class="space-y-3">
-              <div class="flex justify-between items-center">
-                <span class="text-sm text-gray-600">Word Count</span>
-                <span class="text-lg font-semibold text-gray-900">342</span>
-              </div>
-              <div class="flex justify-between items-center">
-                <span class="text-sm text-gray-600">Read Time</span>
-                <span class="text-lg font-semibold text-gray-900">2 min</span>
-              </div>
-              <div class="flex justify-between items-center">
-                <span class="text-sm text-gray-600">Images</span>
-                <span class="text-lg font-semibold text-gray-900">1</span>
               </div>
             </div>
           </div>
@@ -218,15 +329,26 @@
 
       <!-- Action Buttons - Fixed at Bottom -->
       <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
-        <div class="flex flex-col sm:flex-row gap-4 justify-between items-center">
-          <a href="approve-news.html" class="w-full sm:w-auto px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-center font-medium">
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-between items-center"
+        >
+          <a
+            href="approve-news.html"
+            class="w-full sm:w-auto px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-center font-medium"
+          >
             Back to List
           </a>
           <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-            <button onclick="rejectArticle()" class="w-full sm:w-auto px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium">
+            <button
+              onclick="rejectArticle()"
+              class="w-full sm:w-auto px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium"
+            >
               Reject Article
             </button>
-            <button onclick="approveArticle()" class="w-full sm:w-auto px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium">
+            <button
+              onclick="approveArticle()"
+              class="w-full sm:w-auto px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium"
+            >
               Approve & Publish
             </button>
           </div>
@@ -235,22 +357,56 @@
     </div>
 
     <!-- Rejection Modal -->
-    <div id="rejectModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div
+      id="rejectModal"
+      class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50 p-4"
+    >
       <div class="bg-white rounded-xl shadow-xl max-w-md w-full">
         <div class="p-6">
           <div class="flex items-center justify-between mb-4">
             <h2 class="text-xl font-bold text-gray-900">Reject Article</h2>
-            <button onclick="closeRejectModal()" class="text-gray-400 hover:text-gray-600">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            <button
+              onclick="closeRejectModal()"
+              class="text-gray-400 hover:text-gray-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
               </svg>
             </button>
           </div>
-          <p class="text-gray-600 mb-4">Please provide a reason for rejecting this article. This feedback will be sent to the author.</p>
-          <textarea id="rejectionReason" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary" placeholder="Enter rejection reason..."></textarea>
+          <p class="text-gray-600 mb-4">
+            Please provide a reason for rejecting this article. This feedback
+            will be sent to the author.
+          </p>
+          <textarea
+            id="rejectionReason"
+            rows="4"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+            placeholder="Enter rejection reason..."
+          ></textarea>
           <div class="mt-6 flex gap-3">
-            <button onclick="closeRejectModal()" class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Cancel</button>
-            <button onclick="confirmReject()" class="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Confirm Rejection</button>
+            <button
+              onclick="closeRejectModal()"
+              class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+            >
+              Cancel
+            </button>
+            <button
+              onclick="confirmReject()"
+              class="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+            >
+              Confirm Rejection
+            </button>
           </div>
         </div>
       </div>
@@ -266,7 +422,9 @@
       // Close menu when clicking outside
       document.addEventListener("click", function (event) {
         const userMenu = document.getElementById("userMenu");
-        const button = event.target.closest('button[onclick="toggleUserMenu()"]');
+        const button = event.target.closest(
+          'button[onclick="toggleUserMenu()"]'
+        );
         if (!button && !userMenu.contains(event.target)) {
           userMenu.classList.add("hidden");
         }
@@ -274,7 +432,9 @@
 
       // Approve article
       function approveArticle() {
-        if (confirm("Are you sure you want to approve and publish this article?")) {
+        if (
+          confirm("Are you sure you want to approve and publish this article?")
+        ) {
           alert("Article approved and published successfully!");
           window.location.href = "approve-news.html";
         }
@@ -311,8 +471,8 @@
 
       // Get URL parameters
       const urlParams = new URLSearchParams(window.location.search);
-      const articleId = urlParams.get('id') || 'ART-2025-001';
-      console.log('Viewing article:', articleId);
+      const articleId = urlParams.get("id") || "ART-2025-001";
+      console.log("Viewing article:", articleId);
     </script>
   </body>
 </html>

@@ -25,26 +25,68 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="flex items-center">
-            <a href="approve-news.html" class="text-gray-400 hover:text-gray-600 mr-4">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            <a
+              href="approve-news.html"
+              class="text-gray-400 hover:text-gray-600 mr-4"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                ></path>
               </svg>
             </a>
-            <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
+            <a href="../index.html" class="text-xl font-bold text-primary"
+              >PCU-DASMA Connect</a
+            >
             <div class="hidden md:ml-10 md:flex md:space-x-8">
-              <a href="dashboard.html" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Dashboard</a>
-              <a href="approve-news.html" class="text-primary border-b-2 border-primary px-3 py-2 text-sm font-medium">News Approvals</a>
+              <a
+                href="dashboard.html"
+                class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium"
+                >Dashboard</a
+              >
+              <a
+                href="approve-news.html"
+                class="text-primary border-b-2 border-primary px-3 py-2 text-sm font-medium"
+                >News Approvals</a
+              >
             </div>
           </div>
           <div class="flex items-center space-x-4">
             <div class="relative">
-              <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
-                <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile" />
+              <button
+                onclick="toggleUserMenu()"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
+              >
+                <img
+                  class="h-8 w-8 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
               </button>
-              <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+              <div
+                id="userMenu"
+                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+              >
                 <div class="py-1">
-                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Profile</a>
-                  <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                  <a
+                    href="#"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Admin Profile</a
+                  >
+                  <a
+                    href="#"
+                    onclick="logout()"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >Logout</a
+                  >
                 </div>
               </div>
             </div>
@@ -59,10 +101,17 @@
       <div class="mb-8">
         <div class="flex items-center justify-between">
           <div>
-            <h1 class="text-3xl font-bold text-gray-900 mb-2">Rejected Article</h1>
-            <p class="text-gray-600">Review rejected article details and feedback</p>
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">
+              Rejected Article
+            </h1>
+            <p class="text-gray-600">
+              Review rejected article details and feedback
+            </p>
           </div>
-          <span class="bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-semibold">Rejected</span>
+          <span
+            class="bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-semibold"
+            >Rejected</span
+          >
         </div>
       </div>
 
@@ -70,16 +119,34 @@
       <div class="bg-red-50 border-l-4 border-red-500 rounded-xl p-6 mb-8">
         <div class="flex items-start">
           <div class="flex-shrink-0">
-            <svg class="h-6 w-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            <svg
+              class="h-6 w-6 text-red-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+              ></path>
             </svg>
           </div>
           <div class="ml-4 flex-1">
-            <h3 class="text-lg font-semibold text-red-900 mb-2">Article Rejected</h3>
+            <h3 class="text-lg font-semibold text-red-900 mb-2">
+              Article Rejected
+            </h3>
             <div class="bg-white rounded-lg p-4 border border-red-200">
-              <p class="text-sm font-medium text-red-900 mb-2">Rejection Reason:</p>
+              <p class="text-sm font-medium text-red-900 mb-2">
+                Rejection Reason:
+              </p>
               <p class="text-sm text-red-700">
-                Article needs more detailed information, proper citations, and verification of facts mentioned. The content appears incomplete and requires additional research before it can be approved for publication. Please revise and resubmit with complete content, verified facts, and proper source citations.
+                Article needs more detailed information, proper citations, and
+                verification of facts mentioned. The content appears incomplete
+                and requires additional research before it can be approved for
+                publication. Please revise and resubmit with complete content,
+                verified facts, and proper source citations.
               </p>
             </div>
             <div class="mt-3 text-sm text-red-700">
@@ -102,29 +169,57 @@
                   Draft Article with Incomplete Information
                 </h2>
                 <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-medium">University Update</span>
-                  <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs">Incomplete</span>
-                  <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs">Rejected</span>
+                  <span
+                    class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-medium"
+                    >University Update</span
+                  >
+                  <span
+                    class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs"
+                    >Incomplete</span
+                  >
+                  <span
+                    class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs"
+                    >Rejected</span
+                  >
                 </div>
               </div>
             </div>
-            
+
             <div class="border-t border-gray-200 pt-4">
-              <h3 class="text-sm font-semibold text-gray-700 mb-2">Article Summary</h3>
+              <h3 class="text-sm font-semibold text-gray-700 mb-2">
+                Article Summary
+              </h3>
               <p class="text-gray-600 leading-relaxed">
-                This article was submitted with incomplete information and requires additional research and fact-checking before publication. The content lacks proper citations and verification of the mentioned facts and statistics.
+                This article was submitted with incomplete information and
+                requires additional research and fact-checking before
+                publication. The content lacks proper citations and verification
+                of the mentioned facts and statistics.
               </p>
             </div>
           </div>
 
           <!-- Featured Image Card -->
           <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Featured Image</h3>
-            <div class="rounded-lg overflow-hidden bg-gray-100 border-2 border-dashed border-gray-300">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              Featured Image
+            </h3>
+            <div
+              class="rounded-lg overflow-hidden bg-gray-100 border-2 border-dashed border-gray-300"
+            >
               <div class="flex items-center justify-center h-64">
                 <div class="text-center">
-                  <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  <svg
+                    class="mx-auto h-12 w-12 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
                   </svg>
                   <p class="mt-2 text-sm text-gray-500">No image uploaded</p>
                 </div>
@@ -134,26 +229,53 @@
 
           <!-- Full Article Content Card -->
           <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Full Article Content</h3>
-            <div class="prose max-w-none text-gray-700 leading-relaxed space-y-4">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              Full Article Content
+            </h3>
+            <div
+              class="prose max-w-none text-gray-700 leading-relaxed space-y-4"
+            >
               <p>
-                The university recently held an event that was attended by many students and faculty members. The event was considered successful by most participants.
+                The university recently held an event that was attended by many
+                students and faculty members. The event was considered
+                successful by most participants.
               </p>
               <p>
-                Several departments collaborated on this initiative, which aims to improve various aspects of campus life. The organizers expressed satisfaction with the turnout and participation levels.
+                Several departments collaborated on this initiative, which aims
+                to improve various aspects of campus life. The organizers
+                expressed satisfaction with the turnout and participation
+                levels.
               </p>
               <p>
-                [Content appears incomplete - requires additional details, quotes from participants, specific statistics, and proper citations]
+                [Content appears incomplete - requires additional details,
+                quotes from participants, specific statistics, and proper
+                citations]
               </p>
             </div>
-            <div class="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div
+              class="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4"
+            >
               <div class="flex">
-                <svg class="h-5 w-5 text-yellow-600 mr-2 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                <svg
+                  class="h-5 w-5 text-yellow-600 mr-2 flex-shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                  ></path>
                 </svg>
                 <div>
-                  <p class="text-sm font-medium text-yellow-900">Content Issues Identified:</p>
-                  <ul class="mt-2 text-sm text-yellow-700 list-disc list-inside space-y-1">
+                  <p class="text-sm font-medium text-yellow-900">
+                    Content Issues Identified:
+                  </p>
+                  <ul
+                    class="mt-2 text-sm text-yellow-700 list-disc list-inside space-y-1"
+                  >
                     <li>Missing specific dates, times, and locations</li>
                     <li>No direct quotes from participants or organizers</li>
                     <li>Lacks statistical data and measurable outcomes</li>
@@ -170,22 +292,30 @@
         <div class="lg:col-span-1 space-y-6">
           <!-- Article Details Card -->
           <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Article Details</h3>
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              Article Details
+            </h3>
             <div class="space-y-4">
               <div>
                 <label class="text-sm font-medium text-gray-500">Author</label>
                 <p class="text-gray-900">Staff Writer</p>
               </div>
               <div>
-                <label class="text-sm font-medium text-gray-500">Category</label>
+                <label class="text-sm font-medium text-gray-500"
+                  >Category</label
+                >
                 <p class="text-gray-900">University Update</p>
               </div>
               <div>
-                <label class="text-sm font-medium text-gray-500">Submitted On</label>
+                <label class="text-sm font-medium text-gray-500"
+                  >Submitted On</label
+                >
                 <p class="text-gray-900">October 18, 2025 - 2:15 PM</p>
               </div>
               <div>
-                <label class="text-sm font-medium text-gray-500">Rejected On</label>
+                <label class="text-sm font-medium text-gray-500"
+                  >Rejected On</label
+                >
                 <p class="text-gray-900">October 19, 2025 - 3:45 PM</p>
               </div>
               <div>
@@ -195,29 +325,39 @@
                   <span class="text-red-600 font-medium">Rejected</span>
                 </div>
               </div>
-              <div>
-                <label class="text-sm font-medium text-gray-500">Article ID</label>
-                <p class="text-gray-900 font-mono text-sm">ART-2025-006</p>
-              </div>
             </div>
           </div>
 
           <!-- Review Timeline Card -->
           <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Review Timeline</h3>
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              Review Timeline
+            </h3>
             <div class="space-y-4">
               <!-- Timeline Item 1 -->
               <div class="flex gap-3">
                 <div class="flex flex-col items-center">
-                  <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
-                    <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  <div
+                    class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-green-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      ></path>
                     </svg>
                   </div>
                   <div class="w-0.5 h-full bg-gray-200"></div>
                 </div>
                 <div class="flex-1 pb-6">
-                  <p class="text-sm font-medium text-gray-900">Article Submitted</p>
+                  <p class="text-sm font-medium text-gray-900">
+                    Article Submitted
+                  </p>
                   <p class="text-xs text-gray-500">Oct 18, 2025 - 2:15 PM</p>
                   <p class="text-sm text-gray-600 mt-1">By Staff Writer</p>
                 </div>
@@ -226,9 +366,19 @@
               <!-- Timeline Item 2 -->
               <div class="flex gap-3">
                 <div class="flex flex-col items-center">
-                  <div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center">
-                    <svg class="w-4 h-4 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                  <div
+                    class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-yellow-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                        clip-rule="evenodd"
+                      ></path>
                     </svg>
                   </div>
                   <div class="w-0.5 h-full bg-gray-200"></div>
@@ -236,21 +386,35 @@
                 <div class="flex-1 pb-6">
                   <p class="text-sm font-medium text-gray-900">Under Review</p>
                   <p class="text-xs text-gray-500">Oct 19, 2025 - 10:00 AM</p>
-                  <p class="text-sm text-gray-600 mt-1">Assigned to Admin User</p>
+                  <p class="text-sm text-gray-600 mt-1">
+                    Assigned to Admin User
+                  </p>
                 </div>
               </div>
 
               <!-- Timeline Item 3 -->
               <div class="flex gap-3">
                 <div class="flex flex-col items-center">
-                  <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center">
-                    <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                  <div
+                    class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-red-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                        clip-rule="evenodd"
+                      ></path>
                     </svg>
                   </div>
                 </div>
                 <div class="flex-1">
-                  <p class="text-sm font-medium text-gray-900">Article Rejected</p>
+                  <p class="text-sm font-medium text-gray-900">
+                    Article Rejected
+                  </p>
                   <p class="text-xs text-gray-500">Oct 19, 2025 - 3:45 PM</p>
                   <p class="text-sm text-gray-600 mt-1">By Admin User</p>
                 </div>
@@ -259,61 +423,92 @@
           </div>
 
           <!-- Revision Suggestions Card -->
-          <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl shadow-sm p-6 border border-amber-100">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Revision Suggestions</h3>
+          <div
+            class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl shadow-sm p-6 border border-amber-100"
+          >
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              Revision Suggestions
+            </h3>
             <div class="space-y-3 text-sm text-gray-700">
               <div class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                <svg
+                  class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
                 </svg>
                 <p>Add specific dates, times, and location details</p>
               </div>
               <div class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                <svg
+                  class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
                 </svg>
                 <p>Include direct quotes from participants</p>
               </div>
               <div class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                <svg
+                  class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
                 </svg>
                 <p>Provide statistical data and outcomes</p>
               </div>
               <div class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                <svg
+                  class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
                 </svg>
                 <p>Add proper citations and sources</p>
               </div>
               <div class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                <svg
+                  class="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
                 </svg>
                 <p>Expand content with more details</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Quick Stats Card -->
-          <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Article Metrics</h3>
-            <div class="space-y-3">
-              <div class="flex justify-between items-center">
-                <span class="text-sm text-gray-600">Word Count</span>
-                <span class="text-lg font-semibold text-gray-900">124</span>
-              </div>
-              <div class="flex justify-between items-center">
-                <span class="text-sm text-gray-600">Read Time</span>
-                <span class="text-lg font-semibold text-gray-900">< 1 min</span>
-              </div>
-              <div class="flex justify-between items-center">
-                <span class="text-sm text-gray-600">Images</span>
-                <span class="text-lg font-semibold text-gray-900">0</span>
-              </div>
-              <div class="flex justify-between items-center">
-                <span class="text-sm text-gray-600">Completeness</span>
-                <span class="text-lg font-semibold text-red-600">Low</span>
               </div>
             </div>
           </div>
@@ -322,12 +517,18 @@
 
       <!-- Action Buttons -->
       <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
-        <div class="flex flex-col sm:flex-row gap-4 justify-between items-center">
-          <a href="approve-news.html" class="w-full sm:w-auto px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-center font-medium">
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-between items-center"
+        >
+          <a
+            href="approve-news.html"
+            class="w-full sm:w-auto px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-center font-medium"
+          >
             Back to List
           </a>
           <div class="w-full sm:w-auto text-center text-sm text-gray-500">
-            This article has been rejected and requires revision by the author before resubmission.
+            This article has been rejected and requires revision by the author
+            before resubmission.
           </div>
         </div>
       </div>
@@ -343,7 +544,9 @@
       // Close menu when clicking outside
       document.addEventListener("click", function (event) {
         const userMenu = document.getElementById("userMenu");
-        const button = event.target.closest('button[onclick="toggleUserMenu()"]');
+        const button = event.target.closest(
+          'button[onclick="toggleUserMenu()"]'
+        );
         if (!button && !userMenu.contains(event.target)) {
           userMenu.classList.add("hidden");
         }
@@ -358,8 +561,8 @@
 
       // Get URL parameters
       const urlParams = new URLSearchParams(window.location.search);
-      const articleId = urlParams.get('id') || 'ART-2025-006';
-      console.log('Viewing article:', articleId);
+      const articleId = urlParams.get("id") || "ART-2025-006";
+      console.log("Viewing article:", articleId);
     </script>
   </body>
 </html>
