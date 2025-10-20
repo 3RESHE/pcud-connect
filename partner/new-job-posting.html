@@ -20,7 +20,6 @@
     </script>
   </head>
   <body class="bg-gray-50">
-
     <!-- Navigation -->
     <nav class="bg-white shadow-sm border-b">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -470,23 +469,6 @@
                 </label>
               </div>
             </div>
-
-            <!-- Custom Job Type Field (for "Other" option) -->
-            <div id="custom_job_type" class="mt-6 hidden">
-              <label
-                for="custom_type"
-                class="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Specify Job Type <span class="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="custom_type"
-                name="custom_type"
-                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                placeholder="e.g., Contract, Freelance, Project-based, Temporary, etc."
-              />
-            </div>
           </div>
 
           <!-- Basic Information -->
@@ -669,10 +651,15 @@
                   class="rounded border-gray-300 text-primary focus:ring-primary"
                   onchange="toggleAllowanceFields()"
                 />
-                <span class="ml-2 text-sm text-gray-700">No Allowance (Unpaid Internship)</span>
+                <span class="ml-2 text-sm text-gray-700"
+                  >No Allowance (Unpaid Internship)</span
+                >
               </label>
             </div>
-            <div id="compensation_fields" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div
+              id="compensation_fields"
+              class="grid grid-cols-1 md:grid-cols-3 gap-6"
+            >
               <div>
                 <label
                   for="salary_min"
@@ -1032,33 +1019,33 @@
     <script>
       // Mobile menu toggle function
       function toggleMobileMenu() {
-        const mobileMenu = document.getElementById('mobileMenu');
-        const hamburgerIcon = document.getElementById('hamburgerIcon');
-        const closeIcon = document.getElementById('closeIcon');
-        
+        const mobileMenu = document.getElementById("mobileMenu");
+        const hamburgerIcon = document.getElementById("hamburgerIcon");
+        const closeIcon = document.getElementById("closeIcon");
+
         // Toggle menu visibility
-        mobileMenu.classList.toggle('hidden');
-        
+        mobileMenu.classList.toggle("hidden");
+
         // Toggle icons
-        hamburgerIcon.classList.toggle('hidden');
-        closeIcon.classList.toggle('hidden');
-        
+        hamburgerIcon.classList.toggle("hidden");
+        closeIcon.classList.toggle("hidden");
+
         // Update aria-expanded attribute
         const button = document.querySelector('[onclick="toggleMobileMenu()"]');
-        const isExpanded = !mobileMenu.classList.contains('hidden');
-        button.setAttribute('aria-expanded', isExpanded);
+        const isExpanded = !mobileMenu.classList.contains("hidden");
+        button.setAttribute("aria-expanded", isExpanded);
       }
 
       // User menu toggle function
       function toggleUserMenu() {
-        const menu = document.getElementById('userMenu');
-        menu.classList.toggle('hidden');
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
       }
 
       // Logout function
       function logout() {
-        if (confirm('Are you sure you want to logout?')) {
-          window.location.href = '../login.html';
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
         }
       }
 
@@ -1072,8 +1059,6 @@
         const experienceField = document.getElementById(
           "experience_requirements"
         );
-        const customJobType = document.getElementById("custom_job_type");
-        const customTypeInput = document.getElementById("custom_type");
         const durationMonths = document.getElementById("duration_months");
         const unpaidField = document.getElementById("unpaid_internship_field");
 
@@ -1093,8 +1078,6 @@
           internshipDuration.classList.remove("hidden");
           unpaidField.classList.remove("hidden");
           experienceField.classList.add("hidden");
-          customJobType.classList.add("hidden");
-          customTypeInput.removeAttribute("required");
           durationMonths.setAttribute("required", "required");
 
           // Set default pay period for internships
@@ -1114,8 +1097,6 @@
           internshipDuration.classList.add("hidden");
           unpaidField.classList.add("hidden");
           experienceField.classList.remove("hidden");
-          customJobType.classList.add("hidden");
-          customTypeInput.removeAttribute("required");
           durationMonths.removeAttribute("required");
 
           // Set default pay period for part-time
@@ -1134,8 +1115,6 @@
           internshipDuration.classList.add("hidden");
           unpaidField.classList.add("hidden");
           experienceField.classList.remove("hidden");
-          customJobType.classList.add("hidden");
-          customTypeInput.removeAttribute("required");
           durationMonths.removeAttribute("required");
 
           // Set default pay period for full-time
@@ -1155,8 +1134,6 @@
           internshipDuration.classList.add("hidden");
           unpaidField.classList.add("hidden");
           experienceField.classList.remove("hidden");
-          customJobType.classList.remove("hidden");
-          customTypeInput.setAttribute("required", "required");
           durationMonths.removeAttribute("required");
 
           // Set default pay period for other
@@ -1181,7 +1158,9 @@
       function toggleDepartmentField() {
         const selectedDepartment = document.getElementById("department").value;
         const customDepartment = document.getElementById("custom_department");
-        const customDepartmentInput = document.getElementById("custom_department_input");
+        const customDepartmentInput = document.getElementById(
+          "custom_department_input"
+        );
 
         if (selectedDepartment === "other") {
           customDepartment.classList.remove("hidden");
@@ -1208,7 +1187,9 @@
 
       function toggleAllowanceFields() {
         const unpaidCheckbox = document.getElementById("unpaid_internship");
-        const compensationFields = document.getElementById("compensation_fields");
+        const compensationFields = document.getElementById(
+          "compensation_fields"
+        );
         const salaryMin = document.getElementById("salary_min");
         const salaryMax = document.getElementById("salary_max");
         const salaryPeriod = document.getElementById("salary_period");
@@ -1240,11 +1221,11 @@
           document.getElementById("jobPostingForm")
         );
         const jobType = formData.get("job_type");
-        const customType = formData.get("custom_type");
         const jobTitle = formData.get("job_title");
         const department = formData.get("department");
         const customDepartment = formData.get("custom_department");
-        const effectiveDepartment = department === "other" ? customDepartment : department;
+        const effectiveDepartment =
+          department === "other" ? customDepartment : department;
         const location = formData.get("location");
         const workSetup = formData.get("work_setup");
         const salaryMin = formData.get("salary_min");
@@ -1277,11 +1258,12 @@
             typeLabel = "Internship";
             compensationLabel = "Allowance";
             if (unpaidInternship) {
-              compensationDisplay = "<p class='text-lg font-semibold text-gray-600'>Unpaid Internship</p>";
+              compensationDisplay =
+                "<p class='text-lg font-semibold text-gray-600'>Unpaid Internship</p>";
             }
             break;
           case "other":
-            typeLabel = customType || "Other Position";
+            typeLabel = "Other/Contract";
             compensationLabel = "Compensation";
             break;
         }
@@ -1390,18 +1372,12 @@
 
           const formData = new FormData(this);
           const jobType = formData.get("job_type");
-          const customType = formData.get("custom_type");
           const jobTitle = formData.get("job_title");
           const department = formData.get("department");
           const customDepartment = formData.get("custom_department");
 
           if (!jobType) {
             alert("Please select a job type.");
-            return;
-          }
-
-          if (jobType === "other" && !customType) {
-            alert("Please specify the job type for 'Other' category.");
             return;
           }
 
@@ -1412,7 +1388,7 @@
 
           const typeText =
             jobType === "other"
-              ? customType
+              ? "other position"
               : jobType === "fulltime"
               ? "full-time job"
               : jobType === "parttime"
