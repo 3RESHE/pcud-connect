@@ -45,7 +45,7 @@
               </a>
               <a
                 href="events.html"
-                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
               >
                 Events
               </a>
@@ -63,7 +63,8 @@
               </a>
               <a
                 href="my-applications.html"
-                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
+                aria-current="page"
               >
                 My Applications
               </a>
@@ -78,6 +79,7 @@
                 class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"
                 aria-label="Open user menu"
                 aria-haspopup="true"
+                aria-controls="userMenu"
               >
                 <img
                   class="h-8 w-8 rounded-full"
@@ -90,6 +92,7 @@
                 class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 transform transition-all duration-200"
                 role="menu"
                 aria-orientation="vertical"
+                aria-labelledby="user-menu-button"
               >
                 <div class="py-1">
                   <a
@@ -131,8 +134,9 @@
             <button
               onclick="toggleMobileMenu()"
               class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-all duration-200"
-              aria-label="Open main menu"
+              aria-controls="mobileMenu"
               aria-expanded="false"
+              aria-label="Toggle main menu"
             >
               <svg
                 id="hamburgerIcon"
@@ -190,7 +194,7 @@
             </a>
             <a
               href="events.html"
-              class="text-primary bg-primary bg-opacity-10 block px-3 py-2 rounded-md text-base font-medium"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
             >
               Events
             </a>
@@ -208,7 +212,8 @@
             </a>
             <a
               href="my-applications.html"
-              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+              class="text-primary bg-primary bg-opacity-10 block px-3 py-2 rounded-md text-base font-medium"
+              aria-current="page"
             >
               My Applications
             </a>
@@ -271,7 +276,7 @@
       <!-- Back Button -->
       <div class="mb-6">
         <a
-          href="jobs.html"
+          href="my-applications.html"
           class="flex items-center text-primary hover:text-blue-700"
         >
           <svg
@@ -287,7 +292,7 @@
               d="M15 19l-7-7 7-7"
             ></path>
           </svg>
-          Back to Job Opportunities
+          Back to My Applications
         </a>
       </div>
 
@@ -298,15 +303,15 @@
           <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
             <div class="flex items-center mb-4">
               <span
-                class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mr-3"
+                class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
                 >Full-time</span
               >
               <span
-                class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs"
-                >Featured</span
+                class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm ml-3"
+                >Senior Level (6+ years)</span
               >
               <span
-                class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium ml-3"
+                class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm ml-3"
                 >Applied</span
               >
             </div>
@@ -395,7 +400,7 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                   ></path>
                 </svg>
                 <span>45 applicants</span>
@@ -438,223 +443,88 @@
 
           <!-- Requirements -->
           <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-            <h2 class="text-xl font-bold text-gray-900 mb-4">Requirements</h2>
-
-            <!-- Education Requirements -->
-            <div class="mb-6">
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">
-                Education
-              </h3>
-              <p class="text-gray-700">
-                Bachelor's degree in Computer Science, Information Technology,
-                or related field
-              </p>
-            </div>
-
-            <!-- Experience Requirements -->
-            <div class="mb-6">
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">
-                Experience
-              </h3>
-              <p class="text-gray-700 mb-3">
-                Senior Level (6+ years of experience required)
-              </p>
-              <ul class="list-disc list-inside text-gray-700 space-y-2">
-                <li>5+ years of experience in software development</li>
-                <li>Experience with Agile development methodologies</li>
-                <li>Proven track record of leading development projects</li>
-                <li>Experience mentoring junior developers</li>
-              </ul>
-            </div>
-
-            <!-- Skills Requirements -->
-            <div class="mb-6">
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">
-                Required Skills
-              </h3>
-              <ul class="list-disc list-inside text-gray-700 space-y-2">
-                <li>
-                  Proficiency in JavaScript, React, Node.js, and databases
-                </li>
-                <li>Strong understanding of software design patterns</li>
-                <li>Experience with version control systems (Git)</li>
-                <li>Knowledge of cloud platforms (AWS, Azure, or GCP)</li>
-                <li>Strong problem-solving and analytical skills</li>
-                <li>Excellent communication and teamwork abilities</li>
-              </ul>
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">
+              Requirements
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="text-base font-medium text-gray-900 mb-3">
+                  Education & Experience
+                </h4>
+                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                  <li>Bachelor's degree in Computer Science</li>
+                  <li>5+ years of software development</li>
+                  <li>Experience leading projects</li>
+                </ul>
+                <h4 class="text-base font-medium text-gray-900 mt-4 mb-3">
+                  Additional Experience
+                </h4>
+                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                  <li>Experience with Agile methodologies</li>
+                  <li>Familiarity with cloud platforms</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="text-base font-medium text-gray-900 mb-3">
+                  Technical Skills
+                </h4>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                    >JavaScript</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                    >React</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                    >Node.js</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                    >Git</span
+                  >
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- Benefits -->
           <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-            <h2 class="text-xl font-bold text-gray-900 mb-4">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">
               Benefits & Perks
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div class="flex items-center">
-                <svg
-                  class="w-5 h-5 text-green-600 mr-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span class="text-gray-700">Health Insurance</span>
-              </div>
-              <div class="flex items-center">
-                <svg
-                  class="w-5 h-5 text-green-600 mr-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span class="text-gray-700">Dental Insurance</span>
-              </div>
-              <div class="flex items-center">
-                <svg
-                  class="w-5 h-5 text-green-600 mr-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span class="text-gray-700">Retirement Plan</span>
-              </div>
-              <div class="flex items-center">
-                <svg
-                  class="w-5 h-5 text-green-600 mr-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span class="text-gray-700">Paid Time Off</span>
-              </div>
-              <div class="flex items-center">
-                <svg
-                  class="w-5 h-5 text-green-600 mr-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span class="text-gray-700">Flexible Hours</span>
-              </div>
-              <div class="flex items-center">
-                <svg
-                  class="w-5 h-5 text-green-600 mr-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span class="text-gray-700">Professional Development</span>
-              </div>
-            </div>
-
-            <div class="mt-4 p-4 bg-gray-50 rounded-lg">
-              <h4 class="font-semibold text-gray-900 mb-2">Additional Perks</h4>
-              <p class="text-gray-700 text-sm">
-                Free meals and snacks, modern office equipment, team building
-                activities, learning budget for courses and conferences,
-                work-from-home options.
-              </p>
-            </div>
+            <ul class="list-disc list-inside text-gray-700 mb-4 space-y-1">
+              <li>Health Insurance</li>
+              <li>Paid Time Off</li>
+              <li>Flexible Hours</li>
+              <li>Retirement Plan</li>
+              <li>Professional Development</li>
+              <li>Transportation Allowance</li>
+            </ul>
           </div>
 
           <!-- Application Process -->
           <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-            <h2 class="text-xl font-bold text-gray-900 mb-4">How to Apply</h2>
-            <div class="space-y-4 text-gray-700">
-              <div class="flex items-start">
-                <div
-                  class="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3"
-                >
-                  1
-                </div>
-                <div>
-                  <p class="font-medium">Submit Your Application</p>
-                  <p class="text-sm text-gray-600">
-                    Click "Apply Now" and complete the application form with
-                    your updated resume and cover letter.
-                  </p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div
-                  class="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3"
-                >
-                  2
-                </div>
-                <div>
-                  <p class="font-medium">Initial Screening</p>
-                  <p class="text-sm text-gray-600">
-                    Our HR team will review your application and may conduct a
-                    brief phone screening.
-                  </p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div
-                  class="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3"
-                >
-                  3
-                </div>
-                <div>
-                  <p class="font-medium">Technical Interview</p>
-                  <p class="text-sm text-gray-600">
-                    Technical assessment and coding interview with our
-                    development team.
-                  </p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div
-                  class="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3"
-                >
-                  4
-                </div>
-                <div>
-                  <p class="font-medium">Final Interview</p>
-                  <p class="text-sm text-gray-600">
-                    Meet with the hiring manager and team members to discuss fit
-                    and expectations.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">
+              Application Process
+            </h2>
+            <ol class="list-decimal list-inside text-gray-700 space-y-1">
+              <li>Complete application form</li>
+              <li>Application review by hiring team</li>
+              <li>Attend interview</li>
+              <li>Final evaluation and decision</li>
+            </ol>
           </div>
 
           <!-- Review Timeline -->
           <div class="bg-white rounded-lg shadow-sm p-6">
-            <h2 class="text-xl font-bold text-gray-900 mb-4">Review Timeline</h2>
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">
+              Review Timeline
+            </h2>
             <div class="space-y-6">
-              <!-- Date Applied -->
+              <!-- Application Submitted -->
               <div class="flex items-start">
                 <div class="flex-shrink-0">
                   <svg
@@ -670,12 +540,14 @@
                   </svg>
                 </div>
                 <div>
-                  <p class="font-medium text-gray-900">Date Applied</p>
+                  <p class="font-medium text-gray-900">Application Submitted</p>
                   <p class="text-sm text-gray-600">October 19, 2025</p>
-                  <p class="text-sm text-gray-500">Your application was successfully submitted.</p>
+                  <p class="text-sm text-gray-500">
+                    Your application was successfully submitted.
+                  </p>
                 </div>
               </div>
-              <!-- Scheduled Interview -->
+              <!-- Under Review -->
               <div class="flex items-start">
                 <div class="flex-shrink-0">
                   <svg
@@ -691,9 +563,34 @@
                   </svg>
                 </div>
                 <div>
-                  <p class="font-medium text-gray-900">Scheduled Interview</p>
+                  <p class="font-medium text-gray-900">Under Review</p>
+                  <p class="text-sm text-gray-600">October 20, 2025</p>
+                  <p class="text-sm text-gray-500">
+                    Your application is being reviewed by the hiring team.
+                  </p>
+                </div>
+              </div>
+              <!-- Interview Scheduled -->
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg
+                    class="w-6 h-6 text-green-600 mr-3"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium text-gray-900">Interview Scheduled</p>
                   <p class="text-sm text-gray-600">October 22, 2025</p>
-                  <p class="text-sm text-gray-500">Video Interview via Zoom. Link sent to your email.</p>
+                  <p class="text-sm text-gray-500">
+                    An interview has been scheduled. Details sent to your email.
+                  </p>
                 </div>
               </div>
               <!-- Interview Completed -->
@@ -714,31 +611,12 @@
                 <div>
                   <p class="font-medium text-gray-900">Interview Completed</p>
                   <p class="text-sm text-gray-600">October 23, 2025</p>
-                  <p class="text-sm text-gray-500">Technical interview completed with the development team.</p>
+                  <p class="text-sm text-gray-500">
+                    Your interview has been completed.
+                  </p>
                 </div>
               </div>
-              <!-- Pending Decision -->
-              <div class="flex items-start">
-                <div class="flex-shrink-0">
-                  <svg
-                    class="w-6 h-6 text-gray-400 mr-3"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 001.415-1.415L11 9.586V6z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
-                <div>
-                  <p class="font-medium text-gray-900">Pending Decision</p>
-                  <p class="text-sm text-gray-600">In Progress</p>
-                  <p class="text-sm text-gray-500">Awaiting final decision from the hiring team.</p>
-                </div>
-              </div>
-              <!-- Hired/Rejected -->
+              <!-- Final Outcome -->
               <div class="flex items-start">
                 <div class="flex-shrink-0">
                   <svg
@@ -754,9 +632,11 @@
                   </svg>
                 </div>
                 <div>
-                  <p class="font-medium text-gray-900">Hired/Rejected</p>
+                  <p class="font-medium text-gray-900">Final Outcome</p>
                   <p class="text-sm text-gray-600">Not Yet Reached</p>
-                  <p class="text-sm text-gray-500">Final status will be updated here.</p>
+                  <p class="text-sm text-gray-500">
+                    Final decision will be updated here.
+                  </p>
                 </div>
               </div>
             </div>
@@ -773,7 +653,11 @@
             <div class="space-y-3">
               <div>
                 <div class="text-sm text-gray-500">Job Type</div>
-                <div class="font-medium">Full-time Position</div>
+                <div class="font-medium">Full-time</div>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Department</div>
+                <div class="font-medium">Information Technology</div>
               </div>
               <div>
                 <div class="text-sm text-gray-500">Experience Level</div>
@@ -784,12 +668,20 @@
                 <div class="font-medium">On-site</div>
               </div>
               <div>
+                <div class="text-sm text-gray-500">Location</div>
+                <div class="font-medium">Makati City, Metro Manila</div>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Compensation</div>
+                <div class="font-medium">₱80,000 - ₱120,000 / monthly</div>
+              </div>
+              <div>
                 <div class="text-sm text-gray-500">Positions Available</div>
-                <div class="font-medium">2 positions</div>
+                <div class="font-medium">2</div>
               </div>
               <div>
                 <div class="text-sm text-gray-500">Application Deadline</div>
-                <div class="font-medium text-red-600">November 15, 2025</div>
+                <div class="font-medium text-red-600">November 30, 2025</div>
               </div>
             </div>
           </div>
@@ -850,26 +742,18 @@
     </div>
 
     <script>
-      // Mobile menu toggle function
       function toggleMobileMenu() {
         const mobileMenu = document.getElementById("mobileMenu");
         const hamburgerIcon = document.getElementById("hamburgerIcon");
         const closeIcon = document.getElementById("closeIcon");
-
-        // Toggle menu visibility
         mobileMenu.classList.toggle("hidden");
-
-        // Toggle icons
         hamburgerIcon.classList.toggle("hidden");
         closeIcon.classList.toggle("hidden");
-
-        // Update aria-expanded attribute
         const button = document.querySelector('[onclick="toggleMobileMenu()"]');
         const isExpanded = !mobileMenu.classList.contains("hidden");
         button.setAttribute("aria-expanded", isExpanded);
       }
 
-      // User menu toggle function
       function toggleUserMenu() {
         const menu = document.getElementById("userMenu");
         menu.classList.toggle("hidden");
@@ -881,13 +765,36 @@
         }
       }
 
-      // Close user menu when clicking outside
+      function showToast(message, type) {
+        const toast = document.createElement("div");
+        toast.className = `fixed bottom-4 right-4 px-4 py-2 rounded-md text-white ${
+          type === "success" ? "bg-green-600" : "bg-red-600"
+        }`;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+          toast.remove();
+        }, 3000);
+      }
+
       document.addEventListener("click", function (event) {
         const menu = document.getElementById("userMenu");
-        const button = event.target.closest("button");
-
-        if (!button || button.onclick !== toggleUserMenu) {
+        const button = event.target.closest('button[aria-controls="userMenu"]');
+        if (!button && !menu.contains(event.target)) {
           menu.classList.add("hidden");
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          const userMenu = document.getElementById("userMenu");
+          const mobileMenu = document.getElementById("mobileMenu");
+          if (!userMenu.classList.contains("hidden")) {
+            userMenu.classList.add("hidden");
+          }
+          if (!mobileMenu.classList.contains("hidden")) {
+            toggleMobileMenu();
+          }
         }
       });
     </script>
