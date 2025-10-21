@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Senior Software Developer (Applied) - PCU-DASMA Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <!-- Logo and Desktop Navigation -->
+          <div class="flex items-center">
+            <a href="../index.html" class="text-xl font-bold text-primary">
+              PCU-DASMA Connect
+            </a>
+            <!-- Desktop Navigation Menu -->
+            <div class="hidden md:ml-10 md:flex md:space-x-8">
+              <a
+                href="dashboard.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                Dashboard
+              </a>
+              <a
+                href="jobs.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                Job Opportunities
+              </a>
+              <a
+                href="events.html"
+                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
+              >
+                Events
+              </a>
+              <a
+                href="news.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                News
+              </a>
+              <a
+                href="profile.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                Profile
+              </a>
+              <a
+                href="my-applications.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                My Applications
+              </a>
+            </div>
+          </div>
+
+          <!-- Desktop User Menu -->
+          <div class="hidden md:flex items-center space-x-4">
+            <div class="relative">
+              <button
+                onclick="toggleUserMenu()"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"
+                aria-label="Open user menu"
+                aria-haspopup="true"
+              >
+                <img
+                  class="h-8 w-8 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </button>
+              <div
+                id="userMenu"
+                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 transform transition-all duration-200"
+                role="menu"
+                aria-orientation="vertical"
+              >
+                <div class="py-1">
+                  <a
+                    href="profile.html"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
+                  >
+                    Profile
+                  </a>
+                  <a
+                    href="settings.html"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
+                  >
+                    Settings
+                  </a>
+                  <a
+                    href="my-applications.html"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
+                  >
+                    My Applications
+                  </a>
+                  <a
+                    href="#"
+                    onclick="logout()"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
+                  >
+                    Logout
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+            <button
+              onclick="toggleMobileMenu()"
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-all duration-200"
+              aria-label="Open main menu"
+              aria-expanded="false"
+            >
+              <svg
+                id="hamburgerIcon"
+                class="block h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <svg
+                id="closeIcon"
+                class="hidden h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div
+          id="mobileMenu"
+          class="md:hidden hidden transition-all duration-300 ease-in-out"
+        >
+          <div
+            class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200 bg-white"
+          >
+            <a
+              href="dashboard.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Dashboard
+            </a>
+            <a
+              href="jobs.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Job Opportunities
+            </a>
+            <a
+              href="events.html"
+              class="text-primary bg-primary bg-opacity-10 block px-3 py-2 rounded-md text-base font-medium"
+            >
+              Events
+            </a>
+            <a
+              href="news.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              News
+            </a>
+            <a
+              href="profile.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Profile
+            </a>
+            <a
+              href="my-applications.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              My Applications
+            </a>
+          </div>
+          <!-- Mobile User Profile Section -->
+          <div class="pt-4 pb-3 border-t border-gray-200">
+            <div class="flex items-center px-5">
+              <div class="flex-shrink-0">
+                <img
+                  class="h-10 w-10 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </div>
+              <div class="ml-3">
+                <div class="text-base font-medium leading-none text-gray-900">
+                  User Account
+                </div>
+                <div
+                  class="text-sm font-medium leading-none text-gray-500 mt-1"
+                >
+                  user@pcudasma.edu.ph
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 px-2 space-y-1">
+              <a
+                href="profile.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              >
+                Profile
+              </a>
+              <a
+                href="settings.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              >
+                Settings
+              </a>
+              <a
+                href="my-applications.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              >
+                My Applications
+              </a>
+              <a
+                href="#"
+                onclick="logout()"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              >
+                Logout
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <!-- Back Button -->
+      <div class="mb-6">
+        <a
+          href="jobs.html"
+          class="flex items-center text-primary hover:text-blue-700"
+        >
+          <svg
+            class="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            ></path>
+          </svg>
+          Back to Job Opportunities
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Main Content -->
+        <div class="lg:col-span-2">
+          <!-- Job Header -->
+          <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <div class="flex items-center mb-4">
+              <span
+                class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mr-3"
+                >Full-time</span
+              >
+              <span
+                class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs"
+                >Featured</span
+              >
+              <span
+                class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium ml-3"
+                >Applied</span
+              >
+            </div>
+
+            <h1 class="text-3xl font-bold text-gray-900 mb-4">
+              Senior Software Developer
+            </h1>
+
+            <div class="flex flex-wrap items-center text-sm text-gray-600 mb-6">
+              <div class="flex items-center mr-6 mb-2">
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                  ></path>
+                </svg>
+                <span class="font-semibold">TechSolutions Inc.</span>
+              </div>
+
+              <div class="flex items-center mr-6 mb-2">
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                </svg>
+                <span>Makati City, Metro Manila</span>
+              </div>
+
+              <div class="flex items-center mr-6 mb-2">
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"
+                  ></path>
+                </svg>
+                <span>Information Technology</span>
+              </div>
+
+              <div class="flex items-center mr-6 mb-2">
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                <span>Posted 2 days ago</span>
+              </div>
+
+              <div class="flex items-center mr-6 mb-2">
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  ></path>
+                </svg>
+                <span>45 applicants</span>
+              </div>
+            </div>
+
+            <div class="text-2xl font-bold text-green-600 mb-4">
+              ₱80,000 - ₱120,000<span class="text-lg font-normal text-gray-600"
+                >/month</span
+              >
+            </div>
+          </div>
+
+          <!-- Job Description -->
+          <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">
+              Job Description
+            </h2>
+            <div class="prose max-w-none text-gray-700">
+              <p class="mb-4">
+                We're looking for an experienced software developer to join our
+                growing team. You'll work on cutting-edge projects using modern
+                technologies and collaborate with talented professionals in an
+                innovative environment.
+              </p>
+              <p class="mb-4">
+                As a Senior Software Developer, you will be responsible for
+                designing, developing, and maintaining high-quality software
+                solutions. You'll work closely with our product team to deliver
+                features that directly impact our users' experience and business
+                objectives.
+              </p>
+              <p>
+                This role offers excellent growth opportunities, flexible work
+                arrangements, and the chance to work with the latest
+                technologies in a collaborative and supportive environment.
+              </p>
+            </div>
+          </div>
+
+          <!-- Requirements -->
+          <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Requirements</h2>
+
+            <!-- Education Requirements -->
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                Education
+              </h3>
+              <p class="text-gray-700">
+                Bachelor's degree in Computer Science, Information Technology,
+                or related field
+              </p>
+            </div>
+
+            <!-- Experience Requirements -->
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                Experience
+              </h3>
+              <p class="text-gray-700 mb-3">
+                Senior Level (6+ years of experience required)
+              </p>
+              <ul class="list-disc list-inside text-gray-700 space-y-2">
+                <li>5+ years of experience in software development</li>
+                <li>Experience with Agile development methodologies</li>
+                <li>Proven track record of leading development projects</li>
+                <li>Experience mentoring junior developers</li>
+              </ul>
+            </div>
+
+            <!-- Skills Requirements -->
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                Required Skills
+              </h3>
+              <ul class="list-disc list-inside text-gray-700 space-y-2">
+                <li>
+                  Proficiency in JavaScript, React, Node.js, and databases
+                </li>
+                <li>Strong understanding of software design patterns</li>
+                <li>Experience with version control systems (Git)</li>
+                <li>Knowledge of cloud platforms (AWS, Azure, or GCP)</li>
+                <li>Strong problem-solving and analytical skills</li>
+                <li>Excellent communication and teamwork abilities</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Benefits -->
+          <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">
+              Benefits & Perks
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-green-600 mr-3"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="text-gray-700">Health Insurance</span>
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-green-600 mr-3"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="text-gray-700">Dental Insurance</span>
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-green-600 mr-3"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="text-gray-700">Retirement Plan</span>
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-green-600 mr-3"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="text-gray-700">Paid Time Off</span>
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-green-600 mr-3"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="text-gray-700">Flexible Hours</span>
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-green-600 mr-3"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="text-gray-700">Professional Development</span>
+              </div>
+            </div>
+
+            <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+              <h4 class="font-semibold text-gray-900 mb-2">Additional Perks</h4>
+              <p class="text-gray-700 text-sm">
+                Free meals and snacks, modern office equipment, team building
+                activities, learning budget for courses and conferences,
+                work-from-home options.
+              </p>
+            </div>
+          </div>
+
+          <!-- Application Process -->
+          <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">How to Apply</h2>
+            <div class="space-y-4 text-gray-700">
+              <div class="flex items-start">
+                <div
+                  class="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3"
+                >
+                  1
+                </div>
+                <div>
+                  <p class="font-medium">Submit Your Application</p>
+                  <p class="text-sm text-gray-600">
+                    Click "Apply Now" and complete the application form with
+                    your updated resume and cover letter.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div
+                  class="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3"
+                >
+                  2
+                </div>
+                <div>
+                  <p class="font-medium">Initial Screening</p>
+                  <p class="text-sm text-gray-600">
+                    Our HR team will review your application and may conduct a
+                    brief phone screening.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div
+                  class="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3"
+                >
+                  3
+                </div>
+                <div>
+                  <p class="font-medium">Technical Interview</p>
+                  <p class="text-sm text-gray-600">
+                    Technical assessment and coding interview with our
+                    development team.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div
+                  class="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3"
+                >
+                  4
+                </div>
+                <div>
+                  <p class="font-medium">Final Interview</p>
+                  <p class="text-sm text-gray-600">
+                    Meet with the hiring manager and team members to discuss fit
+                    and expectations.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review Timeline -->
+          <div class="bg-white rounded-lg shadow-sm p-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-4">Review Timeline</h2>
+            <div class="space-y-6">
+              <!-- Date Applied -->
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg
+                    class="w-6 h-6 text-green-600 mr-3"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium text-gray-900">Date Applied</p>
+                  <p class="text-sm text-gray-600">October 19, 2025</p>
+                  <p class="text-sm text-gray-500">Your application was successfully submitted.</p>
+                </div>
+              </div>
+              <!-- Scheduled Interview -->
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg
+                    class="w-6 h-6 text-green-600 mr-3"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium text-gray-900">Scheduled Interview</p>
+                  <p class="text-sm text-gray-600">October 22, 2025</p>
+                  <p class="text-sm text-gray-500">Video Interview via Zoom. Link sent to your email.</p>
+                </div>
+              </div>
+              <!-- Interview Completed -->
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg
+                    class="w-6 h-6 text-green-600 mr-3"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium text-gray-900">Interview Completed</p>
+                  <p class="text-sm text-gray-600">October 23, 2025</p>
+                  <p class="text-sm text-gray-500">Technical interview completed with the development team.</p>
+                </div>
+              </div>
+              <!-- Pending Decision -->
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg
+                    class="w-6 h-6 text-gray-400 mr-3"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 001.415-1.415L11 9.586V6z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium text-gray-900">Pending Decision</p>
+                  <p class="text-sm text-gray-600">In Progress</p>
+                  <p class="text-sm text-gray-500">Awaiting final decision from the hiring team.</p>
+                </div>
+              </div>
+              <!-- Hired/Rejected -->
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <svg
+                    class="w-6 h-6 text-gray-300 mr-3"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-medium text-gray-900">Hired/Rejected</p>
+                  <p class="text-sm text-gray-600">Not Yet Reached</p>
+                  <p class="text-sm text-gray-500">Final status will be updated here.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1">
+          <!-- Quick Info -->
+          <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              Job Details
+            </h3>
+            <div class="space-y-3">
+              <div>
+                <div class="text-sm text-gray-500">Job Type</div>
+                <div class="font-medium">Full-time Position</div>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Experience Level</div>
+                <div class="font-medium">Senior Level (6+ years)</div>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Work Setup</div>
+                <div class="font-medium">On-site</div>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Positions Available</div>
+                <div class="font-medium">2 positions</div>
+              </div>
+              <div>
+                <div class="text-sm text-gray-500">Application Deadline</div>
+                <div class="font-medium text-red-600">November 15, 2025</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Company Information -->
+          <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              About TechSolutions Inc.
+            </h3>
+            <div class="mb-4">
+              <div
+                class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-3"
+              >
+                <svg
+                  class="w-8 h-8 text-blue-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="space-y-3 text-sm">
+              <div>
+                <div class="text-gray-500">Industry</div>
+                <div class="font-medium">Technology</div>
+              </div>
+              <div>
+                <div class="text-gray-500">Company Size</div>
+                <div class="font-medium">51-200 employees</div>
+              </div>
+              <div>
+                <div class="text-gray-500">Founded</div>
+                <div class="font-medium">2018</div>
+              </div>
+              <div>
+                <div class="text-gray-500">Website</div>
+                <a href="#" class="text-primary hover:text-blue-700"
+                  >techsolutions.ph</a
+                >
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 mt-4">
+              TechSolutions Inc. is a leading software development company
+              specializing in innovative digital solutions for businesses. We
+              are committed to fostering talent development and providing growth
+              opportunities for emerging professionals.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Mobile menu toggle function
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById("mobileMenu");
+        const hamburgerIcon = document.getElementById("hamburgerIcon");
+        const closeIcon = document.getElementById("closeIcon");
+
+        // Toggle menu visibility
+        mobileMenu.classList.toggle("hidden");
+
+        // Toggle icons
+        hamburgerIcon.classList.toggle("hidden");
+        closeIcon.classList.toggle("hidden");
+
+        // Update aria-expanded attribute
+        const button = document.querySelector('[onclick="toggleMobileMenu()"]');
+        const isExpanded = !mobileMenu.classList.contains("hidden");
+        button.setAttribute("aria-expanded", isExpanded);
+      }
+
+      // User menu toggle function
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+      }
+
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
+        }
+      }
+
+      // Close user menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const menu = document.getElementById("userMenu");
+        const button = event.target.closest("button");
+
+        if (!button || button.onclick !== toggleUserMenu) {
+          menu.classList.add("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>
