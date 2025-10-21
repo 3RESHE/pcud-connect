@@ -1,121 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - PCU-DASMA Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1E40AF',
-                        secondary: '#3B82F6',
-                        accent: '#F59E0B'
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+  </head>
+  <body class="bg-gray-50 min-h-screen flex items-center justify-center">
     <div class="max-w-md w-full space-y-8 p-8">
-        <!-- Header -->
-        <div class="text-center">
-            <a href="index.html" class="text-2xl font-bold text-primary mb-2 block">PCU-DASMA Connect</a>
-            <h2 class="text-3xl font-bold text-gray-900">Sign in to your account</h2>
-            <p class="mt-2 text-gray-600">Access your alumni portal</p>
+      <!-- Header -->
+      <div class="text-center">
+        <a href="index.html" class="text-2xl font-bold text-primary mb-2 block"
+          >PCU-DASMA Connect</a
+        >
+        <h2 class="text-3xl font-bold text-gray-900">
+          Sign in to your account
+        </h2>
+        <p class="mt-2 text-gray-600">Access your alumni portal</p>
+      </div>
+
+      <!-- Login Form -->
+      <form class="mt-8 space-y-6" onsubmit="handleLogin(event)">
+        <div class="rounded-md shadow-sm space-y-4">
+          <div>
+            <label
+              for="email"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Email Address</label
+            >
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              class="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div>
+            <label
+              for="password"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Password</label
+            >
+            <input
+              id="password"
+              name="password"
+              type="password"
+              required
+              class="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+              placeholder="Enter your password"
+            />
+          </div>
         </div>
 
-        <!-- Login Form -->
-        <form class="mt-8 space-y-6" onsubmit="handleLogin(event)">
-            <div class="rounded-md shadow-sm space-y-4">
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                    <input id="email" name="email" type="email" required 
-                           class="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-                           placeholder="Enter your email">
-                </div>
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                    <input id="password" name="password" type="password" required 
-                           class="w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-                           placeholder="Enter your password">
-                </div>
-                <div>
-                    <label for="userType" class="block text-sm font-medium text-gray-700 mb-1">Login As</label>
-                    <select id="userType" name="userType" required 
-                            class="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary">
-                        <option value="">Select user type</option>
-                        <option value="alumni">Alumni</option>
-                        <option value="partner">External Partner</option>
-                        <option value="admin">Administrator</option>
-                    </select>
-                </div>
-            </div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <input
+              id="remember-me"
+              name="remember-me"
+              type="checkbox"
+              class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+            />
+            <label for="remember-me" class="ml-2 block text-sm text-gray-700"
+              >Remember me</label
+            >
+          </div>
+          <div class="text-sm">
+            <a
+              href="forgot-password.html"
+              class="font-medium text-primary hover:text-blue-700"
+            >
+              Forgot your password?
+            </a>
+          </div>
+        </div>
 
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <input id="remember-me" name="remember-me" type="checkbox" 
-                           class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
-                    <label for="remember-me" class="ml-2 block text-sm text-gray-700">Remember me</label>
-                </div>
-                <div class="text-sm">
-                    <a href="forgot-password.html" class="font-medium text-primary hover:text-blue-700">
-                        Forgot your password?
-                    </a>
-                </div>
-            </div>
-
-            <div>
-                <button type="submit" 
-                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors">
-                    Sign in
-                </button>
-            </div>
-
-            <div class="text-center">
-                <p class="text-sm text-gray-600">
-                    Don't have an account?
-                    <a href="register.html" class="font-medium text-primary hover:text-blue-700">Register here</a>
-                </p>
-            </div>
-        </form>
+        <div>
+          <button
+            type="submit"
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors"
+          >
+            Sign in
+          </button>
+        </div>
+      </form>
     </div>
 
     <script>
-        function handleLogin(event) {
-            event.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const userType = document.getElementById('userType').value;
-            
-            // Simple validation
-            if (!email || !password || !userType) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
-            // Simulate login - In real implementation, this would make an API call
-            console.log('Login attempt:', { email, userType });
-            
-            // Redirect based on user type
-            switch(userType) {
-                case 'alumni':
-                    window.location.href = 'alumni/dashboard.html';
-                    break;
-                case 'partner':
-                    window.location.href = 'partner/dashboard.html';
-                    break;
-                case 'admin':
-                    window.location.href = 'admin/dashboard.html';
-                    break;
-                default:
-                    alert('Please select a valid user type');
-            }
+      function handleLogin(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const userType = document.getElementById("userType").value;
+
+        // Simple validation
+        if (!email || !password || !userType) {
+          alert("Please fill in all fields");
+          return;
         }
+
+        // Simulate login - In real implementation, this would make an API call
+        console.log("Login attempt:", { email, userType });
+
+        // Redirect based on user type
+        switch (userType) {
+          case "alumni":
+            window.location.href = "alumni/dashboard.html";
+            break;
+          case "partner":
+            window.location.href = "partner/dashboard.html";
+            break;
+          case "admin":
+            window.location.href = "admin/dashboard.html";
+            break;
+          default:
+            alert("Please select a valid user type");
+        }
+      }
     </script>
-</body>
+  </body>
 </html>
