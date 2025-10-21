@@ -49,14 +49,12 @@
               >
                 Partnerships
               </a>
-
               <a
                 href="news.html"
                 class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
               >
                 News
               </a>
-
               <a
                 href="profile.html"
                 class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
@@ -74,8 +72,10 @@
                 class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"
                 aria-label="Open user menu"
                 aria-haspopup="true"
+                aria-controls="userMenu"
               >
                 <img
+                  loading="lazy"
                   class="h-8 w-8 rounded-full"
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
                   alt="Profile"
@@ -113,9 +113,11 @@
             <button
               onclick="toggleMobileMenu()"
               class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-all duration-200"
-              aria-label="Open main menu"
+              aria-label="Toggle main menu"
               aria-expanded="false"
+              aria-controls="mobileMenu"
             >
+              <span class="sr-only">Toggle main menu</span>
               <svg
                 id="hamburgerIcon"
                 class="block h-6 w-6"
@@ -193,6 +195,7 @@
             <div class="flex items-center px-5">
               <div class="flex-shrink-0">
                 <img
+                  loading="lazy"
                   class="h-10 w-10 rounded-full"
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
                   alt="Profile"
@@ -279,13 +282,12 @@
             <div class="text-right">
               <p class="text-sm text-gray-500">Posted 2 days ago</p>
               <p class="text-sm text-gray-500">Expires in 28 days</p>
-              <p class="text-sm text-gray-500">286 views</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="grid grid-cols-1  gap-6">
+      <div class="grid grid-cols-1 gap-6">
         <!-- Main Content -->
         <div class="lg:col-span-3">
           <!-- Application Stats -->
@@ -296,11 +298,11 @@
             </div>
             <div class="bg-white p-4 rounded-lg shadow-sm">
               <div class="text-2xl font-bold text-green-600">3</div>
-              <div class="text-sm text-gray-600">Under Review</div>
+              <div class="text-sm text-gray-600">Shortlisted</div>
             </div>
             <div class="bg-white p-4 rounded-lg shadow-sm">
               <div class="text-2xl font-bold text-yellow-600">2</div>
-              <div class="text-sm text-gray-600">Interviewed</div>
+              <div class="text-sm text-gray-600">Interview Scheduled</div>
             </div>
             <div class="bg-white p-4 rounded-lg shadow-sm">
               <div class="text-2xl font-bold text-purple-600">13</div>
@@ -318,6 +320,9 @@
               >
                 <!-- Search -->
                 <div class="relative">
+                  <label for="search-applicants" class="sr-only"
+                    >Search applicants</label
+                  >
                   <svg
                     class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"
                     fill="none"
@@ -346,10 +351,14 @@
                 >
                   <option value="">All Statuses</option>
                   <option value="pending">Pending Review</option>
-                  <option value="reviewing">Under Review</option>
+                  <option value="shortlisted">Shortlisted</option>
+                  <option value="interview_scheduled">
+                    Interview Scheduled
+                  </option>
                   <option value="interviewed">Interviewed</option>
-                  <option value="rejected">Rejected</option>
                   <option value="hired">Hired</option>
+                  <option value="rejected">Rejected</option>
+                  <option value="withdrawn">Withdrawn</option>
                 </select>
 
                 <!-- Program Filter -->
@@ -369,12 +378,14 @@
                 <button
                   onclick="exportApplicants()"
                   class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm"
+                  title="Export applicant data as CSV"
                 >
                   Export CSV
                 </button>
                 <button
                   onclick="bulkAction()"
                   class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm"
+                  title="Perform bulk actions on selected applicants"
                 >
                   Bulk Actions
                 </button>
@@ -383,10 +394,10 @@
           </div>
 
           <!-- Applicants List -->
-          <div class="space-y-4">
+          <div class="space-y-4" id="applicants-list">
             <!-- High Priority Applicant -->
             <div
-              class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500"
+              class="applicant-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500"
             >
               <div class="flex items-start justify-between mb-4">
                 <div class="flex items-center">
@@ -425,10 +436,14 @@
                     class="text-sm border border-gray-300 rounded px-2 py-1"
                   >
                     <option value="pending">Pending Review</option>
-                    <option value="reviewing" selected>Under Review</option>
+                    <option value="shortlisted" selected>Shortlisted</option>
+                    <option value="interview_scheduled">
+                      Interview Scheduled
+                    </option>
                     <option value="interviewed">Interviewed</option>
-                    <option value="rejected">Rejected</option>
                     <option value="hired">Hired</option>
+                    <option value="rejected">Rejected</option>
+                    <option value="withdrawn">Withdrawn</option>
                   </select>
                 </div>
               </div>
@@ -524,7 +539,7 @@
             </div>
 
             <!-- Regular Applicant -->
-            <div class="bg-white rounded-lg shadow-sm p-6">
+            <div class="applicant-card bg-white rounded-lg shadow-sm p-6">
               <div class="flex items-start justify-between mb-4">
                 <div class="flex items-center">
                   <input
@@ -564,10 +579,14 @@
                     class="text-sm border border-gray-300 rounded px-2 py-1"
                   >
                     <option value="pending" selected>Pending Review</option>
-                    <option value="reviewing">Under Review</option>
+                    <option value="shortlisted">Shortlisted</option>
+                    <option value="interview_scheduled">
+                      Interview Scheduled
+                    </option>
                     <option value="interviewed">Interviewed</option>
-                    <option value="rejected">Rejected</option>
                     <option value="hired">Hired</option>
+                    <option value="rejected">Rejected</option>
+                    <option value="withdrawn">Withdrawn</option>
                   </select>
                 </div>
               </div>
@@ -661,7 +680,7 @@
 
             <!-- Interview Scheduled Applicant -->
             <div
-              class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500"
+              class="applicant-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500"
             >
               <div class="flex items-start justify-between mb-4">
                 <div class="flex items-center">
@@ -704,10 +723,14 @@
                     class="text-sm border border-gray-300 rounded px-2 py-1"
                   >
                     <option value="pending">Pending Review</option>
-                    <option value="reviewing">Under Review</option>
-                    <option value="interviewed" selected>Interviewed</option>
-                    <option value="rejected">Rejected</option>
+                    <option value="shortlisted">Shortlisted</option>
+                    <option value="interview_scheduled" selected>
+                      Interview Scheduled
+                    </option>
+                    <option value="interviewed">Interviewed</option>
                     <option value="hired">Hired</option>
+                    <option value="rejected">Rejected</option>
+                    <option value="withdrawn">Withdrawn</option>
                   </select>
                 </div>
               </div>
@@ -731,7 +754,7 @@
                   <p class="text-sm text-gray-600">
                     📅 October 8, 2025 at 2:00 PM
                   </p>
-                  <p class="text-sm text-gray-600">👥 Technical Interview</p>
+                  <p class="text-sm text-gray-600">👥 Video Interview</p>
                   <p class="text-sm text-gray-600">📧 anna.chen@email.com</p>
                   <p class="text-sm text-gray-600">📱 +63 918 765 4321</p>
                 </div>
@@ -740,9 +763,9 @@
               <div class="bg-yellow-50 p-3 rounded-lg mb-4">
                 <h4 class="font-medium text-gray-900 mb-2">Interview Notes</h4>
                 <p class="text-sm text-gray-700">
-                  Technical interview scheduled. Candidate shows strong promise
-                  with excellent portfolio. Need to assess leadership skills and
-                  team collaboration.
+                  Video interview scheduled. Candidate shows strong promise with
+                  excellent portfolio. Need to assess leadership skills and team
+                  collaboration.
                 </p>
               </div>
 
@@ -808,9 +831,31 @@
             <div class="text-center py-8">
               <button
                 onclick="loadMoreApplicants()"
-                class="px-8 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium"
+                class="px-8 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium flex items-center justify-center"
               >
-                Load More Applicants (15 remaining)
+                <span id="loadMoreText"
+                  >Load More Applicants (15 remaining)</span
+                >
+                <svg
+                  id="loadMoreSpinner"
+                  class="hidden animate-spin h-5 w-5 mr-2 text-gray-700"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"
+                  ></circle>
+                  <path
+                    class="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
               </button>
             </div>
           </div>
@@ -825,18 +870,28 @@
       >
         <div
           class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+          aria-hidden="true"
         ></div>
 
-        <div class="relative bg-white rounded-lg max-w-md w-full shadow-xl">
+        <div
+          class="relative bg-white rounded-lg max-w-md w-full shadow-xl"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="interviewModalTitle"
+        >
           <div
             class="px-6 py-4 border-b border-gray-200 flex justify-between items-center"
           >
-            <h3 class="text-lg font-semibold text-gray-900">
+            <h3
+              class="text-lg font-semibold text-gray-900"
+              id="interviewModalTitle"
+            >
               Schedule Interview
             </h3>
             <button
               onclick="closeInterviewModal()"
               class="text-gray-400 hover:text-gray-600"
+              aria-label="Close modal"
             >
               <svg
                 class="w-6 h-6"
@@ -855,7 +910,7 @@
           </div>
 
           <div class="p-6">
-            <form id="interviewForm">
+            <div id="interviewForm">
               <div class="mb-4">
                 <label
                   for="interview_date"
@@ -899,11 +954,40 @@
                   class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
                 >
                   <option value="">Select Type</option>
-                  <option value="phone">Phone Interview</option>
-                  <option value="video">Video Interview</option>
-                  <option value="onsite">On-site Interview</option>
-                  <option value="technical">Technical Interview</option>
+                  <option value="onsite">Onsite</option>
+                  <option value="video">Video</option>
+                  <option value="phone">Phone</option>
                 </select>
+              </div>
+
+              <div id="video_link_container" class="mb-4 hidden">
+                <label
+                  for="video_link"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                  >Video Meeting Link</label
+                >
+                <input
+                  type="url"
+                  id="video_link"
+                  name="video_link"
+                  placeholder="https://example.com/meeting"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                />
+              </div>
+
+              <div id="address_container" class="mb-4 hidden">
+                <label
+                  for="interview_address"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                  >Interview Address</label
+                >
+                <input
+                  type="text"
+                  id="interview_address"
+                  name="interview_address"
+                  placeholder="Enter address (e.g., 123 Main St, Makati City)"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                />
               </div>
 
               <div class="mb-6">
@@ -920,7 +1004,7 @@
                   placeholder="Any special instructions or notes for the interview..."
                 ></textarea>
               </div>
-            </form>
+            </div>
           </div>
 
           <div
@@ -950,20 +1034,28 @@
       >
         <div
           class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+          aria-hidden="true"
         ></div>
 
         <div
           class="relative bg-white rounded-lg max-w-4xl w-full shadow-xl max-h-screen overflow-y-auto"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="profileModalTitle"
         >
           <div
             class="px-6 py-4 border-b border-gray-200 flex justify-between items-center"
           >
-            <h3 class="text-lg font-semibold text-gray-900">
+            <h3
+              class="text-lg font-semibold text-gray-900"
+              id="profileModalTitle"
+            >
               Applicant Profile
             </h3>
             <button
               onclick="closeProfileModal()"
               class="text-gray-400 hover:text-gray-600"
+              aria-label="Close modal"
             >
               <svg
                 class="w-6 h-6"
@@ -991,41 +1083,78 @@
     <script>
       let currentApplicantId = null;
 
-      // Mobile menu toggle function
+      // Status display mapping
+      const statusDisplay = {
+        pending: "Pending Review",
+        shortlisted: "Shortlisted",
+        interview_scheduled: "Interview Scheduled",
+        interviewed: "Interviewed",
+        hired: "Hired",
+        rejected: "Rejected",
+        withdrawn: "Withdrawn",
+      };
+
+      // Status color mapping
+      const statusColor = {
+        pending: "gray",
+        shortlisted: "blue",
+        interview_scheduled: "yellow",
+        interviewed: "purple",
+        hired: "green",
+        rejected: "red",
+        withdrawn: "gray",
+      };
+
+      // Mobile menu toggle
       function toggleMobileMenu() {
-        const mobileMenu = document.getElementById('mobileMenu');
-        const hamburgerIcon = document.getElementById('hamburgerIcon');
-        const closeIcon = document.getElementById('closeIcon');
-        
-        // Toggle menu visibility
-        mobileMenu.classList.toggle('hidden');
-        
-        // Toggle icons
-        hamburgerIcon.classList.toggle('hidden');
-        closeIcon.classList.toggle('hidden');
-        
-        // Update aria-expanded attribute
-        const button = document.querySelector('[onclick="toggleMobileMenu()"]');
-        const isExpanded = !mobileMenu.classList.contains('hidden');
-        button.setAttribute('aria-expanded', isExpanded);
+        const mobileMenu = document.getElementById("mobileMenu");
+        const hamburgerIcon = document.getElementById("hamburgerIcon");
+        const closeIcon = document.getElementById("closeIcon");
+        const button = document.querySelector('[aria-controls="mobileMenu"]');
+
+        if (!mobileMenu || !hamburgerIcon || !closeIcon || !button) {
+          showToast("Error: Menu elements not found.", "error");
+          return;
+        }
+
+        mobileMenu.classList.toggle("hidden");
+        hamburgerIcon.classList.toggle("hidden");
+        closeIcon.classList.toggle("hidden");
+        button.setAttribute(
+          "aria-expanded",
+          !mobileMenu.classList.contains("hidden")
+        );
       }
 
-      // User menu toggle function
+      // User menu toggle
       function toggleUserMenu() {
-        const menu = document.getElementById('userMenu');
-        menu.classList.toggle('hidden');
+        const menu = document.getElementById("userMenu");
+        if (!menu) {
+          showToast("Error: User menu not found.", "error");
+          return;
+        }
+        menu.classList.toggle("hidden");
       }
 
+      // Update applicant status
       function updateApplicantStatus(applicantId, status) {
+        if (!statusDisplay[status]) {
+          showToast("Error: Invalid status selected.", "error");
+          return;
+        }
         console.log(`Updating applicant ${applicantId} status to: ${status}`);
-        // Here you would typically make an API call to update the status
-        alert(`Applicant status updated to: ${status.replace("_", " ")}`);
+        showToast(
+          `Applicant status updated to: ${statusDisplay[status]}`,
+          "success"
+        );
+        // TODO: Make API call to update status
       }
 
+      // View full profile
       function viewFullProfile(applicantId) {
         currentApplicantId = applicantId;
 
-        // Sample profile data - in real app, this would come from API
+        // Sample profile data (replace with API call in production)
         const profileData = {
           1: {
             name: "Maria Rodriguez",
@@ -1038,175 +1167,363 @@
             resume: "Available for download",
             coverLetter: "Full cover letter text would be displayed here...",
           },
+          2: {
+            name: "John Santos",
+            email: "john.santos@email.com",
+            phone: "+63 917 654 3210",
+            program: "BSCS",
+            graduation: "2020",
+            experience: "4 years",
+            skills: ["React", "Python", "MySQL", "Data Structures"],
+            resume: "Available for download",
+            coverLetter:
+              "As a Computer Science graduate from PCU-DASMA, I am passionate about software development...",
+          },
+          3: {
+            name: "Anna Chen",
+            email: "anna.chen@email.com",
+            phone: "+63 918 765 4321",
+            program: "BSIT",
+            graduation: "2019",
+            experience: "5 years",
+            skills: ["React", "Vue.js", "DevOps", "CI/CD"],
+            resume: "Available for download",
+            coverLetter:
+              "Video interview scheduled. Strong portfolio and leadership skills...",
+          },
         };
 
         const profile = profileData[applicantId] || profileData[1];
 
+        // Sanitize content to prevent XSS (assuming DOMPurify is available in production)
         document.getElementById("profileContent").innerHTML = `
-                <div class="space-y-6">
-                    <div class="text-center">
-                        <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <span class="text-blue-600 font-semibold text-2xl">${profile.name
-                              .split(" ")
-                              .map((n) => n[0])
-                              .join("")}</span>
-                        </div>
-                        <h2 class="text-2xl font-bold text-gray-900">${
-                          profile.name
-                        }</h2>
-                        <p class="text-gray-600">${profile.program} Graduate (${
+          <div class="space-y-6">
+            <div class="text-center">
+              <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-blue-600 font-semibold text-2xl">${profile.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")}</span>
+              </div>
+              <h2 class="text-2xl font-bold text-gray-900">${profile.name}</h2>
+              <p class="text-gray-600">${profile.program} Graduate (${
           profile.graduation
         }) • ${profile.experience} experience</p>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <h3 class="font-semibold text-gray-900 mb-3">Contact Information</h3>
-                            <p class="text-sm text-gray-600 mb-1">📧 ${
-                              profile.email
-                            }</p>
-                            <p class="text-sm text-gray-600 mb-1">📱 ${
-                              profile.phone
-                            }</p>
-                        </div>
-                        
-                        <div>
-                            <h3 class="font-semibold text-gray-900 mb-3">Skills</h3>
-                            <div class="flex flex-wrap gap-2">
-                                ${profile.skills
-                                  .map(
-                                    (skill) =>
-                                      `<span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">${skill}</span>`
-                                  )
-                                  .join("")}
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <h3 class="font-semibold text-gray-900 mb-3">Cover Letter</h3>
-                        <div class="bg-gray-50 p-4 rounded-lg">
-                            <p class="text-sm text-gray-700">${
-                              profile.coverLetter
-                            }</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex space-x-3">
-                        <button onclick="downloadResume(${applicantId})" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
-                            Download Resume
-                        </button>
-                        <button onclick="scheduleInterview(${applicantId})" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700">
-                            Schedule Interview
-                        </button>
-
-                    </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="font-semibold text-gray-900 mb-3">Contact Information</h3>
+                <p class="text-sm text-gray-600 mb-1">📧 ${profile.email}</p>
+                <p class="text-sm text-gray-600 mb-1">📱 ${profile.phone}</p>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-900 mb-3">Skills</h3>
+                <div class="flex flex-wrap gap-2">
+                  ${profile.skills
+                    .map(
+                      (skill) =>
+                        `<span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">${skill}</span>`
+                    )
+                    .join("")}
                 </div>
-            `;
+              </div>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-3">Cover Letter</h3>
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <p class="text-sm text-gray-700">${profile.coverLetter}</p>
+              </div>
+            </div>
+            <div class="flex space-x-3">
+              <button onclick="downloadResume(${applicantId})" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+                Download Resume
+              </button>
+              <button onclick="scheduleInterview(${applicantId})" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700">
+                Schedule Interview
+              </button>
+            </div>
+          </div>
+        `;
 
-        document.getElementById("profileModal").classList.remove("hidden");
+        openModal("profileModal");
       }
 
-      function closeProfileModal() {
-        document.getElementById("profileModal").classList.add("hidden");
+      // Open modal with focus trapping
+      function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (!modal) {
+          showToast("Error: Modal not found.", "error");
+          return;
+        }
+
+        modal.classList.remove("hidden");
+        const focusableElements = modal.querySelectorAll(
+          "button, [href], input, select, textarea"
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        firstElement.focus();
+
+        const handleKeydown = (e) => {
+          if (e.key === "Tab") {
+            if (e.shiftKey && document.activeElement === firstElement) {
+              e.preventDefault();
+              lastElement.focus();
+            } else if (!e.shiftKey && document.activeElement === lastElement) {
+              e.preventDefault();
+              firstElement.focus();
+            }
+          } else if (e.key === "Escape") {
+            closeModal(modalId);
+          }
+        };
+
+        modal.addEventListener("keydown", handleKeydown);
+        modal.dataset.keydownHandler = "true";
       }
 
-      function scheduleInterview(applicantId) {
-        currentApplicantId = applicantId;
-        document.getElementById("interviewModal").classList.remove("hidden");
-      }
+      // Close modal
+      function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (!modal) return;
 
-      function closeInterviewModal() {
-        document.getElementById("interviewModal").classList.add("hidden");
+        modal.classList.add("hidden");
+        if (modal.dataset.keydownHandler) {
+          modal.removeEventListener("keydown", modal.handleKeydown);
+          delete modal.dataset.keydownHandler;
+        }
         currentApplicantId = null;
       }
 
+      // Close profile modal
+      function closeProfileModal() {
+        closeModal("profileModal");
+      }
+
+      // Schedule interview
+      function scheduleInterview(applicantId) {
+        currentApplicantId = applicantId;
+        openModal("interviewModal");
+      }
+
+      // Close interview modal
+      function closeInterviewModal() {
+        closeModal("interviewModal");
+        // Reset dynamic fields
+        document.getElementById("video_link_container").classList.add("hidden");
+        document.getElementById("address_container").classList.add("hidden");
+        document.getElementById("video_link").value = "";
+        document.getElementById("interview_address").value = "";
+        document.getElementById("interview_type").value = "";
+      }
+
+      // Submit interview
       function submitInterview() {
         const date = document.getElementById("interview_date").value;
         const time = document.getElementById("interview_time").value;
         const type = document.getElementById("interview_type").value;
+        const videoLink = document.getElementById("video_link").value;
+        const address = document.getElementById("interview_address").value;
         const notes = document.getElementById("interview_notes").value;
 
         if (!date || !time || !type) {
-          alert("Please fill in all required fields.");
+          showToast("Please fill in all required fields.", "error");
           return;
         }
 
-        alert(
-          `Interview scheduled for applicant ${currentApplicantId} on ${date} at ${time} (${type})`
+        if (type === "video" && !videoLink) {
+          showToast("Please provide a video meeting link.", "error");
+          return;
+        }
+
+        if (type === "onsite" && !address) {
+          showToast("Please provide an interview address.", "error");
+          return;
+        }
+
+        const details =
+          type === "video"
+            ? `Video link: ${videoLink}`
+            : type === "onsite"
+            ? `Address: ${address}`
+            : "";
+        updateApplicantStatus(currentApplicantId, "interview_scheduled");
+        showToast(
+          `Interview scheduled for applicant ${currentApplicantId} on ${date} at ${time} (${type})${
+            details ? ` - ${details}` : ""
+          }`,
+          "success"
+        );
+        console.log(
+          `Interview details: Type=${type}, Date=${date}, Time=${time}, VideoLink=${
+            videoLink || "N/A"
+          }, Address=${address || "N/A"}, Notes=${notes || "None"}`
         );
         closeInterviewModal();
-        // Here you would typically send the data to your backend
+        // TODO: Send data to backend
       }
 
+      // Download resume
       function downloadResume(applicantId) {
-        alert(`Downloading resume for applicant ${applicantId}...`);
+        showToast(
+          `Downloading resume for applicant ${applicantId}...`,
+          "success"
+        );
+        // TODO: Implement resume download
       }
 
-      function exportApplicants() {
-        alert("Exporting applicant data to CSV...");
+      // Export applicants
+      async function exportApplicants() {
+        const button = document.querySelector('[onclick="exportApplicants()"]');
+        button.disabled = true;
+        showToast("Exporting applicant data to CSV...", "success");
+        await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API
+        button.disabled = false;
+        // TODO: Implement CSV export
       }
 
+      // Bulk action
       function bulkAction() {
-        alert("Opening bulk actions menu...");
+        showToast("Opening bulk actions menu...", "success");
+        // TODO: Implement bulk actions
       }
 
-      function loadMoreApplicants() {
-        alert("Loading more applicants...");
-      }
+      // Load more applicants
+      async function loadMoreApplicants() {
+        const buttonText = document.getElementById("loadMoreText");
+        const spinner = document.getElementById("loadMoreSpinner");
+        if (!buttonText || !spinner) {
+          showToast("Error: Load more elements not found.", "error");
+          return;
+        }
 
-      function markAllAsReviewed() {
-        if (confirm("Mark all pending applicants as reviewed?")) {
-          alert("All applicants marked as reviewed.");
+        buttonText.classList.add("hidden");
+        spinner.classList.remove("hidden");
+        try {
+          await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API
+          showToast("More applicants loaded successfully!", "success");
+          // TODO: Append new applicants
+        } catch (error) {
+          showToast("Failed to load applicants.", "error");
+        } finally {
+          buttonText.classList.remove("hidden");
+          spinner.classList.add("hidden");
         }
       }
 
-      function scheduleMultipleInterviews() {
-        alert("Opening batch interview scheduling...");
-      }
-
+      // Reschedule interview
       function rescheduleInterview(applicantId) {
         scheduleInterview(applicantId);
       }
 
+      // Add interview notes
       function addInterviewNotes(applicantId) {
         const notes = prompt("Add interview notes for this applicant:");
         if (notes) {
-          alert(`Notes added for applicant ${applicantId}: ${notes}`);
+          showToast(
+            `Notes added for applicant ${applicantId}: ${notes}`,
+            "success"
+          );
         }
       }
 
-      // Close modals when clicking outside
-      document
-        .getElementById("profileModal")
-        .addEventListener("click", function (e) {
-          if (e.target === this) {
+      // Toast notification
+      function showToast(message, type = "success") {
+        const toast = document.createElement("div");
+        toast.className = `fixed bottom-4 right-4 p-4 rounded-lg shadow-lg ${
+          type === "success"
+            ? "bg-green-600 text-white"
+            : "bg-red-600 text-white"
+        }`;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+      }
+
+      // Logout
+      function logout() {
+        showToast("Logging out...", "success");
+        window.location.href = "/login.html";
+      }
+
+      // Search applicants
+      function searchApplicants() {
+        const query = document
+          .getElementById("search-applicants")
+          .value.toLowerCase();
+        const applicants = document.querySelectorAll(".applicant-card");
+        applicants.forEach((card) => {
+          const name = card.querySelector("h3").textContent.toLowerCase();
+          card.style.display = name.includes(query) ? "block" : "none";
+        });
+      }
+
+      // Toggle dynamic fields based on interview type
+      function toggleInterviewFields() {
+        const interviewType = document.getElementById("interview_type").value;
+        const videoLinkContainer = document.getElementById(
+          "video_link_container"
+        );
+        const addressContainer = document.getElementById("address_container");
+        const videoLinkInput = document.getElementById("video_link");
+        const addressInput = document.getElementById("interview_address");
+
+        videoLinkContainer.classList.add("hidden");
+        addressContainer.classList.add("hidden");
+        videoLinkInput.removeAttribute("required");
+        addressInput.removeAttribute("required");
+
+        if (interviewType === "video") {
+          videoLinkContainer.classList.remove("hidden");
+          videoLinkInput.setAttribute("required", "");
+        } else if (interviewType === "onsite") {
+          addressContainer.classList.remove("hidden");
+          addressInput.setAttribute("required", "");
+        }
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", () => {
+        const today = new Date().toISOString().split("T")[0];
+        const interviewDateInput = document.getElementById("interview_date");
+        if (interviewDateInput) {
+          interviewDateInput.min = today;
+        }
+
+        // Search input listener
+        const searchInput = document.getElementById("search-applicants");
+        if (searchInput) {
+          searchInput.addEventListener("input", searchApplicants);
+        }
+
+        // Interview type change listener
+        const interviewTypeSelect = document.getElementById("interview_type");
+        if (interviewTypeSelect) {
+          interviewTypeSelect.addEventListener("change", toggleInterviewFields);
+        }
+
+        // Close modals on outside click
+        document.addEventListener("click", (e) => {
+          if (
+            e.target.closest("#profileModal") &&
+            !e.target.closest(".relative.bg-white")
+          ) {
             closeProfileModal();
           }
-        });
-
-      document
-        .getElementById("interviewModal")
-        .addEventListener("click", function (e) {
-          if (e.target === this) {
+          if (
+            e.target.closest("#interviewModal") &&
+            !e.target.closest(".relative.bg-white")
+          ) {
             closeInterviewModal();
           }
+          if (
+            !e.target.closest('[onclick="toggleUserMenu()"]') &&
+            !e.target.closest("#userMenu")
+          ) {
+            document.getElementById("userMenu").classList.add("hidden");
+          }
         });
-
-      // Close user menu when clicking outside
-      document.addEventListener("click", function (event) {
-        const menu = document.getElementById("userMenu");
-        const button = event.target.closest("button");
-
-        if (!button || button.onclick !== toggleUserMenu) {
-          menu.classList.add("hidden");
-        }
-      });
-
-      // Set minimum date to today for interview scheduling
-      document.addEventListener("DOMContentLoaded", function () {
-        const today = new Date().toISOString().split("T")[0];
-        document.getElementById("interview_date").min = today;
       });
     </script>
   </body>
