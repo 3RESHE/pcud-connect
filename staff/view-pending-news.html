@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Submitted Article - PCU-DASMA Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
+            <div class="hidden md:ml-10 md:flex md:space-x-8">
+              <a href="dashboard.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
+              <a href="events.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Events</a>
+              <a href="news.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">News</a>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="relative">
+              <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+                <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile" />
+              </button>
+              <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                <div class="py-1">
+                  <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Staff Profile</a>
+                  <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content - Bento Box Layout -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <!-- Header Section with Status -->
+      <div class="mb-8">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">
+              View Submitted Article
+            </h1>
+            <p class="text-gray-600">
+              View details of your submitted news article
+            </p>
+          </div>
+          <span
+            class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-semibold"
+            >Pending Approval</span
+          >
+        </div>
+      </div>
+
+      <!-- Bento Box Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <!-- Main Article Content - Spans 2 columns -->
+        <div class="lg:col-span-2 space-y-6">
+          <!-- Article Title & Summary Card -->
+          <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex-1">
+                <h2 class="text-2xl font-bold text-gray-900 mb-3">
+                  Great Dasmarinas Bay Clean-up Drive: A Community Success Story
+                </h2>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-xs font-medium"
+                    >Partnership Success</span
+                  >
+                  <span
+                    class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs"
+                    >Environmental</span
+                  >
+                  <span
+                    class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs"
+                    >Community</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-4">
+              <h3 class="text-sm font-semibold text-gray-700 mb-2">
+                Article Summary
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                The recent coastal clean-up partnership between PCU-DASMA and
+                Clean Seas Alliance exceeded all expectations, with 450
+                volunteers collecting 3.2 tons of waste and cleaning 1.8km of
+                coastline. This successful initiative demonstrates the power of
+                university-community collaboration.
+              </p>
+            </div>
+          </div>
+
+          <!-- Featured Image Card -->
+          <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              Featured Image
+            </h3>
+            <div class="rounded-lg overflow-hidden bg-gray-100">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Crect fill='%23e5e7eb' width='800' height='400'/%3E%3Ctext x='50%25' y='50%25' font-size='18' text-anchor='middle' fill='%236b7280'%3EFeatured Image Preview%3C/text%3E%3C/svg%3E"
+                alt="Featured Image"
+                class="w-full h-64 object-cover"
+              />
+            </div>
+          </div>
+
+          <!-- Full Article Content Card -->
+          <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              Full Article Content
+            </h3>
+            <div
+              class="prose max-w-none text-gray-700 leading-relaxed space-y-4"
+            >
+              <p>
+                Last Saturday marked a significant milestone in environmental
+                conservation as PCU-DASMA partnered with Clean Seas Alliance for
+                a comprehensive coastal clean-up initiative at Dasmarinas Bay.
+                The event brought together 450 volunteers, including students,
+                faculty, staff, and community members, all united by a common
+                goal: to restore and protect our coastal ecosystem.
+              </p>
+              <h4 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                Impressive Results
+              </h4>
+              <p>
+                The initiative resulted in remarkable achievements: 3.2 tons of
+                waste collected, 1.8 kilometers of coastline cleaned, and over
+                15 different types of recyclable materials sorted and properly
+                disposed of. These numbers reflect not just the scale of the
+                environmental challenge we face, but also the tremendous impact
+                of coordinated community action.
+              </p>
+              <h4 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                Community Impact
+              </h4>
+              <p>
+                "This partnership exemplifies what we can achieve when
+                educational institutions and environmental organizations work
+                hand-in-hand," said Dr. Maria Santos, PCU-DASMA's Environmental
+                Studies Department Head. "Our students gained hands-on
+                experience in environmental conservation while making a tangible
+                difference in our community."
+              </p>
+              <p>
+                The event also included educational workshops on marine
+                conservation, waste segregation, and sustainable practices,
+                ensuring that participants left not only with cleaner beaches
+                but also with knowledge to drive long-term change.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar - Details & Timeline -->
+        <div class="lg:col-span-1 space-y-6">
+          <!-- Article Details Card -->
+          <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              Article Details
+            </h3>
+            <div class="space-y-4">
+              <div>
+                <label class="text-sm font-medium text-gray-500">Author</label>
+                <p class="text-gray-900">Communications Staff</p>
+              </div>
+              <div>
+                <label class="text-sm font-medium text-gray-500"
+                  >Category</label
+                >
+                <p class="text-gray-900">Partnership Success</p>
+              </div>
+              <div>
+                <label class="text-sm font-medium text-gray-500"
+                  >Event Date</label
+                >
+                <p class="text-gray-900">October 15, 2025</p>
+              </div>
+              <div>
+                <label class="text-sm font-medium text-gray-500"
+                  >Submitted On</label
+                >
+                <p class="text-gray-900">October 20, 2025 - 7:00 AM</p>
+              </div>
+              <div>
+                <label class="text-sm font-medium text-gray-500"
+                  >Partnership With</label
+                >
+                <p class="text-gray-900">Clean Seas Alliance, Local Barangay</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submission Timeline Card -->
+          <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              Submission Timeline
+            </h3>
+            <div class="space-y-4">
+              <!-- Timeline Item 1 -->
+              <div class="flex gap-3">
+                <div class="flex flex-col items-center">
+                  <div
+                    class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-green-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="w-0.5 h-full bg-gray-200"></div>
+                </div>
+                <div class="flex-1 pb-6">
+                  <p class="text-sm font-medium text-gray-900">
+                    Article Submitted
+                  </p>
+                  <p class="text-xs text-gray-500">Oct 20, 2025 - 7:00 AM</p>
+                  <p class="text-sm text-gray-600 mt-1">
+                    By Communications Staff
+                  </p>
+                </div>
+              </div>
+
+              <!-- Timeline Item 2 -->
+              <div class="flex gap-3">
+                <div class="flex flex-col items-center">
+                  <div
+                    class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-yellow-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-gray-900">
+                    Pending Review
+                  </p>
+                  <p class="text-xs text-gray-500">Awaiting admin approval</p>
+                  <p class="text-sm text-gray-600 mt-1">Current Status</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons - Fixed at Bottom -->
+      <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-between items-center"
+        >
+          <a
+            href="news.html"
+            class="w-full sm:w-auto px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-center font-medium"
+          >
+            Back to List
+          </a>
+          <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <button
+              onclick="editArticle()"
+              class="w-full sm:w-auto px-6 py-3 bg-primary text-white rounded-lg hover:bg-blue-700 font-medium"
+            >
+              Edit Article
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Toggle user menu
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+      }
+
+      // Close menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const userMenu = document.getElementById("userMenu");
+        const button = event.target.closest(
+          'button[onclick="toggleUserMenu()"]'
+        );
+        if (!button && !userMenu.contains(event.target)) {
+          userMenu.classList.add("hidden");
+        }
+      });
+
+      // Edit article
+      function editArticle() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = urlParams.get("id") || "ART-2025-001";
+        window.location.href = `create-news.html?edit=${articleId}`;
+      }
+
+      // Logout
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
+        }
+      }
+
+      // Get URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const articleId = urlParams.get("id") || "ART-2025-001";
+      console.log("Viewing article:", articleId);
+    </script>
+  </body>
+</html>
