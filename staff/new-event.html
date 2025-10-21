@@ -502,7 +502,7 @@
                   </div>
                 </div>
 
-                <!-- Enhanced Target Audience Selection for University Events -->
+                <!-- Target Audience Selection -->
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-3"
                     >Target Audience <span class="text-red-500">*</span></label
@@ -520,20 +520,6 @@
                         >All Students</span
                       >
                     </label>
-
-                    <label class="flex items-center">
-                      <input
-                        type="radio"
-                        name="uni_targetaudience"
-                        value="specificyearlevels"
-                        class="border-gray-300 text-primary focus:ring-primary"
-                        onchange="toggleUniDepartmentSelection()"
-                      />
-                      <span class="ml-2 text-sm text-gray-700"
-                        >Specific Year Levels</span
-                      >
-                    </label>
-
                     <label class="flex items-center">
                       <input
                         type="radio"
@@ -544,7 +530,6 @@
                       />
                       <span class="ml-2 text-sm text-gray-700">Alumni</span>
                     </label>
-
                     <label class="flex items-center">
                       <input
                         type="radio"
@@ -566,7 +551,8 @@
                   >
                     <div class="flex justify-between items-center mb-3">
                       <label class="block text-sm font-medium text-gray-700"
-                        >Select Departments <span class="text-red-500">*</span></label
+                        >Select Departments
+                        <span class="text-red-500">*</span></label
                       >
                       <label class="flex items-center">
                         <input
@@ -580,7 +566,6 @@
                         >
                       </label>
                     </div>
-
                     <div class="grid grid-cols-1 gap-2 ml-4">
                       <label class="flex items-center">
                         <input
@@ -594,7 +579,6 @@
                           >College of Arts and Sciences</span
                         >
                       </label>
-
                       <label class="flex items-center">
                         <input
                           type="checkbox"
@@ -607,7 +591,6 @@
                           >College of Business and Accountancy</span
                         >
                       </label>
-
                       <label class="flex items-center">
                         <input
                           type="checkbox"
@@ -620,7 +603,6 @@
                           >College of Criminal Justice</span
                         >
                       </label>
-
                       <label class="flex items-center">
                         <input
                           type="checkbox"
@@ -633,7 +615,6 @@
                           >College of Engineering and Technology</span
                         >
                       </label>
-
                       <label class="flex items-center">
                         <input
                           type="checkbox"
@@ -646,7 +627,6 @@
                           >College of Education</span
                         >
                       </label>
-
                       <label class="flex items-center">
                         <input
                           type="checkbox"
@@ -659,7 +639,6 @@
                           >College of Informatics</span
                         >
                       </label>
-
                       <label class="flex items-center">
                         <input
                           type="checkbox"
@@ -672,7 +651,6 @@
                           >College of Hospitality and Tourism Management</span
                         >
                       </label>
-
                       <label class="flex items-center">
                         <input
                           type="checkbox"
@@ -685,7 +663,6 @@
                           >College of Nursing and Health Sciences</span
                         >
                       </label>
-
                       <label class="flex items-center">
                         <input
                           type="checkbox"
@@ -697,57 +674,6 @@
                         <span class="ml-2 text-sm text-gray-700"
                           >College of Social Work</span
                         >
-                      </label>
-                    </div>
-                  </div>
-
-                  <!-- Year Level Selection for University Events (Hidden by default) -->
-                  <div
-                    id="uni_yearlevelselection"
-                    class="hidden mt-4 p-4 bg-purple-50 border border-purple-200 rounded-lg"
-                  >
-                    <label class="block text-sm font-medium text-gray-700 mb-3"
-                      >Select Year Levels <span class="text-red-500">*</span></label
-                    >
-                    <div class="grid grid-cols-2 gap-2">
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="uni_yearlevels"
-                          value="1styear"
-                          class="uni-yearlevel-checkbox rounded border-gray-300 text-primary focus:ring-primary"
-                        />
-                        <span class="ml-2 text-sm text-gray-700">1st Year</span>
-                      </label>
-
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="uni_yearlevels"
-                          value="2ndyear"
-                          class="uni-yearlevel-checkbox rounded border-gray-300 text-primary focus:ring-primary"
-                        />
-                        <span class="ml-2 text-sm text-gray-700">2nd Year</span>
-                      </label>
-
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="uni_yearlevels"
-                          value="3rdyear"
-                          class="uni-yearlevel-checkbox rounded border-gray-300 text-primary focus:ring-primary"
-                        />
-                        <span class="ml-2 text-sm text-gray-700">3rd Year</span>
-                      </label>
-
-                      <label class="flex items-center">
-                        <input
-                          type="checkbox"
-                          name="uni_yearlevels"
-                          value="4thyear"
-                          class="uni-yearlevel-checkbox rounded border-gray-300 text-primary focus:ring-primary"
-                        />
-                        <span class="ml-2 text-sm text-gray-700">4th Year</span>
                       </label>
                     </div>
                   </div>
@@ -1004,7 +930,6 @@
 
       const audienceLabels = {
         allstudents: "All Students",
-        specificyearlevels: "Specific Year Levels",
         alumni: "Alumni",
         openforall: "Open for All",
       };
@@ -1061,7 +986,9 @@
 
       function toggleCustomPlatform() {
         const platform = document.getElementById("uni_platform").value;
-        const customField = document.getElementById("uni_custom_platform_field");
+        const customField = document.getElementById(
+          "uni_custom_platform_field"
+        );
         const customInput = document.getElementById("uni_custom_platform");
 
         if (platform === "other") {
@@ -1101,7 +1028,6 @@
         }
       }
 
-      // University Event Target audience selection functions
       function toggleUniDepartmentSelection() {
         const selectedAudience = document.querySelector(
           'input[name="uni_targetaudience"]:checked'
@@ -1109,32 +1035,13 @@
         const departmentSelection = document.getElementById(
           "uni_departmentselection"
         );
-        const yearLevelSelection = document.getElementById(
-          "uni_yearlevelselection"
-        );
-        const yearLevelCheckboxes = document.querySelectorAll(
-          ".uni-yearlevel-checkbox"
-        );
 
-        if (
-          selectedAudience === "allstudents" ||
-          selectedAudience === "specificyearlevels"
-        ) {
+        if (selectedAudience === "allstudents") {
           departmentSelection.classList.remove("hidden");
           updateUniDepartmentValidation(true);
-
-          if (selectedAudience === "specificyearlevels") {
-            yearLevelSelection.classList.remove("hidden");
-            yearLevelCheckboxes.forEach((cb) => (cb.required = true));
-          } else {
-            yearLevelSelection.classList.add("hidden");
-            yearLevelCheckboxes.forEach((cb) => (cb.required = false));
-          }
         } else {
           departmentSelection.classList.add("hidden");
-          yearLevelSelection.classList.add("hidden");
           updateUniDepartmentValidation(false);
-          yearLevelCheckboxes.forEach((cb) => (cb.required = false));
         }
       }
 
@@ -1185,7 +1092,9 @@
 
       function previewEvent() {
         const title = document.getElementById("uni_event_title").value;
-        const description = document.getElementById("uni_event_description").value;
+        const description = document.getElementById(
+          "uni_event_description"
+        ).value;
         const formatValue = document.getElementById("uni_event_format").value;
         const eventDate = document.getElementById("uni_event_date").value;
         const multiDay = document.getElementById("uni_multi_day").checked;
@@ -1195,11 +1104,17 @@
         const venueName = document.getElementById("uni_venue_name").value;
         const maxAttendees =
           document.getElementById("uni_max_attendees").value || "Unlimited";
-        const registrationRequired = document.getElementById("uni_registration_required").checked;
-        const registrationDeadline = document.getElementById("uni_registration_deadline").value;
+        const registrationRequired = document.getElementById(
+          "uni_registration_required"
+        ).checked;
+        const registrationDeadline = document.getElementById(
+          "uni_registration_deadline"
+        ).value;
         const platform = document.getElementById("uni_platform").value;
-        const customPlatform = document.getElementById("uni_custom_platform")?.value || "";
-        const platformDisplay = platform === "other" ? customPlatform : platform;
+        const customPlatform =
+          document.getElementById("uni_custom_platform")?.value || "";
+        const platformDisplay =
+          platform === "other" ? customPlatform : platform;
 
         // Basic required fields check
         if (
@@ -1219,7 +1134,10 @@
           return;
         }
 
-        if ((formatValue === "virtual" || formatValue === "hybrid") && !platform) {
+        if (
+          (formatValue === "virtual" || formatValue === "hybrid") &&
+          !platform
+        ) {
           alert("Please select a platform for virtual or hybrid events.");
           return;
         }
@@ -1239,10 +1157,7 @@
         }
 
         const selectedAudience = targetAudience.value;
-        if (
-          selectedAudience === "allstudents" ||
-          selectedAudience === "specificyearlevels"
-        ) {
+        if (selectedAudience === "allstudents") {
           const selectedDepartments = document.querySelectorAll(
             'input[name="uni_departments"]:checked'
           );
@@ -1254,22 +1169,15 @@
           }
         }
 
-        if (selectedAudience === "specificyearlevels") {
-          const selectedYearLevels = document.querySelectorAll(
-            'input[name="uni_yearlevels"]:checked'
-          );
-          if (selectedYearLevels.length === 0) {
-            alert(
-              "Please select at least one year level for specific year levels audience."
-            );
-            return;
-          }
-        }
-
         // Optional: Check registration deadline logic
-        if (registrationRequired && registrationDeadline && new Date(registrationDeadline) >= new Date(eventDate)) {
-          alert("Warning: Registration deadline should be before the event date.");
-          // Not blocking, just alerting
+        if (
+          registrationRequired &&
+          registrationDeadline &&
+          new Date(registrationDeadline) >= new Date(eventDate)
+        ) {
+          alert(
+            "Warning: Registration deadline should be before the event date."
+          );
         }
 
         // Build preview content
@@ -1282,17 +1190,20 @@
         }
 
         // Gather target audience details
-        let audienceHtml = `<h3 class="font-semibold text-gray-900 mb-2">Target Audience</h3><p class="text-gray-700">${audienceLabels[selectedAudience] || selectedAudience}</p>`;
-        if (
-          selectedAudience === "allstudents" ||
-          selectedAudience === "specificyearlevels"
-        ) {
-          const selectedDepartments = Array.from(document.querySelectorAll('input[name="uni_departments"]:checked')).map(cb => cb.value.replace(/collegeof/g, "College of ").replace(/and/g, " and "));
-          audienceHtml += `<ul class="list-disc ml-5 text-gray-700"><li>${selectedDepartments.join("</li><li>")}</li></ul>`;
-        }
-        if (selectedAudience === "specificyearlevels") {
-          const selectedYearLevels = Array.from(document.querySelectorAll('input[name="uni_yearlevels"]:checked')).map(cb => cb.value.replace(/year/g, " Year"));
-          audienceHtml += `<ul class="list-disc ml-5 text-gray-700"><li>${selectedYearLevels.join("</li><li>")}</li></ul>`;
+        let audienceHtml = `<h3 class="font-semibold text-gray-900 mb-2">Target Audience</h3><p class="text-gray-700">${
+          audienceLabels[selectedAudience] || selectedAudience
+        }</p>`;
+        if (selectedAudience === "allstudents") {
+          const selectedDepartments = Array.from(
+            document.querySelectorAll('input[name="uni_departments"]:checked')
+          ).map((cb) =>
+            cb.value
+              .replace(/collegeof/g, "College of ")
+              .replace(/and/g, " and ")
+          );
+          audienceHtml += `<ul class="list-disc ml-5 text-gray-700"><li>${selectedDepartments.join(
+            "</li><li>"
+          )}</li></ul>`;
         }
 
         // Platform in venue if virtual/hybrid
@@ -1302,39 +1213,36 @@
         }
 
         const previewContent = `
-                <div class="space-y-6">
-                    ${imageHtml}
-                    <div>
-                        <div class="flex items-center mb-2">
-                            <span class="px-2 py-1 rounded-full text-xs mr-2 bg-blue-100 text-blue-800">${
-                              formatLabels[formatValue] || formatValue
-                            }</span>
-                            <span class="px-2 py-1 rounded-full text-xs mr-2 bg-orange-100 text-orange-800">University Event</span>
-                            <span class="px-2 py-1 rounded-full text-xs mr-2 bg-yellow-100 text-yellow-800">Pending Admin Review</span>
-                        </div>
-                        <h2 class="text-2xl font-bold text-gray-900 mb-2">${title}</h2>
-                        <p class="text-lg text-gray-600 mb-2">Organized by PCU-DASMA</p>
-                        <p class="text-gray-600 mb-4">${dateDisplay} • ${startTime} - ${endTime}</p>
-                        <p class="text-gray-600 mb-4"><strong>Venue:</strong> ${venueDisplay}</p>
-                    </div>
-                   
-                    <div>
-                        <h3 class="font-semibold text-gray-900 mb-2">About This Event</h3>
-                        <p class="text-gray-700 whitespace-pre-wrap">${description}</p>
-                    </div>
-
-                    <div>
-                        ${audienceHtml}
-                    </div>
-                   
-                    <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                        <h3 class="font-semibold text-gray-900 mb-2">Submission Status</h3>
-                        <p class="text-sm text-gray-700">• This event will be submitted for administrator review</p>
-                        <p class="text-sm text-gray-700">• Once approved, it will be published for student registration</p>
-                        <p class="text-sm text-gray-700">• Maximum attendees: ${maxAttendees}</p>
-                    </div>
-                </div>
-            `;
+          <div class="space-y-6">
+            ${imageHtml}
+            <div>
+              <div class="flex items-center mb-2">
+                <span class="px-2 py-1 rounded-full text-xs mr-2 bg-blue-100 text-blue-800">${
+                  formatLabels[formatValue] || formatValue
+                }</span>
+                <span class="px-2 py-1 rounded-full text-xs mr-2 bg-orange-100 text-orange-800">University Event</span>
+                <span class="px-2 py-1 rounded-full text-xs mr-2 bg-yellow-100 text-yellow-800">Pending Admin Review</span>
+              </div>
+              <h2 class="text-2xl font-bold text-gray-900 mb-2">${title}</h2>
+              <p class="text-lg text-gray-600 mb-2">Organized by PCU-DASMA</p>
+              <p class="text-gray-600 mb-4">${dateDisplay} • ${startTime} - ${endTime}</p>
+              <p class="text-gray-600 mb-4"><strong>Venue:</strong> ${venueDisplay}</p>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900 mb-2">About This Event</h3>
+              <p class="text-gray-700 whitespace-pre-wrap">${description}</p>
+            </div>
+            <div>
+              ${audienceHtml}
+            </div>
+            <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+              <h3 class="font-semibold text-gray-900 mb-2">Submission Status</h3>
+              <p class="text-sm text-gray-700">• This event will be submitted for administrator review</p>
+              <p class="text-sm text-gray-700">• Once approved, it will be published for registration</p>
+              <p class="text-sm text-gray-700">• Maximum attendees: ${maxAttendees}</p>
+            </div>
+          </div>
+        `;
         document.getElementById("previewContent").innerHTML = previewContent;
 
         document.getElementById("previewModal").classList.remove("hidden");
