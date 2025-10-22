@@ -1,439 +1,773 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rejected Job - Data Entry Clerk - PCU-DASMA Connect</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Preview - Senior Software Developer - PCU-DASMA Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1E40AF',
-                        secondary: '#3B82F6',
-                        accent: '#F59E0B'
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-sm border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
-                    <div class="ml-8 flex items-center space-x-2 text-sm text-gray-500">
-                        <span>Admin Portal</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                        <span>Job Approvals</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                        <span class="text-primary font-medium">Rejected Job</span>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <div class="relative">
-                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
-                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
-                        </button>
-                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                            <div class="py-1">
-                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Profile</a>
-                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+  </head>
+  <body class="bg-gray-50">
+    <div class="flex min-h-screen">
+      <!-- Sidebar -->
+      <aside
+        id="sidebar"
+        class="bg-white w-64 min-h-screen shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 fixed z-50"
+        aria-hidden="true"
+      >
+        <div class="flex flex-col h-full">
+          <!-- Logo -->
+          <div
+            class="flex items-center justify-between p-4 border-b border-gray-200"
+          >
+            <a href="../index.html" class="text-xl font-bold text-primary"
+              >PCU-DASMA Connect</a
+            >
+            <button
+              id="closeSidebar"
+              class="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600"
+              aria-label="Close sidebar"
+              onclick="toggleSidebar()"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
 
-    <!-- Main Content -->
-    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <!-- Back Button & Status -->
-        <div class="mb-6">
-            <a href="approve-jobs.html" class="flex items-center text-primary hover:text-blue-700 mb-4">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-                Back to Job Approvals
+          <!-- Navigation -->
+          <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <!-- Dashboard -->
+            <a
+              href="dashboard.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m8 5 4-4 4 4"
+                ></path>
+              </svg>
+              Dashboard
             </a>
-            
-            <!-- Rejected Status Banner -->
-            <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
-                <div class="flex">
-                    <div class="flex-shrink-0">
-                        <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
-                        </svg>
+
+            <!-- Users -->
+            <a
+              href="users.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-1a4 4 0 0 0-4-4h-1M9 20H4v-1a4 4 0 0 1 4-4h1m8-6a4 4 0 1 1-8 0 4 4 0 0 1 8 0zm-6 6h4"
+                />
+              </svg>
+              Users
+            </a>
+
+            <!-- Approvals Dropdown -->
+            <div class="space-y-1">
+              <button
+                onclick="toggleDropdown('approvals')"
+                class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg focus:outline-none"
+                aria-expanded="true"
+                aria-controls="approvals-menu"
+              >
+                <div class="flex items-center">
+                  <svg
+                    class="w-5 h-5 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  Approvals
+                </div>
+                <svg
+                  id="approvals-arrow"
+                  class="w-4 h-4 transform transition-transform duration-200 rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div id="approvals-menu" class="ml-4 space-y-1">
+                <a
+                  href="approve-jobs.html"
+                  class="flex items-center px-4 py-2 text-sm text-primary font-medium bg-blue-50 rounded-lg"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"
+                    ></path>
+                  </svg>
+                  Job Post Approvals
+                  <span
+                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
+                    >3</span
+                  >
+                </a>
+                <a
+                  href="approve-news.html"
+                  class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+                    ></path>
+                  </svg>
+                  News Approvals
+                  <span
+                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
+                    >2</span
+                  >
+                </a>
+                <a
+                  href="approve-events.html"
+                  class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                  Event Approvals
+                  <span
+                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
+                    >1</span
+                  >
+                </a>
+              </div>
+            </div>
+
+            <!-- Partnerships -->
+            <a
+              href="approve-partnerships.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+              </svg>
+              Partnerships
+              <span
+                class="ml-auto bg-yellow-100 text-yellow-800 text-xs px-2 py-0.5 rounded-full"
+                >2</span
+              >
+            </a>
+
+            <!-- Divider -->
+            <div class="border-t border-gray-200 my-4"></div>
+
+            <!-- Settings -->
+            <a
+              href="settings.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                ></path>
+              </svg>
+              Settings
+            </a>
+          </nav>
+
+          <!-- User Profile -->
+          <div class="border-t border-gray-200 p-4">
+            <div class="flex items-center">
+              <img
+                class="h-8 w-8 rounded-full"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                alt="Profile"
+              />
+              <div class="ml-3 flex-1">
+                <p class="text-sm font-medium text-gray-700">Admin User</p>
+                <p class="text-xs text-gray-500">admin@pcu.edu.ph</p>
+              </div>
+              <div class="relative">
+                <button
+                  onclick="toggleUserMenu()"
+                  class="p-2 rounded-md text-gray-400 hover:text-gray-600"
+                  aria-label="Toggle user menu"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                    ></path>
+                  </svg>
+                </button>
+                <div
+                  id="userMenu"
+                  class="hidden origin-bottom-right absolute bottom-0 right-0 mb-12 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                >
+                  <div class="py-1">
+                    <a
+                      href="#"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >Admin Profile</a
+                    >
+                    <a
+                      href="#"
+                      onclick="logout()"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >Logout</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1">
+        <!-- Mobile Header -->
+        <div class="md:hidden bg-white shadow-sm border-b">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+              <a href="../index.html" class="text-xl font-bold text-primary"
+                >PCU-DASMA Connect</a
+              >
+              <button
+                onclick="toggleSidebar()"
+                class="text-gray-700 focus:outline-none"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+          <!-- Header -->
+          <div class="mb-8">
+            <div class="flex items-center mb-4">
+              <a
+                href="job-postings.html"
+                class="text-gray-400 hover:text-gray-600 mr-4"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"
+                  ></path>
+                </svg>
+              </a>
+              <div
+                class="flex flex-col sm:flex-row sm:items-center sm:space-x-4"
+              >
+                <div>
+                  <h1 class="text-3xl font-bold text-gray-900">
+                    Senior Software Developer
+                  </h1>
+                  <p class="text-gray-600 mt-2">
+                    Review rejected job posting
+                  </p>
+                </div>
+                <div class="flex items-center space-x-2 mt-2 sm:mt-0">
+                  <span
+                    class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium"
+                    >Rejected</span
+                  >
+                  <span
+                    class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                    >Full-time</span
+                  >
+                  <span
+                    class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm"
+                    >Senior Level (6+ years)</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rejected Status Alert -->
+          <div
+            class="bg-red-50 border border-red-200 rounded-lg p-4 mb-8"
+          >
+            <div class="flex items-start">
+              <svg
+                class="w-5 h-5 text-red-600 mr-2 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+              <div>
+                <h4 class="font-semibold text-red-800">
+                  Job Post Rejected
+                </h4>
+                <p class="text-sm text-red-700">
+                  This job posting was rejected on October 15, 2025. Review the rejection reason below.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Two-column Layout -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Content -->
+            <div class="lg:col-span-2 space-y-8">
+              <!-- Job Content -->
+              <div class="bg-white shadow rounded-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4">
+                  Job Description
+                </h2>
+                <div class="prose max-w-none">
+                  <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                    Senior Software Developer
+                  </h1>
+                  <div class="flex items-center space-x-2 mb-4">
+                    <span
+                      class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium"
+                      >Rejected</span
+                    >
+                    <span
+                      class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                      >Full-time</span
+                    >
+                    <span
+                      class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm"
+                      >Senior Level (6+ years)</span
+                    >
+                  </div>
+                  <p class="text-gray-700 mb-4">
+                    <span
+                      >Design and develop high-quality software solutions</span
+                    ><br />
+                    <span
+                      >Collaborate with product team to deliver features</span
+                    ><br />
+                    <span>Maintain and optimize existing applications</span
+                    ><br />
+                    <span
+                      >Lead technical projects and mentor junior
+                      developers</span
+                    >
+                  </p>
+                  <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                    Requirements
+                  </h3>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h4 class="text-base font-medium text-gray-900 mb-3">
+                        Education & Experience
+                      </h4>
+                      <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Bachelor's degree in Computer Science</li>
+                        <li>5+ years of software development</li>
+                        <li>Experience leading projects</li>
+                      </ul>
+                      <h4 class="text-base font-medium text-gray-900 mt-4 mb-3">
+                        Additional Experience
+                      </h4>
+                      <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Experience with Agile methodologies</li>
+                        <li>Familiarity with cloud platforms</li>
+                      </ul>
                     </div>
+                    <div>
+                      <h4 class="text-base font-medium text-gray-900 mb-3">
+                        Technical Skills
+                      </h4>
+                      <div class="flex flex-wrap gap-2">
+                        <span
+                          class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                          >JavaScript</span
+                        >
+                        <span
+                          class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                          >React</span
+                        >
+                        <span
+                          class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                          >Node.js</span
+                        >
+                        <span
+                          class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                          >Git</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                    Benefits & Perks
+                  </h3>
+                  <ul
+                    class="list-disc list-inside text-gray-700 mb-4 space-y-1"
+                  >
+                    <li>Health Insurance</li>
+                    <li>Paid Time Off</li>
+                    <li>Flexible Hours</li>
+                    <li>Retirement Plan</li>
+                    <li>Professional Development</li>
+                    <li>Transportation Allowance</li>
+                  </ul>
+                  <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                    Application Process
+                  </h3>
+                  <ol class="list-decimal list-inside text-gray-700 space-y-1">
+                    <li>Submit resume and cover letter</li>
+                    <li>Attend technical interview</li>
+                    <li>Complete coding assessment</li>
+                    <li>Final interview with hiring manager</li>
+                  </ol>
+                </div>
+              </div>
+
+              <!-- Review Timeline -->
+              <div class="bg-white shadow rounded-lg p-6">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">
+                  Review Timeline
+                </h2>
+                <div class="space-y-3">
+                  <div class="flex items-center">
+                    <div
+                      class="flex-shrink-0 w-3 h-3 bg-green-400 rounded-full"
+                    ></div>
                     <div class="ml-3">
-                        <p class="text-sm text-red-700">
-                            <strong>Rejected:</strong> This job posting was rejected due to insufficient requirements. The partner has been notified with feedback.
-                        </p>
+                      <p class="text-sm font-medium text-gray-900">
+                        Job Submitted
+                      </p>
+                      <p class="text-xs text-gray-500">
+                        October 14, 2025 - 1:00 PM
+                      </p>
                     </div>
+                  </div>
+                  <div class="flex items-center">
+                    <div
+                      class="flex-shrink-0 w-3 h-3 bg-red-400 rounded-full"
+                    ></div>
+                    <div class="ml-3">
+                      <p class="text-sm font-medium text-gray-900">
+                        Job Rejected
+                      </p>
+                      <p class="text-xs text-gray-500">
+                        October 15, 2025 - 9:00 AM
+                      </p>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+              <!-- Review Actions -->
+              <div class="bg-white shadow rounded-lg p-6">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">
+                  Rejection Details
+                </h2>
+                <div class="space-y-3">
+                  <p class="text-sm font-medium text-gray-900">
+                    Reason for Rejection
+                  </p>
+                  <textarea
+                    class="w-full p-2 border border-gray-300 rounded-md bg-gray-50"
+                    rows="4"
+                    readonly
+                  >The job posting does not meet the minimum requirements for technical skills and experience level.</textarea>
+                </div>
+              </div>
+
+              <!-- Company Information -->
+              <div class="bg-white shadow rounded-lg p-6">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">
+                  Company Information
+                </h2>
+                <div class="space-y-3">
+                  <div>
+                    <p class="text-sm font-medium text-gray-900">
+                      Company Name
+                    </p>
+                    <p class="text-sm text-gray-600">Tech Solutions Inc.</p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-900">Industry</p>
+                    <p class="text-sm text-gray-600">Information Technology</p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-900">
+                      Company Size
+                    </p>
+                    <p class="text-sm text-gray-600">51-200 employees</p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-900">
+                      Partnership Status
+                    </p>
+                    <p class="text-sm text-gray-600">Active Partner</p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-900">
+                      Contact Person
+                    </p>
+                    <p class="text-sm text-gray-600">John Smith</p>
+                    <p class="text-xs text-gray-500">HR Manager</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Job Details -->
+              <div class="bg-white shadow rounded-lg p-6">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">
+                  Job Details
+                </h2>
+                <div class="space-y-3">
+                  <div>
+                    <p
+                      class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                    >
+                      Job Type
+                    </p>
+                    <p class="text-sm text-gray-600">Full-time</p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                    >
+                      Department
+                    </p>
+                    <p class="text-sm text-gray-600">Information Technology</p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                    >
+                      Experience Level
+                    </p>
+                    <p class="text-sm text-gray-600">Senior Level (6+ years)</p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                    >
+                      Work Setup
+                    </p>
+                    <p class="text-sm text-gray-600">On-site</p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                    >
+                      Location
+                    </p>
+                    <p class="text-sm text-gray-600">
+                      Makati City, Metro Manila
+                    </p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                    >
+                      Compensation
+                    </p>
+                    <p class="text-sm text-gray-600">
+                      ₱80,000 - ₱120,000 / monthly
+                    </p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                    >
+                      Positions Available
+                    </p>
+                    <p class="text-sm text-gray-600">2</p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                    >
+                      Application Deadline
+                    </p>
+                    <p class="text-sm text-gray-600">November 30, 2025</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Main Job Content -->
-            <div class="lg:col-span-2">
-                <!-- Job Header -->
-                <div class="bg-white rounded-lg shadow-sm p-6 mb-6 opacity-75">
-                    <div class="flex items-center mb-4">
-                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium mr-3">Rejected</span>
-                        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium mr-3">Part-time</span>
-                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">Entry Level</span>
-                    </div>
-                    
-                    <h1 class="text-3xl font-bold text-gray-900 mb-4">Data Entry Clerk</h1>
-                    
-                    <div class="flex flex-wrap items-center text-sm text-gray-600 mb-6">
-                        <div class="flex items-center mr-6 mb-2">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2-2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                            </svg>
-                            <span class="font-semibold">Generic Company Inc.</span>
-                        </div>
-                        
-                        <div class="flex items-center mr-6 mb-2">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                            </svg>
-                            <span>Quezon City</span>
-                        </div>
-                        
-                        <div class="flex items-center mr-6 mb-2">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
-                            </svg>
-                            <span>Administrative</span>
-                        </div>
-                        
-                        <div class="flex items-center mr-6 mb-2">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span>Rejected 1 day ago</span>
-                        </div>
-                    </div>
-
-                    <div class="text-2xl font-bold text-gray-600 mb-4">
-                        ₱15,000 - ₱18,000<span class="text-lg font-normal text-gray-500">/month</span>
-                    </div>
-                </div>
-
-                <!-- Rejection Details -->
-                <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
-                    <h2 class="text-xl font-bold text-red-900 mb-4">Rejection Details</h2>
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="font-semibold text-red-800 mb-2">Rejection Reason:</h3>
-                            <p class="text-red-700 bg-red-100 p-3 rounded">
-                                Job posting does not meet minimum requirements for skills and qualifications. The job description lacks specific technical requirements, detailed responsibilities, and clear career progression opportunities. Please provide a more comprehensive job description with specific skills, software knowledge, and measurable responsibilities.
-                            </p>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-red-800 mb-2">Issues Identified:</h3>
-                            <ul class="space-y-2 text-red-700">
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    Vague job description with minimal detail
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    No specific technical skills or software requirements
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    Insufficient educational requirements
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    Missing career development opportunities
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    Below minimum salary expectations for the market
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Original Job Description (As Submitted) -->
-                <div class="bg-white rounded-lg shadow-sm p-6 mb-6 border border-gray-300">
-                    <h2 class="text-xl font-bold text-gray-900 mb-4">Original Job Posting</h2>
-                    <div class="prose max-w-none text-gray-700">
-                        <p class="mb-4">
-                            We are looking for a data entry clerk to join our team. The candidate will be responsible for entering data and doing basic office tasks.
-                        </p>
-                        <p class="mb-4">
-                            Must have basic computer skills and be able to type fast. Experience with Microsoft Office is preferred.
-                        </p>
-                        <p>
-                            This is a part-time position with flexible hours.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Original Requirements (As Submitted) -->
-                <div class="bg-white rounded-lg shadow-sm p-6 mb-6 border border-gray-300">
-                    <h2 class="text-xl font-bold text-gray-900 mb-4">Original Requirements</h2>
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Education & Experience</h3>
-                            <ul class="space-y-2 text-gray-700">
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 text-gray-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    High school diploma or equivalent
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 text-gray-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    No experience required
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Skills</h3>
-                            <ul class="space-y-2 text-gray-700">
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 text-gray-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    Basic computer skills
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 text-gray-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    Fast typing
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 text-gray-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    Microsoft Office preferred
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recommended Improvements -->
-                <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                    <h2 class="text-xl font-bold text-blue-900 mb-4">Recommended Improvements</h2>
-                    <div class="space-y-4 text-blue-800">
-                        <div>
-                            <h3 class="font-semibold mb-2">Enhanced Job Description Suggestions:</h3>
-                            <ul class="space-y-2 text-sm">
-                                <li>• Specify exact data entry tasks and systems to be used</li>
-                                <li>• Include volume expectations (e.g., "Process 200+ records daily")</li>
-                                <li>• Detail accuracy requirements and quality standards</li>
-                                <li>• Mention training and development opportunities</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold mb-2">Technical Requirements:</h3>
-                            <ul class="space-y-2 text-sm">
-                                <li>• Specific software proficiency (Excel, databases, CRM systems)</li>
-                                <li>• Typing speed requirements (e.g., "45+ WPM with 98% accuracy")</li>
-                                <li>• Knowledge of data validation techniques</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold mb-2">Compensation & Benefits:</h3>
-                            <ul class="space-y-2 text-sm">
-                                <li>• Increase salary range to market standard (₱20,000 - ₱25,000)</li>
-                                <li>• Include benefits like health insurance or allowances</li>
-                                <li>• Mention performance bonuses or career progression</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Admin Actions Sidebar -->
-            <div class="lg:col-span-1">
-                <!-- Management Actions -->
-                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Admin Actions</h3>
-                    <div class="space-y-3">
-                        <button onclick="sendDetailedFeedback()" class="w-full px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                            </svg>
-                            Send Detailed Feedback
-                        </button>
-                        <button onclick="requestResubmission()" class="w-full px-4 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 font-medium flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
-                            </svg>
-                            Request Resubmission
-                        </button>
-                        <button onclick="provideTemplate()" class="w-full px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                            </svg>
-                            Provide Template
-                        </button>
-                        <button onclick="archiveRejection()" class="w-full px-4 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 font-medium flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8l6 6m-6 0l6-6 2-2h8l-2 2-6 6m0 0l2 2v4H7v-4l2-2z"></path>
-                            </svg>
-                            Archive
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Rejection Details -->
-                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Rejection Summary</h3>
-                    <div class="space-y-3">
-                        <div>
-                            <div class="text-sm text-gray-500">Status</div>
-                            <div class="font-medium flex items-center">
-                                <div class="w-2 h-2 bg-red-500 rounded-full mr-2"></div>
-                                Rejected
-                            </div>
-                        </div>
-                        <div>
-                            <div class="text-sm text-gray-500">Rejection Date</div>
-                            <div class="font-medium">Oct 5, 2025 - 3:15 PM</div>
-                        </div>
-                        <div>
-                            <div class="text-sm text-gray-500">Reviewed By</div>
-                            <div class="font-medium">Admin User</div>
-                        </div>
-                        <div>
-                            <div class="text-sm text-gray-500">Originally Submitted</div>
-                            <div class="font-medium">Oct 4, 2025 - 10:30 AM</div>
-                        </div>
-                        <div>
-                            <div class="text-sm text-gray-500">Partner Notification</div>
-                            <div class="font-medium text-green-600">✓ Sent</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Company Information -->
-                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Company Information</h3>
-                    <div class="space-y-3 text-sm">
-                        <div>
-                            <div class="text-gray-500">Company</div>
-                            <div class="font-medium">Generic Company Inc.</div>
-                        </div>
-                        <div>
-                            <div class="text-gray-500">Industry</div>
-                            <div class="font-medium">Administrative Services</div>
-                        </div>
-                        <div>
-                            <div class="text-gray-500">Company Size</div>
-                            <div class="font-medium">11-50 employees</div>
-                        </div>
-                        <div>
-                            <div class="text-gray-500">Partnership Status</div>
-                            <div class="flex items-center">
-                                <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">New Partner</span>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="text-gray-500">Previous Submissions</div>
-                            <div class="font-medium">1 (This is their first)</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Communication History -->
-                <div class="bg-white rounded-lg shadow-sm p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Communication History</h3>
-                    <div class="space-y-4">
-                        <div class="border-l-4 border-red-400 pl-3">
-                            <div class="text-sm font-medium text-gray-900">Job Rejection Sent</div>
-                            <div class="text-xs text-gray-500">Oct 5, 2025 - 3:20 PM</div>
-                            <div class="text-sm text-gray-600 mt-1">Rejection notice with detailed feedback sent to partner</div>
-                        </div>
-                        
-                        <div class="border-l-4 border-blue-400 pl-3">
-                            <div class="text-sm font-medium text-gray-900">Job Submitted</div>
-                            <div class="text-xs text-gray-500">Oct 4, 2025 - 10:30 AM</div>
-                            <div class="text-sm text-gray-600 mt-1">Initial job posting submission received</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </main>
     </div>
 
     <script>
-        function toggleUserMenu() {
-            const menu = document.getElementById('userMenu');
-            menu.classList.toggle('hidden');
-        }
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+      }
 
-        function logout() {
-            if (confirm('Are you sure you want to logout?')) {
-                window.location.href = '../login.html';
-            }
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
         }
+      }
 
-        function sendDetailedFeedback() {
-            const feedback = prompt('Add additional feedback for the partner:', 'Please review the recommended improvements and resubmit with a more detailed job description.');
-            if (feedback) {
-                alert(`Detailed feedback sent to Generic Company Inc.:\n\n${feedback}`);
-            }
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("-translate-x-full");
+        const isOpen = !sidebar.classList.contains("-translate-x-full");
+        sidebar.setAttribute("aria-hidden", !isOpen);
+      }
+
+      function toggleDropdown(id) {
+        const button = event.target.closest("button");
+        const menu = document.getElementById(id + "-menu");
+        const arrow = document.getElementById(id + "-arrow");
+        menu.classList.toggle("hidden");
+        const expanded = !menu.classList.contains("hidden");
+        arrow.classList.toggle("rotate-180", expanded);
+        button.setAttribute("aria-expanded", expanded);
+      }
+
+      // Close user menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const menu = document.getElementById("userMenu");
+        const button = event.target.closest("button");
+
+        if (!button || button.onclick !== toggleUserMenu) {
+          menu.classList.add("hidden");
         }
-
-        function requestResubmission() {
-            if (confirm('Request partner to resubmit with improvements?')) {
-                alert('Resubmission request sent to Generic Company Inc. with improvement guidelines.');
-            }
-        }
-
-        function provideTemplate() {
-            alert('Job posting template sent to Generic Company Inc. to help them create a better submission.');
-        }
-
-        function archiveRejection() {
-            if (confirm('Archive this rejected job posting? It will be moved to the archived section.')) {
-                alert('Job rejection has been archived.');
-                window.location.href = 'approve-jobs.html';
-            }
-        }
-
-        // Close user menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('userMenu');
-            const button = event.target.closest('button');
-            
-            if (!button || button.onclick !== toggleUserMenu) {
-                menu.classList.add('hidden');
-            }
-        });
+      });
     </script>
-</body>
+  </body>
 </html>

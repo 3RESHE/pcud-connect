@@ -1,460 +1,882 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Published Job - Frontend Developer - PCU-DASMA Connect</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Preview - Senior Software Developer - PCU-DASMA Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1E40AF',
-                        secondary: '#3B82F6',
-                        accent: '#F59E0B'
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-sm border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
-                    <div class="ml-8 flex items-center space-x-2 text-sm text-gray-500">
-                        <span>Admin Portal</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                        <span>Job Approvals</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                        <span class="text-primary font-medium">Published Job</span>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <div class="relative">
-                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
-                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
-                        </button>
-                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                            <div class="py-1">
-                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Profile</a>
-                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+  </head>
+  <body class="bg-gray-50">
+    <div class="flex min-h-screen">
+      <!-- Sidebar -->
+      <aside
+        id="sidebar"
+        class="bg-white w-64 min-h-screen shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 fixed z-50"
+        aria-hidden="true"
+      >
+        <div class="flex flex-col h-full">
+          <!-- Logo -->
+          <div
+            class="flex items-center justify-between p-4 border-b border-gray-200"
+          >
+            <a href="../index.html" class="text-xl font-bold text-primary"
+              >PCU-DASMA Connect</a
+            >
+            <button
+              id="closeSidebar"
+              class="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600"
+              aria-label="Close sidebar"
+              onclick="toggleSidebar()"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
 
-    <!-- Main Content -->
-    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <!-- Back Button & Status -->
-        <div class="mb-6">
-            <a href="approve-jobs.html" class="flex items-center text-primary hover:text-blue-700 mb-4">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-                Back to Job Approvals
+          <!-- Navigation -->
+          <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <!-- Dashboard -->
+            <a
+              href="dashboard.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m8 5 4-4 4 4"
+                ></path>
+              </svg>
+              Dashboard
             </a>
-            
-            <!-- Published Status Banner -->
-            <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-6">
-                <div class="flex">
-                    <div class="flex-shrink-0">
-                        <svg class="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                        </svg>
+
+            <!-- Users -->
+            <a
+              href="users.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-1a4 4 0 0 0-4-4h-1M9 20H4v-1a4 4 0 0 1 4-4h1m8-6a4 4 0 1 1-8 0 4 4 0 0 1 8 0zm-6 6h4"
+                />
+              </svg>
+              Users
+            </a>
+
+            <!-- Approvals Dropdown -->
+            <div class="space-y-1">
+              <button
+                onclick="toggleDropdown('approvals')"
+                class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg focus:outline-none"
+                aria-expanded="true"
+                aria-controls="approvals-menu"
+              >
+                <div class="flex items-center">
+                  <svg
+                    class="w-5 h-5 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  Approvals
+                </div>
+                <svg
+                  id="approvals-arrow"
+                  class="w-4 h-4 transform transition-transform duration-200 rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div id="approvals-menu" class="ml-4 space-y-1">
+                <a
+                  href="approve-jobs.html"
+                  class="flex items-center px-4 py-2 text-sm text-primary font-medium bg-blue-50 rounded-lg"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"
+                    ></path>
+                  </svg>
+                  Job Post Approvals
+                  <span
+                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
+                    >3</span
+                  >
+                </a>
+                <a
+                  href="approve-news.html"
+                  class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+                    ></path>
+                  </svg>
+                  News Approvals
+                  <span
+                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
+                    >2</span
+                  >
+                </a>
+                <a
+                  href="approve-events.html"
+                  class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                  Event Approvals
+                  <span
+                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
+                    >1</span
+                  >
+                </a>
+              </div>
+            </div>
+
+            <!-- Partnerships -->
+            <a
+              href="approve-partnerships.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+              </svg>
+              Partnerships
+              <span
+                class="ml-auto bg-yellow-100 text-yellow-800 text-xs px-2 py-0.5 rounded-full"
+                >2</span
+              >
+            </a>
+
+            <!-- Divider -->
+            <div class="border-t border-gray-200 my-4"></div>
+
+            <!-- Settings -->
+            <a
+              href="settings.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                ></path>
+              </svg>
+              Settings
+            </a>
+          </nav>
+
+          <!-- User Profile -->
+          <div class="border-t border-gray-200 p-4">
+            <div class="flex items-center">
+              <img
+                class="h-8 w-8 rounded-full"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                alt="Profile"
+              />
+              <div class="ml-3 flex-1">
+                <p class="text-sm font-medium text-gray-700">Admin User</p>
+                <p class="text-xs text-gray-500">admin@pcu.edu.ph</p>
+              </div>
+              <div class="relative">
+                <button
+                  onclick="toggleUserMenu()"
+                  class="p-2 rounded-md text-gray-400 hover:text-gray-600"
+                  aria-label="Toggle user menu"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                    ></path>
+                  </svg>
+                </button>
+                <div
+                  id="userMenu"
+                  class="hidden origin-bottom-right absolute bottom-0 right-0 mb-12 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                >
+                  <div class="py-1">
+                    <a
+                      href="#"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >Admin Profile</a
+                    >
+                    <a
+                      href="#"
+                      onclick="logout()"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >Logout</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1">
+        <!-- Mobile Header -->
+        <div class="md:hidden bg-white shadow-sm border-b">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+              <a href="../index.html" class="text-xl font-bold text-primary"
+                >PCU-DASMA Connect</a
+              >
+              <button
+                onclick="toggleSidebar()"
+                class="text-gray-700 focus:outline-none"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+          <!-- Header -->
+          <div class="mb-8">
+            <div class="flex items-center mb-4">
+              <a
+                href="job-postings.html"
+                class="text-gray-400 hover:text-gray-600 mr-4"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"
+                  ></path>
+                </svg>
+              </a>
+              <div
+                class="flex flex-col sm:flex-row sm:items-center sm:space-x-4"
+              >
+                <div>
+                  <h1 class="text-3xl font-bold text-gray-900">
+                    Senior Software Developer
+                  </h1>
+                  <p class="text-gray-600 mt-2">
+                    Manage your published job posting
+                  </p>
+                </div>
+                <div class="flex items-center space-x-2 mt-2 sm:mt-0">
+                  <span
+                    class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium"
+                    >Published</span
+                  >
+                  <span
+                    class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                    >Full-time</span
+                  >
+                  <span
+                    class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm"
+                    >Senior Level (6+ years)</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Published Status Alert -->
+          <div
+            class="bg-green-50 border border-green-200 rounded-lg p-4 mb-8"
+          >
+            <div class="flex items-start">
+              <svg
+                class="w-5 h-5 text-green-600 mr-2 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <div>
+                <h4 class="font-semibold text-green-800">
+                  Job Post Published
+                </h4>
+                <p class="text-sm text-green-700">
+                  This job posting was published on October 15, 2025. You can
+                  unpublish the posting if needed.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Two-column Layout -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Content -->
+            <div class="lg:col-span-2 space-y-8">
+              <!-- Job Content -->
+              <div class="bg-white shadow rounded-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4">
+                  Job Description
+                </h2>
+                <div class="prose max-w-none">
+                  <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                    Senior Software Developer
+                  </h1>
+                  <div class="flex items-center space-x-2 mb-4">
+                    <span
+                      class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium"
+                      >Published</span
+                    >
+                    <span
+                      class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                      >Full-time</span
+                    >
+                    <span
+                      class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm"
+                      >Senior Level (6+ years)</span
+                    >
+                  </div>
+                  <p class="text-gray-700 mb-4">
+                    <span
+                      >Design and develop high-quality software solutions</span
+                    ><br />
+                    <span
+                      >Collaborate with product team to deliver features</span
+                    ><br />
+                    <span>Maintain and optimize existing applications</span
+                    ><br />
+                    <span
+                      >Lead technical projects and mentor junior
+                      developers</span
+                    >
+                  </p>
+                  <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                    Requirements
+                  </h3>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h4 class="text-base font-medium text-gray-900 mb-3">
+                        Education & Experience
+                      </h4>
+                      <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Bachelor's degree in Computer Science</li>
+                        <li>5+ years of software development</li>
+                        <li>Experience leading projects</li>
+                      </ul>
+                      <h4 class="text-base font-medium text-gray-900 mt-4 mb-3">
+                        Additional Experience
+                      </h4>
+                      <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Experience with Agile methodologies</li>
+                        <li>Familiarity with cloud platforms</li>
+                      </ul>
                     </div>
+                    <div>
+                      <h4 class="text-base font-medium text-gray-900 mb-3">
+                        Technical Skills
+                      </h4>
+                      <div class="flex flex-wrap gap-2">
+                        <span
+                          class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                          >JavaScript</span
+                        >
+                        <span
+                          class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                          >React</span
+                        >
+                        <span
+                          class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                          >Node.js</span
+                        >
+                        <span
+                          class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                          >Git</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                    Benefits & Perks
+                  </h3>
+                  <ul
+                    class="list-disc list-inside text-gray-700 mb-4 space-y-1"
+                  >
+                    <li>Health Insurance</li>
+                    <li>Paid Time Off</li>
+                    <li>Flexible Hours</li>
+                    <li>Retirement Plan</li>
+                    <li>Professional Development</li>
+                    <li>Transportation Allowance</li>
+                  </ul>
+                  <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                    Application Process
+                  </h3>
+                  <ol class="list-decimal list-inside text-gray-700 space-y-1">
+                    <li>Submit resume and cover letter</li>
+                    <li>Attend technical interview</li>
+                    <li>Complete coding assessment</li>
+                    <li>Final interview with hiring manager</li>
+                  </ol>
+                </div>
+              </div>
+
+              <!-- Review Timeline -->
+              <div class="bg-white shadow rounded-lg p-6">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">
+                  Review Timeline
+                </h2>
+                <div class="space-y-3">
+                  <div class="flex items-center">
+                    <div
+                      class="flex-shrink-0 w-3 h-3 bg-green-400 rounded-full"
+                    ></div>
                     <div class="ml-3">
-                        <p class="text-sm text-green-700">
-                            <strong>Published & Active:</strong> This job posting is currently live and accepting applications from job seekers.
-                        </p>
+                      <p class="text-sm font-medium text-gray-900">
+                        Job Submitted
+                      </p>
+                      <p class="text-xs text-gray-500">
+                        October 14, 2025 - 1:00 PM
+                      </p>
                     </div>
+                  </div>
+                  <div class="flex items-center">
+                    <div
+                      class="flex-shrink-0 w-3 h-3 bg-green-400 rounded-full"
+                    ></div>
+                    <div class="ml-3">
+                      <p class="text-sm font-medium text-gray-900">
+                        Job Approved
+                      </p>
+                      <p class="text-xs text-gray-500">
+                        October 15, 2025 - 9:00 AM
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <div
+                      class="flex-shrink-0 w-3 h-3 bg-green-400 rounded-full"
+                    ></div>
+                    <div class="ml-3">
+                      <p class="text-sm font-medium text-gray-900">
+                        Job Published
+                      </p>
+                      <p class="text-xs text-gray-500">Current status</p>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+              <!-- Review Actions -->
+              <div class="bg-white shadow rounded-lg p-6">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">
+                  Review Actions
+                </h2>
+                <div class="space-y-3">
+                  <button
+                    onclick="unpublishJob()"
+                    class="w-full px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700"
+                  >
+                    Unpublish Job
+                  </button>
+                </div>
+              </div>
+
+              <!-- Company Information -->
+              <div class="bg-white shadow rounded-lg p-6">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">
+                  Company Information
+                </h2>
+                <div class="space-y-3">
+                  <div>
+                    <p class="text-sm font-medium text-gray-900">
+                      Company Name
+                    </p>
+                    <p class="text-sm text-gray-600">Tech Solutions Inc.</p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-900">Industry</p>
+                    <p class="text-sm text-gray-600">Information Technology</p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-900">
+                      Company Size
+                    </p>
+                    <p class="text-sm text-gray-600">51-200 employees</p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-900">
+                      Partnership Status
+                    </p>
+                    <p class="text-sm text-gray-600">Active Partner</p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-900">
+                      Contact Person
+                    </p>
+                    <p class="text-sm text-gray-600">John Smith</p>
+                    <p class="text-xs text-gray-500">HR Manager</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Job Details -->
+              <div class="bg-white shadow rounded-lg p-6">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">
+                  Job Details
+                </h2>
+                <div class="space-y-3">
+                  <div>
+                    <p
+                      class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                    >
+                      Job Type
+                    </p>
+                    <p class="text-sm text-gray-600">Full-time</p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                    >
+                      Department
+                    </p>
+                    <p class="text-sm text-gray-600">Information Technology</p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                    >
+                      Experience Level
+                    </p>
+                    <p class="text-sm text-gray-600">Senior Level (6+ years)</p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                    >
+                      Work Setup
+                    </p>
+                    <p class="text-sm text-gray-600">On-site</p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                    >
+                      Location
+                    </p>
+                    <p class="text-sm text-gray-600">
+                      Makati City, Metro Manila
+                    </p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                    >
+                      Compensation
+                    </p>
+                    <p class="text-sm text-gray-600">
+                      ₱80,000 - ₱120,000 / monthly
+                    </p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                    >
+                      Positions Available
+                    </p>
+                    <p class="text-sm text-gray-600">2</p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-gray-500 uppercase tracking-wide"
+                    >
+                      Application Deadline
+                    </p>
+                    <p class="text-sm text-gray-600">November 30, 2025</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Unpublish Job Modal -->
+          <div
+            id="unpublishModal"
+            class="hidden fixed inset-0 z-50 overflow-y-auto"
+          >
+            <div
+              class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center"
+            >
+              <div
+                class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+              ></div>
+              <div
+                class="relative bg-white rounded-lg max-w-md w-full shadow-xl"
+              >
+                <div class="px-6 py-4">
+                  <div class="flex items-center">
+                    <div
+                      class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100"
+                    >
+                      <svg
+                        class="h-6 w-6 text-red-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="mt-3 text-center ml-4">
+                      <h3 class="text-lg font-medium text-gray-900">
+                        Unpublish Job Posting
+                      </h3>
+                      <p class="text-sm text-gray-500 mt-2">
+                        Please provide a reason for unpublishing this job posting.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="mt-4">
+                    <textarea
+                      id="unpublishReason"
+                      class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                      rows="4"
+                      placeholder="Enter reason for unpublishing"
+                    ></textarea>
+                  </div>
+                </div>
+                <div
+                  class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3"
+                >
+                  <button
+                    onclick="closeUnpublishModal()"
+                    class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onclick="confirmUnpublish()"
+                    class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+                  >
+                    Unpublish Job
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Main Job Content -->
-            <div class="lg:col-span-2">
-                <!-- Job Header -->
-                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-                    <div class="flex items-center mb-4">
-                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium mr-3">Published</span>
-                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mr-3">Full-time</span>
-                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">Mid Level</span>
-                    </div>
-                    
-                    <h1 class="text-3xl font-bold text-gray-900 mb-4">Frontend Developer</h1>
-                    
-                    <div class="flex flex-wrap items-center text-sm text-gray-600 mb-6">
-                        <div class="flex items-center mr-6 mb-2">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2-2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                            </svg>
-                            <span class="font-semibold">Digital Solutions Ltd.</span>
-                        </div>
-                        
-                        <div class="flex items-center mr-6 mb-2">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                            </svg>
-                            <span>BGC, Taguig</span>
-                        </div>
-                        
-                        <div class="flex items-center mr-6 mb-2">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
-                            </svg>
-                            <span>Information Technology</span>
-                        </div>
-                        
-                        <div class="flex items-center mr-6 mb-2">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span>Published 2 hours ago</span>
-                        </div>
-
-                        <div class="flex items-center mr-6 mb-2">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                            </svg>
-                            <span>234 views</span>
-                        </div>
-                    </div>
-
-                    <div class="text-2xl font-bold text-green-600 mb-4">
-                        ₱60,000 - ₱90,000<span class="text-lg font-normal text-gray-600">/month</span>
-                    </div>
-                </div>
-
-                <!-- Application Stats -->
-                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-                    <h2 class="text-xl font-bold text-gray-900 mb-4">Application Statistics</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        <div class="text-center p-4 bg-blue-50 rounded-lg">
-                            <div class="text-2xl font-bold text-blue-600">12</div>
-                            <div class="text-sm text-gray-600">Total Applications</div>
-                        </div>
-                        <div class="text-center p-4 bg-green-50 rounded-lg">
-                            <div class="text-2xl font-bold text-green-600">8</div>
-                            <div class="text-sm text-gray-600">Qualified</div>
-                        </div>
-                        <div class="text-center p-4 bg-yellow-50 rounded-lg">
-                            <div class="text-2xl font-bold text-yellow-600">3</div>
-                            <div class="text-sm text-gray-600">Under Review</div>
-                        </div>
-                        <div class="text-center p-4 bg-purple-50 rounded-lg">
-                            <div class="text-2xl font-bold text-purple-600">234</div>
-                            <div class="text-sm text-gray-600">Profile Views</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Job Description -->
-                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-                    <h2 class="text-xl font-bold text-gray-900 mb-4">Job Description</h2>
-                    <div class="prose max-w-none text-gray-700">
-                        <p class="mb-4">
-                            Join our team as a Frontend Developer and create amazing user experiences using modern web technologies. You'll work on exciting projects and collaborate with a talented team of designers and developers.
-                        </p>
-                        <p class="mb-4">
-                            As a Frontend Developer, you'll be responsible for translating UI/UX designs into high-quality code, optimizing applications for maximum speed and scalability, and ensuring cross-browser compatibility.
-                        </p>
-                        <p>
-                            We offer a collaborative work environment, opportunities for professional growth, and the chance to work on cutting-edge projects that make a real impact.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Requirements -->
-                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-                    <h2 class="text-xl font-bold text-gray-900 mb-4">Requirements</h2>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Education & Experience</h3>
-                            <ul class="space-y-2 text-gray-700">
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    Bachelor's degree in Computer Science, Web Development, or related field
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    3+ years of frontend development experience
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    Portfolio demonstrating UI/UX skills
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-900 mb-3">Technical Skills</h3>
-                            <ul class="space-y-2 text-gray-700">
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    Proficiency in HTML5, CSS3, JavaScript
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    Experience with React.js or Vue.js
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    Responsive design and CSS frameworks
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    Version control (Git)
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="mt-6">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Preferred Academic Programs</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">BSIT</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">BSCS</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Benefits -->
-                <div class="bg-white rounded-lg shadow-sm p-6">
-                    <h2 class="text-xl font-bold text-gray-900 mb-4">Benefits & Perks</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="flex items-center">
-                            <svg class="w-5 h-5 text-green-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="text-gray-700">Health Insurance</span>
-                        </div>
-                        <div class="flex items-center">
-                            <svg class="w-5 h-5 text-green-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="text-gray-700">Flexible Schedule</span>
-                        </div>
-                        <div class="flex items-center">
-                            <svg class="w-5 h-5 text-green-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="text-gray-700">Professional Development</span>
-                        </div>
-                        <div class="flex items-center">
-                            <svg class="w-5 h-5 text-green-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="text-gray-700">Work From Home Options</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Admin Management Sidebar -->
-            <div class="lg:col-span-1">
-                <!-- Management Actions -->
-                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Job Management</h3>
-                    <div class="space-y-3">
-                        <button onclick="viewApplications()" class="w-full px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-                            </svg>
-                            View Applications (12)
-                        </button>
-                        <button onclick="editJob()" class="w-full px-4 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 font-medium flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                            </svg>
-                            Edit Job Details
-                        </button>
-                        <button onclick="pauseJob()" class="w-full px-4 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 font-medium flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            Pause Applications
-                        </button>
-                        <button onclick="unpublishJob()" class="w-full px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18.364 5.636M5.636 18.364l12.728-12.728"></path>
-                            </svg>
-                            Unpublish Job
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Publication Details -->
-                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Publication Details</h3>
-                    <div class="space-y-3">
-                        <div>
-                            <div class="text-sm text-gray-500">Status</div>
-                            <div class="font-medium flex items-center">
-                                <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                                Active & Published
-                            </div>
-                        </div>
-                        <div>
-                            <div class="text-sm text-gray-500">Publication Date</div>
-                            <div class="font-medium">Oct 6, 2025 - 2:30 PM</div>
-                        </div>
-                        <div>
-                            <div class="text-sm text-gray-500">Approved By</div>
-                            <div class="font-medium">Admin User</div>
-                        </div>
-                        <div>
-                            <div class="text-sm text-gray-500">Application Deadline</div>
-                            <div class="font-medium">November 6, 2025</div>
-                        </div>
-                        <div>
-                            <div class="text-sm text-gray-500">Positions Available</div>
-                            <div class="font-medium">1 position</div>
-                        </div>
-                        <div>
-                            <div class="text-sm text-gray-500">Work Setup</div>
-                            <div class="font-medium">Hybrid</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Company Information -->
-                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Company Information</h3>
-                    <div class="space-y-3 text-sm">
-                        <div>
-                            <div class="text-gray-500">Company</div>
-                            <div class="font-medium">Digital Solutions Ltd.</div>
-                        </div>
-                        <div>
-                            <div class="text-gray-500">Industry</div>
-                            <div class="font-medium">Information Technology</div>
-                        </div>
-                        <div>
-                            <div class="text-gray-500">Company Size</div>
-                            <div class="font-medium">51-200 employees</div>
-                        </div>
-                        <div>
-                            <div class="text-gray-500">Partnership Since</div>
-                            <div class="font-medium">January 2023</div>
-                        </div>
-                        <div>
-                            <div class="text-gray-500">Contact Person</div>
-                            <div class="font-medium">Sarah Johnson</div>
-                            <div class="text-gray-600">HR Manager</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Performance Metrics -->
-                <div class="bg-white rounded-lg shadow-sm p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Performance</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between text-sm mb-1">
-                                <span>Application Rate</span>
-                                <span>78%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-blue-600 h-2 rounded-full" style="width: 78%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between text-sm mb-1">
-                                <span>Quality Score</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-green-600 h-2 rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-
-                        <div class="mt-4 text-sm text-gray-600">
-                            <p><strong>Avg. Time to Apply:</strong> 3.2 days</p>
-                            <p><strong>Alumni Applications:</strong> 8 out of 12</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </main>
     </div>
 
     <script>
-        function toggleUserMenu() {
-            const menu = document.getElementById('userMenu');
-            menu.classList.toggle('hidden');
-        }
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+      }
 
-        function logout() {
-            if (confirm('Are you sure you want to logout?')) {
-                window.location.href = '../login.html';
-            }
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
         }
+      }
 
-        function viewApplications() {
-            alert('Redirecting to applications management page...');
-            // window.location.href = 'job-applications.html?jobId=4';
+      function unpublishJob() {
+        document.getElementById("unpublishModal").classList.remove("hidden");
+      }
+
+      function closeUnpublishModal() {
+        document.getElementById("unpublishModal").classList.add("hidden");
+        document.getElementById("unpublishReason").value = "";
+      }
+
+      function confirmUnpublish() {
+        const reason = document.getElementById("unpublishReason").value;
+        if (!reason.trim()) {
+          alert("Please provide a reason for unpublishing.");
+          return;
         }
+        closeUnpublishModal();
+        alert(`Job posting has been unpublished.\n\nReason: ${reason}`);
+        window.location.href = "approve-jobs.html";
+      }
 
-        function editJob() {
-            if (confirm('Edit this published job? This will temporarily unpublish it during editing.')) {
-                alert('Redirecting to job edit page...');
-                // window.location.href = 'edit-job.html?jobId=4';
-            }
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("-translate-x-full");
+        const isOpen = !sidebar.classList.contains("-translate-x-full");
+        sidebar.setAttribute("aria-hidden", !isOpen);
+      }
+
+      function toggleDropdown(id) {
+        const button = event.target.closest("button");
+        const menu = document.getElementById(id + "-menu");
+        const arrow = document.getElementById(id + "-arrow");
+        menu.classList.toggle("hidden");
+        const expanded = !menu.classList.contains("hidden");
+        arrow.classList.toggle("rotate-180", expanded);
+        button.setAttribute("aria-expanded", expanded);
+      }
+
+      // Close modals when clicking outside
+      document.addEventListener("click", function (e) {
+        const modal = document.getElementById("unpublishModal");
+        if (modal && e.target === modal) {
+          closeUnpublishModal();
         }
+      });
 
-        function pauseJob() {
-            if (confirm('Pause applications for this job? It will remain visible but no new applications will be accepted.')) {
-                alert('Job applications have been paused. No new applications will be accepted.');
-                location.reload();
-            }
+      // Close user menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const menu = document.getElementById("userMenu");
+        const button = event.target.closest("button");
+
+        if (!button || button.onclick !== toggleUserMenu) {
+          menu.classList.add("hidden");
         }
-
-        function unpublishJob() {
-            if (confirm('Are you sure you want to unpublish this job? It will no longer be visible to job seekers.')) {
-                alert('Job has been unpublished and is no longer visible to job seekers.');
-                window.location.href = 'approve-jobs.html';
-            }
-        }
-
-        // Close user menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('userMenu');
-            const button = event.target.closest('button');
-            
-            if (!button || button.onclick !== toggleUserMenu) {
-                menu.classList.add('hidden');
-            }
-        });
+      });
     </script>
-</body>
+  </body>
 </html>
