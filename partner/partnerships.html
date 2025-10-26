@@ -49,14 +49,12 @@
               >
                 Partnerships
               </a>
-
               <a
                 href="news.html"
                 class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
               >
                 News
               </a>
-
               <a
                 href="profile.html"
                 class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
@@ -166,13 +164,13 @@
             </a>
             <a
               href="job-postings.html"
-              class="text-primary bg-primary bg-opacity-10 block px-3 py-2 rounded-md text-base font-medium"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
             >
               Job Postings
             </a>
             <a
               href="partnerships.html"
-              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+              class="text-primary bg-primary bg-opacity-10 block px-3 py-2 rounded-md text-base font-medium"
             >
               Partnerships
             </a>
@@ -200,12 +198,12 @@
               </div>
               <div class="ml-3">
                 <div class="text-base font-medium leading-none text-gray-900">
-                  User Account
+                  Maria Santos
                 </div>
                 <div
                   class="text-sm font-medium leading-none text-gray-500 mt-1"
                 >
-                  user@pcudasma.edu.ph
+                  maria.santos@communityhelpers.org
                 </div>
               </div>
             </div>
@@ -238,8 +236,7 @@
             Partnership Proposals
           </h1>
           <p class="text-gray-600">
-            Manage your events, programs, workshops, and collaboration proposals
-            with PCU-DASMA
+            Manage your community partnership proposals with PCU-DASMA
           </p>
         </div>
         <a
@@ -264,7 +261,7 @@
       </div>
 
       <!-- Stats Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <div class="bg-white p-6 rounded-lg shadow-sm">
           <div class="flex items-center">
             <div class="flex-shrink-0">
@@ -343,10 +340,8 @@
               </div>
             </div>
             <div class="ml-4">
-              <p class="text-sm font-medium text-gray-600">
-                Active Partnerships
-              </p>
-              <p class="text-2xl font-semibold text-gray-900">2</p>
+              <p class="text-sm font-medium text-gray-600">Approved</p>
+              <p class="text-2xl font-semibold text-gray-900">1</p>
             </div>
           </div>
         </div>
@@ -355,10 +350,10 @@
           <div class="flex items-center">
             <div class="flex-shrink-0">
               <div
-                class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center"
+                class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center"
               >
                 <svg
-                  class="w-5 h-5 text-purple-600"
+                  class="w-5 h-5 text-red-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -367,43 +362,13 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M17 20h5v-1a4 4 0 0 0-4-4h-1M9 20H4v-1a4 4 0 0 1 4-4h1m8-6a4 4 0 1 1-8 0 4 4 0 0 1 8 0zm-6 6h4"
+                    d="M6 18L18 6M6 6l12 12"
                   ></path>
                 </svg>
               </div>
             </div>
             <div class="ml-4">
-              <p class="text-sm font-medium text-gray-600">
-                Total Participants
-              </p>
-              <p class="text-2xl font-semibold text-gray-900">175</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white p-6 rounded-lg shadow-sm">
-          <div class="flex items-center">
-            <div class="flex-shrink-0">
-              <div
-                class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center"
-              >
-                <svg
-                  class="w-5 h-5 text-gray-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  ></path>
-                </svg>
-              </div>
-            </div>
-            <div class="ml-4">
-              <p class="text-sm font-medium text-gray-600">Draft Proposals</p>
+              <p class="text-sm font-medium text-gray-600">Rejected</p>
               <p class="text-2xl font-semibold text-gray-900">1</p>
             </div>
           </div>
@@ -418,7 +383,7 @@
               onclick="filterPartnerships('all')"
               class="partnership-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium"
             >
-              All Proposals (6)
+              All Proposals (5)
             </button>
             <button
               onclick="filterPartnerships('pending')"
@@ -433,22 +398,22 @@
               Under Discussion (1)
             </button>
             <button
-              onclick="filterPartnerships('active')"
+              onclick="filterPartnerships('approved')"
               class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
             >
-              Active (2)
+              Approved (1)
+            </button>
+            <button
+              onclick="filterPartnerships('rejected')"
+              class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+            >
+              Rejected (1)
             </button>
             <button
               onclick="filterPartnerships('completed')"
               class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
             >
               Completed (1)
-            </button>
-            <button
-              onclick="filterPartnerships('draft')"
-              class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
-            >
-              Drafts (1)
             </button>
           </nav>
         </div>
@@ -458,7 +423,8 @@
       <div class="space-y-6">
         <!-- Pending Review Partnership -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500"
+          class="partnership-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500"
+          data-status="pending"
         >
           <div class="flex justify-between items-start mb-4">
             <div class="flex-1">
@@ -469,127 +435,23 @@
                 >
                 <span
                   class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Scholarship Program</span
+                  >Feeding Program</span
                 >
-                <span class="text-sm text-gray-500">Submitted 3 days ago</span>
+                <span class="text-sm text-gray-500">Submitted October 26, 2025</span>
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                Excellence in STEM Scholarship Program
+                Weekend Feeding Program for Street Children
               </h3>
               <p class="text-gray-600 mb-3">
-                Annual scholarship program providing financial assistance to
-                outstanding students in STEM fields
+                On-site meals for children and vulnerable groups in Dasmariñas
               </p>
               <div class="bg-yellow-50 p-4 rounded-lg mb-4">
                 <h4 class="font-medium text-yellow-900 mb-2">
                   Proposal Status:
                 </h4>
                 <p class="text-sm text-yellow-700">
-                  Your partnership proposal has been submitted and is currently
-                  under review by PCU-DASMA administrators. We'll notify you
-                  once they begin the discussion process or if any additional
-                  information is needed.
+                  Your partnership proposal has been submitted and is currently under review by PCU-DASMA administrators. We'll notify you once they begin the discussion process or if any additional information is needed.
                 </p>
-              </div>
-              <div class="flex items-center space-x-6 text-sm text-gray-500">
-                <div class="flex items-center">
-                  <svg
-                    class="w-4 h-4 mr-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
-                    ></path>
-                  </svg>
-                  ₱750,000 budget
-                </div>
-                <div class="flex items-center">
-                  <svg
-                    class="w-4 h-4 mr-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    ></path>
-                  </svg>
-                  15 recipients planned
-                </div>
-              </div>
-            </div>
-            <div class="ml-4 flex flex-col space-y-2">
-              <button
-                onclick="viewPartnership(1)"
-                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
-              >
-                View Details
-              </button>
-              <button
-                onclick="editPartnership(1)"
-                class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
-              >
-                Edit Proposal
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Under Discussion Partnership -->
-        <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500"
-        >
-          <div class="flex justify-between items-start mb-4">
-            <div class="flex-1">
-              <div class="flex items-center mb-2">
-                <span
-                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Under Discussion</span
-                >
-                <span
-                  class="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Community Event</span
-                >
-                <span class="text-sm text-gray-500"
-                  >Discussion started 5 days ago</span
-                >
-              </div>
-              <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                Tech for Good Community Hackathon
-              </h3>
-              <p class="text-gray-600 mb-3">
-                48-hour hackathon focused on developing technology solutions for
-                community problems
-              </p>
-              <div class="bg-blue-50 p-4 rounded-lg mb-4">
-                <h4 class="font-medium text-blue-900 mb-2">
-                  Discussion in Progress:
-                </h4>
-                <p class="text-sm text-blue-700 mb-3">
-                  PCU-DASMA administrators have initiated discussions about your
-                  partnership proposal. They have some questions and points to
-                  clarify before proceeding with approval.
-                </p>
-                <div class="bg-white p-3 rounded border border-blue-200">
-                  <h5 class="font-medium text-blue-900 text-xs mb-2">
-                    Latest Discussion Points:
-                  </h5>
-                  <ul class="text-xs text-blue-700 space-y-1">
-                    <li>• Venue requirements and setup logistics</li>
-                    <li>• Student safety and security protocols</li>
-                    <li>
-                      • Judging criteria and prize distribution guidelines
-                    </li>
-                  </ul>
-                </div>
               </div>
               <div class="flex items-center space-x-6 text-sm text-gray-500">
                 <div class="flex items-center">
@@ -606,7 +468,7 @@
                       d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                     ></path>
                   </svg>
-                  Dec 15-17, 2025
+                  November 1, 2025 at 10:00 AM
                 </div>
                 <div class="flex items-center">
                   <svg
@@ -619,81 +481,55 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                     ></path>
                   </svg>
-                  ₱100,000 prize pool
+                  Open participation
                 </div>
               </div>
             </div>
             <div class="ml-4 flex flex-col space-y-2">
-              <button
-                onclick="viewDiscussion(2)"
-                class="px-4 py-2 bg-blue-100 text-blue-700 text-sm rounded-md hover:bg-blue-200"
+              <a
+                href="view-partnership-pending.html"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
               >
-                View Discussion
-              </button>
-              <button
-                onclick="respondToDiscussion(2)"
-                class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700"
-              >
-                Respond
-              </button>
-              <button
-                onclick="viewPartnership(2)"
-                class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
-              >
-                View Proposal
-              </button>
+                View Details
+              </a>
             </div>
           </div>
         </div>
 
-        <!-- Active Training Program -->
+        <!-- Under Discussion Partnership -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500"
+          class="partnership-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500"
+          data-status="discussion"
         >
           <div class="flex justify-between items-start mb-4">
             <div class="flex-1">
               <div class="flex items-center mb-2">
                 <span
-                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Active</span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Under Discussion</span
                 >
                 <span
-                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Training Program</span
+                  class="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Brigada Eskwela</span
                 >
-                <span class="text-sm text-gray-500"
-                  >Started 2 months ago • Ends March 2026</span
-                >
+                <span class="text-sm text-gray-500">Discussion started October 26, 2025</span>
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                Digital Marketing Certification Program
+                School Clean-up and Maintenance Day
               </h3>
               <p class="text-gray-600 mb-3">
-                6-month certification program for business and marketing
-                students
+                Community event for school repair and beautification
               </p>
-              <div class="bg-green-50 p-4 rounded-lg mb-4">
-                <h4 class="font-medium text-green-900 mb-2">
-                  Program Progress:
+              <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                <h4 class="font-medium text-blue-900 mb-2">
+                  Discussion in Progress:
                 </h4>
-                <div class="flex items-center mb-2">
-                  <div class="flex-1 bg-gray-200 rounded-full h-2 mr-3">
-                    <div
-                      class="bg-green-600 h-2 rounded-full"
-                      style="width: 65%"
-                    ></div>
-                  </div>
-                  <span class="text-sm text-green-700">65% Complete</span>
-                </div>
-                <ul class="text-sm text-green-700 space-y-1">
-                  <li>• 50 students enrolled and actively participating</li>
-                  <li>• 8 out of 12 weekly sessions completed</li>
-                  <li>• 92% attendance rate maintained</li>
-                  <li>• Next session: Advanced Analytics (Oct 12, 2025)</li>
-                </ul>
+                <p class="text-sm text-blue-700 mb-3">
+                  PCU-DASMA administrators have initiated discussions about your partnership proposal. They have some questions and points to clarify before proceeding with approval.
+                </p>
               </div>
               <div class="flex items-center space-x-6 text-sm text-gray-500">
                 <div class="flex items-center">
@@ -707,10 +543,10 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 715 0z"
+                      d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                     ></path>
                   </svg>
-                  50 enrolled participants
+                  November 5, 2025 at 8:00 AM
                 </div>
                 <div class="flex items-center">
                   <svg
@@ -723,72 +559,117 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                     ></path>
                   </svg>
-                  92% attendance rate
+                  Open participation
                 </div>
               </div>
             </div>
             <div class="ml-4 flex flex-col space-y-2">
-              <button
-                onclick="viewPartnership(3)"
+              <a
+                href="view-partnership-discussed.html"
                 class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
               >
                 View Details
-              </button>
-              <button
-                onclick="viewReports(3)"
-                class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
-              >
-                Progress Reports
-              </button>
-              <button
-                onclick="manageProgram(3)"
-                class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
-              >
-                Manage Program
-              </button>
+              </a>
             </div>
           </div>
         </div>
 
-        <!-- Active Research Collaboration -->
+        <!-- Approved Partnership -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500"
+          class="partnership-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500"
+          data-status="approved"
         >
           <div class="flex justify-between items-start mb-4">
             <div class="flex-1">
               <div class="flex items-center mb-2">
                 <span
                   class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Active</span
+                  >Approved</span
                 >
                 <span
-                  class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Research Project</span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Community Clean-up</span
                 >
-                <span class="text-sm text-gray-500"
-                  >Started 6 months ago • Ongoing</span
-                >
+                <span class="text-sm text-gray-500">Approved October 27, 2025</span>
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                AI in Healthcare Research Project
+                Monthly Community Clean-up Drive
               </h3>
               <p class="text-gray-600 mb-3">
-                Joint research initiative on AI applications in healthcare
-                diagnostics
+                Ongoing environmental protection activities in local areas
               </p>
               <div class="bg-green-50 p-4 rounded-lg mb-4">
                 <h4 class="font-medium text-green-900 mb-2">
-                  Research Progress:
+                  Proposal Status:
                 </h4>
-                <ul class="text-sm text-green-700 space-y-1">
-                  <li>• Phase 1: Literature Review - ✅ Completed</li>
-                  <li>• Phase 2: Data Collection - 🔄 In Progress (75%)</li>
-                  <li>• Phase 3: Model Development - ⏳ Pending</li>
-                  <li>• Expected completion: June 2026</li>
-                </ul>
+                <p class="text-sm text-green-700">
+                  Your partnership proposal has been approved by PCU-DASMA administrators. Please check your email for next steps and coordination details.
+                </p>
+              </div>
+              <div class="flex items-center space-x-6 text-sm text-gray-500">
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 715 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  Open to all community members
+                </div>
+              </div>
+            </div>
+            <div class="ml-4 flex flex-col space-y-2">
+              <a
+                href="view-partnership-approved.html"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+              >
+                View Details
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rejected Partnership -->
+        <div
+          class="partnership-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-red-500"
+          data-status="rejected"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-2">
+                <span
+                  class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Rejected</span
+                >
+                <span
+                  class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Tree Planting</span
+                >
+                <span class="text-sm text-gray-500">Rejected October 27, 2025</span>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Park Beautification Tree Planting Initiative
+              </h3>
+              <p class="text-gray-600 mb-3">
+                Environmental care through tree planting in local parks
+              </p>
+              <div class="bg-red-50 p-4 rounded-lg mb-4">
+                <h4 class="font-medium text-red-900 mb-2">
+                  Proposal Status:
+                </h4>
+                <p class="text-sm text-red-700">
+                  Your partnership proposal was reviewed but unfortunately not approved. Please check your email for feedback and suggestions for resubmission.
+                </p>
               </div>
               <div class="flex items-center space-x-6 text-sm text-gray-500">
                 <div class="flex items-center">
@@ -805,123 +686,25 @@
                       d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                     ></path>
                   </svg>
-                  12 student researchers
-                </div>
-                <div class="flex items-center">
-                  <svg
-                    class="w-4 h-4 mr-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    ></path>
-                  </svg>
-                  3 research papers in progress
+                  Open to community volunteers
                 </div>
               </div>
             </div>
             <div class="ml-4 flex flex-col space-y-2">
-              <button
-                onclick="viewPartnership(4)"
+              <a
+                href="view-partnership-rejected.html"
                 class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
               >
                 View Details
-              </button>
-              <button
-                onclick="viewResearchProgress(4)"
-                class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
-              >
-                Research Progress
-              </button>
-              <button
-                onclick="collaborationTools(4)"
-                class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
-              >
-                Collaboration Tools
-              </button>
+              </a>
             </div>
           </div>
         </div>
 
-        <!-- Draft Partnership -->
+        <!-- Completed Partnership -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-gray-300"
-        >
-          <div class="flex justify-between items-start mb-4">
-            <div class="flex-1">
-              <div class="flex items-center mb-2">
-                <span
-                  class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Draft</span
-                >
-                <span
-                  class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Workshop Series</span
-                >
-                <span class="text-sm text-gray-500"
-                  >Last edited 3 days ago</span
-                >
-              </div>
-              <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                Cybersecurity Awareness Workshop Series
-              </h3>
-              <p class="text-gray-600 mb-3">
-                4-week workshop series on cybersecurity best practices for IT
-                students
-              </p>
-              <div class="bg-gray-50 p-4 rounded-lg mb-4">
-                <h4 class="font-medium text-gray-900 mb-2">Draft Status:</h4>
-                <p class="text-sm text-gray-600">
-                  This proposal is saved as a draft. Complete the missing
-                  information and submit for review to begin the partnership
-                  discussion process.
-                </p>
-                <ul class="text-sm text-gray-600 mt-2 space-y-1">
-                  <li>• Missing: Detailed curriculum outline</li>
-                  <li>• Missing: Trainer qualifications</li>
-                  <li>• Missing: Assessment methods</li>
-                </ul>
-              </div>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded"
-                  >Workshop Series</span
-                >
-                <span
-                  class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded"
-                  >Cybersecurity</span
-                >
-                <span
-                  class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded"
-                  >IT Students</span
-                >
-              </div>
-            </div>
-            <div class="ml-4 flex flex-col space-y-2">
-              <button
-                onclick="editPartnership(5)"
-                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
-              >
-                Continue Editing
-              </button>
-              <button
-                onclick="deletePartnership(5)"
-                class="px-4 py-2 text-red-600 hover:bg-red-50 text-sm rounded-md"
-              >
-                Delete Draft
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Completed Workshop -->
-        <div
-          class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-400 opacity-75"
+          class="partnership-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-400 opacity-75"
+          data-status="completed"
         >
           <div class="flex justify-between items-start mb-4">
             <div class="flex-1">
@@ -932,27 +715,21 @@
                 >
                 <span
                   class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Workshop Series</span
+                  >Feeding Program</span
                 >
-                <span class="text-sm text-gray-500">Completed August 2025</span>
+                <span class="text-sm text-gray-500">Completed October 27, 2025</span>
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                Professional Development Workshop Series
+                Weekend Feeding Program for Street Children
               </h3>
               <p class="text-gray-600 mb-3">
-                8-week workshop series on professional skills and career
-                development
+                Community activity providing meals to street children
               </p>
               <div class="bg-blue-50 p-4 rounded-lg mb-4">
                 <h4 class="font-medium text-blue-900 mb-2">Final Results:</h4>
-                <ul class="text-sm text-blue-700 space-y-1">
-                  <li>
-                    • Total participants: 75 students (4th year and graduates)
-                  </li>
-                  <li>• Completion rate: 92% (69 students completed)</li>
-                  <li>• Average satisfaction rating: 4.8/5.0</li>
-                  <li>• 95% would recommend to other students</li>
-                </ul>
+                <p class="text-sm text-blue-700">
+                  Community activity successfully completed. Thank you for your partnership with PCU-DASMA.
+                </p>
               </div>
               <div class="flex items-center space-x-6 text-sm text-gray-500">
                 <div class="flex items-center">
@@ -971,37 +748,15 @@
                   </svg>
                   Successfully completed
                 </div>
-                <div class="flex items-center">
-                  <svg
-                    class="w-4 h-4 mr-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                    ></path>
-                  </svg>
-                  Excellent feedback received
-                </div>
               </div>
             </div>
             <div class="ml-4 flex flex-col space-y-2">
-              <button
-                onclick="viewFinalReport(6)"
-                class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700"
+              <a
+                href="view-partnership-completed.html"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
               >
-                Final Report
-              </button>
-              <button
-                onclick="renewPartnership(6)"
-                class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
-              >
-                Create Similar Program
-              </button>
+                View Details
+              </a>
             </div>
           </div>
         </div>
@@ -1024,68 +779,6 @@
             Next
           </button>
         </nav>
-      </div>
-    </div>
-
-    <!-- Discussion Modal -->
-    <div id="discussionModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
-      <div
-        class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center"
-      >
-        <div
-          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-        ></div>
-
-        <div class="relative bg-white rounded-lg max-w-3xl w-full shadow-xl">
-          <div
-            class="px-6 py-4 border-b border-gray-200 flex justify-between items-center"
-          >
-            <h3 class="text-xl font-semibold text-gray-900">
-              Partnership Discussion
-            </h3>
-            <button
-              onclick="closeDiscussionModal()"
-              class="text-gray-400 hover:text-gray-600"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                ></path>
-              </svg>
-            </button>
-          </div>
-
-          <div class="p-6 max-h-96 overflow-y-auto">
-            <div id="discussionContent" class="space-y-4">
-              <!-- Discussion thread will be loaded here -->
-            </div>
-          </div>
-
-          <div class="px-6 py-4 border-t border-gray-200">
-            <div class="flex space-x-3">
-              <textarea
-                id="responseText"
-                rows="3"
-                class="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                placeholder="Enter your response to continue the discussion..."
-              ></textarea>
-              <button
-                onclick="sendResponse()"
-                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-              >
-                Send Response
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -1115,6 +808,14 @@
         menu.classList.toggle("hidden");
       }
 
+      // Logout function
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
+        }
+      }
+
+      // Filter partnerships by status
       function filterPartnerships(status) {
         document.querySelectorAll(".partnership-filter").forEach((filter) => {
           filter.classList.remove("active", "border-primary", "text-primary");
@@ -1124,166 +825,59 @@
         event.target.classList.add("active", "border-primary", "text-primary");
         event.target.classList.remove("border-transparent", "text-gray-500");
 
-        console.log("Filtering partnerships by:", status);
+        const cards = document.querySelectorAll(".partnership-card");
+        cards.forEach((card) => {
+          if (status === "all" || card.dataset.status === status) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
       }
 
-      function viewPartnership(partnershipId) {
-        alert(
-          `Viewing detailed information for partnership #${partnershipId}...`
-        );
-      }
-
-      function viewDiscussion(partnershipId) {
-        // Sample discussion content
-        const discussionContent = document.getElementById("discussionContent");
-        discussionContent.innerHTML = `
-                <div class="space-y-4">
-                    <div class="bg-blue-50 p-4 rounded-lg">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                                    <span class="text-xs font-medium text-blue-600">PA</span>
-                                </div>
-                            </div>
-                            <div class="ml-3 flex-1">
-                                <div class="flex items-center mb-1">
-                                    <p class="text-sm font-medium text-blue-900">PCU-DASMA Admin</p>
-                                    <p class="text-xs text-blue-600 ml-2">5 days ago</p>
-                                </div>
-                                <p class="text-sm text-blue-700">
-                                    Thank you for your partnership proposal for the Tech for Good Hackathon. We're interested in moving forward but need clarification on a few points:
-                                    <br><br>
-                                    1. Can you provide more details about the venue setup requirements?<br>
-                                    2. What safety and security measures will be in place for the 48-hour event?<br>
-                                    3. How will the judging process work and what are the evaluation criteria?
-                                    <br><br>
-                                    Looking forward to your response.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                                    <span class="text-xs font-medium text-gray-600">IH</span>
-                                </div>
-                            </div>
-                            <div class="ml-3 flex-1">
-                                <div class="flex items-center mb-1">
-                                    <p class="text-sm font-medium text-gray-900">InnovateHub Philippines</p>
-                                    <p class="text-xs text-gray-500 ml-2">3 days ago</p>
-                                </div>
-                                <p class="text-sm text-gray-700">
-                                    Thank you for your interest in our proposal. Here are the details you requested:
-                                    <br><br>
-                                    1. <strong>Venue Setup:</strong> We need a large hall that can accommodate 150 participants with tables for teams of 5. Access to power outlets, WiFi, and presentation equipment.<br>
-                                    2. <strong>Safety:</strong> We'll have security personnel on-site 24/7, first aid station, and emergency protocols in place.<br>
-                                    3. <strong>Judging:</strong> Panel of 5 industry experts evaluating based on innovation, technical execution, and social impact.
-                                    <br><br>
-                                    Please let us know if you need additional information.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="text-center text-sm text-gray-500 py-2">
-                        Waiting for PCU-DASMA response...
-                    </div>
-                </div>
-            `;
-
-        document.getElementById("discussionModal").classList.remove("hidden");
-      }
-
-      function closeDiscussionModal() {
-        document.getElementById("discussionModal").classList.add("hidden");
-      }
-
-      function respondToDiscussion(partnershipId) {
-        viewDiscussion(partnershipId);
-      }
-
-      function sendResponse() {
-        const responseText = document.getElementById("responseText").value;
-        if (!responseText.trim()) {
-          alert("Please enter a response before sending.");
-          return;
-        }
-
-        alert("Response sent successfully! PCU-DASMA will be notified.");
-        closeDiscussionModal();
-      }
-
-      function viewReports(partnershipId) {
-        alert(`Viewing progress reports for partnership #${partnershipId}...`);
-      }
-
-      function manageProgram(partnershipId) {
-        alert(
-          `Opening program management interface for partnership #${partnershipId}...`
-        );
-      }
-
-      function viewResearchProgress(partnershipId) {
-        alert(`Viewing research progress for partnership #${partnershipId}...`);
-      }
-
-      function collaborationTools(partnershipId) {
-        alert(
-          `Opening collaboration tools for partnership #${partnershipId}...`
-        );
-      }
-
-      function editPartnership(partnershipId) {
-        window.location.href = `new-partnership.html?edit=${partnershipId}`;
-      }
-
-      function deletePartnership(partnershipId) {
-        if (
-          confirm(
-            "Are you sure you want to delete this draft? This action cannot be undone."
-          )
-        ) {
-          alert(`Partnership draft #${partnershipId} has been deleted.`);
-          location.reload();
-        }
-      }
-
-      function viewFinalReport(partnershipId) {
-        alert(`Viewing final report for partnership #${partnershipId}...`);
-      }
-
-      function renewPartnership(partnershipId) {
-        if (
-          confirm("Would you like to create a similar partnership program?")
-        ) {
-          alert(
-            `Creating new proposal based on partnership #${partnershipId}...`
-          );
-          window.location.href = `new-partnership.html?template=${partnershipId}`;
-        }
-      }
-
-      // Close user menu when clicking outside
+      // Close menus when clicking outside
       document.addEventListener("click", function (event) {
-        const menu = document.getElementById("userMenu");
-        const button = event.target.closest("button");
+        const userMenu = document.getElementById("userMenu");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const userButton = event.target.closest('button[onclick="toggleUserMenu()"]');
+        const mobileButton = event.target.closest('button[onclick="toggleMobileMenu()"]');
 
-        if (!button || button.onclick !== toggleUserMenu) {
-          menu.classList.add("hidden");
+        if (!userButton && !userMenu.contains(event.target)) {
+          userMenu.classList.add("hidden");
+        }
+
+        if (!mobileButton && !mobileMenu.contains(event.target) && !mobileMenu.classList.contains("hidden")) {
+          toggleMobileMenu();
         }
       });
 
-      // Close discussion modal when clicking outside
-      document
-        .getElementById("discussionModal")
-        .addEventListener("click", function (e) {
-          if (e.target === this) {
-            closeDiscussionModal();
+      // Close menus on Escape key
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          const userMenu = document.getElementById("userMenu");
+          const mobileMenu = document.getElementById("mobileMenu");
+          if (!userMenu.classList.contains("hidden")) {
+            userMenu.classList.add("hidden");
           }
-        });
+          if (!mobileMenu.classList.contains("hidden")) {
+            toggleMobileMenu();
+          }
+        }
+      });
+
+      // Handle resize to close mobile menu on desktop
+      window.addEventListener("resize", function () {
+        const mobileMenu = document.getElementById("mobileMenu");
+        const hamburgerIcon = document.getElementById("hamburgerIcon");
+        const closeIcon = document.getElementById("closeIcon");
+        if (window.innerWidth >= 768 && !mobileMenu.classList.contains("hidden")) {
+          mobileMenu.classList.add("hidden");
+          hamburgerIcon.classList.remove("hidden");
+          closeIcon.classList.add("hidden");
+          const button = document.querySelector('[onclick="toggleMobileMenu()"]');
+          button.setAttribute("aria-expanded", "false");
+        }
+      });
     </script>
   </body>
 </html>

@@ -1,478 +1,766 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Completed Partnership - PCU-DASMA Connect</title>
+    <title>Partnership Preview - Weekend Feeding Program - PCU-DASMA Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#1E40AF",
-                        secondary: "#3B82F6",
-                        accent: "#F59E0B",
-                    },
-                },
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
             },
-        };
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-sm border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
+  </head>
+  <body class="bg-gray-50">
+    <div class="flex min-h-screen">
+      <!-- Sidebar -->
+      <aside
+        id="sidebar"
+        class="bg-white w-64 min-h-screen shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 fixed z-50"
+        aria-hidden="true"
+      >
+        <div class="flex flex-col h-full">
+          <!-- Logo -->
+          <div
+            class="flex items-center justify-between p-4 border-b border-gray-200"
+          >
+            <a href="../index.html" class="text-xl font-bold text-primary"
+              >PCU-DASMA Connect</a
+            >
+            <button
+              id="closeSidebar"
+              class="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600"
+              aria-label="Close sidebar"
+              onclick="toggleSidebar()"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Navigation -->
+          <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <!-- Dashboard -->
+            <a
+              href="dashboard.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m8 5 4-4 4 4"
+                ></path>
+              </svg>
+              Dashboard
+            </a>
+
+            <!-- Users -->
+            <a
+              href="users.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-1a4 4 0 0 0-4-4h-1M9 20H4v-1a4 4 0 0 1 4-4h1m8-6a4 4 0 1 1-8 0 4 4 0 0 1 8 0zm-6 6h4"
+                />
+              </svg>
+              Users
+            </a>
+
+            <!-- Approvals Dropdown -->
+            <div class="space-y-1">
+              <button
+                onclick="toggleDropdown('approvals')"
+                class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg focus:outline-none"
+                aria-expanded="true"
+                aria-controls="approvals-menu"
+              >
                 <div class="flex items-center">
-                    <a href="../index.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
-                    <div class="hidden md:ml-10 md:flex md:space-x-8">
-                        <a href="dashboard.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
-                        <a href="approve-partnerships.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">Community Partnerships</a>
-                    </div>
+                  <svg
+                    class="w-5 h-5 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  Approvals
                 </div>
-                <div class="flex items-center space-x-4">
-                    <div class="relative">
-                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
-                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile" />
-                        </button>
-                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                            <div class="py-1">
-                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Profile</a>
-                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <!-- Header -->
-        <div class="mb-8">
-            <div class="flex items-center mb-4">
-                <a href="approve-partnerships.html" class="text-gray-400 hover:text-gray-600 mr-4">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                    </svg>
-                </a>
-                <div class="flex items-center space-x-4">
-                    <div>
-                        <h1 class="text-3xl font-bold text-gray-900">Partnership #GBC-2025-013</h1>
-                        <p class="text-gray-600">Successfully completed community partnership</p>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm font-medium">Completed</span>
-                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Community Clean-up</span>
-                        <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Highly Successful</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Completion Status Alert -->
-        <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-4 mb-8">
-            <div class="flex items-start">
-                <svg class="w-5 h-5 text-emerald-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                <svg
+                  id="approvals-arrow"
+                  class="w-4 h-4 transform transition-transform duration-200 rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
                 </svg>
-                <div class="flex-1">
-                    <h4 class="font-semibold text-emerald-800">Partnership Successfully Completed</h4>
-                    <p class="text-sm text-emerald-700">This coastal clean-up drive was completed on October 5, 2025, exceeding all participation and impact targets. Final impact report available.</p>
-                </div>
-                <div class="ml-4">
-                    <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Featured in Media</span>
-                </div>
+              </button>
+              <div id="approvals-menu" class="ml-4 space-y-1">
+                <a
+                  href="approve-jobs.html"
+                  class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"
+                    ></path>
+                  </svg>
+                  Job Post Approvals
+                  <span
+                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
+                    >3</span
+                  >
+                </a>
+                <a
+                  href="approve-news.html"
+                  class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+                    ></path>
+                  </svg>
+                  News Approvals
+                  <span
+                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
+                    >2</span
+                  >
+                </a>
+                <a
+                  href="approve-events.html"
+                  class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                  Event Approvals
+                  <span
+                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
+                    >1</span
+                  >
+                </a>
+                <a
+                  href="approve-partnerships.html"
+                  class="flex items-center px-4 py-2 text-sm text-primary font-medium bg-blue-50 rounded-lg"
+                >
+                  <svg
+                    class="w-4 h-4 mr-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  Partnership Approvals
+                  <span
+                    class="ml-auto bg-yellow-100 text-yellow-800 text-xs px-2 py-0.5 rounded-full"
+                    >1</span
+                  >
+                </a>
+              </div>
             </div>
+
+            <!-- Settings -->
+            <a
+              href="settings.html"
+              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                ></path>
+              </svg>
+              Settings
+            </a>
+          </nav>
+
+          <!-- User Profile -->
+          <div class="border-t border-gray-200 p-4">
+            <div class="flex items-center">
+              <img
+                class="h-8 w-8 rounded-full"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                alt="Profile"
+              />
+              <div class="ml-3 flex-1">
+                <p class="text-sm font-medium text-gray-700">Admin User</p>
+                <p class="text-xs text-gray-500">admin@pcu.edu.ph</p>
+              </div>
+              <div class="relative">
+                <button
+                  onclick="toggleUserMenu()"
+                  class="p-2 rounded-md text-gray-400 hover:text-gray-600"
+                  aria-label="Toggle user menu"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                    ></path>
+                  </svg>
+                </button>
+                <div
+                  id="userMenu"
+                  class="hidden origin-bottom-right absolute bottom-0 right-0 mb-12 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                >
+                  <div class="py-1">
+                    <a
+                      href="#"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >Admin Profile</a
+                    >
+                    <a
+                      href="#"
+                      onclick="logout()"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >Logout</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1">
+        <!-- Mobile Header -->
+        <div class="md:hidden bg-white shadow-sm border-b">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+              <a href="../index.html" class="text-xl font-bold text-primary"
+                >PCU-DASMA Connect</a
+              >
+              <button
+                onclick="toggleSidebar()"
+                class="text-gray-700 focus:outline-none"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
 
-        <!-- Partnership Overview -->
-        <div class="bg-white shadow rounded-lg mb-8">
-            <div class="px-6 py-5 border-b border-gray-200">
-                <h2 class="text-xl font-semibold text-gray-900">Great Dasmarinas Bay Clean-up Drive</h2>
-                <div class="mt-2 flex items-center text-sm text-gray-600 space-x-6">
-                    <div class="flex items-center">
-                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                        </svg>
-                        Clean Seas Alliance
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        Completed: October 5, 2025
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                        </svg>
-                        Jennifer Aquino, Environmental Coordinator
-                    </div>
+        <!-- Main Content -->
+        <div class="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+          <!-- Header -->
+          <div class="mb-8">
+            <div class="flex items-center mb-4">
+              <a
+                href="approve-partnerships.html"
+                class="text-gray-400 hover:text-gray-600 mr-4"
+                aria-label="Back to Partnership Approvals"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"
+                  ></path>
+                </svg>
+              </a>
+              <div
+                class="flex flex-col sm:flex-row sm:items-center sm:space-x-4"
+              >
+                <div>
+                  <h1 class="text-3xl font-bold text-gray-900">
+                    Weekend Feeding Program for Street Children
+                  </h1>
+                  <p class="text-gray-600 mt-2">
+                    Completed community partnership
+                  </p>
                 </div>
+                <div class="flex items-center space-x-2 mt-2 sm:mt-0">
+                  <span
+                    class="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm font-medium"
+                    >Completed</span
+                  >
+                  <span
+                    class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm"
+                    >Feeding Program</span
+                  >
+                  <span
+                    class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                    >Open Participation</span
+                  >
+                </div>
+              </div>
             </div>
+          </div>
 
-            <div class="px-6 py-5">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                    <div>
-                        <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Event Date</h3>
-                        <p class="mt-1 text-lg text-gray-900">October 5, 2025</p>
-                        <p class="text-sm text-gray-600">5:30 AM - 12:00 PM</p>
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Volunteer Participation</h3>
-                        <p class="mt-1 text-lg text-gray-900">450 volunteers</p>
-                        <p class="text-sm text-emerald-600">+50% above target</p>
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide">Waste Collected</h3>
-                        <p class="mt-1 text-lg text-gray-900">3.2 tons</p>
-                        <p class="text-sm text-emerald-600">+60% above target</p>
-                    </div>
-                </div>
-
-                <div class="mb-6">
-                    <h3 class="text-lg font-medium text-gray-900 mb-3">Final Results Summary</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Highly successful coastal clean-up that exceeded all participation and impact targets. Covered 1.8km of Dasmarinas coastline with 450 community volunteers participating. Achieved 98% recycling rate and generated significant media coverage, strengthening PCU-DASMA's environmental advocacy profile. The event created lasting environmental awareness in the community and established foundations for future environmental partnerships.
-                    </p>
-                </div>
+          <!-- Completed Status Alert -->
+          <div
+            class="bg-teal-50 border border-teal-200 rounded-lg p-4 mb-8"
+          >
+            <div class="flex items-start">
+              <svg
+                class="w-5 h-5 text-teal-600 mr-2 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <div>
+                <h4 class="font-semibold text-teal-800">
+                  Partnership Completed
+                </h4>
+                <p class="text-sm text-teal-700">
+                  This partnership program was completed on October 26, 2025, at 11:43 PM. It successfully served meals to over 100 street children weekly and engaged 50+ community volunteers.
+                </p>
+              </div>
             </div>
-        </div>
+          </div>
 
-        <!-- Two-column Layout -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Two-column Layout -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <!-- Main Content -->
             <div class="lg:col-span-2 space-y-8">
-                <!-- Final Impact Report -->
-                <div class="bg-white shadow rounded-lg p-6">
-                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Final Impact Report</h2>
-                    <div class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="bg-emerald-50 p-4 rounded-lg">
-                                <h3 class="font-medium text-emerald-900 mb-2">Environmental Impact</h3>
-                                <ul class="text-sm text-emerald-800 space-y-1">
-                                    <li>• 3.2 tons of waste removed from coastline</li>
-                                    <li>• 1.8km of shoreline cleaned and restored</li>
-                                    <li>• 98% recycling rate achieved</li>
-                                    <li>• 75% reduction in visible marine debris</li>
-                                    <li>• 12 sea turtle nesting sites protected</li>
-                                </ul>
-                            </div>
-                            <div class="bg-blue-50 p-4 rounded-lg">
-                                <h3 class="font-medium text-blue-900 mb-2">Community Engagement</h3>
-                                <ul class="text-sm text-blue-800 space-y-1">
-                                    <li>• 450 total volunteers (target: 300)</li>
-                                    <li>• 85 PCU-DASMA student participants</li>
-                                    <li>• 8 local barangays represented</li>
-                                    <li>• 25 community families involved</li>
-                                    <li>• 95% volunteer satisfaction rate</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Achievements & Milestones</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <h4 class="font-medium text-gray-900">Exceeded All Targets</h4>
-                                    <ul class="text-sm text-gray-600 mt-1 space-y-1">
-                                        <li>✓ 150% volunteer participation target achieved</li>
-                                        <li>✓ 160% waste collection target achieved</li>
-                                        <li>✓ 120% area coverage target achieved</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium text-gray-900">Media & Recognition</h4>
-                                    <ul class="text-sm text-gray-600 mt-1 space-y-1">
-                                        <li>✓ Featured in 3 local news outlets</li>
-                                        <li>✓ Social media reach: 50,000+ people</li>
-                                        <li>✓ Environmental award nomination</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Waste Analysis & Recycling</h3>
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <div class="grid grid-cols-4 gap-4 text-center">
-                                    <div>
-                                        <p class="text-2xl font-bold text-gray-900">45%</p>
-                                        <p class="text-xs text-gray-600">Plastic Materials</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-2xl font-bold text-gray-900">25%</p>
-                                        <p class="text-xs text-gray-600">Organic Waste</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-2xl font-bold text-gray-900">20%</p>
-                                        <p class="text-xs text-gray-600">Paper & Cardboard</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-2xl font-bold text-gray-900">10%</p>
-                                        <p class="text-xs text-gray-600">Metal & Glass</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+              <!-- Partnership Content -->
+              <div class="bg-white shadow rounded-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4">
+                  Partnership Details
+                </h2>
+                <div class="prose max-w-none">
+                  <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                    Weekend Feeding Program for Street Children
+                  </h1>
+                  <div class="flex items-center space-x-2 mb-4">
+                    <span
+                      class="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm font-medium"
+                      >Completed</span
+                    >
+                    <span
+                      class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm"
+                      >Feeding Program</span
+                    >
+                    <span
+                      class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
+                      >Open Participation</span
+                    >
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                      Organization Name
+                    </p>
+                    <p class="text-sm text-gray-600 mb-4">
+                      Community Helpers Foundation
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                      Date Submitted
+                    </p>
+                    <p class="text-sm text-gray-600 mb-4">
+                      October 26, 2025 - 11:26 PM
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                      Date Approved
+                    </p>
+                    <p class="text-sm text-gray-600 mb-4">
+                      October 26, 2025 - 11:35 PM
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                      Date Completed
+                    </p>
+                    <p class="text-sm text-gray-600 mb-4">
+                      October 26, 2025 - 11:43 PM
+                    </p>
+                  </div>
+                  <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                    Organization Background
+                  </h3>
+                  <p class="text-gray-700 mb-4">
+                    Community Helpers Foundation is a non-profit organization dedicated to supporting vulnerable populations in Dasmariñas, Cavite, since 2015. Our mission is to promote food security and community engagement through sustainable outreach programs.
+                  </p>
+                  <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                    Activity Description
+                  </h3>
+                  <p class="text-gray-700 mb-4">
+                    The Weekend Feeding Program aims to provide nutritious meals to street children in Dasmariñas, Cavite. Held every Saturday, the program will serve hot meals to approximately 100-150 children, encouraging open participation from the community. Volunteers will distribute food, engage with participants, and promote social inclusion.
+                  </p>
+                  <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                    Activity Objectives
+                  </h3>
+                  <ul class="list-disc list-inside text-gray-700 mb-4 space-y-1">
+                    <li>Provide nutritious meals to at least 100 street children weekly</li>
+                    <li>Promote community engagement through volunteer opportunities</li>
+                    <li>Raise awareness about food insecurity in the local area</li>
+                  </ul>
+                  <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                    Expected Community Impact
+                  </h3>
+                  <p class="text-gray-700 mb-4">
+                    This program will address food insecurity for street children, foster community unity, and encourage volunteerism, creating a positive impact on both participants and the broader Dasmariñas community.
+                  </p>
+                  <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                    Schedule & Location
+                  </h3>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                        Date
+                      </p>
+                      <p class="text-sm text-gray-600">Every Saturday starting November 1, 2025</p>
                     </div>
-                </div>
-
-                <!-- Community Testimonials -->
-                <div class="bg-white shadow rounded-lg p-6">
-                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Community Testimonials & Feedback</h2>
-                    <div class="space-y-4">
-                        <div class="bg-emerald-50 p-4 rounded-lg">
-                            <p class="text-sm text-emerald-800 mb-2">"This clean-up drive was incredibly well-organized and impactful. Seeing our coastline restored and the community come together was truly inspiring. PCU-DASMA's students showed exceptional dedication and environmental awareness."</p>
-                            <p class="text-xs text-emerald-600">— Captain Roberto Martinez, Barangay Salawag</p>
-                        </div>
-                        <div class="bg-blue-50 p-4 rounded-lg">
-                            <p class="text-sm text-blue-800 mb-2">"The partnership between Clean Seas Alliance and PCU-DASMA created something truly special. This wasn't just a clean-up — it was an environmental education experience that will have lasting impact on our community's mindset."</p>
-                            <p class="text-xs text-blue-600">— Dr. Maria Gonzales, Environmental Science Department</p>
-                        </div>
-                        <div class="bg-purple-50 p-4 rounded-lg">
-                            <p class="text-sm text-purple-800 mb-2">"As a PCU-DASMA student volunteer, this experience opened my eyes to environmental issues and community service. The professional organization and meaningful impact made this more than just community service — it was transformative learning."</p>
-                            <p class="text-xs text-purple-600">— Angela Santos, 4th Year Environmental Science Student</p>
-                        </div>
+                    <div>
+                      <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                        Time
+                      </p>
+                      <p class="text-sm text-gray-600">10:00 AM - 2:00 PM</p>
                     </div>
-                </div>
-
-                <!-- Partnership Evaluation -->
-                <div class="bg-white shadow rounded-lg p-6">
-                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Partnership Evaluation & Lessons Learned</h2>
-                    <div class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Partnership Strengths</h3>
-                                <ul class="text-sm text-gray-700 space-y-1">
-                                    <li>✓ Excellent pre-event planning and coordination</li>
-                                    <li>✓ Strong community engagement and participation</li>
-                                    <li>✓ Clear communication between all stakeholders</li>
-                                    <li>✓ Professional execution and safety protocols</li>
-                                    <li>✓ Comprehensive impact measurement and reporting</li>
-                                    <li>✓ Effective use of resources and budget</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Areas for Improvement</h3>
-                                <ul class="text-sm text-gray-600 space-y-1">
-                                    <li>• Earlier volunteer registration system</li>
-                                    <li>• More detailed waste segregation training</li>
-                                    <li>• Additional transportation coordination</li>
-                                    <li>• Extended follow-up community education</li>
-                                    <li>• More diverse age group participation</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Future Recommendations</h3>
-                            <p class="text-gray-700 text-sm">
-                                Consider establishing annual coastal clean-up partnerships with Clean Seas Alliance. The success of this initiative demonstrates strong potential for ongoing environmental collaboration. Recommend expanding to include educational workshops and sustainable coastal management programs. The model can be replicated for other environmental initiatives such as watershed protection and urban reforestation projects.
-                            </p>
-                        </div>
+                    <div>
+                      <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                        Venue
+                      </p>
+                      <p class="text-sm text-gray-600">
+                        Barangay San Jose Community Center, Dasmariñas, Cavite, near San Jose Elementary School
+                      </p>
                     </div>
-                </div>
-
-                <!-- Financial Summary -->
-                <div class="bg-white shadow rounded-lg p-6">
-                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Financial Summary & Resource Utilization</h2>
-                    <div class="space-y-4">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">Partner Contribution</h3>
-                                <ul class="text-sm text-gray-700 space-y-1">
-                                    <li>Equipment & supplies: ₱45,000</li>
-                                    <li>Transportation: ₱15,000</li>
-                                    <li>Meals & refreshments: ₱25,000</li>
-                                    <li>Waste processing: ₱12,000</li>
-                                    <li><strong>Total: ₱97,000</strong></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">PCU-DASMA Contribution</h3>
-                                <ul class="text-sm text-gray-700 space-y-1">
-                                    <li>Student volunteers (85): ₱0</li>
-                                    <li>Venue coordination: ₱0</li>
-                                    <li>Promotional support: ₱8,000</li>
-                                    <li>Administrative support: ₱5,000</li>
-                                    <li><strong>Total: ₱13,000</strong></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="bg-gray-50 p-3 rounded-lg">
-                            <p class="text-sm text-gray-700"><strong>Total Partnership Investment:</strong> ₱110,000</p>
-                            <p class="text-sm text-gray-600">Cost per volunteer: ₱244 | Cost per ton of waste: ₱34,375</p>
-                            <p class="text-sm text-emerald-600"><strong>Excellent cost-effectiveness and resource utilization</strong></p>
-                        </div>
+                  </div>
+                  <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                    Contact Information
+                  </h3>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                        Contact Person
+                      </p>
+                      <p class="text-sm text-gray-600">Maria Santos, Program Coordinator</p>
                     </div>
+                    <div>
+                      <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                        Email
+                      </p>
+                      <p class="text-sm text-gray-600">
+                        maria.santos@communityhelpers.org
+                      </p>
+                    </div>
+                    <div>
+                      <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                        Phone
+                      </p>
+                      <p class="text-sm text-gray-600">+639123456789</p>
+                    </div>
+                  </div>
+                  <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                    Previous Community Service Experience
+                  </h3>
+                  <p class="text-gray-700 mb-4">
+                    Community Helpers Foundation has conducted annual feeding programs since 2018, serving over 5,000 meals to underprivileged children, and organized community clean-ups in 2023 and 2024.
+                  </p>
+                  <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                    Additional Notes
+                  </h3>
+                  <p class="text-gray-700 mb-4">
+                    We request coordination with local barangay officials for crowd management and accessibility accommodations for participants with disabilities.
+                  </p>
+                  <h3 class="text-lg font-semibold text-gray-900 mt-6 mb-3">
+                    Completion Notes
+                  </h3>
+                  <p class="text-gray-700 mb-4">
+                    The program successfully served nutritious meals to over 100 street children weekly across multiple sessions, engaging over 50 community volunteers. It significantly raised awareness about food insecurity and fostered community unity in Dasmariñas, Cavite.
+                  </p>
                 </div>
+              </div>
+
+              <!-- Review Timeline -->
+              <div class="bg-white shadow rounded-lg p-6">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">
+                  Review Timeline
+                </h2>
+                <div class="space-y-3">
+                  <div class="flex items-center">
+                    <div
+                      class="flex-shrink-0 w-3 h-3 bg-green-400 rounded-full"
+                    ></div>
+                    <div class="ml-3">
+                      <p class="text-sm font-medium text-gray-900">
+                        Proposal Submitted
+                      </p>
+                      <p class="text-xs text-gray-500">
+                        October 26, 2025 - 11:26 PM
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <div
+                      class="flex-shrink-0 w-3 h-3 bg-blue-400 rounded-full"
+                    ></div>
+                    <div class="ml-3">
+                      <p class="text-sm font-medium text-gray-900">
+                        Discussed with Organization
+                      </p>
+                      <p class="text-xs text-gray-500">
+                        October 26, 2025 - 11:32 PM
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <div
+                      class="flex-shrink-0 w-3 h-3 bg-green-400 rounded-full"
+                    ></div>
+                    <div class="ml-3">
+                      <p class="text-sm font-medium text-gray-900">
+                        Approved & Published
+                      </p>
+                      <p class="text-xs text-gray-500">
+                        October 26, 2025 - 11:35 PM
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <div
+                      class="flex-shrink-0 w-3 h-3 bg-teal-400 rounded-full"
+                    ></div>
+                    <div class="ml-3">
+                      <p class="text-sm font-medium text-gray-900">
+                        Partnership Completed
+                      </p>
+                      <p class="text-xs text-gray-500">
+                        October 26, 2025 - 11:43 PM
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- Sidebar -->
             <div class="space-y-6">
-                <!-- Action Panel -->
-                <div class="bg-white shadow rounded-lg p-6">
-                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Partnership Archive</h2>
-                    <div class="space-y-3">
-                        <a href="impact-report-full.pdf" class="w-full px-4 py-2 bg-emerald-100 text-emerald-700 text-sm rounded-md hover:bg-emerald-200 block text-center">
-                            View Full Impact Report
-                        </a>
-                        <a href="media-coverage.html" class="w-full px-4 py-2 bg-blue-100 text-blue-700 text-sm rounded-md hover:bg-blue-200 block text-center">
-                            View Media Coverage
-                        </a>
-                        <button onclick="archivePartnership()" class="w-full px-4 py-2 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700">
-                            Archive Partnership
-                        </button>
-                        <div class="border-t border-gray-200 pt-3">
-                            <button onclick="shareSuccess()" class="w-full px-4 py-2 bg-yellow-100 text-yellow-700 text-sm rounded-md hover:bg-yellow-200">
-                                Share Success Story
-                            </button>
-                        </div>
-                    </div>
+              <!-- Organization Information -->
+              <div class="bg-white shadow rounded-lg p-6">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">
+                  Organization Information
+                </h2>
+                <div class="space-y-3">
+                  <div>
+                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                      Organization Name
+                    </p>
+                    <p class="text-sm text-gray-600">Community Helpers Foundation</p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                      Organization Type
+                    </p>
+                    <p class="text-sm text-gray-600">Non-Profit</p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                      Website
+                    </p>
+                    <p class="text-sm text-gray-600">
+                      <a href="https://communityhelpers.org" class="text-primary hover:underline" target="_blank"
+                        >communityhelpers.org</a
+                      >
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                      Contact Number
+                    </p>
+                    <p class="text-sm text-gray-600">+639987654321</p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                      Contact Person
+                    </p>
+                    <p class="text-sm text-gray-600">Maria Santos</p>
+                    <p class="text-xs text-gray-500">Program Coordinator</p>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                      Email
+                    </p>
+                    <p class="text-sm text-gray-600">
+                      maria.santos@communityhelpers.org
+                    </p>
+                  </div>
                 </div>
-
-                <!-- Final Statistics -->
-                <div class="bg-white shadow rounded-lg p-6">
-                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Final Statistics</h2>
-                    <div class="space-y-3">
-                        <div class="flex justify-between">
-                            <span class="text-sm text-gray-600">Total Volunteers</span>
-                            <span class="text-sm font-medium text-gray-900">450</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-sm text-gray-600">PCU-DASMA Students</span>
-                            <span class="text-sm font-medium text-gray-900">85</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-sm text-gray-600">Waste Collected</span>
-                            <span class="text-sm font-medium text-gray-900">3.2 tons</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-sm text-gray-600">Coastline Cleaned</span>
-                            <span class="text-sm font-medium text-gray-900">1.8 km</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-sm text-gray-600">Recycling Rate</span>
-                            <span class="text-sm font-medium text-gray-900">98%</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-sm text-gray-600">Total Investment</span>
-                            <span class="text-sm font-medium text-gray-900">₱110,000</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-sm text-gray-600">Duration</span>
-                            <span class="text-sm font-medium text-gray-900">6.5 hours</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Timeline -->
-                <div class="bg-white shadow rounded-lg p-6">
-                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Partnership Timeline</h2>
-                    <div class="space-y-3">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 w-3 h-3 bg-emerald-400 rounded-full"></div>
-                            <div class="ml-3">
-                                <p class="text-sm font-medium text-gray-900">Proposal Submitted</p>
-                                <p class="text-xs text-gray-500">August 10, 2025</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 w-3 h-3 bg-emerald-400 rounded-full"></div>
-                            <div class="ml-3">
-                                <p class="text-sm font-medium text-gray-900">Partnership Approved</p>
-                                <p class="text-xs text-gray-500">August 25, 2025</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 w-3 h-3 bg-emerald-400 rounded-full"></div>
-                            <div class="ml-3">
-                                <p class="text-sm font-medium text-gray-900">Planning & Preparation</p>
-                                <p class="text-xs text-gray-500">Sep 1-30, 2025</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 w-3 h-3 bg-emerald-400 rounded-full"></div>
-                            <div class="ml-3">
-                                <p class="text-sm font-medium text-gray-900">Clean-up Event</p>
-                                <p class="text-xs text-gray-500">October 5, 2025</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0 w-3 h-3 bg-emerald-400 rounded-full"></div>
-                            <div class="ml-3">
-                                <p class="text-sm font-medium text-gray-900">Impact Report Completed</p>
-                                <p class="text-xs text-gray-500">October 12, 2025</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Partner Contact -->
-                <div class="bg-white shadow rounded-lg p-6">
-                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Partner Contact</h2>
-                    <div class="space-y-3">
-                        <div>
-                            <p class="text-sm font-medium text-gray-900">Jennifer Aquino</p>
-                            <p class="text-xs text-gray-500">Environmental Coordinator</p>
-                        </div>
-                        <div>
-                            <p class="text-xs text-gray-500">Organization</p>
-                            <p class="text-sm text-gray-900">Clean Seas Alliance</p>
-                        </div>
-                        <div>
-                            <p class="text-xs text-gray-500">Email</p>
-                            <p class="text-sm text-gray-900">jennifer.aquino@cleanseas.org</p>
-                        </div>
-                        <div>
-                            <p class="text-xs text-gray-500">Phone</p>
-                            <p class="text-sm text-gray-900">+639 567 890 123</p>
-                        </div>
-                        <div>
-                            <p class="text-xs text-gray-500">Partnership Rating</p>
-                            <p class="text-sm text-gray-900">⭐⭐⭐⭐⭐ Excellent</p>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </main>
     </div>
 
     <script>
-        function toggleUserMenu() {
-            const menu = document.getElementById("userMenu");
-            menu.classList.toggle("hidden");
+      function toggleUserMenu() {
+        const menu = document.getElementById("userMenu");
+        menu.classList.toggle("hidden");
+      }
+
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
         }
+      }
 
-        function logout() {
-            if (confirm("Are you sure you want to logout?")) {
-                window.location.href = "../login.html";
-            }
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("-translate-x-full");
+        const isOpen = !sidebar.classList.contains("-translate-x-full");
+        sidebar.setAttribute("aria-hidden", !isOpen);
+      }
+
+      function toggleDropdown(id) {
+        const button = event.target.closest("button");
+        const menu = document.getElementById(id + "-menu");
+        const arrow = document.getElementById(id + "-arrow");
+        menu.classList.toggle("hidden");
+        const expanded = !menu.classList.contains("hidden");
+        arrow.classList.toggle("rotate-180", expanded);
+        button.setAttribute("aria-expanded", expanded);
+      }
+
+      // Close user menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const menu = document.getElementById("userMenu");
+        const button = event.target.closest("button");
+
+        if (!button || button.onclick !== toggleUserMenu) {
+          menu.classList.add("hidden");
         }
+      });
 
-        function archivePartnership() {
-            if (confirm("Archive this completed coastal clean-up partnership? It will be moved to the archived section for long-term storage.")) {
-                alert("Partnership #GBC-2025-013 has been archived.\n\nData preserved for future reference and reporting.\nSuccess story will be featured in annual impact report.");
-            }
+      // Close user menu on Escape key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          document.getElementById("userMenu").classList.add("hidden");
         }
-
-        function shareSuccess() {
-            alert("Success story sharing options:\n\n• Social media promotion\n• Newsletter feature article\n• Annual report highlight\n• Partner testimonial showcase\n• Community engagement example");
-        }
-
-        // Close user menu when clicking outside
-        document.addEventListener("click", function (event) {
-            const menu = document.getElementById("userMenu");
-            const button = event.target.closest('button[onclick="toggleUserMenu()"]');
-
-            if (!button && !menu.contains(event.target)) {
-                menu.classList.add("hidden");
-            }
-        });
+      });
     </script>
-</body>
+  </body>
 </html>

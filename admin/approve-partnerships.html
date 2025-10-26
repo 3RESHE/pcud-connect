@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Partnership Management - PCU-DASMA Connect</title>
+    <title>Admin Partnerships - PCU-DASMA Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -20,116 +20,229 @@
     </script>
   </head>
   <body class="bg-gray-50">
-    <div class="flex h-screen overflow-hidden">
-      <!-- Sidebar -->
-      <aside
-        id="sidebar"
-        class="bg-white w-64 min-h-screen shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 fixed z-50"
-      >
-        <div class="flex flex-col h-full">
-          <!-- Logo -->
-          <div
-            class="flex items-center justify-between p-4 border-b border-gray-200"
-          >
-            <a href="../index.html" class="text-xl font-bold text-primary"
-              >PCU-DASMA Connect</a
-            >
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <a href="../index.html" class="text-xl font-bold text-primary">
+              PCU-DASMA Connect
+            </a>
+            <div class="hidden md:ml-10 md:flex md:space-x-8">
+              <a
+                href="admin-dashboard.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                Dashboard
+              </a>
+              <a
+                href="admin-job-postings.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                Job Postings
+              </a>
+              <a
+                href="admin-partnerships.html"
+                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
+              >
+                Partnerships
+              </a>
+              <a
+                href="admin-news.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                News
+              </a>
+              <a
+                href="admin-profile.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                Profile
+              </a>
+            </div>
+          </div>
+          <div class="hidden md:flex items-center space-x-4">
+            <div class="relative">
+              <button
+                onclick="toggleUserMenu()"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"
+                aria-label="Open user menu"
+                aria-haspopup="true"
+              >
+                <img
+                  class="h-8 w-8 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </button>
+              <div
+                id="userMenu"
+                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 transform transition-all duration-200"
+                role="menu"
+                aria-orientation="vertical"
+              >
+                <div class="py-1">
+                  <a
+                    href="admin-profile.html"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
+                  >
+                    Profile
+                  </a>
+                  <a
+                    href="#"
+                    onclick="logout()"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
+                  >
+                    Logout
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="md:hidden flex items-center">
             <button
-              id="closeSidebar"
-              class="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600"
+              onclick="toggleMobileMenu()"
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-all duration-200"
+              aria-label="Open main menu"
+              aria-expanded="false"
             >
               <svg
-                class="w-6 h-6"
+                id="hamburgerIcon"
+                class="block h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
                 fill="none"
-                stroke="currentColor"
                 viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <svg
+                id="closeIcon"
+                class="hidden h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
                   d="M6 18L18 6M6 6l12 12"
-                ></path>
+                />
               </svg>
             </button>
           </div>
-
-          <!-- Navigation -->
-          <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
-            <!-- Dashboard -->
+        </div>
+        <div
+          id="mobileMenu"
+          class="md:hidden hidden transition-all duration-300 ease-in-out"
+        >
+          <div
+            class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200 bg-white"
+          >
             <a
-              href="dashboard.html"
-              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+              href="admin-dashboard.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
             >
-              <svg
-                class="w-5 h-5 mr-3"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"
-                ></path>
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="m8 5 4-4 4 4"
-                ></path>
-              </svg>
               Dashboard
             </a>
-
-            <!-- Users -->
             <a
-              href="users.html"
-              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
+              href="admin-job-postings.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
             >
-              <svg
-                class="w-5 h-5 mr-3"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 20h5v-1a4 4 0 0 0-4-4h-1M9 20H4v-1a4 4 0 0 1 4-4h1m8-6a4 4 0 1 1-8 0 4 4 0 0 1 8 0zm-6 6h4"
-                />
-              </svg>
-              Users
+              Job Postings
             </a>
-
-            <!-- Approvals Dropdown -->
-            <div class="space-y-1">
-              <button
-                onclick="toggleDropdown('approvals')"
-                class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none"
-              >
-                <div class="flex items-center">
-                  <svg
-                    class="w-5 h-5 mr-3"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    ></path>
-                  </svg>
-                  Approvals
+            <a
+              href="admin-partnerships.html"
+              class="text-primary bg-primary bg-opacity-10 block px-3 py-2 rounded-md text-base font-medium"
+            >
+              Partnerships
+            </a>
+            <a
+              href="admin-news.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              News
+            </a>
+            <a
+              href="admin-profile.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Profile
+            </a>
+          </div>
+          <div class="pt-4 pb-3 border-t border-gray-200">
+            <div class="flex items-center px-5">
+              <div class="flex-shrink-0">
+                <img
+                  class="h-10 w-10 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </div>
+              <div class="ml-3">
+                <div class="text-base font-medium leading-none text-gray-900">
+                  Admin User
                 </div>
+                <div
+                  class="text-sm font-medium leading-none text-gray-500 mt-1"
+                >
+                  admin@pcudasma.edu.ph
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 px-2 space-y-1">
+              <a
+                href="admin-profile.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              >
+                Profile
+              </a>
+              <a
+                href="#"
+                onclick="logout()"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              >
+                Logout
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="flex justify-between items-center mb-8">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">
+            Manage Partnership Proposals
+          </h1>
+          <p class="text-gray-600">
+            Review and monitor community partnership proposals
+          </p>
+        </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center"
+              >
                 <svg
-                  id="approvals-arrow"
-                  class="w-4 h-4 transform transition-transform duration-200"
+                  class="w-5 h-5 text-yellow-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -138,63 +251,188 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M19 9l-7 7-7-7"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                   ></path>
                 </svg>
-              </button>
-              <div id="approvals-menu" class="hidden ml-4 space-y-1">
-                <a
-                  href="approve-jobs.html"
-                  class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"
+              </div>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600">Pending Review</p>
+              <p class="text-2xl font-semibold text-gray-900">1</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-blue-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  <svg
-                    class="w-4 h-4 mr-3"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"
-                    ></path>
-                  </svg>
-                  Job Post Approvals
-                  <span
-                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
-                    >3</span
-                  >
-                </a>
-                <a
-                  href="approve-news.html"
-                  class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600">Under Discussion</p>
+              <p class="text-2xl font-semibold text-gray-900">1</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-green-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  <svg
-                    class="w-4 h-4 mr-3"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
-                    ></path>
-                  </svg>
-                  News Approvals
-                  <span
-                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
-                    >2</span
-                  >
-                </a>
-                <a
-                  href="approve-events.html"
-                  class="flex items-center px-4 py-2 text-sm text-gray-600 rounded-lg hover:bg-gray-100"
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600">Approved</p>
+              <p class="text-2xl font-semibold text-gray-900">1</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-red-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600">Rejected</p>
+              <p class="text-2xl font-semibold text-gray-900">1</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="mb-8">
+        <div class="border-b border-gray-200">
+          <nav class="-mb-px flex space-x-8">
+            <button
+              onclick="filterPartnerships('all')"
+              class="partnership-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium"
+            >
+              All Proposals (5)
+            </button>
+            <button
+              onclick="filterPartnerships('pending')"
+              class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+            >
+              Pending Review (1)
+            </button>
+            <button
+              onclick="filterPartnerships('discussion')"
+              class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+            >
+              Under Discussion (1)
+            </button>
+            <button
+              onclick="filterPartnerships('approved')"
+              class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+            >
+              Approved (1)
+            </button>
+            <button
+              onclick="filterPartnerships('rejected')"
+              class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+            >
+              Rejected (1)
+            </button>
+            <button
+              onclick="filterPartnerships('completed')"
+              class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+            >
+              Completed (1)
+            </button>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Partnership Proposals List -->
+      <div class="space-y-6">
+        <!-- Pending Review Partnership -->
+        <div
+          class="partnership-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500"
+          data-status="pending"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-2">
+                <span
+                  class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Pending Review</span
+                >
+                <span
+                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Feeding Program</span
+                >
+                <span class="text-sm text-gray-500"
+                  >Submitted October 26, 2025</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Weekend Feeding Program for Street Children
+              </h3>
+              <p class="text-gray-600 mb-3">
+                On-site meals for children and vulnerable groups in Dasmariñas
+              </p>
+              <div class="bg-yellow-50 p-4 rounded-lg mb-4">
+                <h4 class="font-medium text-yellow-900 mb-2">
+                  Proposal Status:
+                </h4>
+                <p class="text-sm text-yellow-700">
+                  This partnership proposal is awaiting review. Please check the
+                  details for more information.
+                </p>
+              </div>
+              <div class="flex items-center space-x-6 text-sm text-gray-500">
+                <div class="flex items-center">
                   <svg
-                    class="w-4 h-4 mr-3"
+                    class="w-4 h-4 mr-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -206,90 +444,11 @@
                       d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                     ></path>
                   </svg>
-                  Event Approvals
-                  <span
-                    class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full"
-                    >1</span
-                  >
-                </a>
-              </div>
-            </div>
-
-            <!-- Partnerships -->
-            <a
-              href="approve-partnerships.html"
-              class="flex items-center px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg"
-            >
-              <svg
-                class="w-5 h-5 mr-3"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 0 1 9.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                ></path>
-              </svg>
-              Partnerships
-              <span
-                class="ml-auto bg-yellow-100 text-yellow-800 text-xs px-2 py-0.5 rounded-full"
-                >6</span
-              >
-            </a>
-
-            <!-- Divider -->
-            <div class="border-t border-gray-200 my-4"></div>
-
-            <!-- Settings -->
-            <a
-              href="settings.html"
-              class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100"
-            >
-              <svg
-                class="w-5 h-5 mr-3"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                ></path>
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                ></path>
-              </svg>
-              Settings
-            </a>
-          </nav>
-
-          <!-- User Profile -->
-          <div class="border-t border-gray-200 p-4">
-            <div class="flex items-center">
-              <img
-                class="h-8 w-8 rounded-full"
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
-                alt="Profile"
-              />
-              <div class="ml-3 flex-1">
-                <p class="text-sm font-medium text-gray-700">Admin User</p>
-                <p class="text-xs text-gray-500">admin@pcu.edu.ph</p>
-              </div>
-              <div class="relative">
-                <button
-                  onclick="toggleUserMenu()"
-                  class="p-2 rounded-md text-gray-400 hover:text-gray-600"
-                >
+                  November 1, 2025 at 10:00 AM
+                </div>
+                <div class="flex items-center">
                   <svg
-                    class="w-4 h-4"
+                    class="w-4 h-4 mr-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -298,1743 +457,326 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                     ></path>
                   </svg>
-                </button>
-                <div
-                  id="userMenu"
-                  class="hidden origin-bottom-right absolute bottom-0 right-0 mb-12 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
-                >
-                  <div class="py-1">
-                    <a
-                      href="#"
-                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                      >Admin Profile</a
-                    >
-                    <a
-                      href="#"
-                      onclick="logout()"
-                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                      >Logout</a
-                    >
-                  </div>
+                  Open participation
                 </div>
               </div>
+            </div>
+            <div class="ml-4 flex flex-col space-y-2">
+              <a
+                href="view-partnership-pending.html"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+              >
+                View Details
+              </a>
             </div>
           </div>
         </div>
-      </aside>
 
-      <!-- Main Content -->
-      <div class="flex-1 flex flex-col overflow-hidden">
-        <!-- Top Header -->
-        <header class="bg-white shadow-sm border-b lg:hidden">
-          <div class="flex items-center justify-between px-4 py-3">
-            <button
-              id="openSidebar"
-              class="p-2 rounded-md text-gray-400 hover:text-gray-600"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                ></path>
-              </svg>
-            </button>
-            <h1 class="text-xl font-bold text-primary">
-              Community Partnership Management
-            </h1>
-            <div class="w-10"></div>
-            <!-- Spacer -->
-          </div>
-        </header>
-
-        <!-- Content Area -->
-        <main class="flex-1 overflow-y-auto">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <!-- Header -->
-            <div class="mb-8">
-              <h1 class="text-3xl font-bold text-gray-900">
-                Community Partnership Management
-              </h1>
-              <p class="text-gray-600">
-                Review, discuss, and manage community activity proposals
-                including feeding programs, clean-up drives, tree planting, and
-                other walk-in community events
-              </p>
-            </div>
-
-            <!-- Stats Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
-              <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center">
-                  <div class="flex-shrink-0">
-                    <div
-                      class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center"
-                    >
-                      <svg
-                        class="w-5 h-5 text-yellow-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                        ></path>
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">
-                      New Proposals
-                    </p>
-                    <p class="text-2xl font-semibold text-gray-900">6</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center">
-                  <div class="flex-shrink-0">
-                    <div
-                      class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center"
-                    >
-                      <svg
-                        class="w-5 h-5 text-blue-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                        ></path>
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">
-                      Under Discussion
-                    </p>
-                    <p class="text-2xl font-semibold text-gray-900">2</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center">
-                  <div class="flex-shrink-0">
-                    <div
-                      class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center"
-                    >
-                      <svg
-                        class="w-5 h-5 text-green-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                        ></path>
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">Approved</p>
-                    <p class="text-2xl font-semibold text-gray-900">5</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center">
-                  <div class="flex-shrink-0">
-                    <div
-                      class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center"
-                    >
-                      <svg
-                        class="w-5 h-5 text-purple-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M13 10V3L4 14h7v7l9-11h-7z"
-                        ></path>
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">Active</p>
-                    <p class="text-2xl font-semibold text-gray-900">8</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center">
-                  <div class="flex-shrink-0">
-                    <div
-                      class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center"
-                    >
-                      <svg
-                        class="w-5 h-5 text-emerald-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-                        ></path>
-                      </svg>
-                    </div>
-                  </div>
-                  <div class="ml-4">
-                    <p class="text-sm font-medium text-gray-600">Completed</p>
-                    <p class="text-2xl font-semibold text-gray-900">22</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Search Bar -->
-            <div class="mb-6">
-              <div class="relative">
-                <input
-                  type="text"
-                  id="newsSearch"
-                  placeholder="Search..."
-                  class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
-                />
-                <svg
-                  class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  ></path>
-                </svg>
-              </div>
-            </div>
-            <!-- Filter Tabs -->
-            <div class="mb-8">
-              <div class="border-b border-gray-200">
-                <nav class="-mb-px flex space-x-8">
-                  <button
-                    onclick="filterPartnerships('new')"
-                    class="partnership-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium"
-                  >
-                    New Proposals (6)
-                  </button>
-                  <button
-                    onclick="filterPartnerships('discussion')"
-                    class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
-                  >
-                    Under Discussion (2)
-                  </button>
-                  <button
-                    onclick="filterPartnerships('approved')"
-                    class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
-                  >
-                    Approved (5)
-                  </button>
-                  <button
-                    onclick="filterPartnerships('active')"
-                    class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
-                  >
-                    Active (8)
-                  </button>
-                  <button
-                    onclick="filterPartnerships('completed')"
-                    class="partnership-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
-                  >
-                    Completed (22)
-                  </button>
-                </nav>
-              </div>
-            </div>
-
-            <!-- Partnership Proposals List -->
-            <div id="partnership-listings" class="space-y-6">
-              <!-- New Proposals Tab Content -->
-              <div id="new-partnerships" class="tab-content">
-                <!-- Feeding Program Partnership -->
-                <div
-                  onclick="viewProposal('FP-2025-001', 'new')"
-                  class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500 mb-6 cursor-pointer hover:shadow-md transition-shadow"
-                >
-                  <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                      <div class="flex items-center mb-3">
-                        <span
-                          class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
-                          >New Proposal</span
-                        >
-                        <span
-                          class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3"
-                          >Feeding Program</span
-                        >
-                        <span
-                          class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
-                          >Open Participation</span
-                        >
-                        <span class="text-sm text-gray-500"
-                          >Submitted 1 day ago</span
-                        >
-                      </div>
-                      <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                        Weekend Feeding Program for Street Children
-                      </h3>
-                      <div class="flex items-center text-sm text-gray-600 mb-4">
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                            ></path>
-                          </svg>
-                          Hope Foundation Inc.
-                        </div>
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                            ></path>
-                          </svg>
-                          Every Saturday • 11:00 AM - 1:00 PM
-                        </div>
-                        <div class="flex items-center">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 0 1 9.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                            ></path>
-                          </svg>
-                          Expected: 150 street children
-                        </div>
-                      </div>
-                      <p class="text-gray-600 mb-4">
-                        Regular feeding program providing nutritious meals to
-                        street children in Dasmarinas area. No registration
-                        required - walk-in participation encouraged.
-                      </p>
-
-                      <div class="bg-gray-50 p-4 rounded-lg mb-4">
-                        <h4 class="font-medium text-gray-900 mb-2">
-                          Activity Details:
-                        </h4>
-                        <div
-                          class="grid grid-cols-2 gap-4 text-sm text-gray-600"
-                        >
-                          <div>
-                            <strong>Location:</strong> Barangay San Agustin
-                            Covered Court
-                          </div>
-                          <div>
-                            <strong>Budget:</strong> ₱25,000 per session
-                            (Partner Funded)
-                          </div>
-                          <div>
-                            <strong>Volunteers Needed:</strong> 20-25 PCU-DASMA
-                            students
-                          </div>
-                          <div>
-                            <strong>Support Requested:</strong> Venue
-                            coordination & volunteers
-                          </div>
-                          <div>
-                            <strong>Duration:</strong> 2 hours per session
-                          </div>
-                          <div>
-                            <strong>Community Impact:</strong> 600 children per
-                            month
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="flex flex-wrap gap-2">
-                        <span
-                          class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded"
-                          >Feeding Program</span
-                        >
-                        <span
-                          class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
-                          >Walk-in Event</span
-                        >
-                        <span
-                          class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
-                          >Community Service</span
-                        >
-                      </div>
-                    </div>
-                    <div
-                      class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0"
-                      onclick="event.stopPropagation()"
-                    >
-                      <button
-                        onclick="sendDiscussionEmail('FP-2025-001')"
-                        class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700"
-                      >
-                        Send Discussion Email
-                      </button>
-                      <button
-                        onclick="quickApprove('FP-2025-001')"
-                        class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
-                      >
-                        Quick Approve
-                      </button>
-                      <button
-                        onclick="quickReject('FP-2025-001')"
-                        class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700"
-                      >
-                        Reject Proposal
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Tree Planting Partnership -->
-                <div
-                  onclick="viewProposal('TP-2025-002', 'new')"
-                  class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500 mb-6 cursor-pointer hover:shadow-md transition-shadow"
-                >
-                  <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                      <div class="flex items-center mb-3">
-                        <span
-                          class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
-                          >New Proposal</span
-                        >
-                        <span
-                          class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full text-xs mr-3"
-                          >Tree Planting</span
-                        >
-                        <span
-                          class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
-                          >Open Participation</span
-                        >
-                        <span class="text-sm text-gray-500"
-                          >Submitted 3 days ago</span
-                        >
-                      </div>
-                      <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                        Green Dasmarinas Tree Planting Campaign
-                      </h3>
-                      <div class="flex items-center text-sm text-gray-600 mb-4">
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                            ></path>
-                          </svg>
-                          GreenFuture Environmental Society
-                        </div>
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                            ></path>
-                          </svg>
-                          November 15, 2025 • 6:00 AM - 11:00 AM
-                        </div>
-                        <div class="flex items-center">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                            ></path>
-                          </svg>
-                          Target: 500 native trees
-                        </div>
-                      </div>
-                      <p class="text-gray-600 mb-4">
-                        Community tree planting activity aimed at reforesting
-                        degraded areas in Dasmarinas. Open to all community
-                        members with no registration required.
-                      </p>
-                    </div>
-                    <div
-                      class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0"
-                      onclick="event.stopPropagation()"
-                    >
-                      <button
-                        onclick="sendDiscussionEmail('TP-2025-002')"
-                        class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700"
-                      >
-                        Send Discussion Email
-                      </button>
-                      <button
-                        onclick="quickApprove('TP-2025-002')"
-                        class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
-                      >
-                        Quick Approve
-                      </button>
-                      <button
-                        onclick="quickReject('TP-2025-002')"
-                        class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700"
-                      >
-                        Reject Proposal
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Under Discussion Tab Content -->
-              <div id="discussion-partnerships" class="tab-content hidden">
-                <!-- Book Distribution Partnership -->
-                <div
-                  onclick="viewProposal('BD-2025-007', 'discussion')"
-                  class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500 mb-6 cursor-pointer hover:shadow-md transition-shadow"
-                >
-                  <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                      <div class="flex items-center mb-3">
-                        <span
-                          class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
-                          >Under Discussion</span
-                        >
-                        <span
-                          class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full text-xs mr-3"
-                          >Book Distribution</span
-                        >
-                        <span
-                          class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
-                          >Open Participation</span
-                        >
-                        <span class="text-sm text-gray-500"
-                          >Discussion email sent 3 days ago</span
-                        >
-                      </div>
-                      <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                        Reading is Fun: Free Book Distribution Drive
-                      </h3>
-                      <div class="flex items-center text-sm text-gray-600 mb-4">
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                            ></path>
-                          </svg>
-                          Literacy Champions Foundation
-                        </div>
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                            ></path>
-                          </svg>
-                          January 20, 2026 • 9:00 AM - 4:00 PM
-                        </div>
-                        <div class="flex items-center">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                            ></path>
-                          </svg>
-                          2,000 books for distribution
-                        </div>
-                      </div>
-                      <p class="text-gray-600 mb-4">
-                        Free book distribution event promoting literacy in rural
-                        communities. Awaiting partner response to discussion
-                        points about logistics and coordination.
-                      </p>
-                    </div>
-                    <div
-                      class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0"
-                      onclick="event.stopPropagation()"
-                    >
-                      <button
-                        onclick="approvePartnership('BD-2025-007')"
-                        class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
-                      >
-                        Approve Partnership
-                      </button>
-                      <button
-                        onclick="rejectPartnership('BD-2025-007')"
-                        class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700"
-                      >
-                        Reject Partnership
-                      </button>
-                      <a
-                        href="view-email-thread.html"
-                        class="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200 block text-center"
-                        >View Email Thread</a
-                      >
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Relief Goods Distribution Partnership -->
-                <div
-                  onclick="viewProposal('RGD-2025-008', 'discussion')"
-                  class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500 mb-6 cursor-pointer hover:shadow-md transition-shadow"
-                >
-                  <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                      <div class="flex items-center mb-3">
-                        <span
-                          class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
-                          >Under Discussion</span
-                        >
-                        <span
-                          class="bg-rose-100 text-rose-800 px-2 py-1 rounded-full text-xs mr-3"
-                          >Relief Goods Distribution</span
-                        >
-                        <span
-                          class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
-                          >Open Participation</span
-                        >
-                        <span class="text-sm text-gray-500"
-                          >Discussion email sent 1 week ago</span
-                        >
-                      </div>
-                      <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                        Emergency Relief Distribution Network
-                      </h3>
-                      <div class="flex items-center text-sm text-gray-600 mb-4">
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                            ></path>
-                          </svg>
-                          Disaster Response Coalition
-                        </div>
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                            ></path>
-                          </svg>
-                          On-call activation (disaster response)
-                        </div>
-                        <div class="flex items-center">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                            ></path>
-                          </svg>
-                          500 relief packs pre-positioned
-                        </div>
-                      </div>
-                      <p class="text-gray-600 mb-4">
-                        Standby relief goods distribution system activated
-                        during natural disasters. Awaiting partner clarification
-                        on storage and deployment protocols.
-                      </p>
-                    </div>
-                    <div
-                      class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0"
-                      onclick="event.stopPropagation()"
-                    >
-                      <button
-                        onclick="approvePartnership('RGD-2025-008')"
-                        class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
-                      >
-                        Approve Partnership
-                      </button>
-                      <button
-                        onclick="rejectPartnership('RGD-2025-008')"
-                        class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700"
-                      >
-                        Reject Partnership
-                      </button>
-                      <a
-                        href="view-email-thread.html"
-                        class="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200 block text-center"
-                        >View Email Thread</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Approved Tab Content -->
-              <div id="approved-partnerships" class="tab-content hidden">
-                <!-- Medical Mission Partnership -->
-                <div
-                  onclick="viewProposal('MHC-2025-009', 'approved')"
-                  class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500 mb-6 cursor-pointer hover:shadow-md transition-shadow"
-                >
-                  <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                      <div class="flex items-center mb-3">
-                        <span
-                          class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
-                          >Approved</span
-                        >
-                        <span
-                          class="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs mr-3"
-                          >Mobile Health Clinic</span
-                        >
-                        <span class="text-sm text-gray-500"
-                          >Approved 2 days ago • Starts in 3 weeks</span
-                        >
-                      </div>
-                      <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                        Free Medical Mission for Rural Communities
-                      </h3>
-                      <div class="flex items-center text-sm text-gray-600 mb-4">
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                            ></path>
-                          </svg>
-                          HealthCare Heroes Foundation
-                        </div>
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                            ></path>
-                          </svg>
-                          December 3, 2025 • 7:00 AM - 3:00 PM
-                        </div>
-                        <div class="flex items-center">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                            ></path>
-                          </svg>
-                          Expected: 400 patients
-                        </div>
-                      </div>
-                      <p class="text-gray-600 mb-4">
-                        Free medical consultation and basic health screening.
-                        Partnership approved and ready to begin preparation
-                        phase. Partner notified of approval.
-                      </p>
-                    </div>
-                    <div
-                      class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0"
-                      onclick="event.stopPropagation()"
-                    >
-                      <button
-                        onclick="activatePartnership('MHC-2025-009')"
-                        class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700"
-                      >
-                        Activate Partnership
-                      </button>
-                      <a
-                        href="view-partnership-details.html"
-                        class="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200 block text-center"
-                        >View Details</a
-                      >
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Youth Skills Workshop -->
-                <div
-                  onclick="viewProposal('YSW-2025-010', 'approved')"
-                  class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500 mb-6 cursor-pointer hover:shadow-md transition-shadow"
-                >
-                  <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                      <div class="flex items-center mb-3">
-                        <span
-                          class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
-                          >Approved</span
-                        >
-                        <span
-                          class="bg-cyan-100 text-cyan-800 px-2 py-1 rounded-full text-xs mr-3"
-                          >Skills Workshop</span
-                        >
-                        <span class="text-sm text-gray-500"
-                          >Approved 1 week ago • Starts in 2 weeks</span
-                        >
-                      </div>
-                      <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                        Digital Literacy Workshop for Youth
-                      </h3>
-                      <div class="flex items-center text-sm text-gray-600 mb-4">
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                            ></path>
-                          </svg>
-                          TechBridge Youth Foundation
-                        </div>
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                            ></path>
-                          </svg>
-                          November 25, 2025 • 1:00 PM - 5:00 PM
-                        </div>
-                        <div class="flex items-center">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 0 1 9.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                            ></path>
-                          </svg>
-                          Expected: 80 youth participants
-                        </div>
-                      </div>
-                      <p class="text-gray-600 mb-4">
-                        Walk-in digital skills workshop for youth aged 15-25.
-                        Covers basic computer skills, internet safety, and
-                        digital job opportunities.
-                      </p>
-                    </div>
-                    <div
-                      class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0"
-                      onclick="event.stopPropagation()"
-                    >
-                      <button
-                        onclick="activatePartnership('YSW-2025-010')"
-                        class="px-4 py-2 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700"
-                      >
-                        Activate Partnership
-                      </button>
-                      <a
-                        href="view-partnership-details.html"
-                        class="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-md hover:bg-gray-200 block text-center"
-                        >View Details</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Active Tab Content -->
-              <div id="active-partnerships" class="tab-content hidden">
-                <!-- Ongoing Feeding Program -->
-                <div
-                  onclick="viewProposal('CK-2025-011', 'active')"
-                  class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-purple-500 mb-6 cursor-pointer hover:shadow-md transition-shadow"
-                >
-                  <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                      <div class="flex items-center mb-3">
-                        <span
-                          class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
-                          >Active</span
-                        >
-                        <span
-                          class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3"
-                          >Feeding Program</span
-                        >
-                        <span class="text-sm text-gray-500"
-                          >Running for 2 months • Next session: This
-                          Saturday</span
-                        >
-                      </div>
-                      <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                        Community Kitchen - Weekly Feeding Program
-                      </h3>
-                      <div class="flex items-center text-sm text-gray-600 mb-4">
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                            ></path>
-                          </svg>
-                          Helping Hearts Foundation
-                        </div>
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                            ></path>
-                          </svg>
-                          8 sessions completed • 1,200 meals served
-                        </div>
-                        <div class="flex items-center">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 0 1 9.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                            ></path>
-                          </svg>
-                          Average: 150 beneficiaries/session
-                        </div>
-                      </div>
-                      <p class="text-gray-600 mb-4">
-                        Ongoing weekly feeding program that has been
-                        successfully running for 2 months. High community
-                        participation with consistent volunteer support.
-                      </p>
-
-                      <div class="bg-purple-50 p-3 rounded-lg">
-                        <h4 class="font-medium text-purple-900 mb-1">
-                          Partnership Performance:
-                        </h4>
-                        <p class="text-sm text-purple-700">
-                          Excellent attendance • Strong community impact •
-                          Partner highly collaborative
-                        </p>
-                      </div>
-                    </div>
-                    <div
-                      class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0"
-                      onclick="event.stopPropagation()"
-                    >
-                      <a
-                        href="view-active-partnership.html"
-                        class="px-4 py-2 bg-blue-100 text-blue-700 text-sm rounded-md hover:bg-blue-200 block text-center"
-                        >View Activity Reports</a
-                      >
-                      <button
-                        onclick="completePartnership('CK-2025-011')"
-                        class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
-                      >
-                        Mark as Completed
-                      </button>
-                      <button
-                        onclick="pausePartnership('CK-2025-011')"
-                        class="px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700"
-                      >
-                        Pause Partnership
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Ongoing Community Garden -->
-                <div
-                  onclick="viewProposal('SCG-2025-012', 'active')"
-                  class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-purple-500 mb-6 cursor-pointer hover:shadow-md transition-shadow"
-                >
-                  <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                      <div class="flex items-center mb-3">
-                        <span
-                          class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
-                          >Active</span
-                        >
-                        <span
-                          class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full text-xs mr-3"
-                          >Community Garden</span
-                        >
-                        <span class="text-sm text-gray-500"
-                          >Running for 4 months • Monthly maintenance
-                          activities</span
-                        >
-                      </div>
-                      <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                        Sustainable Community Vegetable Garden
-                      </h3>
-                      <div class="flex items-center text-sm text-gray-600 mb-4">
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                            ></path>
-                          </svg>
-                          Urban Farmers Collective
-                        </div>
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                            ></path>
-                          </svg>
-                          2 hectares cultivated • 15 vegetable varieties
-                        </div>
-                        <div class="flex items-center">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 0 1 9.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                            ></path>
-                          </svg>
-                          60 community families benefiting
-                        </div>
-                      </div>
-                      <p class="text-gray-600 mb-4">
-                        Community-managed vegetable garden providing fresh
-                        produce to local families. Regular harvesting and
-                        distribution events with walk-in participation.
-                      </p>
-
-                      <div class="bg-purple-50 p-3 rounded-lg">
-                        <h4 class="font-medium text-purple-900 mb-1">
-                          Recent Harvest Distribution:
-                        </h4>
-                        <p class="text-sm text-purple-700">
-                          300kg vegetables distributed • 60 families served •
-                          Next harvest: November 20
-                        </p>
-                      </div>
-                    </div>
-                    <div
-                      class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0"
-                      onclick="event.stopPropagation()"
-                    >
-                      <a
-                        href="view-active-partnership.html"
-                        class="px-4 py-2 bg-blue-100 text-blue-700 text-sm rounded-md hover:bg-blue-200 block text-center"
-                        >View Garden Progress</a
-                      >
-                      <button
-                        onclick="completePartnership('SCG-2025-012')"
-                        class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
-                      >
-                        Mark as Completed
-                      </button>
-                      <button
-                        onclick="pausePartnership('SCG-2025-012')"
-                        class="px-4 py-2 bg-yellow-600 text-white text-sm rounded-md hover:bg-yellow-700"
-                      >
-                        Pause Partnership
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Completed Tab Content -->
-              <div id="completed-partnerships" class="tab-content hidden">
-                <!-- Completed Clean-up Drive -->
-                <div
-                  onclick="viewProposal('GBC-2025-013', 'completed')"
-                  class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-emerald-500 mb-6 cursor-pointer hover:shadow-md transition-shadow"
-                >
-                  <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                      <div class="flex items-center mb-3">
-                        <span
-                          class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
-                          >Completed</span
-                        >
-                        <span
-                          class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
-                          >Community Clean-up</span
-                        >
-                        <span class="text-sm text-gray-500"
-                          >Completed October 5, 2025 • Highly Successful</span
-                        >
-                      </div>
-                      <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                        Great Dasmarinas Bay Clean-up Drive
-                      </h3>
-                      <div class="flex items-center text-sm text-gray-600 mb-4">
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                            ></path>
-                          </svg>
-                          Clean Seas Alliance
-                        </div>
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-                            ></path>
-                          </svg>
-                          450 volunteers participated • 3.2 tons waste collected
-                        </div>
-                        <div class="flex items-center">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                            ></path>
-                          </svg>
-                          1.8km coastline cleaned • 98% recycling rate
-                        </div>
-                      </div>
-                      <p class="text-gray-600 mb-4">
-                        Highly successful coastal clean-up that exceeded all
-                        participation and impact targets. Strengthened community
-                        environmental awareness and PCU-DASMA's environmental
-                        advocacy profile.
-                      </p>
-
-                      <div class="bg-emerald-50 p-3 rounded-lg mb-3">
-                        <h4 class="font-medium text-emerald-900 mb-1">
-                          Impact Achievements:
-                        </h4>
-                        <div class="text-sm text-emerald-700 space-y-1">
-                          <p>• 3.2 tons of waste removed (50% above target)</p>
-                          <p>• 450 community volunteers (target was 300)</p>
-                          <p>• 85 PCU-DASMA student volunteers participated</p>
-                          <p>• Featured in local media coverage</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0"
-                      onclick="event.stopPropagation()"
-                    >
-                      <a
-                        href="impact-report-full.pdf"
-                        class="px-4 py-2 bg-emerald-100 text-emerald-700 text-sm rounded-md hover:bg-emerald-200 block text-center"
-                        >View Impact Report</a
-                      >
-                      <button
-                        onclick="archivePartnership('GBC-2025-013')"
-                        class="px-4 py-2 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700"
-                      >
-                        Archive Partnership
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Completed Scholarship Distribution -->
-                <div
-                  onclick="viewProposal('BSS-2025-014', 'completed')"
-                  class="bg-white rounded-lg shadow-sm p-6 border-l-4 border-emerald-500 mb-6 cursor-pointer hover:shadow-md transition-shadow"
-                >
-                  <div class="flex justify-between items-start mb-4">
-                    <div class="flex-1">
-                      <div class="flex items-center mb-3">
-                        <span
-                          class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full text-xs mr-3 font-medium"
-                          >Completed</span
-                        >
-                        <span
-                          class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3"
-                          >Donation Drive</span
-                        >
-                        <span class="text-sm text-gray-500"
-                          >Completed September 28, 2025 • Successful</span
-                        >
-                      </div>
-                      <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                        Back-to-School Supplies Drive 2025
-                      </h3>
-                      <div class="flex items-center text-sm text-gray-600 mb-4">
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                            ></path>
-                          </svg>
-                          Education for All Coalition
-                        </div>
-                        <div class="flex items-center mr-6">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
-                            ></path>
-                          </svg>
-                          750 student beneficiaries • 12 partner schools
-                        </div>
-                        <div class="flex items-center">
-                          <svg
-                            class="w-4 h-4 mr-1"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                            ></path>
-                          </svg>
-                          ₱420,000 value of supplies distributed
-                        </div>
-                      </div>
-                      <p class="text-gray-600 mb-4">
-                        Comprehensive school supplies distribution drive that
-                        supported 750 students across 12 partner schools in
-                        remote barangays. Strong campus community participation.
-                      </p>
-
-                      <div class="bg-emerald-50 p-3 rounded-lg mb-3">
-                        <h4 class="font-medium text-emerald-900 mb-1">
-                          Final Distribution Results:
-                        </h4>
-                        <div class="text-sm text-emerald-700 space-y-1">
-                          <p>• 750 complete school supply sets distributed</p>
-                          <p>• 200 school uniforms provided</p>
-                          <p>• 12 partner elementary schools reached</p>
-                          <p>• 100% of target beneficiaries served</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0"
-                      onclick="event.stopPropagation()"
-                    >
-                      <a
-                        href="distribution-report.pdf"
-                        class="px-4 py-2 bg-emerald-100 text-emerald-700 text-sm rounded-md hover:bg-emerald-200 block text-center"
-                        >View Distribution Report</a
-                      >
-                      <button
-                        onclick="archivePartnership('BSS-2025-014')"
-                        class="px-4 py-2 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700"
-                      >
-                        Archive Partnership
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
-      </div>
-    </div>
-
-    <!-- Overlay for mobile -->
-    <div
-      id="sidebarOverlay"
-      class="fixed inset-0 bg-gray-600 bg-opacity-50 z-40 lg:hidden hidden"
-    ></div>
-
-    <!-- Email Discussion Modal -->
-    <div id="emailModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
-      <div
-        class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center"
-      >
+        <!-- Under Discussion Partnership -->
         <div
-          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-        ></div>
-
-        <div class="relative bg-white rounded-lg max-w-2xl w-full shadow-xl">
-          <div class="px-6 py-4 border-b border-gray-200">
-            <h3 class="text-xl font-semibold text-gray-900">
-              Send Discussion Email to Partner
-            </h3>
-          </div>
-
-          <div class="p-6">
-            <div class="mb-4">
-              <label class="block text-sm font-medium text-gray-700 mb-2"
-                >Email Subject</label
-              >
-              <input
-                type="text"
-                id="emailSubject"
-                value="PCU-DASMA Partnership Discussion: Community Activity Proposal"
-                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                readonly
-              />
-            </div>
-            <div class="mb-4">
-              <label class="block text-sm font-medium text-gray-700 mb-2"
-                >Discussion Points & Questions</label
-              >
-              <textarea
-                id="discussionPoints"
-                rows="6"
-                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                placeholder="Enter your questions, clarifications, or discussion points about this community partnership proposal...
-
-Examples:
-- Could you provide more details about volunteer coordination requirements?
-- What specific support do you need from PCU-DASMA student volunteers?
-- Are there any safety protocols or special considerations for participants?
-- What logistics support would be most helpful for this activity?"
-              ></textarea>
-            </div>
-            <div class="bg-blue-50 p-4 rounded-lg">
-              <div class="flex items-start">
-                <svg
-                  class="w-5 h-5 text-blue-600 mr-2 mt-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+          class="partnership-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500"
+          data-status="discussion"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-2">
+                <span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Under Discussion</span
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-                <div>
-                  <h4 class="font-semibold text-blue-800">Email Process</h4>
-                  <p class="text-sm text-blue-700">
-                    This email will be sent to the partner organization to
-                    discuss logistics, coordination, and clarifications. Once
-                    sent, the proposal status will automatically be updated to
-                    "Under Discussion".
-                  </p>
+                <span
+                  class="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Brigada Eskwela</span
+                >
+                <span class="text-sm text-gray-500"
+                  >Discussion started October 26, 2025</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                School Clean-up and Maintenance Day
+              </h3>
+              <p class="text-gray-600 mb-3">
+                Community event for school repair and beautification
+              </p>
+              <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                <h4 class="font-medium text-blue-900 mb-2">Proposal Status:</h4>
+                <p class="text-sm text-blue-700">
+                  This proposal is under discussion. Review the details for more
+                  information.
+                </p>
+              </div>
+              <div class="flex items-center space-x-6 text-sm text-gray-500">
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                  November 5, 2025 at 8:00 AM
+                </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  Open participation
                 </div>
               </div>
             </div>
-          </div>
-
-          <div
-            class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3"
-          >
-            <button
-              onclick="closeEmailModal()"
-              class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
-            >
-              Cancel
-            </button>
-            <button
-              onclick="sendDiscussionEmailFinal()"
-              class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-            >
-              Send Email & Update Status
-            </button>
+            <div class="ml-4 flex flex-col space-y-2">
+              <a
+                href="view-partnership-discussed.html"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+              >
+                View Details
+              </a>
+            </div>
           </div>
         </div>
+
+        <!-- Approved Partnership -->
+        <div
+          class="partnership-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-500"
+          data-status="approved"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-2">
+                <span
+                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Approved</span
+                >
+                <span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Community Clean-up</span
+                >
+                <span class="text-sm text-gray-500"
+                  >Approved October 27, 2025</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Monthly Community Clean-up Drive
+              </h3>
+              <p class="text-gray-600 mb-3">
+                Ongoing environmental protection activities in local areas
+              </p>
+              <div class="bg-green-50 p-4 rounded-lg mb-4">
+                <h4 class="font-medium text-green-900 mb-2">
+                  Proposal Status:
+                </h4>
+                <p class="text-sm text-green-700">
+                  This partnership has been approved. Monitor progress and
+                  coordinate as needed.
+                </p>
+              </div>
+              <div class="flex items-center space-x-6 text-sm text-gray-500">
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 715 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  Open to all community members
+                </div>
+              </div>
+            </div>
+            <div class="ml-4 flex flex-col space-y-2">
+              <a
+                href="view-partnership-approved.html"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+              >
+                View Details
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rejected Partnership -->
+        <div
+          class="partnership-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-red-500"
+          data-status="rejected"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-2">
+                <span
+                  class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Rejected</span
+                >
+                <span
+                  class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Tree Planting</span
+                >
+                <span class="text-sm text-gray-500"
+                  >Rejected October 27, 2025</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Park Beautification Tree Planting Initiative
+              </h3>
+              <p class="text-gray-600 mb-3">
+                Environmental care through tree planting in local parks
+              </p>
+              <div class="bg-red-50 p-4 rounded-lg mb-4">
+                <h4 class="font-medium text-red-900 mb-2">Proposal Status:</h4>
+                <p class="text-sm text-red-700">
+                  This partnership proposal was rejected. Review the feedback
+                  provided to the partner.
+                </p>
+              </div>
+              <div class="flex items-center space-x-6 text-sm text-gray-500">
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    ></path>
+                  </svg>
+                  Open to community volunteers
+                </div>
+              </div>
+            </div>
+            <div class="ml-4 flex flex-col space-y-2">
+              <a
+                href="view-partnership-rejected.html"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+              >
+                View Details
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completed Partnership -->
+        <div
+          class="partnership-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-400 opacity-75"
+          data-status="completed"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-2">
+                <span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Completed</span
+                >
+                <span
+                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Feeding Program</span
+                >
+                <span class="text-sm text-gray-500"
+                  >Completed October 27, 2025</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Weekend Feeding Program for Street Children
+              </h3>
+              <p class="text-gray-600 mb-3">
+                Community activity providing meals to street children
+              </p>
+              <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                <h4 class="font-medium text-blue-900 mb-2">Final Results:</h4>
+                <p class="text-sm text-blue-700">
+                  This partnership has been successfully completed. Review the
+                  outcomes.
+                </p>
+              </div>
+              <div class="flex items-center space-x-6 text-sm text-gray-500">
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  Successfully completed
+                </div>
+              </div>
+            </div>
+            <div class="ml-4 flex flex-col space-y-2">
+              <a
+                href="view-partnership-completed.html"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+              >
+                View Details
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="mt-8 flex justify-center">
+        <nav class="flex items-center space-x-2">
+          <button
+            class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-500 rounded-md"
+          >
+            Previous
+          </button>
+          <button class="px-3 py-1 text-sm bg-primary text-white rounded-md">
+            1
+          </button>
+          <button
+            class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+          >
+            Next
+          </button>
+        </nav>
       </div>
     </div>
 
     <script>
-      // Navigation and view functions
-      function viewProposal(proposalId, status) {
-        // Map status to appropriate view page
-        const statusPageMap = {
-          new: "view-partnership-new.html",
-          discussion: "view-partnership-discussion.html",
-          approved: "view-partnership-approved.html",
-          active: "view-partnership-active.html",
-          completed: "view-partnership-completed.html",
-        };
-
-        const page = statusPageMap[status];
-        if (page) {
-          // Pass proposal ID as URL parameter for data loading
-          window.location.href = `${page}?id=${proposalId}&status=${status}`;
-        }
-      }
-
-      // All script functions
-      let currentPartnershipId = null;
-
-      function sendDiscussionEmail(partnershipId) {
-        currentPartnershipId = partnershipId;
-        document.getElementById("emailModal").classList.remove("hidden");
-      }
-
-      function closeEmailModal() {
-        document.getElementById("emailModal").classList.add("hidden");
-        document.getElementById("discussionPoints").value = "";
-        currentPartnershipId = null;
-      }
-
-      function sendDiscussionEmailFinal() {
-        const discussionPoints =
-          document.getElementById("discussionPoints").value;
-
-        if (!discussionPoints.trim()) {
-          alert("Please enter discussion points before sending the email.");
-          return;
-        }
-
-        if (
-          confirm(
-            "Send discussion email to the partner organization? The proposal status will be updated to 'Under Discussion'."
-          )
-        ) {
-          alert(
-            `Discussion email sent for community partnership #${currentPartnershipId}!\n\nStatus updated to "Under Discussion".\nPartner organization has been notified and will respond via email.`
-          );
-          closeEmailModal();
-          location.reload();
-        }
-      }
-
-      function quickApprove(partnershipId) {
-        if (
-          confirm(
-            "Quick approve this community partnership proposal? The partner will be notified and the partnership will move to approved status."
-          )
-        ) {
-          alert(
-            `Community partnership proposal #${partnershipId} has been approved!\n\nPartner organization notified.\nPartnership moved to "Approved" status.`
-          );
-          location.reload();
-        }
-      }
-
-      function quickReject(partnershipId) {
-        const reason = prompt("Please provide a brief reason for rejection:");
-        if (reason && reason.trim()) {
-          if (confirm("Reject this community partnership proposal?")) {
-            alert(
-              `Community partnership proposal #${partnershipId} has been rejected.\nReason: ${reason}\n\nPartner organization has been notified.`
-            );
-            location.reload();
-          }
-        }
-      }
-
-      function approvePartnership(partnershipId) {
-        if (confirm("Approve this community partnership proposal?")) {
-          alert(
-            `Community partnership proposal #${partnershipId} has been approved!\n\nPartner organization notified.\nPartnership moved to "Approved" status.`
-          );
-          location.reload();
-        }
-      }
-
-      function rejectPartnership(partnershipId) {
-        const reason = prompt(
-          "Please provide a detailed reason for rejection:"
-        );
-        if (reason && reason.trim()) {
-          if (confirm("Reject this community partnership proposal?")) {
-            alert(
-              `Community partnership proposal #${partnershipId} has been rejected.\nReason: ${reason}\n\nPartner organization has been notified.`
-            );
-            location.reload();
-          }
-        }
-      }
-
-      function activatePartnership(partnershipId) {
-        if (
-          confirm(
-            "Activate this approved partnership? It will move to active status and begin implementation phase."
-          )
-        ) {
-          alert(
-            `Partnership #${partnershipId} has been activated!\n\nStatus updated to "Active".\nPartner organization notified to begin implementation.`
-          );
-          location.reload();
-        }
-      }
-
-      function completePartnership(partnershipId) {
-        if (
-          confirm(
-            "Mark this partnership as completed? Please ensure all activities have concluded and final reports are available."
-          )
-        ) {
-          alert(
-            `Partnership #${partnershipId} marked as completed!\n\nStatus updated to "Completed".\nImpact report can now be generated.`
-          );
-          location.reload();
-        }
-      }
-
-      function pausePartnership(partnershipId) {
-        const reason = prompt(
-          "Please provide a reason for pausing this partnership:"
-        );
-        if (reason && reason.trim()) {
-          if (
-            confirm(
-              "Pause this active partnership? Activities will be temporarily suspended."
-            )
-          ) {
-            alert(
-              `Partnership #${partnershipId} has been paused.\nReason: ${reason}\n\nPartner organization notified.`
-            );
-            location.reload();
-          }
-        }
-      }
-
-      function archivePartnership(partnershipId) {
-        if (
-          confirm(
-            "Archive this completed partnership? It will be moved to the archived section."
-          )
-        ) {
-          alert(
-            `Partnership #${partnershipId} has been archived.\n\nData preserved for future reference and reporting.`
-          );
-        }
-      }
-
-      // Tab functionality
-      function filterPartnerships(status) {
-        // Reset all filter buttons
-        document.querySelectorAll(".partnership-filter").forEach((filter) => {
-          filter.classList.remove("active", "border-primary", "text-primary");
-          filter.classList.add("border-transparent", "text-gray-500");
-        });
-
-        // Activate current filter
-        event.target.classList.add("active", "border-primary", "text-primary");
-        event.target.classList.remove("border-transparent", "text-gray-500");
-
-        // Hide all tab contents
-        document.querySelectorAll(".tab-content").forEach((content) => {
-          content.classList.add("hidden");
-        });
-
-        // Show selected tab content
-        const statusMap = {
-          new: "new-partnerships",
-          discussion: "discussion-partnerships",
-          approved: "approved-partnerships",
-          active: "active-partnerships",
-          completed: "completed-partnerships",
-        };
-
-        const targetId = statusMap[status];
-        if (targetId) {
-          document.getElementById(targetId).classList.remove("hidden");
-        }
-      }
-
-      // Dropdown functionality
-      function toggleDropdown(dropdownId) {
-        const menu = document.getElementById(dropdownId + "-menu");
-        const arrow = document.getElementById(dropdownId + "-arrow");
-
-        if (menu.classList.contains("hidden")) {
-          menu.classList.remove("hidden");
-          arrow.classList.add("rotate-180");
-        } else {
-          menu.classList.add("hidden");
-          arrow.classList.remove("rotate-180");
-        }
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById("mobileMenu");
+        const hamburgerIcon = document.getElementById("hamburgerIcon");
+        const closeIcon = document.getElementById("closeIcon");
+        mobileMenu.classList.toggle("hidden");
+        hamburgerIcon.classList.toggle("hidden");
+        closeIcon.classList.toggle("hidden");
+        const button = document.querySelector('[onclick="toggleMobileMenu()"]');
+        const isExpanded = !mobileMenu.classList.contains("hidden");
+        button.setAttribute("aria-expanded", isExpanded);
       }
 
       function toggleUserMenu() {
@@ -2048,33 +790,76 @@ Examples:
         }
       }
 
-      // Sidebar functionality
-      const sidebar = document.getElementById("sidebar");
-      const openSidebar = document.getElementById("openSidebar");
-      const closeSidebar = document.getElementById("closeSidebar");
-      const sidebarOverlay = document.getElementById("sidebarOverlay");
+      function filterPartnerships(status) {
+        document.querySelectorAll(".partnership-filter").forEach((filter) => {
+          filter.classList.remove("active", "border-primary", "text-primary");
+          filter.classList.add("border-transparent", "text-gray-500");
+        });
 
-      function showSidebar() {
-        sidebar.classList.remove("-translate-x-full");
-        sidebarOverlay.classList.remove("hidden");
+        event.target.classList.add("active", "border-primary", "text-primary");
+        event.target.classList.remove("border-transparent", "text-gray-500");
+
+        const cards = document.querySelectorAll(".partnership-card");
+        cards.forEach((card) => {
+          if (status === "all" || card.dataset.status === status) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
       }
 
-      function hideSidebar() {
-        sidebar.classList.add("-translate-x-full");
-        sidebarOverlay.classList.add("hidden");
-      }
-
-      openSidebar?.addEventListener("click", showSidebar);
-      closeSidebar?.addEventListener("click", hideSidebar);
-      sidebarOverlay?.addEventListener("click", hideSidebar);
-
-      // Close user menu when clicking outside
       document.addEventListener("click", function (event) {
         const userMenu = document.getElementById("userMenu");
-        const userButton = event.target.closest('[onclick="toggleUserMenu()"]');
+        const mobileMenu = document.getElementById("mobileMenu");
+        const userButton = event.target.closest(
+          'button[onclick="toggleUserMenu()"]'
+        );
+        const mobileButton = event.target.closest(
+          'button[onclick="toggleMobileMenu()"]'
+        );
 
         if (!userButton && !userMenu.contains(event.target)) {
           userMenu.classList.add("hidden");
+        }
+
+        if (
+          !mobileButton &&
+          !mobileMenu.contains(event.target) &&
+          !mobileMenu.classList.contains("hidden")
+        ) {
+          toggleMobileMenu();
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          const userMenu = document.getElementById("userMenu");
+          const mobileMenu = document.getElementById("mobileMenu");
+          if (!userMenu.classList.contains("hidden")) {
+            userMenu.classList.add("hidden");
+          }
+          if (!mobileMenu.classList.contains("hidden")) {
+            toggleMobileMenu();
+          }
+        }
+      });
+
+      window.addEventListener("resize", function () {
+        const mobileMenu = document.getElementById("mobileMenu");
+        const hamburgerIcon = document.getElementById("hamburgerIcon");
+        const closeIcon = document.getElementById("closeIcon");
+        if (
+          window.innerWidth >= 768 &&
+          !mobileMenu.classList.contains("hidden")
+        ) {
+          mobileMenu.classList.add("hidden");
+          hamburgerIcon.classList.remove("hidden");
+          closeIcon.classList.add("hidden");
+          const button = document.querySelector(
+            '[onclick="toggleMobileMenu()"]'
+          );
+          button.setAttribute("aria-expanded", "false");
         }
       });
     </script>
