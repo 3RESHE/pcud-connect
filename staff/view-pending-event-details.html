@@ -214,25 +214,7 @@
             </svg>
             Edit Event
           </button>
-          <button
-            onclick="checkReviewStatus()"
-            class="px-8 py-3 bg-yellow-600 text-white rounded-lg font-medium hover:bg-yellow-700 flex items-center text-base"
-          >
-            <svg
-              class="w-6 h-6 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
-            </svg>
-            Check Review Status
-          </button>
+
         </div>
       </div>
 
@@ -826,15 +808,6 @@
         window.location.href = "edit-event.html";
       }
 
-      function checkReviewStatus() {
-        alert(
-          "Review Status:\n\n" +
-            "Submitted: October 12, 2025 at 9:30 AM\n" +
-            "Current Status: Under Administrator Review\n" +
-            "Expected Completion: October 19, 2025\n\n" +
-            "You will be notified via email once the review is complete."
-        );
-      }
 
       // Close user menu when clicking outside
       document.addEventListener("click", function (event) {
