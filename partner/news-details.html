@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title id="pageTitle">News Article - PCU-DASMA Connect</title>
+    <title>News Details - PCU-DASMA Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -20,66 +20,58 @@
     </script>
   </head>
   <body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-sm border-b sticky top-0 z-50">
+    <!-- Navigation (Updated to match news.html) -->
+    <nav class="bg-white shadow-sm border-b">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
+          <!-- Logo and Desktop Navigation -->
           <div class="flex items-center">
-            <a href="news.html" class="text-gray-400 hover:text-gray-600 mr-4">
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 19l-7-7 7-7"
-                ></path>
-              </svg>
+            <a href="../index.html" class="text-xl font-bold text-primary">
+              PCU-DASMA Connect
             </a>
-            <a href="../index.html" class="text-xl font-bold text-primary"
-              >PCU-DASMA Connect</a
-            >
+            <!-- Desktop Navigation Menu -->
             <div class="hidden md:ml-10 md:flex md:space-x-8">
               <a
                 href="dashboard.html"
-                class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium"
-                >Dashboard</a
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
               >
+                Dashboard
+              </a>
+              <a
+                href="job-postings.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                Job Postings
+              </a>
+              <a
+                href="partnerships.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                Partnerships
+              </a>
               <a
                 href="news.html"
-                class="text-primary border-b-2 border-primary px-3 py-2 text-sm font-medium"
-                >News</a
+                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
               >
+                News
+              </a>
+              <a
+                href="profile.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                Profile
+              </a>
             </div>
           </div>
-          <div class="flex items-center space-x-4">
-            <button
-              onclick="shareArticle()"
-              class="hidden md:flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:text-primary transition-colors"
-            >
-              <svg
-                class="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
-                ></path>
-              </svg>
-              Share
-            </button>
+
+          <!-- Desktop User Menu -->
+          <div class="hidden md:flex items-center space-x-4">
             <div class="relative">
               <button
                 onclick="toggleUserMenu()"
-                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"
+                aria-label="Open user menu"
+                aria-haspopup="true"
               >
                 <img
                   class="h-8 w-8 rounded-full"
@@ -89,27 +81,146 @@
               </button>
               <div
                 id="userMenu"
-                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 transform transition-all duration-200"
+                role="menu"
+                aria-orientation="vertical"
               >
                 <div class="py-1">
                   <a
                     href="profile.html"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >Profile</a
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
                   >
-                  <a
-                    href="settings.html"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >Settings</a
-                  >
+                    Profile
+                  </a>
                   <a
                     href="#"
                     onclick="logout()"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >Logout</a
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
                   >
+                    Logout
+                  </a>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+            <button
+              onclick="toggleMobileMenu()"
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-all duration-200"
+              aria-label="Open main menu"
+              aria-expanded="false"
+            >
+              <svg
+                id="hamburgerIcon"
+                class="block h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <svg
+                id="closeIcon"
+                class="hidden h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div
+          id="mobileMenu"
+          class="md:hidden hidden transition-all duration-300 ease-in-out"
+        >
+          <div
+            class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200 bg-white"
+          >
+            <a
+              href="dashboard.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Dashboard
+            </a>
+            <a
+              href="job-postings.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Job Postings
+            </a>
+            <a
+              href="partnerships.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Partnerships
+            </a>
+            <a
+              href="news.html"
+              class="text-primary bg-primary bg-opacity-10 block px-3 py-2 rounded-md text-base font-medium"
+            >
+              News
+            </a>
+            <a
+              href="profile.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Profile
+            </a>
+          </div>
+          <div class="pt-4 pb-3 border-t border-gray-200">
+            <div class="flex items-center px-5">
+              <div class="flex-shrink-0">
+                <img
+                  class="h-10 w-10 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </div>
+              <div class="ml-3">
+                <div class="text-base font-medium leading-none text-gray-900">
+                  User Account
+                </div>
+                <div
+                  class="text-sm font-medium leading-none text-gray-500 mt-1"
+                >
+                  user@pcudasma.edu.ph
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 px-2 space-y-1">
+              <a
+                href="profile.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              >
+                Profile
+              </a>
+              <a
+                href="#"
+                onclick="logout()"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              >
+                Logout
+              </a>
             </div>
           </div>
         </div>
@@ -117,218 +228,229 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="max-w-5xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="flex mb-6" aria-label="Breadcrumb">
+        <ol class="flex space-x-2 text-sm text-gray-500">
+          <li>
+            <a href="news.html" class="hover:text-primary">News</a>
+          </li>
+          <li>/</li>
+          <li class="text-gray-900">Article Details</li>
+        </ol>
+      </nav>
+
       <!-- Article Header -->
-      <article class="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
-        <!-- Category and Date -->
-        <div class="px-8 pt-8">
-          <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center gap-3">
-              <span
-                id="categoryBadge"
-                class="px-3 py-1 rounded-full text-sm font-medium"
-                >Category</span
-              >
-              <span id="publishDate" class="text-gray-500 text-sm">Date</span>
-            </div>
-            <button
-              onclick="bookmarkArticle()"
-              class="text-gray-400 hover:text-primary transition-colors"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
-                ></path>
-              </svg>
-            </button>
-          </div>
-
-          <!-- Title -->
-          <h1
-            id="articleTitle"
-            class="text-4xl font-bold text-gray-900 mb-4 leading-tight"
-          ></h1>
-
-          <!-- Partnership Info Box (if applicable) -->
-          <div
-            id="partnershipBox"
-            class="hidden rounded-r-lg p-5 mb-6 border-l-4"
+      <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-4" id="articleTitle">
+          PCU-DASMA Connect Reaches 1,000+ Alumni Members
+        </h1>
+        <div class="flex items-center text-sm text-gray-500 mb-4">
+          <span
+            class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+            >University Update</span
           >
-            <div class="flex items-start gap-3">
-              <svg
-                class="w-6 h-6 flex-shrink-0 mt-0.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                ></path>
-              </svg>
-              <div class="flex-1">
-                <h3 class="text-sm font-semibold mb-1">Partnership With:</h3>
-                <p id="partnershipText" class="font-medium"></p>
-                <p class="text-sm mt-1">
-                  Event Date: <span id="eventDate"></span>
-                </p>
+          <span>October 17, 2025</span>
+          <span class="mx-2">•</span>
+          <span>By Maria Garcia</span>
+        </div>
+        <img
+          class="w-full h-96 object-cover rounded-lg mb-6"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23E5E7EB' viewBox='0 0 800 384'%3E%3Crect width='800' height='384' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' dy='.3em' fill='%236B7280'%3EPCU-DASMA Alumni Network%3C/text%3E%3C/svg%3E"
+          alt="Article Image"
+        />
+      </div>
+
+      <!-- Article Content -->
+      <div class="prose prose-lg max-w-none mb-12">
+        <p>
+          We're thrilled to announce that PCU-DASMA Connect has successfully
+          onboarded over 1,000 alumni members, marking a significant milestone in
+          creating the largest digital alumni network in the university's history.
+          This achievement reflects the strong sense of community and engagement
+          among our alumni, who are actively connecting, sharing opportunities,
+          and supporting each other through our platform.
+        </p>
+        <p>
+          Since its launch, PCU-DASMA Connect has provided a space for alumni to
+          stay updated on university news, participate in events, and access
+          exclusive job opportunities. The platform has facilitated meaningful
+          connections, with over 500 job applications submitted through our job
+          board and 300 alumni attending our recent virtual networking event.
+        </p>
+        <h2>A Growing Community</h2>
+        <p>
+          The rapid growth of our alumni network is a testament to the dedication
+          of our community. From organizing community outreach programs to
+          celebrating alumni achievements, PCU-DASMA Connect continues to foster a
+          vibrant and supportive environment. Our recent partnership with Clean
+          Seas Alliance for the Dasmarinas Bay Clean-up Drive saw 450 volunteers
+          come together, showcasing the power of collective action.
+        </p>
+        <p>
+          We are also excited to highlight the contributions of our alumni, such
+          as Anna Marie Santos, who recently won the International Young Innovator
+          Award for her groundbreaking work in sustainable technology. Stories
+          like these inspire us to continue building a platform that empowers our
+          alumni to achieve greatness.
+        </p>
+        <h2>What's Next?</h2>
+        <p>
+          As we move forward, PCU-DASMA Connect is committed to enhancing the
+          platform with new features, including a mentorship program, expanded job
+          listings, and more interactive events. We invite all alumni to join us
+          in this journey, share their stories, and contribute to the growth of
+          our community.
+        </p>
+        <p>
+          Thank you to every member of the PCU-DASMA Connect community for making
+          this milestone possible. Together, we are building a stronger, more
+          connected future for our alumni and university.
+        </p>
+      </div>
+
+      <!-- Share and Actions -->
+      <div class="flex items-center justify-between mb-12">
+        <div class="flex space-x-4">
+          <button
+            class="bg-gray-100 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-200 transition-colors"
+            onclick="shareArticle('https://pcudasma.edu.ph/news/ART-2025-005')"
+          >
+            Share
+          </button>
+          <button
+            class="bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+            onclick="saveArticle('ART-2025-005')"
+          >
+            Save Article
+          </button>
+        </div>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-500 hover:text-primary">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+              />
+            </svg>
+          </a>
+          <a href="#" class="text-gray-500 hover:text-primary">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"
+              />
+            </svg>
+          </a>
+          <a href="#" class="text-gray-500 hover:text-primary">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Related Articles -->
+      <div>
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Related Articles</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            onclick="viewNews('ART-2025-001')"
+            class="group cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+          >
+            <img
+              class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23E5E7EB' viewBox='0 0 300 192'%3E%3Crect width='300' height='192' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' font-size='12' text-anchor='middle' dy='.3em' fill='%236B7280'%3EClean-up Drive%3C/text%3E%3C/svg%3E"
+              alt="News Image"
+            />
+            <div class="p-6">
+              <div class="flex items-center text-sm text-gray-500 mb-2">
+                <span
+                  class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Partnership Success</span
+                >
+                <span>October 15, 2025</span>
               </div>
+              <h3
+                class="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors"
+              >
+                Great Dasmarinas Bay Clean-up Drive
+              </h3>
+              <p class="text-gray-600 text-sm">
+                The coastal clean-up partnership between PCU-DASMA and Clean Seas
+                Alliance exceeded expectations...
+              </p>
             </div>
           </div>
-
-          <!-- Author Info -->
-          <div class="flex items-center pb-6 border-b border-gray-200">
+          <div
+            onclick="viewNews('ART-2025-002')"
+            class="group cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+          >
             <img
-              class="h-12 w-12 rounded-full"
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
-              alt="Author"
+              class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23E5E7EB' viewBox='0 0 300 192'%3E%3Crect width='300' height='192' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' font-size='12' text-anchor='middle' dy='.3em' fill='%236B7280'%3EResearch Lab%3C/text%3E%3C/svg%3E"
+              alt="News Image"
             />
-            <div class="ml-3">
-              <p
-                id="articleAuthor"
-                class="text-sm font-medium text-gray-900"
-              ></p>
-              <p class="text-sm text-gray-500">
-                PCU-DASMA Communications Office
+            <div class="p-6">
+              <div class="flex items-center text-sm text-gray-500 mb-2">
+                <span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >University Update</span
+                >
+                <span>October 12, 2025</span>
+              </div>
+              <h3
+                class="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors"
+              >
+                New Research Laboratory Opens
+              </h3>
+              <p class="text-gray-600 text-sm">
+                The IT Department proudly announces the opening of a
+                state-of-the-art research laboratory...
+              </p>
+            </div>
+          </div>
+          <div
+            onclick="viewNews('ART-2025-003')"
+            class="group cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+          >
+            <img
+              class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23E5E7EB' viewBox='0 0 300 192'%3E%3Crect width='300' height='192' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' font-size='12' text-anchor='middle' dy='.3em' fill='%236B7280'%3EInnovation Award%3C/text%3E%3C/svg%3E"
+              alt="News Image"
+            />
+            <div class="p-6">
+              <div class="flex items-center text-sm text-gray-500 mb-2">
+                <span
+                  class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Alumni Success</span
+                >
+                <span>October 8, 2025</span>
+              </div>
+              <h3
+                class="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors"
+              >
+                PCU-DASMA Graduate Wins Innovation Award
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Anna Marie Santos has been awarded the prestigious International
+                Young Innovator Award...
               </p>
             </div>
           </div>
         </div>
-
-        <!-- Featured Image -->
-        <div class="mt-6">
-          <img
-            id="featuredImage"
-            class="w-full h-96 object-cover"
-            alt="Featured Image"
-          />
-        </div>
-
-        <!-- Article Content -->
-        <div class="px-8 py-8">
-          <!-- Summary -->
-          <div id="summaryBox" class="border-l-4 p-6 mb-8 rounded-r-lg">
-            <p class="text-lg text-gray-700 leading-relaxed">
-              <strong id="summaryLabel">Summary:</strong>
-              <span id="articleSummary"></span>
-            </p>
-          </div>
-
-          <!-- Main Content -->
-          <div
-            id="articleContent"
-            class="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6"
-          >
-            <!-- Content will be loaded here -->
-          </div>
-
-          <!-- Tags -->
-          <div class="mt-8 pt-6 border-t border-gray-200">
-            <h3 class="text-sm font-semibold text-gray-900 mb-3">
-              Related Topics
-            </h3>
-            <div id="articleTags" class="flex flex-wrap gap-2">
-              <!-- Tags will be loaded here -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Share Section -->
-        <div class="px-8 pb-8">
-          <div class="bg-gray-50 rounded-lg p-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">
-              Share this article
-            </h3>
-            <div class="flex gap-3">
-              <button
-                onclick="shareToFacebook()"
-                class="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"
-                  />
-                </svg>
-                Facebook
-              </button>
-              <button
-                onclick="shareToTwitter()"
-                class="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition-colors"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
-                  />
-                </svg>
-                Twitter
-              </button>
-              <button
-                onclick="shareToLinkedIn()"
-                class="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-                  />
-                </svg>
-                LinkedIn
-              </button>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- Related Articles -->
-      <div class="mb-12">
-        <h2 class="text-2xl font-bold text-gray-900 mb-6">Related Articles</h2>
-        <div id="relatedArticles" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <!-- Related articles will be loaded here -->
-        </div>
-      </div>
-
-      <!-- Back to News Button -->
-      <div class="text-center">
-        <a
-          href="news.html"
-          class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
-        >
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M15 19l-7-7 7-7"
-            ></path>
-          </svg>
-          Back to All News
-        </a>
       </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12 mt-16">
+    <footer class="bg-gray-900 text-white py-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 class="text-lg font-semibold mb-4">PCU-DASMA Connect</h3>
             <p class="text-gray-400">
-              Connecting alumni, fostering relationships, and building a
-              stronger community.
+              Connecting alumni, fostering relationships, and building a stronger
+              community.
             </p>
           </div>
           <div>
@@ -337,7 +459,9 @@
               <li>
                 <a href="dashboard.html" class="hover:text-white">Dashboard</a>
               </li>
-              <li><a href="events.html" class="hover:text-white">Events</a></li>
+              <li>
+                <a href="events.html" class="hover:text-white">Events</a>
+              </li>
               <li>
                 <a href="jobs.html" class="hover:text-white">Job Board</a>
               </li>
@@ -350,9 +474,8 @@
                 <a href="#" class="hover:text-white">University Update</a>
               </li>
               <li><a href="#" class="hover:text-white">Alumni Success</a></li>
-              <li>
-                <a href="#" class="hover:text-white">Partnership Success</a>
-              </li>
+              <li><a href="#" class="hover:text-white">Event News</a></li>
+              <li><a href="#" class="hover:text-white">Partnership Success</a></li>
             </ul>
           </div>
           <div>
@@ -391,319 +514,26 @@
     </footer>
 
     <script>
-      // Article database matching create-news form structure
-      const articles = {
-        "ART-2025-001": {
-          title:
-            "Great Dasmarinas Bay Clean-up Drive: A Community Success Story",
-          category: "Partnership Success",
-          categoryColor: "emerald",
-          partnershipWith:
-            "Clean Seas Alliance, Barangay San Agustin, Local Environmental Groups",
-          eventDate: "October 14, 2025",
-          publishDate: "October 15, 2025",
-          author: "Communications Staff",
-          tags: [
-            "Partnership Success",
-            "Environmental",
-            "Community",
-            "Clean Seas Alliance",
-            "Coastal Clean-up",
-            "Sustainability",
-          ],
-          summary:
-            "The recent coastal clean-up partnership between PCU-DASMA and Clean Seas Alliance exceeded all expectations, with 450 volunteers collecting 3.2 tons of waste and cleaning 1.8km of coastline. This successful initiative demonstrates the power of university-community collaboration in environmental conservation.",
-          image:
-            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2310b981;stop-opacity:0.3'/%3E%3Cstop offset='100%25' style='stop-color:%233b82f6;stop-opacity:0.3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23grad)' width='1200' height='600'/%3E%3Ctext x='50%25' y='50%25' font-size='28' text-anchor='middle' dy='.3em' fill='%23047857' font-weight='bold'%3ECoastal Clean-up Drive%3C/text%3E%3C/svg%3E",
-          content: `
-            <p>Last Saturday marked a significant milestone in environmental conservation as PCU-DASMA partnered with Clean Seas Alliance and Barangay San Agustin for a comprehensive coastal clean-up initiative at Dasmarinas Bay. The event brought together 450 volunteers, including students, faculty, staff, and community members, all united by a common goal: to restore and protect our coastal ecosystem.</p>
+      // Mobile menu toggle function
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById("mobileMenu");
+        const hamburgerIcon = document.getElementById("hamburgerIcon");
+        const closeIcon = document.getElementById("closeIcon");
 
-            <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Impressive Results and Impact</h2>
-            <p>The initiative resulted in remarkable achievements:</p>
+        mobileMenu.classList.toggle("hidden");
+        hamburgerIcon.classList.toggle("hidden");
+        closeIcon.classList.toggle("hidden");
 
-            <div class="bg-gray-50 rounded-lg p-6 my-6">
-              <h3 class="text-lg font-semibold text-gray-900 mb-4">By the Numbers:</h3>
-              <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="text-center">
-                  <div class="text-3xl font-bold text-emerald-600">450</div>
-                  <div class="text-sm text-gray-600">Volunteers</div>
-                </div>
-                <div class="text-center">
-                  <div class="text-3xl font-bold text-emerald-600">3.2</div>
-                  <div class="text-sm text-gray-600">Tons of Waste</div>
-                </div>
-                <div class="text-center">
-                  <div class="text-3xl font-bold text-emerald-600">1.8</div>
-                  <div class="text-sm text-gray-600">Kilometers Cleaned</div>
-                </div>
-                <div class="text-center">
-                  <div class="text-3xl font-bold text-emerald-600">15+</div>
-                  <div class="text-sm text-gray-600">Material Types</div>
-                </div>
-              </div>
-            </div>
-
-            <p>"This partnership exemplifies what we can achieve when educational institutions and environmental organizations work hand-in-hand," said Dr. Maria Santos, PCU-DASMA's Environmental Studies Department Head. "Our students gained hands-on experience in environmental conservation while making a tangible difference in our community."</p>
-
-            <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Educational Components</h2>
-            <p>Beyond the physical clean-up, the event featured several educational workshops:</p>
-            <ul class="list-disc pl-6 space-y-2 text-gray-700">
-              <li>Marine Conservation Workshop led by Clean Seas Alliance marine biologists</li>
-              <li>Waste Segregation Training for proper sorting and recycling methods</li>
-              <li>Sustainable Living Seminar with tips for reducing plastic consumption</li>
-              <li>Community Engagement Forum on organizing similar initiatives</li>
-            </ul>
-
-            <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Long-term Commitment</h2>
-            <p>The partners have committed to conducting quarterly coastal clean-up drives, establishing a permanent monitoring station, and creating an environmental awareness campaign in local schools.</p>
-          `,
-        },
-        "ART-2025-005": {
-          title: "PCU-DASMA Connect Reaches 1,000+ Alumni Members",
-          category: "University Update",
-          categoryColor: "blue",
-          partnershipWith: null,
-          eventDate: "October 17, 2025",
-          publishDate: "October 17, 2025",
-          author: "Communications Staff",
-          tags: [
-            "University Update",
-            "Alumni Network",
-            "Platform News",
-            "Community",
-            "Milestone",
-            "Digital Innovation",
-          ],
-          summary:
-            "We're excited to announce that PCU-DASMA Connect has successfully onboarded over 1,000 alumni members, creating the largest digital alumni network in the university's history. This milestone represents a significant achievement in fostering stronger connections between our institution and its graduates.",
-          image:
-            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Crect fill='%23E5E7EB' width='1200' height='600'/%3E%3Ctext x='50%25' y='50%25' font-size='24' text-anchor='middle' dy='.3em' fill='%236B7280'%3EPCU-DASMA Alumni Network - 1,000+ Members%3C/text%3E%3C/svg%3E",
-          content: `
-            <p>Today marks a historic milestone for PCU-DASMA as our alumni networking platform, PCU-DASMA Connect, officially welcomes its 1,000th member. This achievement represents more than just a number—it symbolizes the strength of our alumni community and our commitment to maintaining lifelong connections with our graduates.</p>
-
-            <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Building Bridges Across Generations</h2>
-            <p>Launched in early 2024, PCU-DASMA Connect was designed to bridge the gap between the university and its alumni, providing a platform for networking, mentorship, job opportunities, and collaborative partnerships. The platform has facilitated over 200 job placements, connected 350 mentors with current students, and enabled countless professional collaborations.</p>
-
-            <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Platform Features</h2>
-            <ul class="list-disc pl-6 space-y-2 text-gray-700">
-              <li><strong>Job Board:</strong> Access exclusive job postings from alumni-owned businesses</li>
-              <li><strong>Mentorship Program:</strong> Connect experienced professionals with students</li>
-              <li><strong>Event Management:</strong> Stay informed about reunions and networking events</li>
-              <li><strong>News & Updates:</strong> Receive the latest news about university developments</li>
-              <li><strong>Directory Search:</strong> Find and reconnect with classmates and professors</li>
-            </ul>
-
-            <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Success Stories</h2>
-            <p>Maria Santos (Class of 2015) found her current position as Marketing Director through a connection made on PCU-DASMA Connect. "The connection made all the difference," she shares.</p>
-
-            <p>"Reaching 1,000 members is just the beginning," says Dr. Robert Cruz, Director of Alumni Relations. "We're continuously working to enhance the platform and expand our reach to include alumni from all years and programs."</p>
-          `,
-        },
-        "ART-2025-003": {
-          title: "PCU-DASMA Graduate Wins International Innovation Award",
-          category: "Alumni Success",
-          categoryColor: "yellow",
-          partnershipWith: "TechVentures Philippines, Innovation Hub Manila",
-          eventDate: "October 8, 2025",
-          publishDate: "October 9, 2025",
-          author: "Communications Staff",
-          tags: [
-            "Alumni Success",
-            "Innovation",
-            "Awards",
-            "Technology",
-            "Entrepreneurship",
-            "Mobile App Development",
-          ],
-          summary:
-            "Anna Marie Santos, a 2023 BSIT graduate from PCU-DASMA, has been awarded the prestigious International Young Innovator Award for her groundbreaking mobile application that helps small businesses manage inventory and sales through AI-powered analytics.",
-          image:
-            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Crect fill='%23FEF3C7' width='1200' height='600'/%3E%3Ctext x='50%25' y='50%25' font-size='24' text-anchor='middle' dy='.3em' fill='%23D97706' font-weight='bold'%3EInnovation Award Winner%3C/text%3E%3C/svg%3E",
-          content: `
-            <p>PCU-DASMA proudly celebrates one of its distinguished alumni, Anna Marie Santos, who has been awarded the prestigious International Young Innovator Award at the Global Tech Summit held in Singapore last week. Anna Marie, a 2023 Bachelor of Science in Information Technology graduate, received this honor for her innovative mobile application, "BizTrack Pro," which is revolutionizing how small businesses manage their operations.</p>
-
-            <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">The Innovation</h2>
-            <p>BizTrack Pro is an AI-powered mobile application that helps small and medium enterprises (SMEs) manage inventory, track sales, and generate predictive analytics for better business decisions. What sets this application apart is its user-friendly interface and affordable pricing model, making advanced business analytics accessible to businesses that typically cannot afford expensive enterprise solutions.</p>
-
-            <div class="bg-yellow-50 rounded-lg p-6 my-6 border-l-4 border-yellow-500">
-              <h3 class="text-lg font-semibold text-gray-900 mb-3">Key Features:</h3>
-              <ul class="space-y-2 text-gray-700">
-                <li>✓ Real-time inventory tracking and automated alerts</li>
-                <li>✓ AI-powered sales forecasting and trend analysis</li>
-                <li>✓ Multi-platform support (iOS, Android, Web)</li>
-                <li>✓ Cloud-based data synchronization</li>
-                <li>✓ Affordable subscription plans starting at ₱299/month</li>
-              </ul>
-            </div>
-
-            <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">From Student to Innovator</h2>
-            <p>"My journey started at PCU-DASMA, where I learned not just technical skills but also the importance of solving real-world problems," Anna Marie shared during her acceptance speech. "My professors encouraged me to think beyond coding and focus on creating solutions that make a difference in people's lives."</p>
-
-            <p>The idea for BizTrack Pro came from Anna Marie's observation of her family's small grocery business struggling with manual inventory management. During her final year at PCU-DASMA, she developed the first prototype as her capstone project, which earned her the Best Capstone Award in 2023.</p>
-
-            <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Impact and Growth</h2>
-            <p>Since its commercial launch in January 2025, BizTrack Pro has been adopted by over 5,000 SMEs across the Philippines, generating ₱50 million in revenue. The application has helped businesses:</p>
-
-            <ul class="list-disc pl-6 space-y-2 text-gray-700">
-              <li>Reduce inventory losses by an average of 35%</li>
-              <li>Improve sales forecasting accuracy by 60%</li>
-              <li>Save an average of 15 hours per week on manual data entry</li>
-              <li>Increase overall profitability by 25%</li>
-            </ul>
-
-            <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Partnership and Support</h2>
-            <p>Anna Marie's success has been supported by strategic partnerships with TechVentures Philippines and Innovation Hub Manila, both of which provided mentorship, funding, and resources during the early stages of development. These partnerships exemplify the collaborative ecosystem that PCU-DASMA actively promotes among its alumni and industry partners.</p>
-
-            <blockquote class="border-l-4 border-blue-500 pl-4 italic text-gray-700 my-6 bg-blue-50 p-4 rounded-r-lg">
-              "Anna Marie represents the best of PCU-DASMA's commitment to producing not just skilled professionals, but innovative problem-solvers who contribute meaningfully to society. We are incredibly proud of her achievement."
-              <footer class="text-sm text-gray-600 mt-2 not-italic">— Dr. Roberto Dela Cruz, Dean, College of Information Technology</footer>
-            </blockquote>
-
-            <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Looking Ahead</h2>
-            <p>With the international recognition and a recent ₱50 million Series A funding round led by TechVentures Philippines, Anna Marie plans to expand BizTrack Pro to other Southeast Asian markets and add more features including integration with e-commerce platforms and advanced financial analytics.</p>
-
-            <p>"This award is not just mine—it belongs to PCU-DASMA, my professors, my family, and every small business owner who believed in my vision," Anna Marie concluded. "I hope my story inspires current students to pursue their innovative ideas fearlessly."</p>
-
-            <p class="text-lg font-medium text-gray-900 mt-6">
-              Anna Marie Santos continues to be an active member of the PCU-DASMA alumni community and regularly mentors current IT students through the PCU-DASMA Connect platform.
-            </p>
-          `,
-        },
-      };
-
-      // Load article based on URL parameter
-      function loadArticle() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const articleId = urlParams.get("id") || "ART-2025-005";
-        const article = articles[articleId];
-
-        if (!article) {
-          alert("Article not found");
-          window.location.href = "news.html";
-          return;
-        }
-
-        // Update page title
-        document.getElementById("pageTitle").textContent =
-          article.title + " - PCU-DASMA Connect";
-
-        // Update article title
-        document.getElementById("articleTitle").textContent = article.title;
-
-        // Update category badge
-        const categoryBadge = document.getElementById("categoryBadge");
-        const categoryColors = {
-          blue: "bg-blue-100 text-blue-800",
-          emerald: "bg-emerald-100 text-emerald-800",
-          yellow: "bg-yellow-100 text-yellow-800",
-          purple: "bg-purple-100 text-purple-800",
-          red: "bg-red-100 text-red-800",
-        };
-        categoryBadge.className = `${
-          categoryColors[article.categoryColor]
-        } px-3 py-1 rounded-full text-sm font-medium`;
-        categoryBadge.textContent = article.category;
-
-        // Update dates
-        document.getElementById("publishDate").textContent =
-          article.publishDate;
-        document.getElementById("eventDate").textContent = article.eventDate;
-
-        // Update author
-        document.getElementById("articleAuthor").textContent = article.author;
-
-        // Handle partnership box
-        if (article.partnershipWith) {
-          const partnershipBox = document.getElementById("partnershipBox");
-          partnershipBox.classList.remove("hidden");
-          partnershipBox.className += ` bg-gradient-to-r from-${article.categoryColor}-50 to-${article.categoryColor}-50 border-${article.categoryColor}-500`;
-          document.getElementById("partnershipText").textContent =
-            article.partnershipWith;
-
-          const partnershipBoxSvg = partnershipBox.querySelector("svg");
-          partnershipBoxSvg.classList.add(`text-${article.categoryColor}-600`);
-
-          const summaryLabel = document.getElementById("summaryLabel");
-          summaryLabel.classList.add(`text-${article.categoryColor}-900`);
-        }
-
-        // Update summary
-        const summaryBox = document.getElementById("summaryBox");
-        summaryBox.className += ` bg-${article.categoryColor}-50 border-${article.categoryColor}-500`;
-        document.getElementById("articleSummary").textContent = article.summary;
-
-        // Update featured image
-        document.getElementById("featuredImage").src = article.image;
-
-        // Update content
-        document.getElementById("articleContent").innerHTML = article.content;
-
-        // Update tags
-        const tagsContainer = document.getElementById("articleTags");
-        tagsContainer.innerHTML = "";
-        article.tags.forEach((tag) => {
-          const tagSpan = document.createElement("span");
-          tagSpan.className =
-            "px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 cursor-pointer transition-colors";
-          tagSpan.textContent = tag;
-          tagsContainer.appendChild(tagSpan);
-        });
-
-        // Load related articles
-        loadRelatedArticles(articleId);
+        const button = document.querySelector('[onclick="toggleMobileMenu()"]');
+        const isExpanded = !mobileMenu.classList.contains("hidden");
+        button.setAttribute("aria-expanded", isExpanded);
       }
 
-      function loadRelatedArticles(currentId) {
-        const relatedContainer = document.getElementById("relatedArticles");
-        relatedContainer.innerHTML = "";
-
-        Object.keys(articles)
-          .filter((id) => id !== currentId)
-          .slice(0, 3)
-          .forEach((id) => {
-            const article = articles[id];
-            const categoryColors = {
-              blue: "bg-blue-100 text-blue-800",
-              emerald: "bg-emerald-100 text-emerald-800",
-              yellow: "bg-yellow-100 text-yellow-800",
-            };
-
-            const articleDiv = document.createElement("div");
-            articleDiv.onclick = () => viewNews(id);
-            articleDiv.className =
-              "group cursor-pointer bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden";
-            articleDiv.innerHTML = `
-            <img class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300" src="${
-              article.image
-            }" alt="Related Article" />
-            <div class="p-4">
-              <span class="${
-                categoryColors[article.categoryColor]
-              } px-2 py-1 rounded-full text-xs">${article.category}</span>
-              <h3 class="text-lg font-semibold text-gray-900 mt-2 mb-2 group-hover:text-primary transition-colors">${
-                article.title
-              }</h3>
-              <p class="text-sm text-gray-600">${article.publishDate}</p>
-            </div>
-          `;
-            relatedContainer.appendChild(articleDiv);
-          });
-      }
-
+      // User menu toggle function
       function toggleUserMenu() {
         const menu = document.getElementById("userMenu");
         menu.classList.toggle("hidden");
       }
-
-      document.addEventListener("click", function (event) {
-        const userMenu = document.getElementById("userMenu");
-        const button = event.target.closest(
-          'button[onclick="toggleUserMenu()"]'
-        );
-        if (!button && !userMenu.contains(event.target)) {
-          userMenu.classList.add("hidden");
-        }
-      });
 
       function logout() {
         if (confirm("Are you sure you want to logout?")) {
@@ -715,56 +545,39 @@
         window.location.href = `news-details.html?id=${articleId}`;
       }
 
-      function shareArticle() {
-        if (navigator.share) {
-          navigator
-            .share({
-              title: document.title,
-              text: "Check out this article from PCU-DASMA Connect",
-              url: window.location.href,
-            })
-            .catch((err) => console.log("Error sharing:", err));
-        } else {
-          alert(
-            "Sharing is not supported on this browser. Please use the social media buttons below."
-          );
+      function shareArticle(url) {
+        alert(`Share this article: ${url}`);
+        // In a real application, this would open a sharing dialog or copy the URL
+      }
+
+      function saveArticle(articleId) {
+        alert(`Article ${articleId} saved to your profile!`);
+        // In a real application, this would save the article to the user's profile
+      }
+
+      // Close user menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const userMenu = document.getElementById("userMenu");
+        const button = event.target.closest(
+          'button[onclick="toggleUserMenu()"]'
+        );
+
+        if (!button && !userMenu.contains(event.target)) {
+          userMenu.classList.add("hidden");
         }
-      }
+      });
 
-      function shareToFacebook() {
-        const url = encodeURIComponent(window.location.href);
-        window.open(
-          `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-          "_blank"
-        );
-      }
+      // Load article details based on URL parameter
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = urlParams.get("id");
 
-      function shareToTwitter() {
-        const url = encodeURIComponent(window.location.href);
-        const text = encodeURIComponent(document.title);
-        window.open(
-          `https://twitter.com/intent/tweet?url=${url}&text=${text}`,
-          "_blank"
-        );
-      }
-
-      function shareToLinkedIn() {
-        const url = encodeURIComponent(window.location.href);
-        window.open(
-          `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-          "_blank"
-        );
-      }
-
-      function bookmarkArticle() {
-        alert(
-          "Article bookmarked! This feature will save the article to your profile."
-        );
-      }
-
-      // Load article on page load
-      window.addEventListener("DOMContentLoaded", loadArticle);
-      window.scrollTo(0, 0);
+        if (articleId) {
+          // This is a placeholder for fetching article details based on articleId
+          // In a real application, you would fetch data from a server
+          console.log(`Loading article details for ID: ${articleId}`);
+        }
+      });
     </script>
   </body>
 </html>
