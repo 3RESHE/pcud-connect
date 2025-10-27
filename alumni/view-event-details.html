@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Details - PCU-DASMA Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gradient-to-br from-gray-50 to-gray-100 font-sans min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <a href="../dashboard.html" class="text-xl font-bold text-primary">
+              PCU-DASMA Connect
+            </a>
+            <div class="hidden md:ml-10 md:flex md:space-x-8">
+              <a
+                href="dashboard.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+                >Dashboard</a
+              >
+              <a
+                href="jobs.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+                >Job Opportunities</a
+              >
+              <a
+                href="events.html"
+                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
+                >Events</a
+              >
+              <a
+                href="news.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+                >News</a
+              >
+              <a
+                href="profile.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+                >Profile</a
+              >
+            </div>
+          </div>
+          <div class="hidden md:flex items-center space-x-4">
+            <div class="relative">
+              <button
+                onclick="toggleUserMenu()"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"
+                aria-label="Open user menu"
+                aria-haspopup="true"
+                id="userMenuButton"
+              >
+                <img
+                  class="h-8 w-8 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="User profile"
+                />
+              </button>
+              <div
+                id="userMenu"
+                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 transform transition-all duration-200"
+                role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="userMenuButton"
+              >
+                <div class="py-1">
+                  <a
+                    href="profile.html"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
+                    >Profile</a
+                  >
+                  <a
+                    href="settings.html"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
+                    >Settings</a
+                  >
+                  <a
+                    href="#"
+                    onclick="logout()"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
+                    >Logout</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="md:hidden flex items-center">
+            <button
+              onclick="toggleMobileMenu()"
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-all duration-200"
+              aria-label="Open main menu"
+              aria-expanded="false"
+              id="mobileMenuButton"
+            >
+              <svg
+                id="hamburgerIcon"
+                class="block h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <svg
+                id="closeIcon"
+                class="hidden h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div
+          id="mobileMenu"
+          class="md:hidden hidden transition-all duration-300 ease-in-out"
+        >
+          <div
+            class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200 bg-white"
+          >
+            <a
+              href="dashboard.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+              >Dashboard</a
+            >
+            <a
+              href="jobs.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+              >Job Opportunities</a
+            >
+            <a
+              href="events.html"
+              class="text-primary bg-primary bg-opacity-10 block px-3 py-2 rounded-md text-base font-medium"
+              >Events</a
+            >
+            <a
+              href="news.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+              >News</a
+            >
+            <a
+              href="profile.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+              >Profile</a
+            >
+          </div>
+          <div class="pt-4 pb-3 border-t border-gray-200">
+            <div class="flex items-center px-5">
+              <div class="flex-shrink-0">
+                <img
+                  class="h-10 w-10 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="User profile"
+                />
+              </div>
+              <div class="ml-3">
+                <div class="text-base font-medium leading-none text-gray-900">
+                  Student User
+                </div>
+                <div
+                  class="text-sm font-medium leading-none text-gray-500 mt-1"
+                >
+                  student@pcudasma.edu.ph
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 px-2 space-y-1">
+              <a
+                href="profile.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+                >Profile</a
+              >
+              <a
+                href="settings.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+                >Settings</a
+              >
+              <a
+                href="#"
+                onclick="logout()"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+                >Logout</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <!-- Back Button -->
+      <div class="mb-8">
+        <a
+          href="events.html"
+          class="inline-flex items-center text-base text-gray-600 hover:text-primary"
+        >
+          <svg
+            class="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            ></path>
+          </svg>
+          Back to Events
+        </a>
+      </div>
+
+      <!-- Event Banner -->
+      <div
+        class="relative bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl overflow-hidden mb-8 shadow-lg border-l-4 border-blue-500"
+      >
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="relative px-8 py-16 text-center">
+          <div class="flex justify-center mb-4 space-x-3">
+            <span
+              class="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-base font-medium"
+              >Published</span
+            >
+            <span
+              class="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-base font-medium"
+              >Hybrid</span
+            >
+            <span
+              class="bg-purple-100 text-purple-800 px-4 py-1 rounded-full text-base font-medium"
+              >Students Only</span
+            >
+          </div>
+          <h1
+            class="text-4xl font-bold text-white mb-4"
+          >
+            Data Analytics Bootcamp
+          </h1>
+          <p
+            class="text-blue-100 text-lg max-w-3xl mx-auto"
+          >
+            A 2-week intensive bootcamp on data analytics, covering data visualization, statistical analysis, and machine learning basics for students.
+          </p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="mb-8 flex justify-end">
+        <div class="flex space-x-4">
+          <button
+            onclick="registerForEvent()"
+            class="px-8 py-3 bg-primary text-white rounded-lg font-medium hover:bg-blue-700 flex items-center text-base"
+            aria-label="Register for Data Analytics Bootcamp"
+          >
+            <svg
+              class="w-6 h-6 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01m-.01 4h.01"
+              ></path>
+            </svg>
+            Register Now
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Main Content Column -->
+        <div class="lg:col-span-2 space-y-8">
+          <!-- Event Information -->
+          <div
+            class="bg-white rounded-xl shadow-sm p-8 border border-gray-100"
+            role="region"
+            aria-live="polite"
+          >
+            <h2
+              class="text-3xl font-bold text-gray-900 mb-6 flex items-center"
+            >
+              <svg
+                class="w-7 h-7 mr-3 text-primary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              Event Information
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              <div>
+                <p class="text-base text-gray-500">Event Title</p>
+                <p
+                  class="font-medium text-gray-900 text-lg"
+                >
+                  Data Analytics Bootcamp
+                </p>
+              </div>
+              <div>
+                <p class="text-base text-gray-500">Event Format</p>
+                <p class="font-medium text-gray-900 text-lg">Hybrid</p>
+              </div>
+              <div>
+                <p class="text-base text-gray-500">Contact Person</p>
+                <p
+                  class="font-medium text-gray-900 text-lg"
+                >
+                  Prof. John Reyes
+                </p>
+              </div>
+            </div>
+            <div class="border-t pt-6">
+              <h3 class="font-semibold text-gray-900 text-lg mb-3">
+                Description
+              </h3>
+              <p
+                class="text-gray-700 text-base leading-relaxed whitespace-pre-wrap"
+              >
+                A 2-week intensive bootcamp on data analytics, covering data visualization, statistical analysis, and machine learning basics for students. Participants will work on real-world datasets and learn tools like Python, Tableau, and Excel. A certificate of completion will be awarded to participants who complete all modules.
+              </p>
+            </div>
+            <div class="mt-6">
+              <h3 class="font-semibold text-gray-900 text-lg mb-3">
+                Target Audience
+              </h3>
+              <p class="text-gray-700 text-base">Students Only</p>
+              <ul class="list-disc ml-5 text-gray-700 text-base mt-2">
+                <li>College of Informatics</li>
+                <li>College of Engineering</li>
+              </ul>
+            </div>
+            <div class="mt-6">
+              <h3 class="font-semibold text-gray-900 text-lg mb-3">
+                Registration Instructions
+              </h3>
+              <p class="text-gray-700 text-base">
+                Participants must bring a laptop with Python and Tableau installed. Prior registration is required, and the Zoom link will be sent to registered participants closer to the event date.
+              </p>
+            </div>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <span
+                class="px-4 py-1 bg-blue-100 text-blue-800 text-base rounded-full"
+                >Data</span
+              >
+              <span
+                class="px-4 py-1 bg-blue-100 text-blue-800 text-base rounded-full"
+                >Analytics</span
+              >
+              <span
+                class="px-4 py-1 bg-blue-100 text-blue-800 text-base rounded-full"
+                >Bootcamp</span
+              >
+              <span
+                class="px-4 py-1 bg-blue-100 text-blue-800 text-base rounded-full"
+                >Professional Development</span
+              >
+            </div>
+          </div>
+
+          <!-- Date & Time -->
+          <div class="bg-white rounded-xl shadow-sm p-8 border border-gray-100">
+            <h2
+              class="text-3xl font-bold text-gray-900 mb-6 flex items-center"
+            >
+              <svg
+                class="w-7 h-7 mr-3 text-primary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                ></path>
+              </svg>
+              Date & Time
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="p-4 bg-blue-50 rounded-lg">
+                <div class="flex items-center mb-2">
+                  <svg
+                    class="w-6 h-6 text-blue-600 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                  <span class="text-base font-medium text-gray-700"
+                    >Start Date</span
+                  >
+                </div>
+                <p
+                  class="text-lg font-semibold text-gray-900"
+                >
+                  November 10, 2025
+                </p>
+              </div>
+              <div class="p-4 bg-blue-50 rounded-lg">
+                <div class="flex items-center mb-2">
+                  <svg
+                    class="w-6 h-6 text-blue-600 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                  <span class="text-base font-medium text-gray-700"
+                    >End Date</span
+                  >
+                </div>
+                <p
+                  class="text-lg font-semibold text-gray-900"
+                >
+                  November 17, 2025
+                </p>
+              </div>
+              <div class="p-4 bg-blue-50 rounded-lg">
+                <div class="flex items-center mb-2">
+                  <svg
+                    class="w-6 h-6 text-blue-600 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  <span class="text-base font-medium text-gray-700"
+                    >Time</span
+                  >
+                </div>
+                <p
+                  class="text-lg font-semibold text-gray-900"
+                >
+                  1:00 PM - 4:00 PM
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Location & Venue -->
+          <div class="bg-white rounded-xl shadow-sm p-8 border border-gray-100">
+            <h2
+              class="text-3xl font-bold text-gray-900 mb-6 flex items-center"
+            >
+              <svg
+                class="w-7 h-7 mr-3 text-primary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                ></path>
+              </svg>
+              Location & Venue
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <p class="text-base text-gray-500 mb-1">Venue/Platform</p>
+                <p
+                  class="font-semibold text-gray-900 text-lg"
+                >
+                  IT Laboratory 2 / Zoom
+                </p>
+              </div>
+              <div>
+                <p class="text-base text-gray-500 mb-1">Capacity</p>
+                <p
+                  class="font-semibold text-gray-900 text-lg"
+                >
+                  42/60 participants
+                </p>
+              </div>
+              <div class="md:col-span-2">
+                <p class="text-base text-gray-500 mb-1">Address</p>
+                <p
+                  class="text-gray-700 text-lg"
+                >
+                  PCU Dasmariñas Campus, Aguinaldo Highway, Dasmariñas, Cavite
+                </p>
+                <p class="text-sm text-gray-500 mt-1">
+                  Zoom link will be sent to registered participants closer to the event date.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Column -->
+        <div class="space-y-8">
+          <!-- Event Status -->
+          <div class="bg-white rounded-xl shadow-sm p-8 border border-gray-100">
+            <h3 class="font-bold text-gray-900 text-xl mb-6">
+              Event Status
+            </h3>
+            <div class="space-y-6">
+              <div class="p-4 bg-gray-50 rounded-lg">
+                <p class="text-base text-gray-500 mb-1">Current Status</p>
+                <p
+                  class="font-semibold text-gray-900 text-lg"
+                >
+                  Published
+                </p>
+              </div>
+              <div class="p-4 bg-gray-50 rounded-lg">
+                <p class="text-base text-gray-500 mb-1">Current Registrations</p>
+                <p
+                  class="font-semibold text-gray-900 text-lg"
+                >
+                  42/60 participants
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="bg-white rounded-xl shadow-sm p-8 border border-gray-100">
+            <h3
+              class="font-bold text-gray-900 text-xl mb-6 flex items-center"
+            >
+              <svg
+                class="w-6 h-6 mr-3 text-primary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                ></path>
+              </svg>
+              Contact Information
+            </h3>
+            <div class="space-y-6">
+              <div>
+                <p class="text-base text-gray-500">Contact Person</p>
+                <p
+                  class="font-medium text-gray-900 text-lg"
+                >
+                  Prof. John Reyes
+                </p>
+              </div>
+              <div>
+                <p class="text-base text-gray-500">Contact Email</p>
+                <a
+                  href="mailto:informatics@pcu-dasma.edu.ph"
+                  class="text-blue-600 hover:underline text-lg"
+                  >informatics@pcu-dasma.edu.ph</a
+                >
+              </div>
+              <div>
+                <p class="text-base text-gray-500">Contact Phone</p>
+                <a
+                  href="tel:+639123456789"
+                  class="text-blue-600 hover:underline text-lg"
+                  >+63 912 345 6789</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+          const mobileMenu = document.getElementById("mobileMenu");
+          const hamburgerIcon = document.getElementById("hamburgerIcon");
+          const closeIcon = document.getElementById("closeIcon");
+          const button = document.getElementById("mobileMenuButton");
+
+          mobileMenu.classList.toggle("hidden");
+          hamburgerIcon.classList.toggle("hidden");
+          closeIcon.classList.toggle("hidden");
+          button.setAttribute(
+            "aria-expanded",
+            !mobileMenu.classList.contains("hidden")
+          );
+        }
+
+        // Toggle user menu
+        function toggleUserMenu() {
+          const menu = document.getElementById("userMenu");
+          const button = document.getElementById("userMenuButton");
+          menu.classList.toggle("hidden");
+          button.setAttribute("aria-expanded", !menu.classList.contains("hidden"));
+        }
+
+        // Logout function
+        function logout() {
+          if (confirm("Are you sure you want to logout?")) {
+            window.location.href = "../login.html";
+          }
+        }
+
+        // Register for event
+        function registerForEvent() {
+          if (confirm("Are you sure you want to register for Data Analytics Bootcamp?")) {
+            alert("Registration successful! Check your email for confirmation.");
+            // In a real app, redirect or update state
+          }
+        }
+
+        // Close user menu when clicking outside
+        document.addEventListener("click", function (event) {
+          const userMenu = document.getElementById("userMenu");
+          const button = event.target.closest("#userMenuButton");
+          if (!button && !userMenu.contains(event.target)) {
+            userMenu.classList.add("hidden");
+            document
+              .getElementById("userMenuButton")
+              .setAttribute("aria-expanded", "false");
+          }
+        });
+      </script>
+    </body>
+</html>

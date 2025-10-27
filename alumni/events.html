@@ -24,12 +24,10 @@
     <nav class="bg-white shadow-sm border-b">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-          <!-- Logo and Desktop Navigation -->
           <div class="flex items-center">
             <a href="../index.html" class="text-xl font-bold text-primary">
               PCU-DASMA Connect
             </a>
-            <!-- Desktop Navigation Menu -->
             <div class="hidden md:ml-10 md:flex md:space-x-8">
               <a
                 href="dashboard.html"
@@ -63,8 +61,6 @@
               </a>
             </div>
           </div>
-
-          <!-- Desktop User Menu -->
           <div class="hidden md:flex items-center space-x-4">
             <div class="relative">
               <button
@@ -72,11 +68,12 @@
                 class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"
                 aria-label="Open user menu"
                 aria-haspopup="true"
+                id="userMenuButton"
               >
                 <img
                   class="h-8 w-8 rounded-full"
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
-                  alt="Profile"
+                  alt="User profile"
                 />
               </button>
               <div
@@ -84,6 +81,7 @@
                 class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 transform transition-all duration-200"
                 role="menu"
                 aria-orientation="vertical"
+                aria-labelledby="userMenuButton"
               >
                 <div class="py-1">
                   <a
@@ -112,14 +110,13 @@
               </div>
             </div>
           </div>
-
-          <!-- Mobile Menu Button -->
           <div class="md:hidden flex items-center">
             <button
               onclick="toggleMobileMenu()"
               class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-all duration-200"
               aria-label="Open main menu"
               aria-expanded="false"
+              id="mobileMenuButton"
             >
               <svg
                 id="hamburgerIcon"
@@ -154,8 +151,6 @@
             </button>
           </div>
         </div>
-
-        <!-- Mobile Menu -->
         <div
           id="mobileMenu"
           class="md:hidden hidden transition-all duration-300 ease-in-out"
@@ -194,24 +189,23 @@
               Profile
             </a>
           </div>
-          <!-- Mobile User Profile Section -->
           <div class="pt-4 pb-3 border-t border-gray-200">
             <div class="flex items-center px-5">
               <div class="flex-shrink-0">
                 <img
                   class="h-10 w-10 rounded-full"
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
-                  alt="Profile"
+                  alt="User profile"
                 />
               </div>
               <div class="ml-3">
                 <div class="text-base font-medium leading-none text-gray-900">
-                  User Account
+                  Student User
                 </div>
                 <div
                   class="text-sm font-medium leading-none text-gray-500 mt-1"
                 >
-                  user@pcudasma.edu.ph
+                  student@pcudasma.edu.ph
                 </div>
               </div>
             </div>
@@ -243,14 +237,6 @@
 
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-      <!-- Header -->
-      <div class="mb-8">
-        <h1 class="text-3xl font-bold text-gray-900">Events</h1>
-        <p class="text-gray-600">
-          Discover and register for events created by PCU-DASMA staff and alumni
-        </p>
-      </div>
-
       <!-- Stats Cards -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <div class="bg-white p-6 rounded-lg shadow-sm">
@@ -276,11 +262,15 @@
             </div>
             <div class="ml-4">
               <p class="text-sm font-medium text-gray-600">Available Events</p>
-              <p class="text-2xl font-semibold text-gray-900">5</p>
+              <p
+                id="availableEventsCount"
+                class="text-2xl font-semibold text-gray-900"
+              >
+                5
+              </p>
             </div>
           </div>
         </div>
-
         <div class="bg-white p-6 rounded-lg shadow-sm">
           <div class="flex items-center">
             <div class="flex-shrink-0">
@@ -304,11 +294,15 @@
             </div>
             <div class="ml-4">
               <p class="text-sm font-medium text-gray-600">My Registrations</p>
-              <p class="text-2xl font-semibold text-gray-900">2</p>
+              <p
+                id="myRegistrationsCount"
+                class="text-2xl font-semibold text-gray-900"
+              >
+                2
+              </p>
             </div>
           </div>
         </div>
-
         <div class="bg-white p-6 rounded-lg shadow-sm">
           <div class="flex items-center">
             <div class="flex-shrink-0">
@@ -325,18 +319,22 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                   ></path>
                 </svg>
               </div>
             </div>
             <div class="ml-4">
               <p class="text-sm font-medium text-gray-600">Alumni Only</p>
-              <p class="text-2xl font-semibold text-gray-900">2</p>
+              <p
+                id="alumniOnlyCount"
+                class="text-2xl font-semibold text-gray-900"
+              >
+                1
+              </p>
             </div>
           </div>
         </div>
-
         <div class="bg-white p-6 rounded-lg shadow-sm">
           <div class="flex items-center">
             <div class="flex-shrink-0">
@@ -360,7 +358,12 @@
             </div>
             <div class="ml-4">
               <p class="text-sm font-medium text-gray-600">Student Only</p>
-              <p class="text-2xl font-semibold text-gray-900">2</p>
+              <p
+                id="studentOnlyCount"
+                class="text-2xl font-semibold text-gray-900"
+              >
+                2
+              </p>
             </div>
           </div>
         </div>
@@ -389,8 +392,9 @@
           <input
             type="text"
             id="searchEvents"
-            placeholder="Search events..."
+            placeholder="Search events by title, description, or tags..."
             class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-primary text-lg"
+            aria-label="Search events"
           />
         </div>
       </div>
@@ -398,52 +402,72 @@
       <!-- Filter Tabs -->
       <div class="mb-8">
         <div class="border-b border-gray-200">
-          <nav class="-mb-px flex justify-center space-x-8">
+          <nav
+            class="-mb-px flex justify-center space-x-8 overflow-x-auto"
+            role="tablist"
+          >
             <button
               onclick="filterEvents('all')"
               data-tab="all"
               class="event-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium"
+              role="tab"
+              aria-selected="true"
+              aria-controls="eventsList"
             >
-              All Events (6)
+              All Events (<span id="allEventsTabCount">5</span>)
             </button>
             <button
               onclick="filterEvents('my_registrations')"
               data-tab="my_registrations"
               class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+              role="tab"
+              aria-selected="false"
+              aria-controls="eventsList"
             >
-              My Registrations (2)
+              My Registrations (<span id="myRegistrationsTabCount">2</span>)
             </button>
             <button
               onclick="filterEvents('alumni_only')"
               data-tab="alumni_only"
               class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+              role="tab"
+              aria-selected="false"
+              aria-controls="eventsList"
             >
-              Alumni Only (2)
+              Alumni Only (<span id="alumniOnlyTabCount">1</span>)
             </button>
             <button
               onclick="filterEvents('student_only')"
               data-tab="student_only"
               class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+              role="tab"
+              aria-selected="false"
+              aria-controls="eventsList"
             >
-              Student Only (2)
+              Student Only (<span id="studentOnlyTabCount">2</span>)
             </button>
             <button
               onclick="filterEvents('completed')"
               data-tab="completed"
               class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium"
+              role="tab"
+              aria-selected="false"
+              aria-controls="eventsList"
             >
-              Completed Events (1)
+              Completed Events (<span id="completedEventsTabCount">2</span>)
             </button>
           </nav>
         </div>
       </div>
 
-      <!-- Events List (Centered) -->
-      <div class="mx-auto space-y-6" id="eventsList">
-        <!-- Featured Staff-Created Event -->
+      <!-- Events List -->
+      <div class="space-y-6" id="eventsList" role="region" aria-live="polite">
+        <!-- Featured Event: PCU-DASMA Alumni Homecoming 2025 -->
         <div
           class="bg-gradient-to-r from-primary to-secondary rounded-lg p-6 text-white event-card"
-          data-category="all alumni_only staff"
+          data-category="alumni_only"
+          data-tags="homecoming alumni networking gala"
+          data-event-id="1"
         >
           <div class="flex items-center justify-between mb-4">
             <div class="flex items-center space-x-2">
@@ -453,11 +477,11 @@
               >
               <span
                 class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs"
-                >Staff-Created Event</span
+                >Alumni Only</span
               >
             </div>
             <span class="text-sm opacity-90"
-              >October 15, 2025 • 9:00 AM - 8:00 PM</span
+              >November 15, 2025 • 9:00 AM - 8:00 PM</span
             >
           </div>
           <h2 class="text-2xl font-bold mb-3">
@@ -487,45 +511,67 @@
               PCU-DASMA Campus • In-Person Event
             </div>
             <div class="flex items-center space-x-3">
-              <div class="text-sm opacity-90">847 alumni registered</div>
+              <div class="text-sm opacity-90">847/1000 alumni registered</div>
               <button
                 onclick="showRegistrationModal(1)"
                 class="bg-white text-primary px-6 py-2 rounded-md font-medium hover:bg-gray-100 transition-colors"
+                aria-label="Register for PCU-DASMA Alumni Homecoming 2025"
               >
                 Register Now
               </button>
             </div>
           </div>
+          <div class="flex flex-wrap gap-2 mt-3">
+            <span
+              class="px-2 py-1 bg-white bg-opacity-20 text-white text-xs rounded"
+              >Homecoming</span
+            >
+            <span
+              class="px-2 py-1 bg-white bg-opacity-20 text-white text-xs rounded"
+              >Alumni</span
+            >
+            <span
+              class="px-2 py-1 bg-white bg-opacity-20 text-white text-xs rounded"
+              >Networking</span
+            >
+            <span
+              class="px-2 py-1 bg-white bg-opacity-20 text-white text-xs rounded"
+              >Gala</span
+            >
+          </div>
         </div>
 
-        <!-- Pending Event -->
+        <!-- Cybersecurity Awareness Workshop (Published) -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-yellow-500 event-card"
-          data-category="all student_only"
+          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500 event-card"
+          data-category="open"
+          data-tags="cybersecurity technology training"
+          data-event-id="2"
         >
           <div class="flex items-start justify-between mb-4">
             <div class="flex-1">
               <div class="flex items-center mb-2">
                 <span
-                  class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Under Review</span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Published</span
                 >
                 <span
-                  class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Student Only</span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Open to All</span
                 >
                 <span class="text-sm text-gray-500"
-                  >Submitted Oct 13, 2025</span
+                  >Published October 9, 2025</span
                 >
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                Advanced Web Development Bootcamp
+                Cybersecurity Awareness Workshop
               </h3>
               <p class="text-sm text-blue-600 mb-3">
-                Organized by Prof. Carlos Martinez
+                Organized by Prof. Maria Santos
               </p>
               <p class="text-gray-600 mb-3">
-                Comprehensive 6-week bootcamp covering modern web development technologies including React, Node.js, and cloud deployment. Designed to prepare students for industry-level development roles.
+                Workshop on cybersecurity best practices and threat detection.
+                Event scheduled for November 20, 2025.
               </p>
               <div class="flex items-center text-sm text-gray-500 mb-3">
                 <svg
@@ -541,7 +587,7 @@
                     d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                   ></path>
                 </svg>
-                IT Laboratory 1 & 2 • December 15, 2025 • 9:00 AM - 5:00 PM (6 weeks)
+                IT Laboratory 3 • November 20, 2025 • 10:00 AM - 2:00 PM
               </div>
               <div class="flex items-center text-sm text-gray-500">
                 <svg
@@ -554,16 +600,39 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                   ></path>
                 </svg>
-                30/30 participants • Students only
+                <span class="participant-count">35/50 participants</span> • Open
+                to all
+              </div>
+              <div class="flex flex-wrap gap-2 mt-3">
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >Cybersecurity</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >Technology</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >Training</span
+                >
               </div>
             </div>
             <div class="ml-4 flex flex-col space-y-2">
               <button
+                onclick="showRegistrationModal(2)"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+                aria-label="Register for Cybersecurity Awareness Workshop"
+              >
+                Register Now
+              </button>
+              <button
                 onclick="viewEventDetails(2)"
                 class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
+                aria-label="View details for Cybersecurity Awareness Workshop"
               >
                 View Details
               </button>
@@ -571,172 +640,24 @@
           </div>
         </div>
 
-        <!-- My Registrations Event -->
+        <!-- Digital Marketing Mastery Workshop Series (Happening Now, Registered) -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500 event-card"
-          data-category="all my_registrations student_only"
+          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-orange-500 event-card"
+          data-category="my_registrations student_only"
+          data-tags="marketing professional-development certificate workshop"
+          data-event-id="4"
         >
           <div class="flex items-start justify-between mb-4">
             <div class="flex-1">
               <div class="flex items-center mb-2">
+                <span
+                  class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3 animate-pulse"
+                  >Happening Now</span
+                >
                 <span
                   class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
                   >Registered</span
                 >
-                <span
-                  class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Student Only</span
-                >
-                <span class="text-sm text-gray-500"
-                  >Registered Oct 10, 2025</span
-                >
-              </div>
-              <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                Student Leadership Development Workshop
-              </h3>
-              <p class="text-sm text-blue-600 mb-3">
-                Organized by Ms. Angela Reyes
-              </p>
-              <p class="text-gray-600 mb-3">
-                Interactive workshop series focused on developing leadership skills among students. Covers communication, team management, and project leadership.
-              </p>
-              <div class="flex items-center text-sm text-gray-500 mb-3">
-                <svg
-                  class="w-4 h-4 mr-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  ></path>
-                </svg>
-                Main Hall • December 10, 2025 • 1:00 PM - 4:00 PM
-              </div>
-              <div class="flex items-center text-sm text-gray-500">
-                <svg
-                  class="w-4 h-4 mr-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  ></path>
-                </svg>
-                25/50 participants • Students only
-              </div>
-            </div>
-            <div class="ml-4 flex flex-col space-y-2">
-              <button
-                onclick="viewMyRegistration(3)"
-                class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
-              >
-                View Registration
-              </button>
-              <button
-                onclick="cancelRegistration(3)"
-                class="px-4 py-2 bg-red-600 text-white text-sm rounded-md hover:bg-red-700"
-              >
-                Cancel Registration
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Alumni Only Event -->
-        <div
-          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-purple-500 event-card"
-          data-category="all alumni_only"
-        >
-          <div class="flex items-start justify-between mb-4">
-            <div class="flex-1">
-              <div class="flex items-center mb-2">
-                <span
-                  class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Alumni Only</span
-                >
-                <span
-                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >In-Person</span
-                >
-                <span class="text-sm text-gray-500"
-                  >Published Oct 11, 2025</span
-                >
-              </div>
-              <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                Alumni Networking Night
-              </h3>
-              <p class="text-sm text-blue-600 mb-3">
-                Organized by Dr. Elena Garcia
-              </p>
-              <p class="text-gray-600 mb-3">
-                An evening of networking and professional development for PCU-DASMA alumni, featuring guest speakers and industry connections.
-              </p>
-              <div class="flex items-center text-sm text-gray-500 mb-3">
-                <svg
-                  class="w-4 h-4 mr-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  ></path>
-                </svg>
-                Alumni Center • November 20, 2025 • 6:00 PM - 9:00 PM
-              </div>
-              <div class="flex items-center text-sm text-gray-500">
-                <svg
-                  class="w-4 h-4 mr-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  ></path>
-                </svg>
-                32/50 participants • Alumni only
-              </div>
-            </div>
-            <div class="ml-4 flex flex-col space-y-2">
-              <button
-                onclick="showRegistrationModal(4)"
-                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
-              >
-                Register Now
-              </button>
-              <button
-                onclick="viewEventDetails(4)"
-                class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
-              >
-                View Details
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Student Only Event -->
-        <div
-          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500 event-card"
-          data-category="all student_only"
-        >
-          <div class="flex items-start justify-between mb-4">
-            <div class="flex-1">
-              <div class="flex items-center mb-2">
                 <span
                   class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
                   >Student Only</span
@@ -746,17 +667,18 @@
                   >Hybrid</span
                 >
                 <span class="text-sm text-gray-500"
-                  >Published Oct 11, 2025</span
+                  >Published October 11, 2025</span
                 >
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
                 Digital Marketing Mastery Workshop Series
               </h3>
               <p class="text-sm text-blue-600 mb-3">
-                Organized by Ms. Patricia Cruz
+                Organized by Prof. Marketing Department
               </p>
               <p class="text-gray-600 mb-3">
-                4-week workshop series covering modern digital marketing strategies, tailored for student participants.
+                4-week workshop series covering modern digital marketing
+                strategies, tailored for student participants.
               </p>
               <div class="flex items-center text-sm text-gray-500 mb-3">
                 <svg
@@ -772,7 +694,8 @@
                     d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                   ></path>
                 </svg>
-                Lecture Hall 3 • November 15, 2025 • 9:00 AM - 12:00 PM
+                Business Building - Room 301 & Google Meet • October 27, 2025 •
+                10:00 AM - 1:00 PM
               </div>
               <div class="flex items-center text-sm text-gray-500">
                 <svg
@@ -785,53 +708,79 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                   ></path>
                 </svg>
-                67/80 participants • Students only
+                <span class="participant-count">26/50 participants</span> •
+                Students only
+              </div>
+              <div class="flex flex-wrap gap-2 mt-3">
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >Marketing</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >Professional Development</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >Certificate</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >Workshop</span
+                >
               </div>
             </div>
             <div class="ml-4 flex flex-col space-y-2">
               <button
-                onclick="showRegistrationModal(5)"
-                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700"
+                onclick="viewMyRegistration(4)"
+                class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
+                aria-label="View registration for Digital Marketing Mastery Workshop Series"
               >
-                Register Now
-              </button>
-              <button
-                onclick="viewEventDetails(5)"
-                class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
-              >
-                View Details
+                View Registration
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Completed Event -->
+        <!-- Data Analytics Bootcamp (Registered, Upcoming) -->
         <div
-          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-gray-500 event-card opacity-80"
-          data-category="all completed"
+          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-blue-500 event-card"
+          data-category="my_registrations student_only"
+          data-tags="data analytics bootcamp professional-development"
+          data-event-id="7"
         >
           <div class="flex items-start justify-between mb-4">
             <div class="flex-1">
               <div class="flex items-center mb-2">
                 <span
-                  class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
-                  >Completed</span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Registered</span
+                >
+                <span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Student Only</span
+                >
+                <span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Hybrid</span
                 >
                 <span class="text-sm text-gray-500"
-                  >Completed Oct 08, 2025</span
+                  >Published October 15, 2025</span
                 >
               </div>
               <h3 class="text-xl font-semibold text-gray-900 mb-2">
-                AI in Education Seminar
+                Data Analytics Bootcamp
               </h3>
               <p class="text-sm text-blue-600 mb-3">
-                Organized by Dr. Elena Garcia
+                Organized by Prof. John Reyes
               </p>
               <p class="text-gray-600 mb-3">
-                Seminar on integrating AI tools in educational practices, completed successfully with positive feedback.
+                A 2-week intensive bootcamp on data analytics, covering data
+                visualization, statistical analysis, and machine learning basics
+                for students.
               </p>
               <div class="flex items-center text-sm text-gray-500 mb-3">
                 <svg
@@ -847,7 +796,7 @@
                     d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                   ></path>
                 </svg>
-                Conference Room A • October 08, 2025 • 10:00 AM - 1:00 PM
+                IT Laboratory 2 & Zoom • November 10, 2025 • 1:00 PM - 4:00 PM
               </div>
               <div class="flex items-center text-sm text-gray-500">
                 <svg
@@ -860,20 +809,138 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 715.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 614 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                   ></path>
                 </svg>
-                45/50 participants • Open to all
+                <span class="participant-count">42/60 participants</span> •
+                Students only
+              </div>
+              <div class="flex flex-wrap gap-2 mt-3">
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >Data</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >Analytics</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >Bootcamp</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >Professional Development</span
+                >
               </div>
             </div>
             <div class="ml-4 flex flex-col space-y-2">
               <button
-                onclick="viewEventDetails(6)"
+                onclick="viewMyRegistration(7)"
+                class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
+                aria-label="View registration for Data Analytics Bootcamp"
+              >
+                View Registration
+              </button>
+              <button
+                onclick="cancelRegistration(7)"
+                class="px-4 py-2 border border-red-300 text-red-600 text-sm rounded-md hover:bg-red-50"
+                aria-label="Cancel registration for Data Analytics Bootcamp"
+              >
+                Cancel Registration
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Career Fair 2025 (Completed) -->
+        <div
+          class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow border-l-4 border-gray-300 event-card"
+          data-category="completed"
+          data-tags="career job fair networking"
+          data-event-id="5"
+        >
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-2">
+                <span
+                  class="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs mr-3"
+                  >Completed</span
+                >
+                <span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Open to All</span
+                >
+                <span class="text-sm text-gray-500"
+                  >Published August 1, 2025</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Career Fair 2025
+              </h3>
+              <p class="text-sm text-blue-600 mb-3">
+                Organized by Career Services
+              </p>
+              <p class="text-gray-600 mb-3">
+                Annual career fair connecting students and alumni with top
+                employers. Event concluded on September 15, 2025.
+              </p>
+              <div class="flex items-center text-sm text-gray-500 mb-3">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                </svg>
+                Main Hall • September 15, 2025 • 9:00 AM - 5:00 PM
+              </div>
+              <div class="flex items-center text-sm text-gray-500">
+                <svg
+                  class="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 919.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  ></path>
+                </svg>
+                <span class="participant-count">300/500 participants</span> •
+                Open to all
+              </div>
+              <div class="flex flex-wrap gap-2 mt-3">
+                <span
+                  class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded"
+                  >Career</span
+                >
+                <span
+                  class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded"
+                  >Job Fair</span
+                >
+                <span
+                  class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded"
+                  >Networking</span
+                >
+              </div>
+            </div>
+            <div class="ml-4 flex flex-col space-y-2">
+              <button
+                onclick="viewEventDetails(5)"
                 class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
+                aria-label="View details for Career Fair 2025"
               >
                 View Details
               </button>
-
             </div>
           </div>
         </div>
@@ -883,24 +950,31 @@
       <div
         id="registrationModal"
         class="hidden fixed inset-0 z-50 overflow-y-auto"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="registrationModalTitle"
       >
         <div
           class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center"
         >
           <div
             class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+            aria-hidden="true"
           ></div>
-
           <div class="relative bg-white rounded-lg max-w-2xl w-full shadow-xl">
             <div
               class="px-6 py-4 border-b border-gray-200 flex justify-between items-center"
             >
-              <h3 class="text-xl font-semibold text-gray-900">
+              <h3
+                class="text-xl font-semibold text-gray-900"
+                id="registrationModalTitle"
+              >
                 Event Registration
               </h3>
               <button
                 onclick="closeRegistrationModal()"
                 class="text-gray-400 hover:text-gray-600"
+                aria-label="Close registration modal"
               >
                 <svg
                   class="w-6 h-6"
@@ -917,19 +991,16 @@
                 </svg>
               </button>
             </div>
-
             <div class="p-6">
-              <div id="registrationContent">
-                <!-- Dynamic content will be loaded here -->
-              </div>
+              <div id="registrationContent"></div>
             </div>
-
             <div
               class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3"
             >
               <button
                 onclick="closeRegistrationModal()"
                 class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+                aria-label="Cancel registration"
               >
                 Cancel
               </button>
@@ -937,6 +1008,7 @@
                 onclick="proceedToRegistration()"
                 id="registerBtn"
                 class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700"
+                aria-label="Proceed to event registration"
               >
                 Proceed to Registration
               </button>
@@ -946,21 +1018,29 @@
       </div>
 
       <!-- OTP Verification Modal -->
-      <div id="otpModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
+      <div
+        id="otpModal"
+        class="hidden fixed inset-0 z-50 overflow-y-auto"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="otpModalTitle"
+      >
         <div
           class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center"
         >
           <div
             class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+            aria-hidden="true"
           ></div>
-
           <div class="relative bg-white rounded-lg max-w-md w-full shadow-xl">
             <div class="px-6 py-4 border-b border-gray-200">
-              <h3 class="text-xl font-semibold text-gray-900 text-center">
+              <h3
+                class="text-xl font-semibold text-gray-900 text-center"
+                id="otpModalTitle"
+              >
                 Verify Your Email
               </h3>
             </div>
-
             <div class="p-6">
               <div class="text-center mb-6">
                 <div
@@ -985,7 +1065,6 @@
                   enter it below to complete your registration.
                 </p>
               </div>
-
               <div class="space-y-4">
                 <div>
                   <label
@@ -1000,33 +1079,38 @@
                     maxlength="6"
                     placeholder="Enter 6-digit code"
                     class="block w-full px-3 py-3 border border-gray-300 rounded-md text-center text-lg font-mono focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                    aria-describedby="otpHelp"
                   />
+                  <p class="text-sm text-gray-500 mt-1" id="otpHelp">
+                    Enter the 6-digit code sent to your email.
+                  </p>
                 </div>
-
                 <div class="text-center">
                   <p class="text-sm text-gray-500">Didn't receive the code?</p>
                   <button
                     onclick="resendOTP()"
                     class="text-primary hover:text-blue-700 text-sm font-medium"
+                    aria-label="Resend verification code"
                   >
                     Resend verification code
                   </button>
                 </div>
               </div>
             </div>
-
             <div
               class="px-6 py-4 border-t border-gray-200 flex justify-end space-x-3"
             >
               <button
                 onclick="closeOTPModal()"
                 class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+                aria-label="Cancel OTP verification"
               >
                 Cancel
               </button>
               <button
                 onclick="verifyOTP()"
                 class="px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700"
+                aria-label="Verify and register for event"
               >
                 Verify & Register
               </button>
@@ -1034,372 +1118,558 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <script>
-        let currentEventId = null;
-        let currentEventData = null;
+    <script>
+      // Event data
+      const eventData = [
+        {
+          id: 1,
+          title: "PCU-DASMA Alumni Homecoming 2025",
+          organizer: "Alumni Association",
+          description:
+            "The biggest alumni gathering of the year! Reconnect with classmates, faculty, and celebrate our shared legacy. Features include campus tours, recognition ceremony, networking lunch, and evening gala dinner.",
+          date: "November 15, 2025",
+          time: "9:00 AM - 8:00 PM",
+          location: "PCU-DASMA Campus",
+          format: "In-Person",
+          participants: "847/1000",
+          category: "alumni_only",
+          tags: ["homecoming", "alumni", "networking", "gala"],
+          status: "Published",
+          publishedDate: "September 1, 2025",
+        },
+        {
+          id: 2,
+          title: "Cybersecurity Awareness Workshop",
+          organizer: "Prof. Maria Santos",
+          description:
+            "Workshop on cybersecurity best practices and threat detection. Event scheduled for November 20, 2025.",
+          date: "November 20, 2025",
+          time: "10:00 AM - 2:00 PM",
+          location: "IT Laboratory 3",
+          format: "In-Person",
+          participants: "35/50",
+          category: "open",
+          tags: ["cybersecurity", "technology", "training"],
+          status: "Published",
+          publishedDate: "October 9, 2025",
+        },
+        {
+          id: 4,
+          title: "Digital Marketing Mastery Workshop Series",
+          organizer: "Prof. Marketing Department",
+          description:
+            "4-week workshop series covering modern digital marketing strategies, tailored for student participants.",
+          date: "October 27, 2025",
+          time: "10:00 AM - 1:00 PM",
+          location: "Business Building - Room 301 & Google Meet",
+          format: "Hybrid",
+          participants: "26/50",
+          category: "student_only",
+          tags: [
+            "marketing",
+            "professional-development",
+            "certificate",
+            "workshop",
+          ],
+          status: "Happening Now",
+          publishedDate: "October 11, 2025",
+        },
+        {
+          id: 7,
+          title: "Data Analytics Bootcamp",
+          organizer: "Prof. John Reyes",
+          description:
+            "A 2-week intensive bootcamp on data analytics, covering data visualization, statistical analysis, and machine learning basics for students.",
+          date: "November 10, 2025",
+          time: "1:00 PM - 4:00 PM",
+          location: "IT Laboratory 2 & Zoom",
+          format: "Hybrid",
+          participants: "42/60",
+          category: "student_only",
+          tags: ["data", "analytics", "bootcamp", "professional-development"],
+          status: "Published",
+          publishedDate: "October 15, 2025",
+        },
+        {
+          id: 5,
+          title: "Career Fair 2025",
+          organizer: "Career Services",
+          description:
+            "Annual career fair connecting students and alumni with top employers. Event concluded on September 15, 2025.",
+          date: "September 15, 2025",
+          time: "9:00 AM - 5:00 PM",
+          location: "Main Hall",
+          format: "In-Person",
+          participants: "300/500",
+          category: "completed",
+          tags: ["career", "job fair", "networking"],
+          status: "Completed",
+          publishedDate: "August 1, 2025",
+        },
+      ];
 
-        // Updated event data
-        const eventData = {
-          1: {
-            title: "PCU-DASMA Alumni Homecoming 2025",
-            date: "October 15, 2025",
-            time: "9:00 AM - 8:00 PM",
-            location: "PCU-DASMA Campus",
-            description:
-              "The biggest alumni gathering of the year! Reconnect with classmates, faculty, and celebrate our shared legacy. Features include campus tours, recognition ceremony, networking lunch, and evening gala dinner.",
-            organizer: "Alumni Relations Office",
-            type: "Staff-Created Event",
-            capacity: 1000,
-            registered: 847,
-            requirements: [
-              "Valid Alumni ID",
-              "RSVP Required",
-              "Dress Code: Business Casual",
-            ],
-          },
-          2: {
-            title: "Advanced Web Development Bootcamp",
-            date: "December 15, 2025",
-            time: "9:00 AM - 5:00 PM (6 weeks)",
-            location: "IT Laboratory 1 & 2",
-            description:
-              "Comprehensive 6-week bootcamp covering modern web development technologies including React, Node.js, and cloud deployment. Designed to prepare students for industry-level development roles.",
-            organizer: "Prof. Carlos Martinez",
-            type: "Student Only",
-            capacity: 30,
-            registered: 30,
-            requirements: [
-              "Basic programming knowledge",
-              "Laptop required",
-              "Commitment to full program",
-            ],
-          },
-          3: {
-            title: "Student Leadership Development Workshop",
-            date: "December 10, 2025",
-            time: "1:00 PM - 4:00 PM",
-            location: "Main Hall",
-            description:
-              "Interactive workshop series focused on developing leadership skills among students. Covers communication, team management, and project leadership.",
-            organizer: "Ms. Angela Reyes",
-            type: "Student Only",
-            capacity: 50,
-            registered: 25,
-            requirements: [
-              "Student enrollment",
-              "Interest in leadership",
-            ],
-          },
-          4: {
-            title: "Alumni Networking Night",
-            date: "November 20, 2025",
-            time: "6:00 PM - 9:00 PM",
-            location: "Alumni Center",
-            description:
-              "An evening of networking and professional development for PCU-DASMA alumni, featuring guest speakers and industry connections.",
-            organizer: "Dr. Elena Garcia",
-            type: "Alumni Only",
-            capacity: 50,
-            registered: 32,
-            requirements: [
-              "Alumni verification",
-              "Professional attire",
-            ],
-          },
-          5: {
-            title: "Digital Marketing Mastery Workshop Series",
-            date: "November 15, 2025",
-            time: "9:00 AM - 12:00 PM",
-            location: "Lecture Hall 3",
-            description:
-              "4-week workshop series covering modern digital marketing strategies, tailored for student participants.",
-            organizer: "Ms. Patricia Cruz",
-            type: "Student Only",
-            capacity: 80,
-            registered: 67,
-            requirements: [
-              "Basic computer skills",
-              "Social media familiarity",
-            ],
-          },
-          6: {
-            title: "AI in Education Seminar",
-            date: "October 08, 2025",
-            time: "10:00 AM - 1:00 PM",
-            location: "Conference Room A",
-            description:
-              "Seminar on integrating AI tools in educational practices, completed successfully with positive feedback.",
-            organizer: "Dr. Elena Garcia",
-            type: "Completed",
-            capacity: 50,
-            registered: 45,
-            requirements: [
-              "Open to all",
-              "Interest in educational technology",
-            ],
-          },
-        };
+      // User data
+      const userData = {
+        role: "student",
+        email: "student@pcudasma.edu.ph",
+      };
 
-        // Mobile menu toggle function
-        function toggleMobileMenu() {
-          const mobileMenu = document.getElementById("mobileMenu");
-          const hamburgerIcon = document.getElementById("hamburgerIcon");
-          const closeIcon = document.getElementById("closeIcon");
+      // User registrations
+      let userRegistrations = [
+        { eventId: 4, name: "Student User", email: "student@pcudasma.edu.ph" },
+        { eventId: 7, name: "Student User", email: "student@pcudasma.edu.ph" },
+      ];
 
-          // Toggle menu visibility
-          mobileMenu.classList.toggle("hidden");
+      // Temporary storage for current registration
+      let currentRegistrationData = null;
 
-          // Toggle icons
-          hamburgerIcon.classList.toggle("hidden");
-          closeIcon.classList.toggle("hidden");
+      // Update stats on page load
+      document.addEventListener("DOMContentLoaded", () => {
+        updateStats();
+        filterEvents("all");
+      });
 
-          // Update aria-expanded attribute
-          const button = document.querySelector('[onclick="toggleMobileMenu()"]');
-          const isExpanded = !mobileMenu.classList.contains("hidden");
-          button.setAttribute("aria-expanded", isExpanded);
-        }
+      // Update stats
+      function updateStats() {
+        const availableEvents = eventData.filter(
+          (event) =>
+            event.status === "Published" || event.status === "Happening Now"
+        ).length;
+        const myRegistrations = userRegistrations.length;
+        const alumniOnly = eventData.filter((event) =>
+          event.category.includes("alumni_only")
+        ).length;
+        const studentOnly = eventData.filter((event) =>
+          event.category.includes("student_only")
+        ).length;
+        const completedEvents = eventData.filter((event) =>
+          event.category.includes("completed")
+        ).length;
 
-        // User menu toggle function
-        function toggleUserMenu() {
-          const menu = document.getElementById("userMenu");
-          menu.classList.toggle("hidden");
-        }
+        document.getElementById("availableEventsCount").textContent =
+          availableEvents;
+        document.getElementById("myRegistrationsCount").textContent =
+          myRegistrations;
+        document.getElementById("alumniOnlyCount").textContent = alumniOnly;
+        document.getElementById("studentOnlyCount").textContent = studentOnly;
+        document.getElementById("allEventsTabCount").textContent =
+          eventData.length;
+        document.getElementById("myRegistrationsTabCount").textContent =
+          myRegistrations;
+        document.getElementById("alumniOnlyTabCount").textContent = alumniOnly;
+        document.getElementById("studentOnlyTabCount").textContent =
+          studentOnly;
+        document.getElementById("completedEventsTabCount").textContent =
+          completedEvents;
+      }
 
-        function logout() {
-          if (confirm("Are you sure you want to logout?")) {
-            window.location.href = "../login.html";
+      // Filter events
+      function filterEvents(category) {
+        const eventsList = document.getElementById("eventsList");
+        const eventCards = document.querySelectorAll(".event-card");
+        const filters = document.querySelectorAll(".event-filter");
+
+        // Update active filter
+        filters.forEach((filter) => {
+          filter.classList.remove("active", "border-primary", "text-primary");
+          filter.classList.add(
+            "border-transparent",
+            "text-gray-500",
+            "hover:text-gray-700",
+            "hover:border-gray-300"
+          );
+          filter.setAttribute("aria-selected", "false");
+          if (filter.dataset.tab === category) {
+            filter.classList.add("active", "border-primary", "text-primary");
+            filter.classList.remove(
+              "border-transparent",
+              "text-gray-500",
+              "hover:text-gray-700",
+              "hover:border-gray-300"
+            );
+            filter.setAttribute("aria-selected", "true");
           }
-        }
+        });
 
-        function filterEvents(category) {
-          // Update tab appearance
-          document.querySelectorAll(".event-filter").forEach((filter) => {
-            filter.classList.remove("active", "border-primary", "text-primary");
-            filter.classList.add("border-transparent", "text-gray-500");
-          });
+        // Filter logic
+        eventCards.forEach((card) => {
+          const eventId = parseInt(card.dataset.eventId);
+          const event = eventData.find((e) => e.id === eventId);
+          const isRegistered = userRegistrations.some(
+            (reg) => reg.eventId === eventId
+          );
 
-          const activeTab = document.querySelector(`[data-tab="${category}"]`);
-          if (activeTab) {
-            activeTab.classList.add("active", "border-primary", "text-primary");
-            activeTab.classList.remove("border-transparent", "text-gray-500");
+          if (category === "all") {
+            card.style.display = "block";
+          } else if (category === "my_registrations" && isRegistered) {
+            card.style.display = "block";
+          } else if (
+            category === "alumni_only" &&
+            event.category.includes("alumni_only") &&
+            userData.role === "alumni"
+          ) {
+            card.style.display = "block";
+          } else if (
+            category === "student_only" &&
+            event.category.includes("student_only") &&
+            userData.role === "student"
+          ) {
+            card.style.display = "block";
+          } else if (
+            category === "completed" &&
+            event.category.includes("completed")
+          ) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
           }
+        });
 
-          // Filter event cards
-          const eventCards = document.querySelectorAll(".event-card");
+        // Search filter
+        const searchTerm = document
+          .getElementById("searchEvents")
+          .value.toLowerCase();
+        if (searchTerm) {
           eventCards.forEach((card) => {
-            const cardCategories = card.getAttribute("data-category").split(" ");
-            if (category === "all" || cardCategories.includes(category)) {
-              card.style.display = "block";
-            } else {
+            const eventId = parseInt(card.dataset.eventId);
+            const event = eventData.find((e) => e.id === eventId);
+            const text = `${event.title} ${event.description} ${event.tags.join(
+              " "
+            )}`.toLowerCase();
+            if (card.style.display === "block" && !text.includes(searchTerm)) {
               card.style.display = "none";
             }
           });
         }
+      }
 
-        function showRegistrationModal(eventId) {
-          currentEventId = eventId;
-          currentEventData = eventData[eventId];
+      // Search events
+      document.getElementById("searchEvents").addEventListener("input", () => {
+        const activeTab = document.querySelector(".event-filter.active").dataset
+          .tab;
+        filterEvents(activeTab);
+      });
 
-          if (!currentEventData) {
-            alert("Event data not found!");
-            return;
-          }
+      // View event details
+      function viewEventDetails(eventId) {
+        window.location.href = `view-event-details.html?id=${eventId}`;
+      }
 
-          const modalContent = `
-                  <div class="space-y-4">
-                      <div class="text-center">
-                          <h2 class="text-2xl font-bold text-gray-900 mb-2">${currentEventData.title}</h2>
-                          <div class="flex items-center justify-center space-x-4 text-sm text-gray-600 mb-4">
-                              <span>📅 ${currentEventData.date}</span>
-                              <span>🕐 ${currentEventData.time}</span>
-                          </div>
-                          <div class="flex items-center justify-center space-x-2 mb-4">
-                              <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">${currentEventData.type}</span>
-                              <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Free Event</span>
-                          </div>
-                      </div>
-                      
-                      <div class="text-left">
-                          <h3 class="font-semibold text-gray-900 mb-2">Event Description</h3>
-                          <p class="text-gray-600 mb-4">${currentEventData.description}</p>
-                          
-                          <div class="grid grid-cols-2 gap-4 mb-4">
-                              <div>
-                                  <h4 class="font-semibold text-gray-900">Location</h4>
-                                  <p class="text-gray-600">${currentEventData.location}</p>
-                              </div>
-                              <div>
-                                  <h4 class="font-semibold text-gray-900">Availability</h4>
-                                  <p class="text-gray-600">${currentEventData.registered}/${currentEventData.capacity} registered</p>
-                              </div>
-                          </div>
-                          
-                          <div class="mb-4">
-                              <h4 class="font-semibold text-gray-900 mb-2">Requirements</h4>
-                              <ul class="text-sm text-gray-600 space-y-1">
-                                  ${currentEventData.requirements.map((req) => `<li>• ${req}</li>`).join("")}
-                              </ul>
-                          </div>
-                          
-                          <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                              <div class="flex items-start">
-                                  <svg class="w-5 h-5 text-yellow-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                  </svg>
-                                  <div>
-                                      <h4 class="font-semibold text-yellow-800">Registration Process</h4>
-                                      <p class="text-sm text-yellow-700">After clicking "Proceed to Registration", we'll send a verification code to your email. You'll need to enter this code to complete your registration.</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              `;
+      // View registration
+      function viewMyRegistration(eventId) {
+        if (eventId === 4) {
+          window.location.href = `view-event-ongoing-details.html?id=${eventId}`;
+        } else {
+          window.location.href = `view-event-details.html?id=${eventId}`;
+        }
+      }
 
-          document.getElementById("registrationContent").innerHTML = modalContent;
-          document.getElementById("registrationModal").classList.remove("hidden");
+      // Show registration modal
+      function showRegistrationModal(eventId) {
+        const event = eventData.find((e) => e.id === eventId);
+
+        // Validation checks
+        if (event.status === "Happening Now" || event.status === "Completed") {
+          alert("Registration is closed for this event.");
+          return;
+        }
+        if (
+          event.category.includes("alumni_only") &&
+          userData.role !== "alumni"
+        ) {
+          alert("This event is for alumni only.");
+          return;
+        }
+        if (
+          event.category.includes("student_only") &&
+          userData.role !== "student"
+        ) {
+          alert("This event is for students only.");
+          return;
         }
 
-        function closeRegistrationModal() {
-          document.getElementById("registrationModal").classList.add("hidden");
-          currentEventId = null;
-          currentEventData = null;
+        const modal = document.getElementById("registrationModal");
+        modal.dataset.eventId = eventId;
+        const content = document.getElementById("registrationContent");
+
+        // Parse participants
+        const [current, max] = event.participants.split("/");
+
+        content.innerHTML = `
+    <div class="mb-6">
+      <h4 class="text-lg font-semibold text-gray-900 mb-2">${event.title}</h4>
+      <p class="text-gray-600 mb-4">${event.description}</p>
+      <div class="bg-gray-50 p-4 rounded-lg space-y-2">
+        <div class="flex items-center text-sm text-gray-600">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <span><strong>Date:</strong> ${event.date}</span>
+        </div>
+        <div class="flex items-center text-sm text-gray-600">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span><strong>Time:</strong> ${event.time}</span>
+        </div>
+        <div class="flex items-center text-sm text-gray-600">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+          </svg>
+          <span><strong>Location:</strong> ${event.location}</span>
+        </div>
+        <div class="flex items-center text-sm text-gray-600">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+          <span><strong>Participants:</strong> ${current}/${max} registered</span>
+        </div>
+        <div class="flex items-center text-sm text-gray-600">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span><strong>Format:</strong> ${event.format}</span>
+        </div>
+      </div>
+    </div>
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+      <p class="text-sm text-blue-800">
+        <strong>Important:</strong> A verification code will be sent to your email address to complete the registration.
+      </p>
+    </div>
+  `;
+
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
+
+      // Close registration modal
+      function closeRegistrationModal() {
+        const modal = document.getElementById("registrationModal");
+        modal.classList.add("hidden");
+        document.body.style.overflow = "auto";
+        currentRegistrationData = null;
+      }
+
+      // Proceed to registration (show OTP modal)
+      function proceedToRegistration() {
+        const modal = document.getElementById("registrationModal");
+        const eventId = parseInt(modal.dataset.eventId);
+        const event = eventData.find((e) => e.id === eventId);
+
+        // Store registration data
+        currentRegistrationData = {
+          eventId: eventId,
+          eventTitle: event.title,
+          name: userData.role === "student" ? "Student User" : "Alumni User",
+          email: userData.email,
+        };
+
+        // Close registration modal
+        closeRegistrationModal();
+
+        // Simulate sending OTP
+        console.log("Sending OTP to:", userData.email);
+        alert(`Verification code sent to ${userData.email}`);
+
+        // Show OTP modal
+        showOTPModal();
+      }
+
+      // Show OTP modal
+      function showOTPModal() {
+        const modal = document.getElementById("otpModal");
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+
+        // Clear OTP input
+        document.getElementById("otpCode").value = "";
+      }
+
+      // Close OTP modal
+      function closeOTPModal() {
+        const modal = document.getElementById("otpModal");
+        modal.classList.add("hidden");
+        document.body.style.overflow = "auto";
+        currentRegistrationData = null;
+      }
+
+      // Resend OTP
+      function resendOTP() {
+        if (currentRegistrationData) {
+          console.log("Resending OTP to:", currentRegistrationData.email);
+          alert(`Verification code resent to ${currentRegistrationData.email}`);
+        }
+      }
+
+      // Verify OTP and complete registration
+      function verifyOTP() {
+        const otpCode = document.getElementById("otpCode").value.trim();
+
+        if (!otpCode) {
+          alert("Please enter the verification code.");
+          return;
         }
 
-        function proceedToRegistration() {
-          if (!currentEventId) return;
-
-          // Close registration modal
-          closeRegistrationModal();
-
-          // Show OTP modal
-          document.getElementById("otpModal").classList.remove("hidden");
-
-          // Simulate sending OTP
-          setTimeout(() => {
-            alert("Verification code sent to your email address!");
-          }, 500);
+        if (otpCode.length !== 6) {
+          alert("Please enter a valid 6-digit code.");
+          return;
         }
 
-        function closeOTPModal() {
-          document.getElementById("otpModal").classList.add("hidden");
-          document.getElementById("otpCode").value = "";
-        }
+        // Simulate OTP verification (in real app, this would be validated by backend)
+        console.log("Verifying OTP:", otpCode);
 
-        function verifyOTP() {
-          const otpCode = document.getElementById("otpCode").value;
-
-          if (otpCode.length !== 6) {
-            alert("Please enter a valid 6-digit verification code.");
-            return;
-          }
-
-          // Simulate OTP verification
-          if (otpCode === "123456") {
-            closeOTPModal();
-            alert(
-              `Registration successful! You have been registered for "${currentEventData.title}". A confirmation email has been sent to your registered email address.`
-            );
-
-            // Refresh page to show updated registration status
-            setTimeout(() => {
-              location.reload();
-            }, 1000);
-          } else {
-            alert("Invalid verification code. Please try again.");
-          }
-        }
-
-        function resendOTP() {
-          alert("New verification code sent to your email address!");
-          document.getElementById("otpCode").value = "";
-        }
-
-        function viewEventDetails(eventId) {
-          showRegistrationModal(eventId);
-        }
-
-        function cancelRegistration(eventId) {
-          if (
-            confirm(
-              "Are you sure you want to cancel your registration? You will lose your spot for this event."
-            )
-          ) {
-            alert(
-              `Registration cancelled successfully for event #${eventId}. You will receive a confirmation email.`
-            );
-            location.reload();
-          }
-        }
-
-        function viewMyRegistration(eventId) {
-          alert(`Opening your registration details for event #${eventId}...`);
-        }
-
-
-
-        // Search functionality
-        document
-          .getElementById("searchEvents")
-          .addEventListener("input", function (e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const eventCards = document.querySelectorAll(".event-card");
-
-            eventCards.forEach((card) => {
-              const title = card
-                .querySelector("h2, h3")
-                .textContent.toLowerCase();
-              const description = card
-                .querySelector("p")
-                .textContent.toLowerCase();
-
-              if (
-                title.includes(searchTerm) ||
-                description.includes(searchTerm)
-              ) {
-                card.style.display = "block";
-              } else {
-                card.style.display = "none";
-              }
+        // For demo purposes, accept any 6-digit code
+        if (otpCode.length === 6) {
+          // Complete registration
+          if (currentRegistrationData) {
+            userRegistrations.push({
+              eventId: currentRegistrationData.eventId,
+              name: currentRegistrationData.name,
+              email: currentRegistrationData.email,
             });
-          });
 
-        // Close modals when clicking outside
-        document
-          .getElementById("registrationModal")
-          .addEventListener("click", function (e) {
-            if (e.target === this) {
-              closeRegistrationModal();
-            }
-          });
+            // Update participant count
+            const event = eventData.find(
+              (e) => e.id === currentRegistrationData.eventId
+            );
+            const [current, max] = event.participants.split("/");
+            event.participants = `${parseInt(current) + 1}/${max}`;
 
-        document
-          .getElementById("otpModal")
-          .addEventListener("click", function (e) {
-            if (e.target === this) {
-              closeOTPModal();
-            }
-          });
+            // Update UI
+            updateStats();
+            updateEventCard(currentRegistrationData.eventId);
 
-        // Close user menu when clicking outside
-        document.addEventListener("click", function (event) {
-          const userMenu = document.getElementById("userMenu");
-          const button = event.target.closest(
-            'button[onclick="toggleUserMenu()"]'
-          );
+            alert(
+              `Successfully registered for ${currentRegistrationData.eventTitle}!`
+            );
 
-          if (!button && !userMenu.contains(event.target)) {
-            userMenu.classList.add("hidden");
+            // Close OTP modal
+            closeOTPModal();
+
+            // Refresh the current view
+            const activeTab = document.querySelector(".event-filter.active")
+              .dataset.tab;
+            filterEvents(activeTab);
           }
-        });
+        } else {
+          alert("Invalid verification code. Please try again.");
+        }
+      }
 
-        // Auto-format OTP input
-        document
-          .getElementById("otpCode")
-          .addEventListener("input", function (e) {
-            this.value = this.value.replace(/[^0-9]/g, "");
-          });
-      </script>
-    </body>
+      // Update event card after registration
+      function updateEventCard(eventId) {
+        const eventCard = document.querySelector(
+          `[data-event-id="${eventId}"]`
+        );
+        if (!eventCard) return;
+
+        const event = eventData.find((e) => e.id === eventId);
+        const participantCountElement =
+          eventCard.querySelector(".participant-count");
+        if (participantCountElement) {
+          participantCountElement.textContent =
+            event.participants + " participants";
+        }
+
+        // Update button
+        const registerButton = eventCard.querySelector(
+          'button[onclick*="showRegistrationModal"]'
+        );
+        if (registerButton) {
+          registerButton.outerHTML = `
+      <button
+        onclick="viewMyRegistration(${eventId})"
+        class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
+        aria-label="View registration for ${event.title}"
+      >
+        View Registration
+      </button>
+    `;
+        }
+      }
+
+      // Cancel registration
+      function cancelRegistration(eventId) {
+        if (!confirm("Are you sure you want to cancel your registration?")) {
+          return;
+        }
+
+        // Remove from registrations
+        const index = userRegistrations.findIndex(
+          (reg) => reg.eventId === eventId
+        );
+        if (index !== -1) {
+          userRegistrations.splice(index, 1);
+
+          // Update participant count
+          const event = eventData.find((e) => e.id === eventId);
+          const [current, max] = event.participants.split("/");
+          event.participants = `${parseInt(current) - 1}/${max}`;
+
+          // Update UI
+          updateStats();
+          alert("Registration cancelled successfully.");
+
+          // Refresh the current view
+          const activeTab = document.querySelector(".event-filter.active")
+            .dataset.tab;
+          filterEvents(activeTab);
+        }
+      }
+
+      // Toggle mobile menu
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById("mobileMenu");
+        const hamburgerIcon = document.getElementById("hamburgerIcon");
+        const closeIcon = document.getElementById("closeIcon");
+        const menuButton = document.getElementById("mobileMenuButton");
+
+        if (mobileMenu.classList.contains("hidden")) {
+          mobileMenu.classList.remove("hidden");
+          hamburgerIcon.classList.add("hidden");
+          closeIcon.classList.remove("hidden");
+          menuButton.setAttribute("aria-expanded", "true");
+        } else {
+          mobileMenu.classList.add("hidden");
+          hamburgerIcon.classList.remove("hidden");
+          closeIcon.classList.add("hidden");
+          menuButton.setAttribute("aria-expanded", "false");
+        }
+      }
+
+      // Toggle user menu
+      function toggleUserMenu() {
+        const userMenu = document.getElementById("userMenu");
+        if (userMenu.classList.contains("hidden")) {
+          userMenu.classList.remove("hidden");
+        } else {
+          userMenu.classList.add("hidden");
+        }
+      }
+
+      // Close user menu when clicking outside
+      document.addEventListener("click", (event) => {
+        const userMenu = document.getElementById("userMenu");
+        const userMenuButton = document.getElementById("userMenuButton");
+        if (
+          userMenu &&
+          !userMenu.classList.contains("hidden") &&
+          !userMenu.contains(event.target) &&
+          !userMenuButton.contains(event.target)
+        ) {
+          userMenu.classList.add("hidden");
+        }
+      });
+
+      // Logout function
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../index.html";
+        }
+      }
+    </script>
+  </body>
 </html>
