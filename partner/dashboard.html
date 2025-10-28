@@ -33,13 +33,13 @@
             <div class="hidden md:ml-10 md:flex md:space-x-8">
               <a
                 href="dashboard.html"
-                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
               >
                 Dashboard
               </a>
               <a
                 href="job-postings.html"
-                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
               >
                 Job Postings
               </a>
@@ -49,19 +49,11 @@
               >
                 Partnerships
               </a>
-
               <a
                 href="news.html"
                 class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
               >
                 News
-              </a>
-
-              <a
-                href="profile.html"
-                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
-              >
-                Profile
               </a>
             </div>
           </div>
@@ -160,13 +152,13 @@
           >
             <a
               href="dashboard.html"
-              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+              class="text-primary bg-primary bg-opacity-10 block px-3 py-2 rounded-md text-base font-medium"
             >
               Dashboard
             </a>
             <a
               href="job-postings.html"
-              class="text-primary bg-primary bg-opacity-10 block px-3 py-2 rounded-md text-base font-medium"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
             >
               Job Postings
             </a>
@@ -181,12 +173,6 @@
               class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
             >
               News
-            </a>
-            <a
-              href="profile.html"
-              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-            >
-              Profile
             </a>
           </div>
           <div class="pt-4 pb-3 border-t border-gray-200">
@@ -311,7 +297,7 @@
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                 ></path>
               </svg>
             </div>
@@ -444,7 +430,7 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 616 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                   ></path>
                 </svg>
               </div>
@@ -682,24 +668,85 @@
     </div>
 
     <script>
+      // Mobile menu toggle function
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById("mobileMenu");
+        const hamburgerIcon = document.getElementById("hamburgerIcon");
+        const closeIcon = document.getElementById("closeIcon");
+        mobileMenu.classList.toggle("hidden");
+        hamburgerIcon.classList.toggle("hidden");
+        closeIcon.classList.toggle("hidden");
+        const button = document.querySelector('[onclick="toggleMobileMenu()"]');
+        const isExpanded = !mobileMenu.classList.contains("hidden");
+        button.setAttribute("aria-expanded", isExpanded);
+      }
+
+      // User menu toggle function
       function toggleUserMenu() {
         const menu = document.getElementById("userMenu");
         menu.classList.toggle("hidden");
       }
 
+      // Logout function
       function logout() {
         if (confirm("Are you sure you want to logout?")) {
           window.location.href = "../login.html";
         }
       }
 
-      // Close user menu when clicking outside
+      // Close menus when clicking outside
       document.addEventListener("click", function (event) {
-        const menu = document.getElementById("userMenu");
-        const button = event.target.closest("button");
+        const userMenu = document.getElementById("userMenu");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const userButton = event.target.closest(
+          'button[onclick="toggleUserMenu()"]'
+        );
+        const mobileButton = event.target.closest(
+          'button[onclick="toggleMobileMenu()"]'
+        );
 
-        if (!button || button.onclick !== toggleUserMenu) {
-          menu.classList.add("hidden");
+        if (!userButton && !userMenu.contains(event.target)) {
+          userMenu.classList.add("hidden");
+        }
+        if (
+          !mobileButton &&
+          !mobileMenu.contains(event.target) &&
+          !mobileMenu.classList.contains("hidden")
+        ) {
+          toggleMobileMenu();
+        }
+      });
+
+      // Handle window resize - close mobile menu on desktop
+      window.addEventListener("resize", function () {
+        const mobileMenu = document.getElementById("mobileMenu");
+        const hamburgerIcon = document.getElementById("hamburgerIcon");
+        const closeIcon = document.getElementById("closeIcon");
+        if (
+          window.innerWidth >= 768 &&
+          !mobileMenu.classList.contains("hidden")
+        ) {
+          mobileMenu.classList.add("hidden");
+          hamburgerIcon.classList.remove("hidden");
+          closeIcon.classList.add("hidden");
+          const button = document.querySelector(
+            '[onclick="toggleMobileMenu()"]'
+          );
+          button.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      // Handle escape key to close menus
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          const userMenu = document.getElementById("userMenu");
+          const mobileMenu = document.getElementById("mobileMenu");
+          if (!userMenu.classList.contains("hidden")) {
+            userMenu.classList.add("hidden");
+          }
+          if (!mobileMenu.classList.contains("hidden")) {
+            toggleMobileMenu();
+          }
         }
       });
     </script>
