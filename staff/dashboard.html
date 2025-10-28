@@ -1,367 +1,1129 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Dashboard - PCU-DASMA Connect</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Events - PCU-DASMA Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1E40AF',
-                        secondary: '#3B82F6',
-                        accent: '#F59E0B'
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1E40AF",
+              secondary: "#3B82F6",
+              accent: "#F59E0B",
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-gray-50">
+  </head>
+  <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class="bg-white shadow-sm border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <a href="../dashboard.html" class="text-xl font-bold text-primary">PCU-DASMA Connect</a>
-                    <div class="hidden md:ml-10 md:flex md:space-x-8">
-                        <a href="dashboard.html" class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium">Dashboard</a>
-                        <a href="events.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">Events</a>
-                        <a href="news.html" class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium">News</a>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <span class="text-sm text-gray-600"></span>
-                    <div class="relative">
-                        <button onclick="toggleUserMenu()" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
-                            <img class="h-8 w-8 rounded-full" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E" alt="Profile">
-                        </button>
-                        <div id="userMenu" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                            <div class="py-1">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Staff Profile</a>
-                                <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <!-- Logo and Desktop Navigation -->
+          <div class="flex items-center">
+            <a href="../dashboard.html" class="text-xl font-bold text-primary">
+              PCU-DASMA Connect
+            </a>
+            <!-- Desktop Navigation Menu -->
+            <div class="hidden md:ml-10 md:flex md:space-x-8">
+              <a
+                href="dashboard.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                Dashboard
+              </a>
+              <a
+                href="events.html"
+                class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
+              >
+                Events
+              </a>
+              <a
+                href="news.html"
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
+              >
+                News
+              </a>
             </div>
+          </div>
+
+          <!-- Desktop User Menu -->
+          <div class="hidden md:flex items-center space-x-4">
+            <div class="relative">
+              <button
+                onclick="toggleUserMenu()"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"
+                aria-label="Open user menu"
+                aria-haspopup="true"
+              >
+                <img
+                  class="h-8 w-8 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </button>
+              <div
+                id="userMenu"
+                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 transform transition-all duration-200"
+                role="menu"
+                aria-orientation="vertical"
+              >
+                <div class="py-1">
+                  <a
+                    href="profile.html"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
+                  >
+                    Staff Profile
+                  </a>
+                  <a
+                    href="#"
+                    onclick="logout()"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
+                  >
+                    Logout
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+            <button
+              onclick="toggleMobileMenu()"
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-all duration-200"
+              aria-label="Open main menu"
+              aria-expanded="false"
+            >
+              <svg
+                id="hamburgerIcon"
+                class="block h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <svg
+                id="closeIcon"
+                class="hidden h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
+
+        <!-- Mobile Menu -->
+        <div
+          id="mobileMenu"
+          class="md:hidden hidden transition-all duration-300 ease-in-out"
+        >
+          <div
+            class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200 bg-white"
+          >
+            <a
+              href="dashboard.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Dashboard
+            </a>
+            <a
+              href="events.html"
+              class="text-primary bg-primary bg-opacity-10 block px-3 py-2 rounded-md text-base font-medium"
+            >
+              Events
+            </a>
+            <a
+              href="news.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              News
+            </a>
+          </div>
+          <div class="pt-4 pb-3 border-t border-gray-200">
+            <div class="flex items-center px-5">
+              <div class="flex-shrink-0">
+                <img
+                  class="h-10 w-10 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </div>
+              <div class="ml-3">
+                <div class="text-base font-medium leading-none text-gray-900">
+                  Staff Account
+                </div>
+                <div
+                  class="text-sm font-medium leading-none text-gray-500 mt-1"
+                >
+                  staff@pcudasma.edu.ph
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 px-2 space-y-1">
+              <a
+                href="profile.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              >
+                Staff Profile
+              </a>
+              <a
+                href="#"
+                onclick="logout()"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              >
+                Logout
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </nav>
 
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <!-- Welcome Section -->
-        <div class="mb-8">
-            <div class="bg-gradient-to-r from-primary to-secondary text-white rounded-lg p-6">
-                <h1 class="text-2xl font-bold mb-2">Staff Dashboard</h1>
-                <p class="opacity-90">Manage events, news, and announcements for the PCU-DASMA community</p>
+      <!-- Header -->
+      <div class="flex justify-between items-center mb-8">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900">My Events</h1>
+          <p class="text-gray-600">
+            Create and manage your event proposals and submissions
+          </p>
+        </div>
+        <div class="flex space-x-3">
+          <a
+            href="new-event.html"
+            class="bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 flex items-center"
+          >
+            <svg
+              class="w-5 h-5 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+              ></path>
+            </svg>
+            Create New Event
+          </a>
+        </div>
+      </div>
+
+      <!-- Staff Info Notice -->
+      <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <svg
+              class="h-5 w-5 text-blue-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+          </div>
+          <div class="ml-3">
+            <h3 class="text-sm font-medium text-blue-800">
+              Event Submission Process
+            </h3>
+            <div class="mt-2 text-sm text-blue-700">
+              <p>
+                As a staff member, you can create event proposals that will be
+                reviewed by administrators. Once submitted, administrators will
+                review, approve, or request changes to your events.
+              </p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-blue-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600">My Total Events</p>
+              <p class="text-2xl font-semibold text-gray-900">9</p>
+            </div>
+          </div>
         </div>
 
-        <!-- Quick Stats -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <!-- My Events Stats -->
-            <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-600">My Events</p>
-                        <p class="text-2xl font-semibold text-gray-900">9</p>
-                        <p class="text-xs text-gray-500 mt-1">3 Published • 3 Pending • 1 Ongoing</p>
-                    </div>
-                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 9l2 2 4-4M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                        </svg>
-                    </div>
-                </div>
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-green-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </div>
             </div>
-
-            <!-- Total Registrations -->
-            <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-green-500">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-600">Total Registrations</p>
-                        <p class="text-2xl font-semibold text-gray-900">347</p>
-                        <p class="text-xs text-gray-500 mt-1">Across all my events</p>
-                    </div>
-                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                    </div>
-                </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600">Published</p>
+              <p class="text-2xl font-semibold text-gray-900">3</p>
             </div>
-
-            <!-- My News Articles -->
-            <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-purple-500">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-600">My News Articles</p>
-                        <p class="text-2xl font-semibold text-gray-900">12</p>
-                        <p class="text-xs text-gray-500 mt-1">8 Published • 3 Pending</p>
-                    </div>
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pending Items -->
-            <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-yellow-500">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-medium text-gray-600">Pending Items</p>
-                        <p class="text-2xl font-semibold text-gray-900">6</p>
-                        <p class="text-xs text-gray-500 mt-1">Awaiting admin review</p>
-                    </div>
-                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
-                        <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
 
-        <!-- Quick Actions & Content Sections -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-            <!-- Quick Actions -->
-            <div class="bg-white rounded-lg shadow-sm p-6">
-                <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                    <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                    </svg>
-                    Quick Actions
-                </h3>
-                <div class="space-y-3">
-                    <a href="new-event.html" class="block w-full text-left px-4 py-3 bg-primary text-white hover:bg-blue-700 rounded-lg transition-colors">
-                        <div class="flex items-center">
-                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                            </svg>
-                            Create New Event
-                        </div>
-                    </a>
-                    <a href="create-news.html" class="block w-full text-left px-4 py-3 bg-purple-600 text-white hover:bg-purple-700 rounded-lg transition-colors">
-                        <div class="flex items-center">
-                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                            </svg>
-                            Write News Article
-                        </div>
-                    </a>
-                    <a href="events.html" class="block w-full text-left px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors">
-                        <div class="flex items-center">
-                            <svg class="w-5 h-5 text-gray-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-                            </svg>
-                            Manage My Events
-                        </div>
-                    </a>
-                    <a href="news.html" class="block w-full text-left px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors">
-                        <div class="flex items-center">
-                            <svg class="w-5 h-5 text-gray-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
-                            </svg>
-                            Manage My News
-                        </div>
-                    </a>
-                </div>
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-yellow-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </div>
             </div>
-
-            <!-- My Upcoming Events -->
-            <div class="bg-white rounded-lg shadow-sm p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-semibold text-gray-900 flex items-center">
-                        <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                        </svg>
-                        My Upcoming Events
-                    </h3>
-                    <a href="events.html" class="text-sm text-primary hover:underline">View all</a>
-                </div>
-                <div class="space-y-3">
-                    <div class="p-3 bg-orange-50 rounded-lg border-l-4 border-orange-500">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs font-medium rounded-full">Happening Now</span>
-                            <span class="text-xs text-gray-500">Nov 5, 9:00 AM</span>
-                        </div>
-                        <h4 class="text-sm font-semibold text-gray-900">AI in Education Seminar</h4>
-                        <p class="text-xs text-gray-600 mt-1">53 checked in • Hybrid Event</p>
-                        <a href="view-ongoing-event-details.html" class="text-orange-600 hover:text-orange-800 text-sm font-medium mt-2 inline-block">Manage Live →</a>
-                    </div>
-
-                    <div class="p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Published</span>
-                            <span class="text-xs text-gray-500">Nov 20, 1:00 PM</span>
-                        </div>
-                        <h4 class="text-sm font-semibold text-gray-900">Cybersecurity Awareness Workshop</h4>
-                        <p class="text-xs text-gray-600 mt-1">35 registered • In-Person</p>
-                        <a href="view-published-event-details.html" class="text-blue-600 hover:text-blue-800 text-sm font-medium mt-2 inline-block">View Details →</a>
-                    </div>
-
-                    <div class="p-3 bg-yellow-50 rounded-lg border-l-4 border-yellow-500">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">Pending</span>
-                            <span class="text-xs text-gray-500">Dec 10, 9:00 AM</span>
-                        </div>
-                        <h4 class="text-sm font-semibold text-gray-900">Virtual Tech Career Fair 2025</h4>
-                        <p class="text-xs text-gray-600 mt-1">Under admin review • Virtual</p>
-                        <a href="view-pending-event-details.html" class="text-yellow-600 hover:text-yellow-800 text-sm font-medium mt-2 inline-block">View Status →</a>
-                    </div>
-                </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600">Pending</p>
+              <p class="text-2xl font-semibold text-gray-900">3</p>
             </div>
-
-            <!-- Recent Activity -->
-            <div class="bg-white rounded-lg shadow-sm p-6">
-                <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                    <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    Recent Activity
-                </h3>
-                <div class="space-y-4">
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                        <div class="ml-3">
-                            <p class="text-sm font-medium text-gray-900">New registration</p>
-                            <p class="text-xs text-gray-600">Juan Dela Cruz registered for AI Seminar</p>
-                            <p class="text-xs text-gray-400">2 minutes ago</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-                        <div class="ml-3">
-                            <p class="text-sm font-medium text-gray-900">Event approved</p>
-                            <p class="text-xs text-gray-600">Digital Marketing Workshop approved by admin</p>
-                            <p class="text-xs text-gray-400">1 hour ago</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
-                        <div class="ml-3">
-                            <p class="text-sm font-medium text-gray-900">News published</p>
-                            <p class="text-xs text-gray-600">Your article "New IT Laboratory Opens" is live</p>
-                            <p class="text-xs text-gray-400">3 hours ago</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 w-2 h-2 bg-yellow-500 rounded-full mt-2"></div>
-                        <div class="ml-3">
-                            <p class="text-sm font-medium text-gray-900">Event feedback</p>
-                            <p class="text-xs text-gray-600">International Food Festival requires changes</p>
-                            <p class="text-xs text-gray-400">5 hours ago</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 w-2 h-2 bg-red-500 rounded-full mt-2"></div>
-                        <div class="ml-3">
-                            <p class="text-sm font-medium text-gray-900">Registration cancelled</p>
-                            <p class="text-xs text-gray-600">Anna Cruz cancelled Cybersecurity Workshop</p>
-                            <p class="text-xs text-gray-400">6 hours ago</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
 
-        <!-- My Recent News Articles -->
-        <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-lg font-semibold text-gray-900 flex items-center">
-                    <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
-                    </svg>
-                    My Recent News Articles
-                </h3>
-                <a href="news.html" class="text-sm text-primary hover:underline">View all</a>
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div
+                class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-red-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
+                  ></path>
+                </svg>
+              </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Published Article -->
-                <div class="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
-                    <div class="h-40 bg-gradient-to-br from-blue-400 to-blue-600"></div>
-                    <div class="p-4">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Published</span>
-                            <span class="text-xs text-gray-500">Oct 15, 2025</span>
-                        </div>
-                        <h4 class="font-semibold text-gray-900 mb-2 line-clamp-2">New IT Laboratory Opens at PCU Dasmariñas</h4>
-                        <p class="text-xs text-gray-600 mb-3 line-clamp-2">State-of-the-art facility features 50 workstations and latest technology...</p>
-                        <a href="view-news-details.html" class="text-primary hover:underline text-sm font-medium">Read more →</a>
-                    </div>
-                </div>
-
-                <!-- Pending Article -->
-                <div class="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
-                    <div class="h-40 bg-gradient-to-br from-yellow-400 to-yellow-600"></div>
-                    <div class="p-4">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">Pending</span>
-                            <span class="text-xs text-gray-500">Oct 18, 2025</span>
-                        </div>
-                        <h4 class="font-semibold text-gray-900 mb-2 line-clamp-2">Alumni Success Stories: Tech Industry Leaders</h4>
-                        <p class="text-xs text-gray-600 mb-3 line-clamp-2">Featuring interviews with successful PCU alumni working in Silicon Valley...</p>
-                        <a href="edit-news.html" class="text-yellow-600 hover:underline text-sm font-medium">Edit draft →</a>
-                    </div>
-                </div>
-
-                <!-- Draft Article -->
-                <div class="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
-                    <div class="h-40 bg-gradient-to-br from-gray-400 to-gray-600"></div>
-                    <div class="p-4">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs font-medium rounded-full">Draft</span>
-                            <span class="text-xs text-gray-500">Oct 19, 2025</span>
-                        </div>
-                        <h4 class="font-semibold text-gray-900 mb-2 line-clamp-2">Upcoming Scholarship Opportunities for 2026</h4>
-                        <p class="text-xs text-gray-600 mb-3 line-clamp-2">Complete guide to available scholarships and application deadlines...</p>
-                        <a href="edit-news.html" class="text-gray-600 hover:underline text-sm font-medium">Continue editing →</a>
-                    </div>
-                </div>
+            <div class="ml-4">
+              <p class="text-sm font-medium text-gray-600">Rejected</p>
+              <p class="text-2xl font-semibold text-gray-900">1</p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filters and Search -->
+      <div class="bg-white rounded-lg shadow-sm mb-6">
+        <div class="p-6">
+          <div
+            class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0"
+          >
+            <!-- Search Bar -->
+            <div class="flex-1 max-w-lg">
+              <div class="relative">
+                <div
+                  class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                >
+                  <svg
+                    class="h-5 w-5 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  id="searchEvents"
+                  placeholder="Search my events by title or description..."
+                  class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary focus:border-primary"
+                />
+              </div>
+            </div>
+
+            <!-- Filter Dropdowns -->
+            <div class="flex space-x-3">
+              <select
+                id="statusFilter"
+                class="block px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-primary focus:border-primary"
+              >
+                <option value="">All Status</option>
+                <option value="under_review">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="published">Published</option>
+                <option value="ongoing">Ongoing</option>
+                <option value="rejected">Rejected</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="mb-8">
+        <div class="border-b border-gray-200">
+          <nav class="-mb-px flex space-x-8 overflow-x-auto">
+            <button
+              onclick="filterEvents('all')"
+              class="event-filter active border-b-2 border-primary text-primary py-2 px-1 text-sm font-medium whitespace-nowrap"
+            >
+              All My Events (9)
+            </button>
+            <button
+              onclick="filterEvents('under_review')"
+              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium whitespace-nowrap"
+            >
+              Pending (3)
+            </button>
+            <button
+              onclick="filterEvents('approved')"
+              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium whitespace-nowrap"
+            >
+              Approved (1)
+            </button>
+            <button
+              onclick="filterEvents('published')"
+              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium whitespace-nowrap"
+            >
+              Published (2)
+            </button>
+            <button
+              onclick="filterEvents('ongoing')"
+              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium whitespace-nowrap"
+            >
+              Ongoing (1)
+            </button>
+            <button
+              onclick="filterEvents('rejected')"
+              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium whitespace-nowrap"
+            >
+              Rejected (1)
+            </button>
+            <button
+              onclick="filterEvents('completed')"
+              class="event-filter border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium whitespace-nowrap"
+            >
+              Completed (1)
+            </button>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Events List -->
+      <div class="space-y-6" id="eventsList">
+        <!-- Pending Event Example -->
+        <div
+          class="event-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-yellow-500"
+          data-status="under_review"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-3">
+                <span
+                  class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Under Admin Review</span
+                >
+                <span class="text-sm text-gray-500"
+                  >Submitted October 12, 2025</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Virtual Tech Career Fair 2025
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Connect students and alumni with 40+ leading tech companies.
+                Virtual networking sessions, company presentations, and
+                one-on-one interviews. Currently pending administrator approval.
+              </p>
+              <div
+                class="bg-yellow-50 p-3 rounded-lg mb-4 border border-yellow-200"
+              >
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-yellow-600 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  <span class="text-yellow-800 text-sm">
+                    <strong>Review Status:</strong> Event submitted for
+                    administrator approval. Expected review completion by
+                    October 19, 2025.
+                  </span>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                  >Career Development</span
+                >
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                  >Tech Industry</span
+                >
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                  >Virtual</span
+                >
+              </div>
+            </div>
+            <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+              <a
+                href="view-pending-event-details.html"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700 text-center"
+              >
+                View Details
+              </a>
+              <button
+                onclick="withdrawSubmission(2)"
+                class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-md hover:bg-gray-50"
+              >
+                Withdraw Submission
+              </button>
+            </div>
+          </div>
         </div>
 
+        <!-- Approved Event Example -->
+        <div
+          class="event-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-green-400"
+          data-status="approved"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-3">
+                <span
+                  class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Approved</span
+                >
+                <span class="text-sm text-gray-500"
+                  >Approved October 11, 2025</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Digital Marketing Mastery Workshop Series
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Successfully approved! 4-week workshop series covering modern
+                digital marketing strategies.
+              </p>
+              <div
+                class="bg-green-50 p-3 rounded-lg mb-4 border border-green-200"
+              >
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-green-600 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  <span class="text-green-800 text-sm">
+                    <strong>Event Status:</strong> Approved and ready to
+                    publish. No registrations yet.
+                  </span>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                  >Marketing</span
+                >
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                  >Professional Development</span
+                >
+                <span
+                  class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded"
+                  >Certificate Program</span
+                >
+              </div>
+            </div>
+            <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+              <a
+                href="view-approved-event-details.html"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700 text-center"
+              >
+                View Details
+              </a>
+              <button
+                onclick="publishEvent(4)"
+                class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700"
+              >
+                Publish Event
+              </button>
+            </div>
+          </div>
+        </div>
 
+        <!-- Published Event Example -->
+        <div
+          class="event-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-blue-500"
+          data-status="published"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-3">
+                <span
+                  class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Published</span
+                >
+                <span class="text-sm text-gray-500"
+                  >Published October 9, 2025</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Cybersecurity Awareness Workshop
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Workshop on cybersecurity best practices and threat detection.
+                Event scheduled for November 20, 2025.
+              </p>
+              <div
+                class="bg-blue-50 p-3 rounded-lg mb-4 border border-blue-200"
+              >
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-blue-600 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  <span class="text-blue-800 text-sm">
+                    <strong>Event Status:</strong> Published and accepting
+                    registrations. 35 confirmed.
+                  </span>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >Cybersecurity</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >Technology</span
+                >
+                <span
+                  class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"
+                  >Training</span
+                >
+              </div>
+            </div>
+            <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+              <a
+                href="view-published-event-details.html"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700 text-center"
+              >
+                View Details
+              </a>
+              <a
+                href="manage-registrations.html"
+                class="px-4 py-2 border border-green-300 text-green-700 text-sm rounded-md hover:bg-green-50 text-center"
+              >
+                Manage Registrations
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ongoing Event Example -->
+        <div
+          class="event-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-orange-500"
+          data-status="ongoing"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-3">
+                <span
+                  class="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs mr-3 animate-pulse"
+                  >Happening Now</span
+                >
+                <span class="text-sm text-gray-500">Event Date: Today</span>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                AI in Education Seminar
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Seminar on integrating AI tools in educational practices. Event
+                is currently in progress with live attendance tracking.
+              </p>
+              <div
+                class="bg-orange-50 p-3 rounded-lg mb-4 border border-orange-200"
+              >
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-orange-600 mr-2 animate-pulse"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  <span class="text-orange-800 text-sm">
+                    <strong>Live Event:</strong> Currently happening. 53 checked
+                    in (45 pre-registered + 8 walk-ins).
+                  </span>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded"
+                  >AI</span
+                >
+                <span
+                  class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded"
+                  >Education</span
+                >
+                <span
+                  class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded"
+                  >Seminar</span
+                >
+              </div>
+            </div>
+            <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+              <a
+                href="view-ongoing-event-details.html"
+                class="px-4 py-2 bg-orange-600 text-white text-sm rounded-md hover:bg-orange-700 text-center"
+              >
+                View Details
+              </a>
+              <a
+                href="manage-attendance.html"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700 text-center"
+              >
+                Manage Attendance
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rejected Event Example -->
+        <div
+          class="event-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-red-500"
+          data-status="rejected"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-3">
+                <span
+                  class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Rejected</span
+                >
+                <span class="text-sm text-gray-500"
+                  >Rejected October 8, 2025</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                International Food Festival
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Proposed multi-cultural food festival featuring international
+                cuisines from student communities. Unfortunately rejected due to
+                logistical concerns and scheduling conflicts.
+              </p>
+              <div class="bg-red-50 p-3 rounded-lg mb-4 border border-red-200">
+                <div class="flex items-start">
+                  <svg
+                    class="w-4 h-4 text-red-600 mr-2 mt-0.5 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+                    ></path>
+                  </svg>
+                  <div class="text-red-800 text-sm">
+                    <strong>Rejection Reason:</strong><br />
+                    • Scheduling conflict with Homecoming Week activities<br />
+                    • Insufficient lead time for vendor coordination and
+                    permits<br />
+                    • Lack of detailed safety and sanitation protocols<br />
+                    <em
+                      >Consider resubmitting for next semester with adjusted
+                      scope and timeline.</em
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded"
+                  >Food Festival</span
+                >
+                <span
+                  class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded"
+                  >Cultural</span
+                >
+                <span
+                  class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded"
+                  >Student Life</span
+                >
+              </div>
+            </div>
+            <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+              <a
+                href="view-rejected-event-details.html"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700 text-center"
+              >
+                View Details
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completed Event Example -->
+        <div
+          class="event-card bg-white rounded-lg shadow-sm p-6 border-l-4 border-gray-500"
+          data-status="completed"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="flex-1">
+              <div class="flex items-center mb-3">
+                <span
+                  class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs mr-3"
+                  >Completed</span
+                >
+                <span class="text-sm text-gray-500"
+                  >Completed October 5, 2025</span
+                >
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Cybersecurity Awareness Workshop
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Successfully completed workshop on cybersecurity. Great turnout
+                with 78 attendees. Excellent feedback received.
+              </p>
+              <div
+                class="bg-gray-50 p-3 rounded-lg mb-4 border border-gray-200"
+              >
+                <div class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-gray-600 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  <span class="text-gray-800 text-sm">
+                <strong>Event Completed Successfully:</strong> 78 attendees
+                • 4.8/5 rating • 95% attendance rate
+                  </span>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded"
+                  >Cybersecurity</span
+                >
+                <span
+                  class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded"
+                  >Workshop</span
+                >
+                <span
+                  class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded"
+                  >Training</span
+                >
+              </div>
+            </div>
+            <div class="ml-6 flex flex-col space-y-2 min-w-0 flex-shrink-0">
+              <a
+                href="view-completed-event-details.html"
+                class="px-4 py-2 bg-primary text-white text-sm rounded-md hover:bg-blue-700 text-center"
+              >
+                View Details
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="mt-8 flex justify-center">
+        <nav class="flex items-center space-x-2">
+          <button
+            class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-500 rounded-md"
+          >
+            Previous
+          </button>
+          <button class="px-3 py-1 text-sm bg-primary text-white rounded-md">
+            1
+          </button>
+          <button
+            class="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+          >
+            Next
+          </button>
+        </nav>
+      </div>
     </div>
 
     <script>
-        function toggleUserMenu() {
-            const menu = document.getElementById('userMenu');
-            menu.classList.toggle('hidden');
-        }
+      // Mobile menu toggle
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const hamburgerIcon = document.getElementById('hamburgerIcon');
+        const closeIcon = document.getElementById('closeIcon');
+        mobileMenu.classList.toggle('hidden');
+        hamburgerIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+        const button = document.querySelector('[onclick="toggleMobileMenu()"]');
+        const isExpanded = !mobileMenu.classList.contains('hidden');
+        button.setAttribute('aria-expanded', isExpanded);
+      }
 
-        function logout() {
-            if (confirm('Are you sure you want to logout?')) {
-                window.location.href = '../login.html';
-            }
-        }
+      // User menu toggle
+      function toggleUserMenu() {
+        const menu = document.getElementById('userMenu');
+        menu.classList.toggle('hidden');
+      }
 
-        function createEvent() {
-            window.location.href = 'new-event.html';
+      // Logout
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
         }
+      }
 
-        function viewEvent(eventId) {
-            window.location.href = `event-details.html?id=${eventId}`;
+      // Click outside to close menus
+      document.addEventListener('click', function (event) {
+        const userMenu = document.getElementById('userMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const userButton = event.target.closest('button[onclick="toggleUserMenu()"]');
+        const mobileButton = event.target.closest('button[onclick="toggleMobileMenu()"]');
+
+        if (!userButton && !userMenu.contains(event.target)) {
+          userMenu.classList.add('hidden');
         }
+        if (!mobileButton && !mobileMenu.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
+          toggleMobileMenu();
+        }
+      });
 
-        // Close user menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('userMenu');
-            const button = event.target.closest('button');
-            
-            if (!button || button.onclick !== toggleUserMenu) {
-                menu.classList.add('hidden');
-            }
+      // Close mobile menu on resize to desktop
+      window.addEventListener('resize', function() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const hamburgerIcon = document.getElementById('hamburgerIcon');
+        const closeIcon = document.getElementById('closeIcon');
+        if (window.innerWidth >= 768 && !mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+          hamburgerIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+          const button = document.querySelector('[onclick="toggleMobileMenu()"]');
+          button.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // ESC key to close menus
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+          const userMenu = document.getElementById('userMenu');
+          const mobileMenu = document.getElementById('mobileMenu');
+          if (!userMenu.classList.contains('hidden')) {
+            userMenu.classList.add('hidden');
+          }
+          if (!mobileMenu.classList.contains('hidden')) {
+            toggleMobileMenu();
+          }
+        }
+      });
+
+      // Filter events
+      function filterEvents(status) {
+        document.querySelectorAll(".event-filter").forEach((filter) => {
+          filter.classList.remove("active", "border-primary", "text-primary");
+          filter.classList.add("border-transparent", "text-gray-500");
         });
+
+        const activeBtn = Array.from(document.querySelectorAll(".event-filter")).find(
+          btn => btn.getAttribute("onclick").includes(`'${status}'`)
+        );
+        if (activeBtn) {
+          activeBtn.classList.add("active", "border-primary", "text-primary");
+          activeBtn.classList.remove("border-transparent", "text-gray-500");
+        }
+
+        document.querySelectorAll(".event-card").forEach((card) => {
+          if (status === "all" || card.dataset.status === status) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+
+      // Pending event actions
+      function withdrawSubmission(eventId) {
+        if (
+          confirm(
+            "Withdraw this event from admin review? It will return to draft status."
+          )
+        ) {
+          alert(
+            `Event #${eventId} withdrawn from review. Returned to draft status.`
+          );
+          location.reload();
+        }
+      }
+
+      // Approved event actions
+      function publishEvent(eventId) {
+        if (
+          confirm(
+            "Publish this approved event? It will become visible to students."
+          )
+        ) {
+          alert(`Event #${eventId} published successfully!`);
+          location.reload();
+        }
+      }
+
+      // Search functionality
+      document
+        .getElementById("searchEvents")
+        .addEventListener("input", function (e) {
+          const searchTerm = e.target.value.toLowerCase();
+          document.querySelectorAll(".event-card").forEach((card) => {
+            const title = card.querySelector("h3").textContent.toLowerCase();
+            const description = card
+              .querySelector("p")
+              .textContent.toLowerCase();
+            if (
+              title.includes(searchTerm) ||
+              description.includes(searchTerm)
+            ) {
+              card.style.display = "block";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+
+      // Status filter dropdown
+      document
+        .getElementById("statusFilter")
+        .addEventListener("change", function (e) {
+          const status = e.target.value;
+          filterEvents(status || "all");
+        });
+
+      // Initial filter
+      filterEvents("all");
     </script>
-</body>
+  </body>
 </html>

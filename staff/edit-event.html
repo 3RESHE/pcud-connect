@@ -24,34 +24,42 @@
     <nav class="bg-white shadow-sm border-b">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
+          <!-- Logo and Desktop Navigation -->
           <div class="flex items-center">
-            <a href="../dashboard.html" class="text-xl font-bold text-primary"
-              >PCU-DASMA Connect</a
-            >
+            <a href="../dashboard.html" class="text-xl font-bold text-primary">
+              PCU-DASMA Connect
+            </a>
+            <!-- Desktop Navigation Menu -->
             <div class="hidden md:ml-10 md:flex md:space-x-8">
               <a
                 href="dashboard.html"
-                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
-                >Dashboard</a
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
               >
+                Dashboard
+              </a>
               <a
                 href="events.html"
                 class="text-primary border-b-2 border-primary px-1 pt-1 pb-4 text-sm font-medium"
-                >Events</a
               >
+                Events
+              </a>
               <a
                 href="news.html"
-                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium"
-                >News</a
+                class="text-gray-700 hover:text-primary px-1 pt-1 pb-4 text-sm font-medium transition-colors duration-200"
               >
+                News
+              </a>
             </div>
           </div>
-          <div class="flex items-center space-x-4">
-            <span class="text-sm text-gray-600"></span>
+
+          <!-- Desktop User Menu -->
+          <div class="hidden md:flex items-center space-x-4">
             <div class="relative">
               <button
                 onclick="toggleUserMenu()"
-                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary"
+                class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"
+                aria-label="Open user menu"
+                aria-haspopup="true"
               >
                 <img
                   class="h-8 w-8 rounded-full"
@@ -61,22 +69,134 @@
               </button>
               <div
                 id="userMenu"
-                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 transform transition-all duration-200"
+                role="menu"
+                aria-orientation="vertical"
               >
                 <div class="py-1">
                   <a
-                    href="#"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >Staff Profile</a
+                    href="profile.html"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
                   >
+                    Staff Profile
+                  </a>
                   <a
                     href="#"
                     onclick="logout()"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >Logout</a
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    role="menuitem"
                   >
+                    Logout
+                  </a>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center">
+            <button
+              onclick="toggleMobileMenu()"
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-all duration-200"
+              aria-label="Open main menu"
+              aria-expanded="false"
+            >
+              <svg
+                id="hamburgerIcon"
+                class="block h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <svg
+                id="closeIcon"
+                class="hidden h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div
+          id="mobileMenu"
+          class="md:hidden hidden transition-all duration-300 ease-in-out"
+        >
+          <div
+            class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200 bg-white"
+          >
+            <a
+              href="dashboard.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              Dashboard
+            </a>
+            <a
+              href="events.html"
+              class="text-primary bg-primary bg-opacity-10 block px-3 py-2 rounded-md text-base font-medium"
+            >
+              Events
+            </a>
+            <a
+              href="news.html"
+              class="text-gray-700 hover:text-primary hover:bg-gray-100 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              News
+            </a>
+          </div>
+          <div class="pt-4 pb-3 border-t border-gray-200">
+            <div class="flex items-center px-5">
+              <div class="flex-shrink-0">
+                <img
+                  class="h-10 w-10 rounded-full"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23374151' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E"
+                  alt="Profile"
+                />
+              </div>
+              <div class="ml-3">
+                <div class="text-base font-medium leading-none text-gray-900">
+                  Staff Account
+                </div>
+                <div
+                  class="text-sm font-medium leading-none text-gray-500 mt-1"
+                >
+                  staff@pcudasma.edu.ph
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 px-2 space-y-1">
+              <a
+                href="profile.html"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              >
+                Staff Profile
+              </a>
+              <a
+                href="#"
+                onclick="logout()"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+              >
+                Logout
+              </a>
             </div>
           </div>
         </div>
@@ -907,6 +1027,76 @@
     </div>
 
     <script>
+      // Mobile menu toggle
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const hamburgerIcon = document.getElementById('hamburgerIcon');
+        const closeIcon = document.getElementById('closeIcon');
+        mobileMenu.classList.toggle('hidden');
+        hamburgerIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+        const button = document.querySelector('[onclick="toggleMobileMenu()"]');
+        const isExpanded = !mobileMenu.classList.contains('hidden');
+        button.setAttribute('aria-expanded', isExpanded);
+      }
+
+      // User menu toggle
+      function toggleUserMenu() {
+        const menu = document.getElementById('userMenu');
+        menu.classList.toggle('hidden');
+      }
+
+      // Logout
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          window.location.href = "../login.html";
+        }
+      }
+
+      // Click outside to close menus
+      document.addEventListener('click', function (event) {
+        const userMenu = document.getElementById('userMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const userButton = event.target.closest('button[onclick="toggleUserMenu()"]');
+        const mobileButton = event.target.closest('button[onclick="toggleMobileMenu()"]');
+
+        if (!userButton && !userMenu.contains(event.target)) {
+          userMenu.classList.add('hidden');
+        }
+        if (!mobileButton && !mobileMenu.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
+          toggleMobileMenu();
+        }
+      });
+
+      // Close mobile menu on resize to desktop
+      window.addEventListener('resize', function() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const hamburgerIcon = document.getElementById('hamburgerIcon');
+        const closeIcon = document.getElementById('closeIcon');
+        if (window.innerWidth >= 768 && !mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+          hamburgerIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+          const button = document.querySelector('[onclick="toggleMobileMenu()"]');
+          button.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // ESC key to close menus
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+          const userMenu = document.getElementById('userMenu');
+          const mobileMenu = document.getElementById('mobileMenu');
+          if (!userMenu.classList.contains('hidden')) {
+            userMenu.classList.add('hidden');
+          }
+          if (!mobileMenu.classList.contains('hidden')) {
+            toggleMobileMenu();
+          }
+        }
+      });
+
+      // === All original form logic below (unchanged) ===
       let eventImageURL = null;
 
       const formatLabels = {
@@ -921,22 +1111,9 @@
         openforall: "Open for All",
       };
 
-      function toggleUserMenu() {
-        const menu = document.getElementById("userMenu");
-        menu.classList.toggle("hidden");
-      }
-
-      function logout() {
-        if (confirm("Are you sure you want to logout?")) {
-          window.location.href = "../login.html";
-        }
-      }
-
       function toggleUniLocationFields() {
         const eventFormat = document.getElementById("uni_event_format").value;
-        const inPersonLocation = document.getElementById(
-          "uni_in_person_location"
-        );
+        const inPersonLocation = document.getElementById("uni_in_person_location");
         const virtualLocation = document.getElementById("uni_virtual_location");
         const uniVenueName = document.getElementById("uni_venue_name");
         const uniVenueCapacity = document.getElementById("uni_venue_capacity");
@@ -973,9 +1150,7 @@
 
       function toggleCustomPlatform() {
         const platform = document.getElementById("uni_platform").value;
-        const customField = document.getElementById(
-          "uni_custom_platform_field"
-        );
+        const customField = document.getElementById("uni_custom_platform_field");
         const customInput = document.getElementById("uni_custom_platform");
 
         if (platform === "other") {
@@ -1001,12 +1176,8 @@
       }
 
       function toggleUniRegistrationFields() {
-        const registrationRequired = document.getElementById(
-          "uni_registration_required"
-        );
-        const registrationFields = document.getElementById(
-          "uni_registration_fields"
-        );
+        const registrationRequired = document.getElementById("uni_registration_required");
+        const registrationFields = document.getElementById("uni_registration_fields");
 
         if (registrationRequired.checked) {
           registrationFields.classList.remove("hidden");
@@ -1016,12 +1187,8 @@
       }
 
       function toggleUniDepartmentSelection() {
-        const selectedAudience = document.querySelector(
-          'input[name="uni_targetaudience"]:checked'
-        )?.value;
-        const departmentSelection = document.getElementById(
-          "uni_departmentselection"
-        );
+        const selectedAudience = document.querySelector('input[name="uni_targetaudience"]:checked')?.value;
+        const departmentSelection = document.getElementById("uni_departmentselection");
 
         if (selectedAudience === "allstudents") {
           departmentSelection.classList.remove("hidden");
@@ -1034,9 +1201,7 @@
 
       function toggleUniAllDepartments() {
         const selectAll = document.getElementById("uni_selectalldepartments");
-        const departmentCheckboxes = document.querySelectorAll(
-          ".uni-department-checkbox"
-        );
+        const departmentCheckboxes = document.querySelectorAll(".uni-department-checkbox");
 
         departmentCheckboxes.forEach((checkbox) => {
           checkbox.checked = selectAll.checked;
@@ -1044,44 +1209,31 @@
       }
 
       function updateUniSelectAllState() {
-        const departmentCheckboxes = document.querySelectorAll(
-          ".uni-department-checkbox"
-        );
+        const departmentCheckboxes = document.querySelectorAll(".uni-department-checkbox");
         const selectAll = document.getElementById("uni_selectalldepartments");
-        const checkedCount = document.querySelectorAll(
-          ".uni-department-checkbox:checked"
-        ).length;
+        const checkedCount = document.querySelectorAll(".uni-department-checkbox:checked").length;
 
         selectAll.checked = checkedCount === departmentCheckboxes.length;
-        selectAll.indeterminate =
-          checkedCount > 0 && checkedCount < departmentCheckboxes.length;
+        selectAll.indeterminate = checkedCount > 0 && checkedCount < departmentCheckboxes.length;
       }
 
       function updateUniDepartmentValidation(required) {
-        const departmentCheckboxes = document.querySelectorAll(
-          ".uni-department-checkbox"
-        );
+        const departmentCheckboxes = document.querySelectorAll(".uni-department-checkbox");
         departmentCheckboxes.forEach((checkbox) => {
           checkbox.required = required;
         });
       }
 
       function saveDraft() {
-        if (
-          confirm("Save this event as draft? You can continue editing later.")
-        ) {
-          alert(
-            "Event saved as draft successfully! You can find it in your events list."
-          );
+        if (confirm("Save this event as draft? You can continue editing later.")) {
+          alert("Event saved as draft successfully! You can find it in your events list.");
           window.location.href = "events.html";
         }
       }
 
       function previewEvent() {
         const title = document.getElementById("uni_event_title").value;
-        const description = document.getElementById(
-          "uni_event_description"
-        ).value;
+        const description = document.getElementById("uni_event_description").value;
         const formatValue = document.getElementById("uni_event_format").value;
         const eventDate = document.getElementById("uni_event_date").value;
         const multiDay = document.getElementById("uni_multi_day").checked;
@@ -1089,29 +1241,14 @@
         const startTime = document.getElementById("uni_start_time").value;
         const endTime = document.getElementById("uni_end_time").value;
         const venueName = document.getElementById("uni_venue_name").value;
-        const maxAttendees =
-          document.getElementById("uni_max_attendees").value || "Unlimited";
-        const registrationRequired = document.getElementById(
-          "uni_registration_required"
-        ).checked;
-        const registrationDeadline = document.getElementById(
-          "uni_registration_deadline"
-        ).value;
+        const maxAttendees = document.getElementById("uni_max_attendees").value || "Unlimited";
+        const registrationRequired = document.getElementById("uni_registration_required").checked;
+        const registrationDeadline = document.getElementById("uni_registration_deadline").value;
         const platform = document.getElementById("uni_platform").value;
-        const customPlatform =
-          document.getElementById("uni_custom_platform")?.value || "";
-        const platformDisplay =
-          platform === "other" ? customPlatform : platform;
+        const customPlatform = document.getElementById("uni_custom_platform")?.value || "";
+        const platformDisplay = platform === "other" ? customPlatform : platform;
 
-        // Basic required fields check
-        if (
-          !title ||
-          !description ||
-          !formatValue ||
-          !eventDate ||
-          !startTime ||
-          !endTime
-        ) {
+        if (!title || !description || !formatValue || !eventDate || !startTime || !endTime) {
           alert("Please fill in all required fields before previewing.");
           return;
         }
@@ -1121,10 +1258,7 @@
           return;
         }
 
-        if (
-          (formatValue === "virtual" || formatValue === "hybrid") &&
-          !platform
-        ) {
+        if ((formatValue === "virtual" || formatValue === "hybrid") && !platform) {
           alert("Please select a platform for virtual or hybrid events.");
           return;
         }
@@ -1134,10 +1268,7 @@
           return;
         }
 
-        // Target audience validation
-        const targetAudience = document.querySelector(
-          'input[name="uni_targetaudience"]:checked'
-        );
+        const targetAudience = document.querySelector('input[name="uni_targetaudience"]:checked');
         if (!targetAudience) {
           alert("Please select a target audience.");
           return;
@@ -1145,55 +1276,31 @@
 
         const selectedAudience = targetAudience.value;
         if (selectedAudience === "allstudents") {
-          const selectedDepartments = document.querySelectorAll(
-            'input[name="uni_departments"]:checked'
-          );
+          const selectedDepartments = document.querySelectorAll('input[name="uni_departments"]:checked');
           if (selectedDepartments.length === 0) {
-            alert(
-              "Please select at least one department for the target audience."
-            );
+            alert("Please select at least one department for the target audience.");
             return;
           }
         }
 
-        // Optional: Check registration deadline logic
-        if (
-          registrationRequired &&
-          registrationDeadline &&
-          new Date(registrationDeadline) >= new Date(eventDate)
-        ) {
-          alert(
-            "Warning: Registration deadline should be before the event date."
-          );
+        if (registrationRequired && registrationDeadline && new Date(registrationDeadline) >= new Date(eventDate)) {
+          alert("Warning: Registration deadline should be before the event date.");
         }
 
-        // Build preview content
-        let imageHtml = eventImageURL
-          ? `<img src="${eventImageURL}" alt="Event Banner" class="w-full h-64 object-cover rounded-lg mb-4">`
-          : "";
+        let imageHtml = eventImageURL ? `<img src="${eventImageURL}" alt="Event Banner" class="w-full h-64 object-cover rounded-lg mb-4">` : "";
         let dateDisplay = new Date(eventDate).toLocaleDateString();
         if (multiDay && endDateValue) {
           dateDisplay += ` - ${new Date(endDateValue).toLocaleDateString()}`;
         }
 
-        // Gather target audience details
-        let audienceHtml = `<h3 class="font-semibold text-gray-900 mb-2">Target Audience</h3><p class="text-gray-700">${
-          audienceLabels[selectedAudience] || selectedAudience
-        }</p>`;
+        let audienceHtml = `<h3 class="font-semibold text-gray-900 mb-2">Target Audience</h3><p class="text-gray-700">${audienceLabels[selectedAudience] || selectedAudience}</p>`;
         if (selectedAudience === "allstudents") {
-          const selectedDepartments = Array.from(
-            document.querySelectorAll('input[name="uni_departments"]:checked')
-          ).map((cb) =>
-            cb.value
-              .replace(/collegeof/g, "College of ")
-              .replace(/and/g, " and ")
+          const selectedDepartments = Array.from(document.querySelectorAll('input[name="uni_departments"]:checked')).map(cb =>
+            cb.value.replace(/collegeof/g, "College of ").replace(/and/g, " and ")
           );
-          audienceHtml += `<ul class="list-disc ml-5 text-gray-700"><li>${selectedDepartments.join(
-            "</li><li>"
-          )}</li></ul>`;
+          audienceHtml += `<ul class="list-disc ml-5 text-gray-700"><li>${selectedDepartments.join("</li><li>")}</li></ul>`;
         }
 
-        // Platform in venue if virtual/hybrid
         let venueDisplay = venueName || "Virtual Event";
         if (formatValue === "virtual" || formatValue === "hybrid") {
           venueDisplay += ` (Platform: ${platformDisplay || platform})`;
@@ -1204,9 +1311,7 @@
             ${imageHtml}
             <div>
               <div class="flex items-center mb-2">
-                <span class="px-2 py-1 rounded-full text-xs mr-2 bg-blue-100 text-blue-800">${
-                  formatLabels[formatValue] || formatValue
-                }</span>
+                <span class="px-2 py-1 rounded-full text-xs mr-2 bg-blue-100 text-blue-800">${formatLabels[formatValue] || formatValue}</span>
                 <span class="px-2 py-1 rounded-full text-xs mr-2 bg-orange-100 text-orange-800">University Event</span>
                 <span class="px-2 py-1 rounded-full text-xs mr-2 bg-yellow-100 text-yellow-800">Pending Admin Review</span>
               </div>
@@ -1231,7 +1336,6 @@
           </div>
         `;
         document.getElementById("previewContent").innerHTML = previewContent;
-
         document.getElementById("previewModal").classList.remove("hidden");
       }
 
@@ -1246,64 +1350,36 @@
 
       function submitEvent() {
         const eventTitle = document.getElementById("uni_event_title").value;
-
-        if (
-          confirm(
-            `Submit "${eventTitle}" university event for administrator review? You won't be able to make changes until the review is complete.`
-          )
-        ) {
-          alert(
-            `Event "${eventTitle}" submitted successfully! It has been sent to administrators for review. You will receive an email notification once it has been reviewed.`
-          );
+        if (confirm(`Submit "${eventTitle}" university event for administrator review? You won't be able to make changes until the review is complete.`)) {
+          alert(`Event "${eventTitle}" submitted successfully! It has been sent to administrators for review. You will receive an email notification once it has been reviewed.`);
           window.location.href = "events.html";
         }
       }
 
-      // Form submission handler
-      document
-        .getElementById("eventForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          submitEvent();
-        });
+      document.getElementById("eventForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        submitEvent();
+      });
 
-      // Close modals when clicking outside
-      document
-        .getElementById("previewModal")
-        .addEventListener("click", function (e) {
-          if (e.target === this) {
-            closePreviewModal();
-          }
-        });
-
-      // Close user menu when clicking outside
-      document.addEventListener("click", function (event) {
-        const menu = document.getElementById("userMenu");
-        const button = event.target.closest("button");
-
-        if (!button || !button.onclick.toString().includes("toggleUserMenu")) {
-          menu.classList.add("hidden");
+      document.getElementById("previewModal").addEventListener("click", function (e) {
+        if (e.target === this) {
+          closePreviewModal();
         }
       });
 
       document.addEventListener("DOMContentLoaded", function () {
         if (document.getElementById("uni_event_image")) {
-          document
-            .getElementById("uni_event_image")
-            .addEventListener("change", function (e) {
-              if (e.target.files[0]) {
-                eventImageURL = URL.createObjectURL(e.target.files[0]);
-              }
-            });
+          document.getElementById("uni_event_image").addEventListener("change", function (e) {
+            if (e.target.files[0]) {
+              eventImageURL = URL.createObjectURL(e.target.files[0]);
+            }
+          });
         }
 
-        // Set minimum date to today
         const today = new Date().toISOString().split("T")[0];
         document.getElementById("uni_event_date")?.setAttribute("min", today);
         document.getElementById("uni_end_date")?.setAttribute("min", today);
-        document
-          .getElementById("uni_registration_deadline")
-          ?.setAttribute("min", today);
+        document.getElementById("uni_registration_deadline")?.setAttribute("min", today);
       });
     </script>
   </body>
